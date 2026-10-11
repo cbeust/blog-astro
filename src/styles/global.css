@@ -2,10 +2,26 @@
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 
+@font-face {
+  font-family: "Union";
+  src: url("../assets/fonts/union.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Share";
+  src: url("../assets/fonts/share.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --font-sans: Inter, sans-serif;
-  --font-display: InterDisplay, monospace;
-  --font-mono: JetBrains Mono, monospace;
+  --font-sans: "Lucida Grande", "Lucida Sans Unicode", Calibri, Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  --font-display: "Union", "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  --font-mono: Hack, "Fira Code", Consolas, Menlo, Monaco, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
 
   /* Earth tone palette: main canvas #EEEAD9, article cards #F4EEDC, espresso text #261C13 */
   --color-base-50: #F4EEDC;
@@ -22,7 +38,7 @@
 }
 
 :root {
-  font-family: Inter, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Calibri, Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
   --beust-bg: #EEEAD9;
   --beust-article-bg: #F4EEDC;
   --beust-espresso: #261C13;
@@ -32,16 +48,49 @@
   --beust-muted: #6E6255;
 }
 
-@supports (font-variation-settings: normal) {
-  :root {
-    font-family: InterVariable, sans-serif;
-  }
-}
-
 html, body {
   background-color: #EEEAD9;
   color: #261C13;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Calibri, Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  font-size: 13px;
+  line-height: 1.25;
   min-height: 100%;
+}
+
+p {
+  line-height: 1.25;
+}
+
+h1 {
+  font-family: "Union", "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  font-weight: bold;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+}
+
+h2 {
+  font-family: "Union", "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+h3 {
+  font-family: "Arial Black", Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+h4 {
+  font-family: "Share", "Arial Narrow", Arial, sans-serif;
+}
+
+ul, ol {
+  line-height: 1.5;
+}
+
+pre, code {
+  font-family: Hack, "Fira Code", Consolas, Menlo, Monaco, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+  line-height: 1.5;
 }
 
 /* Shiki code block styles matching beust.com palette */
@@ -59,8 +108,11 @@ html, body {
   --astro-code-token-link: #61AFEF;
 }
 
-/* Typography styles optimized for legibility on earth-tone articles */
+/* Typography styles matching beust.com */
 .prose {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Calibri, Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  font-size: 13px;
+  line-height: 1.25;
   --tw-prose-body: #261C13;
   --tw-prose-headings: #1F150D;
   --tw-prose-lead: #5A4E42;
@@ -79,6 +131,38 @@ html, body {
   --tw-prose-td-borders: #ECE5CE;
 }
 
+.prose p {
+  line-height: 1.25;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.prose h1 {
+  font-family: "Union", "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+}
+
+.prose h2 {
+  font-family: "Union", "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.prose h3 {
+  font-family: "Arial Black", Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.prose h4 {
+  font-family: "Share", "Arial Narrow", Arial, sans-serif;
+}
+
+.prose ul, .prose ol {
+  line-height: 1.5;
+}
+
 .prose a {
   color: #0071BB;
   text-decoration: underline;
@@ -92,15 +176,18 @@ html, body {
 }
 
 .prose code:not(pre code) {
+  font-family: Hack, "Fira Code", Consolas, Menlo, Monaco, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
   background-color: #E2DAC0;
   color: #261C13;
   padding: 0.15em 0.4em;
   border-radius: 0.25rem;
-  font-size: 0.875em;
+  font-size: 0.9em;
   font-weight: 500;
 }
 
 .prose pre {
+  font-family: Hack, "Fira Code", Consolas, Menlo, Monaco, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+  line-height: 1.5;
   background-color: #261C13 !important;
   color: #F5F2E8 !important;
   border: 1px solid #3D3025;
@@ -116,4 +203,5 @@ html, body {
   border-radius: 0 0.5rem 0.5rem 0;
   font-style: italic;
   color: #453B31;
+  line-height: 1.25;
 }
