@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import TopEntries from "@/components/global/TopEntries.astro";
+import RecentPosts from "@/components/global/RecentPosts.astro";
+import Archives from "@/components/global/Archives.astro";
+import BlogEntries from "@/components/entries/BlogEntry.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("posts");
+
+  const monthsMap = new Map<
+    string,
+    { year: string; month: string; monthName: string; posts: typeof allPosts }
+  >();
+
+  for (const post of allPosts) {
+    const d = new Date(post.data.pubDate);
+    const year = String(d.getFullYear());
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const key = `${year}/${month}`;
+    if (!monthsMap.has(key)) {
+      const monthName = d.toLocaleString("en-US", { month: "long" });
+      monthsMap.set(key, { year, month, monthName, posts: [] });
+    }
+    monthsMap.get(key)!.posts.push(post);
+  }
+
+  return Array.from(monthsMap.values()).map(
+    ({ year, month, monthName, posts }) => {
+      const sortedPosts = posts.sort(
+        (a, b) =>
+          new Date(b.data.pubDate).getTime() -
+          new Date(a.data.pubDate).getTime()
+      );
+      return {
+        params: { year, month },
+        props: { posts: sortedPosts, monthName, year },
+      };
+    }
+  );
+}
+
+const { year, month } = Astro.params;
+const { posts, monthName } = Astro.props;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<BaseLayout pageTitle={`${monthName} ${year} | Otaku`}>
+  <div class="py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <section class="lg:col-span-8 min-w-0">
+      <div class="mb-8">
+        <a
+          href={`${basePath}/archive`}
+          class="inline-flex items-center text-xs font-medium text-base-600 hover:text-[#0071BB] mb-4 transition"
+        >
+          ← Post Archive
+        </a>
+        <h1
+          class="text-3xl sm:text-4xl text-balance font-medium font-display text-base-900"
+        >
+          Archives: {monthName} {year}
+        </h1>
+        <p class="mt-2 text-sm text-base-600">
+          Found {posts.length} {posts.length === 1 ? "post" : "posts"}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {
+          posts.map((post) => (
+            <BlogEntries
+              url={`${basePath}/posts/${post.id}`}
+              title={post.data.title}
+              description={post.data.description}
+              alt={post.data.title}
+              pubDate={new Date(post.data.pubDate).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })}
+              author={post.data.author}
+              image={post.data.image?.url}
+              tags={post.data.tags}
+              commentCount={post.data.comments?.length || 0}
+            />
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Right column: Top Entries, Recent Posts, and Archives -->
+    <aside class="lg:col-span-4 lg:sticky lg:top-8 space-y-6 mt-4 lg:mt-0">
+      <TopEntries />
+      <RecentPosts />
+      <Archives />
+    </aside>
+  </div>
+</BaseLayout>

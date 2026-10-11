@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const allPosts = await getCollection("posts");
+
+// Extract all unique months from posts
+const monthsMap = new Map<
+  string,
+  { year: string; month: string; label: string; time: number; count: number }
+>();
+
+for (const post of allPosts) {
+  const d = new Date(post.data.pubDate);
+  const year = String(d.getFullYear());
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const key = `${year}/${month}`;
+  if (!monthsMap.has(key)) {
+    const monthName = d.toLocaleString("en-US", { month: "long" });
+    monthsMap.set(key, {
+      year,
+      month,
+      label: `${monthName} ${year}`,
+      time: new Date(d.getFullYear(), d.getMonth(), 1).getTime(),
+      count: 0,
+    });
+  }
+  monthsMap.get(key)!.count++;
+}
+
+// Sort chronologically descending from the most recent ("February 2023") to the oldest ("August 2003")
+const archiveMonths = Array.from(monthsMap.values()).sort(
+  (a, b) => b.time - a.time
+);
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<div class={`p-6 rounded-2xl border border-base-200 bg-base-50 shadow-xs ${className}`}>
+  <div class="flex items-center justify-between pb-3 mb-4 border-b border-base-200">
+    <h3 class="text-xs font-bold uppercase tracking-wider text-base-900 font-display">
+      Archives
+    </h3>
+  </div>
+  <ul class="divide-y divide-base-200/60 -my-1 text-sm max-h-96 overflow-y-auto pr-1">
+    {archiveMonths.map((item) => (
+      <li class="py-2.5 first:pt-1 last:pb-1">
+        <a
+          href={`${basePath}/${item.year}/${item.month}`}
+          class="text-base-800 hover:text-[#0071BB] font-medium leading-snug transition block"
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  ul::-webkit-scrollbar {
+    width: 5px;
+  }
+  ul::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ul::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 9999px;
+  }
+  ul::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+</style>

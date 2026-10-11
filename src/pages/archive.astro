@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TopEntries from '@/components/global/TopEntries.astro';
 import RecentPosts from '@/components/global/RecentPosts.astro';
+import Archives from '@/components/global/Archives.astro';
 
 const allPosts = await getCollection('posts');
 
@@ -81,10 +82,11 @@ allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pub
     </p>
     </section>
 
-    <!-- Right column: Top Entries and Recent Posts -->
+    <!-- Right column: Top Entries, Recent Posts, and Archives -->
     <aside class="lg:col-span-4 lg:sticky lg:top-8 space-y-6 mt-4 lg:mt-0">
       <TopEntries />
       <RecentPosts />
+      <Archives />
     </aside>
   </div>
 </BaseLayout>
