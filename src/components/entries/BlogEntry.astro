@@ -25,7 +25,7 @@ const {
 } = Astro.props;
 ---
 
-<article class="flex flex-col flex-1 h-full border border-base-200 rounded-2xl p-5 bg-white hover:border-base-400 transition shadow-xs">
+<article class="flex flex-col flex-1 h-full border border-base-200 rounded-2xl p-5 bg-base-50 hover:border-base-400 transition shadow-xs">
   {image && (
     <a href={url} title={title} class="group block mb-4">
       <div class="block w-full overflow-hidden rounded-xl">
@@ -43,32 +43,32 @@ const {
   <div class="flex flex-col flex-grow justify-between">
     <div>
       <div class="flex items-center space-x-1.5 text-xs text-base-500">
-        <span class="font-medium text-base-700">{author}</span>
+        <span class="font-medium text-base-800">{author}</span>
         <span aria-hidden="true">&middot;</span>
         <time datetime={pubDate}>{pubDate}</time>
         {commentCount > 0 && (
           <>
             <span aria-hidden="true">&middot;</span>
-            <span>💬 {commentCount}</span>
+            <span class="text-base-600">💬 {commentCount}</span>
           </>
         )}
       </div>
 
       <h3 class="mt-2.5 text-lg font-medium text-base-900 leading-snug">
-        <a href={url} class="hover:text-blue-600 transition">{title}</a>
+        <a href={url} class="hover:text-[#0071BB] transition">{title}</a>
       </h3>
 
       {description && (
-        <p class="mt-2 text-sm text-base-500 line-clamp-3 leading-relaxed">{description}</p>
+        <p class="mt-2 text-sm text-base-600 line-clamp-3 leading-relaxed">{description}</p>
       )}
     </div>
 
     {tags && tags.length > 0 && (
-      <div class="flex flex-wrap gap-1.5 mt-4 pt-3 border-t border-base-100">
+      <div class="flex flex-wrap gap-1.5 mt-4 pt-3 border-t border-base-200">
         {tags.map((tag) => (
           <a
             href={`/tags/${tag}`}
-            class="text-[11px] font-medium text-base-600 bg-base-50 hover:bg-base-100 px-2 py-0.5 rounded-full transition"
+            class="text-[11px] font-medium text-base-700 bg-base-200 hover:bg-base-300 hover:text-[#0071BB] px-2.5 py-0.5 rounded-full transition"
           >
             #{tag}
           </a>

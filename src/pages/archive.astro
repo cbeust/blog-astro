@@ -14,7 +14,7 @@ allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pub
       <h1 class="text-4xl font-medium font-display text-base-900 tracking-tight">
         Post Archive
       </h1>
-      <p class="mt-2 text-sm text-base-500">
+      <p class="mt-2 text-sm text-base-600">
         Browsing all <strong class="text-base-900 font-semibold">{allPosts.length}</strong> posts.
       </p>
 
@@ -24,7 +24,7 @@ allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pub
           id="search-input"
           placeholder="Filter posts by title or tag..."
           autocomplete="off"
-          class="block w-full max-w-md mx-auto px-4 py-2.5 text-sm rounded-full border border-base-200 bg-white placeholder-base-400 text-base-900 focus:outline-none focus:ring-2 focus:ring-base-800 transition shadow-xs"
+          class="block w-full max-w-md mx-auto px-4 py-2.5 text-sm rounded-full border border-base-300 bg-base-50 placeholder:text-base-500 text-base-900 focus:outline-none focus:ring-2 focus:ring-base-800 transition shadow-xs"
         />
       </div>
     </div>
@@ -41,19 +41,19 @@ allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pub
 
         return (
           <article
-            class="post-item p-4 rounded-xl border border-base-200 hover:border-base-400 bg-white transition flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+            class="post-item p-4 rounded-xl border border-base-200 hover:border-base-400 bg-base-50 transition flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-xs"
             data-search={searchString}
           >
             <div class="flex-grow">
               <h2 class="text-base font-medium text-base-900 leading-snug">
-                <a href={`/posts/${post.id}`} class="hover:text-blue-600 transition">
+                <a href={`/posts/${post.id}`} class="hover:text-[#0071BB] transition">
                   {post.data.title}
                 </a>
               </h2>
               {post.data.tags && post.data.tags.length > 0 && (
                 <div class="flex flex-wrap gap-1.5 mt-1.5">
                   {post.data.tags.slice(0, 3).map((tag: string) => (
-                    <a href={`/tags/${tag}`} class="text-[11px] text-base-500 hover:text-blue-600">
+                    <a href={`/tags/${tag}`} class="text-[11px] text-base-600 hover:text-[#0071BB]">
                       #{tag}
                     </a>
                   ))}
@@ -61,7 +61,7 @@ allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pub
               )}
             </div>
 
-            <div class="flex items-center gap-3 text-xs text-base-400 shrink-0">
+            <div class="flex items-center gap-3 text-xs text-base-500 shrink-0">
               <time datetime={new Date(post.data.pubDate).toISOString()}>{formattedDate}</time>
               {commentCount > 0 && <span>💬 {commentCount}</span>}
             </div>
@@ -70,7 +70,7 @@ allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pub
       })}
     </div>
 
-    <p id="no-results" class="text-center py-12 text-sm text-base-400" style="display: none;">
+    <p id="no-results" class="text-center py-12 text-sm text-base-500" style="display: none;">
       No matching posts found.
     </p>
   </section>

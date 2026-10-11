@@ -2,15 +2,15 @@
 ---
 <div
   x-data="{ open: false }"
-  class="relative flex flex-col w-full mx-auto rounded-xl md:rounded-full md:items-center md:justify-between md:flex-row py-6"
+  class="relative flex flex-col w-full mx-auto rounded-xl md:rounded-full md:items-center md:justify-between md:flex-row py-6 border-b border-base-200"
 >
   <div class="flex flex-row items-center justify-between py-2 md:justify-start">
-    <a class="text-xl font-bold tracking-tight uppercase font-display text-base-900" href="/">
+    <a class="text-2xl font-bold tracking-tight uppercase font-display text-base-900 hover:text-[#0071BB] transition" href="/">
       Otaku
     </a>
     <button
       @click="open = !open"
-      class="inline-flex items-center justify-center p-2 text-base-900 hover:text-blue-500 focus:outline-none focus:text-base-900 md:hidden"
+      class="inline-flex items-center justify-center p-2 text-base-900 hover:text-[#0071BB] focus:outline-none focus:text-base-900 md:hidden"
       aria-label="Toggle Navigation"
     >
       <svg
@@ -45,25 +45,25 @@
     >
       <a
         href="/"
-        class="text-base-700 hover:text-blue-500 text-sm font-medium transition"
+        class="text-base-700 hover:text-[#0071BB] text-sm font-medium transition"
       >
         Home
       </a>
       <a
         href="/archive"
-        class="text-base-700 hover:text-blue-500 text-sm font-medium transition"
+        class="text-base-700 hover:text-[#0071BB] text-sm font-medium transition"
       >
         Archive
       </a>
       <a
         href="/tags"
-        class="text-base-700 hover:text-blue-500 text-sm font-medium transition"
+        class="text-base-700 hover:text-[#0071BB] text-sm font-medium transition"
       >
         Tags
       </a>
       <a
         href="/rss.xml"
-        class="text-base-700 hover:text-blue-500 text-sm font-medium transition"
+        class="text-base-700 hover:text-[#0071BB] text-sm font-medium transition"
       >
         RSS
       </a>

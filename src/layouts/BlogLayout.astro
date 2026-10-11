@@ -14,114 +14,116 @@ const comments = frontmatter.comments || [];
 ---
 
 <BaseLayout pageTitle={`${frontmatter.title} | Otaku`} description={frontmatter.description}>
-  <article class="py-12">
-    <div class="mb-10 pb-8 border-b border-base-200">
-      <a href="/" class="inline-flex items-center text-xs font-medium text-base-500 hover:text-blue-600 mb-6 transition">
-        ← Back to home
-      </a>
+  <div class="py-6">
+    <a href="/" class="inline-flex items-center text-xs font-medium text-base-600 hover:text-[#0071BB] mb-4 transition">
+      ← Back to home
+    </a>
 
-      <h1 class="text-3xl sm:text-4xl font-medium font-display text-base-900 leading-tight">
-        {frontmatter.title}
-      </h1>
+    <article class="p-6 sm:p-10 rounded-2xl border border-base-200 bg-base-50 shadow-xs">
+      <header class="mb-10 pb-8 border-b border-base-200">
+        <h1 class="text-3xl sm:text-4xl font-medium font-display text-base-900 leading-tight">
+          {frontmatter.title}
+        </h1>
 
-      {frontmatter.description && (
-        <p class="mt-3 text-base text-base-600 leading-relaxed">
-          <em>{frontmatter.description}</em>
-        </p>
-      )}
+        {frontmatter.description && (
+          <p class="mt-3 text-base text-base-700 leading-relaxed">
+            <em>{frontmatter.description}</em>
+          </p>
+        )}
 
-      {frontmatter.image?.url && (
-        <div class="mt-6 rounded-2xl overflow-hidden border border-base-200">
-          <Image
-            width={1280}
-            height={720}
-            src={frontmatter.image.url}
-            alt={frontmatter.image.alt || frontmatter.title}
-            class="object-cover object-center w-full aspect-12/7"
-          />
-        </div>
-      )}
-
-      <div class="flex flex-wrap items-center justify-between gap-4 mt-6 text-xs text-base-500">
-        <div class="flex items-center gap-2">
-          <span class="font-medium text-base-700">{frontmatter.author || "Cédric"}</span>
-          <span>&middot;</span>
-          <time datetime={new Date(frontmatter.pubDate || frontmatter.date).toISOString()}>{formattedDate}</time>
-          {comments.length > 0 && (
-            <>
-              <span>&middot;</span>
-              <a href="#comments" class="hover:text-blue-600 transition">💬 {comments.length} comments</a>
-            </>
-          )}
-        </div>
-
-        {frontmatter.tags && frontmatter.tags.length > 0 && (
-          <div class="flex flex-wrap gap-1.5">
-            {frontmatter.tags.map((tag: string) => (
-              <a
-                href={`/tags/${tag}`}
-                class="bg-base-50 hover:bg-base-100 text-base-600 px-2.5 py-1 rounded-full text-[11px] font-medium transition"
-              >
-                #{tag}
-              </a>
-            ))}
+        {frontmatter.image?.url && (
+          <div class="mt-6 rounded-2xl overflow-hidden border border-base-200 shadow-xs">
+            <Image
+              width={1280}
+              height={720}
+              src={frontmatter.image.url}
+              alt={frontmatter.image.alt || frontmatter.title}
+              class="object-cover object-center w-full aspect-12/7"
+            />
           </div>
         )}
-      </div>
-    </div>
 
-    <div class="prose prose-base max-w-none text-base-800 leading-relaxed">
-      <slot />
-    </div>
+        <div class="flex flex-wrap items-center justify-between gap-4 mt-6 text-xs text-base-500">
+          <div class="flex items-center gap-2">
+            <span class="font-medium text-base-800">{frontmatter.author || "Cédric"}</span>
+            <span>&middot;</span>
+            <time datetime={new Date(frontmatter.pubDate || frontmatter.date).toISOString()}>{formattedDate}</time>
+            {comments.length > 0 && (
+              <>
+                <span>&middot;</span>
+                <a href="#comments" class="hover:text-[#0071BB] transition">💬 {comments.length} comments</a>
+              </>
+            )}
+          </div>
 
-    {comments.length > 0 && (
-      <section id="comments" class="mt-16 pt-10 border-t border-base-200">
-        <h2 class="text-2xl font-medium font-display text-base-900 mb-8">
-          Comments ({comments.length})
-        </h2>
-
-        <div class="space-y-6">
-          {comments.map((comment: any) => (
-            <div class="p-5 rounded-xl border border-base-200 bg-base-50/50">
-              <div class="flex items-center justify-between mb-3 text-xs">
-                <strong class="font-semibold text-base-900">{comment.author || 'Anonymous'}</strong>
-                <time class="text-base-400">
-                  {comment.date ? new Date(comment.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  }) : ''}
-                </time>
-              </div>
-              <p class="text-sm text-base-700 whitespace-pre-line leading-relaxed">
-                {comment.content}
-              </p>
-
-              {comment.replies && comment.replies.length > 0 && (
-                <div class="mt-4 pl-4 border-l-2 border-base-200 space-y-4">
-                  {comment.replies.map((reply: any) => (
-                    <div class="p-4 rounded-lg bg-white border border-base-100">
-                      <div class="flex items-center justify-between mb-2 text-xs">
-                        <strong class="font-semibold text-base-900">{reply.author || 'Anonymous'}</strong>
-                        <time class="text-base-400">
-                          {reply.date ? new Date(reply.date).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                          }) : ''}
-                        </time>
-                      </div>
-                      <p class="text-sm text-base-700 whitespace-pre-line leading-relaxed">
-                        {reply.content}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
+          {frontmatter.tags && frontmatter.tags.length > 0 && (
+            <div class="flex flex-wrap gap-1.5">
+              {frontmatter.tags.map((tag: string) => (
+                <a
+                  href={`/tags/${tag}`}
+                  class="bg-base-200 hover:bg-base-300 hover:text-[#0071BB] text-base-700 px-2.5 py-1 rounded-full text-[11px] font-medium border border-base-300 transition"
+                >
+                  #{tag}
+                </a>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-      </section>
-    )}
-  </article>
+      </header>
+
+      <div class="prose prose-base max-w-none leading-relaxed">
+        <slot />
+      </div>
+
+      {comments.length > 0 && (
+        <section id="comments" class="mt-16 pt-10 border-t border-base-200">
+          <h2 class="text-2xl font-medium font-display text-base-900 mb-8">
+            Comments ({comments.length})
+          </h2>
+
+          <div class="space-y-6">
+            {comments.map((comment: any) => (
+              <div class="p-5 rounded-xl border border-base-200 bg-base-100 shadow-xs">
+                <div class="flex items-center justify-between mb-3 text-xs">
+                  <strong class="font-semibold text-base-900">{comment.author || 'Anonymous'}</strong>
+                  <time class="text-base-500">
+                    {comment.date ? new Date(comment.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    }) : ''}
+                  </time>
+                </div>
+                <p class="text-sm text-base-800 whitespace-pre-line leading-relaxed">
+                  {comment.content}
+                </p>
+
+                {comment.replies && comment.replies.length > 0 && (
+                  <div class="mt-4 pl-4 border-l-2 border-base-300 space-y-4">
+                    {comment.replies.map((reply: any) => (
+                      <div class="p-4 rounded-lg bg-base-50 border border-base-200">
+                        <div class="flex items-center justify-between mb-2 text-xs">
+                          <strong class="font-semibold text-base-900">{reply.author || 'Anonymous'}</strong>
+                          <time class="text-base-500">
+                            {reply.date ? new Date(reply.date).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric',
+                            }) : ''}
+                          </time>
+                        </div>
+                        <p class="text-sm text-base-800 whitespace-pre-line leading-relaxed">
+                          {reply.content}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </article>
+  </div>
 </BaseLayout>

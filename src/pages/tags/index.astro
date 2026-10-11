@@ -15,7 +15,7 @@ const pageTitle = "Tags | Otaku";
       <h1 class="text-4xl text-balance font-medium font-display text-base-900">
         All tags
       </h1>
-      <p class="mt-2 text-sm text-base-500">
+      <p class="mt-2 text-sm text-base-600">
         Browse posts by topic ({sortedTags.length} tags)
       </p>
     </div>
@@ -23,7 +23,7 @@ const pageTitle = "Tags | Otaku";
       {
         sortedTags.map((tag) => (
           <a
-            class="text-xs font-medium text-base-700 bg-base-50 hover:bg-base-100 hover:text-blue-600 px-3 py-1.5 rounded-full border border-base-200 transition"
+            class="text-xs font-medium text-base-800 bg-base-200 hover:bg-base-300 hover:text-[#0071BB] px-3.5 py-1.5 rounded-full border border-base-300 transition"
             href={`/tags/${tag}`}
           >
             #{tag}
