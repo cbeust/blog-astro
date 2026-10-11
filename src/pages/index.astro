@@ -68,7 +68,13 @@ const renderedPosts = await Promise.all(
         return (
           <article class="p-6 sm:p-8 rounded-2xl border border-base-200 bg-base-50 shadow-xs">
             <header class="mb-6 pb-6 border-b border-base-200">
-              <div class="flex items-center gap-2 text-xs text-base-500 mb-2">
+              <h2 class="text-2xl sm:text-3xl font-medium font-display text-base-900 leading-snug">
+                <a href={`/posts/${post.id}`} class="hover:text-[#0071BB] transition">
+                  {post.data.title}
+                </a>
+              </h2>
+
+              <div class="flex items-center gap-2 text-xs text-base-500 mt-2">
                 <span class="font-medium text-base-800">{post.data.author || 'Cédric'}</span>
                 <span>&middot;</span>
                 <time datetime={new Date(post.data.pubDate).toISOString()}>{formattedDate}</time>
@@ -81,12 +87,6 @@ const renderedPosts = await Promise.all(
                   </>
                 )}
               </div>
-
-              <h2 class="text-2xl sm:text-3xl font-medium font-display text-base-900 leading-snug">
-                <a href={`/posts/${post.id}`} class="hover:text-[#0071BB] transition">
-                  {post.data.title}
-                </a>
-              </h2>
 
               {post.data.tags?.filter((t: string) => t.toLowerCase() !== 'uncategorized').length > 0 && (
                 <div class="flex flex-wrap gap-1.5 mt-3">

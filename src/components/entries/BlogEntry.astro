@@ -42,7 +42,11 @@ const {
 
   <div class="flex flex-col flex-grow justify-between">
     <div>
-      <div class="flex items-center space-x-1.5 text-xs text-base-500">
+      <h3 class="text-lg font-medium text-base-900 leading-snug">
+        <a href={url} class="hover:text-[#0071BB] transition">{title}</a>
+      </h3>
+
+      <div class="flex items-center space-x-1.5 text-xs text-base-500 mt-2">
         <span class="font-medium text-base-800">{author}</span>
         <span aria-hidden="true">&middot;</span>
         <time datetime={pubDate}>{pubDate}</time>
@@ -53,10 +57,6 @@ const {
           </>
         )}
       </div>
-
-      <h3 class="mt-2.5 text-lg font-medium text-base-900 leading-snug">
-        <a href={url} class="hover:text-[#0071BB] transition">{title}</a>
-      </h3>
 
       {description && (
         <p class="mt-2 text-sm text-base-600 line-clamp-3 leading-relaxed">{description}</p>
