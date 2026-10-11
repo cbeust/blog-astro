@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import TopEntries from '@/components/global/TopEntries.astro';
+import RecentPosts from '@/components/global/RecentPosts.astro';
 
 const allPosts = await getCollection('posts');
 
@@ -80,9 +81,10 @@ allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pub
     </p>
     </section>
 
-    <!-- Right column: Top Entries -->
-    <aside class="lg:col-span-4 lg:sticky lg:top-8 mt-4 lg:mt-0">
+    <!-- Right column: Top Entries and Recent Posts -->
+    <aside class="lg:col-span-4 lg:sticky lg:top-8 space-y-6 mt-4 lg:mt-0">
       <TopEntries />
+      <RecentPosts />
     </aside>
   </div>
 </BaseLayout>

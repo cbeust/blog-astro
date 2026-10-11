@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+  class?: string;
+  limit?: number;
+}
+
+const { class: className = "", limit = 5 } = Astro.props;
+
+const allPosts = await getCollection("posts");
+allPosts.sort(
+  (a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+const recentPosts = allPosts.slice(0, limit);
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<div class={`p-6 rounded-2xl border border-base-200 bg-base-50 shadow-xs ${className}`}>
+  <div class="flex items-center justify-between pb-3 mb-4 border-b border-base-200">
+    <h3 class="text-xs font-bold uppercase tracking-wider text-base-900 font-display">
+      Recent Posts
+    </h3>
+  </div>
+  <ul class="divide-y divide-base-200/60 -my-1 text-sm">
+    {recentPosts.map((post) => (
+      <li class="py-2.5 first:pt-1 last:pb-1">
+        <a
+          href={`${basePath}/posts/${post.id}`}
+          class="text-base-800 hover:text-[#0071BB] font-medium leading-snug transition block"
+        >
+          {post.data.title}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
