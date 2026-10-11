@@ -205,3 +205,43 @@ pre, code {
   color: #453B31;
   line-height: 1.25;
 }
+
+/* Header banner matching beust.com */
+#header-wrap {
+  width: 100%;
+  background-color: #261c13;
+  background-image: url("../assets/images/header-bg.jpg");
+  background-repeat: repeat-x;
+  background-position: center top;
+}
+
+#header {
+  background-color: transparent;
+  background-image: url("../assets/images/header-center.jpg");
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+#pagetitle h1.logo {
+  font-family: "Arial Black", Arial, Helvetica, Sans, FreeSans, Jamrul, Garuda, Kalimati, sans-serif;
+  letter-spacing: -0.08em;
+  font-variant: small-caps;
+  font-weight: 900;
+  color: #eeeadb;
+}
+
+#pagetitle h1.logo a {
+  color: #eeeadb;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+#pagetitle h1.logo a:hover {
+  color: #ffffff;
+}
+
+#pagetitle h4.tagline {
+  font-family: "Share", "Arial Narrow", Arial, sans-serif;
+  color: #e9e2c9;
+  font-weight: normal;
+}

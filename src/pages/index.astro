@@ -33,17 +33,8 @@ const renderedPosts = await Promise.all(
 <BaseLayout pageTitle="Otaku — Cédric's Blog">
   <div class="py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
     <section class="lg:col-span-8 min-w-0">
-      <!-- Header banner -->
-    <div class="mb-12">
-      <h1 class="text-4xl sm:text-5xl font-medium font-display text-base-900 tracking-tight">
-        Otaku
-      </h1>
-      <p class="mt-3 text-base text-base-700 max-w-xl leading-relaxed">
-        Personal blog and archive by Cédric. Showing the latest 5 posts in full below.
-      </p>
-
       {tags.length > 0 && (
-        <div class="flex flex-wrap items-center gap-2 mt-6 pt-6 border-t border-base-200">
+        <div class="flex flex-wrap items-center gap-2 mb-10 pb-6 border-b border-base-200">
           <span class="text-xs font-semibold uppercase tracking-wider text-base-600 mr-1">
             Topics:
           </span>
@@ -63,7 +54,6 @@ const renderedPosts = await Promise.all(
           </a>
         </div>
       )}
-    </div>
 
     <!-- First 5 Posts Rendered In Full -->
     <div class="space-y-16">

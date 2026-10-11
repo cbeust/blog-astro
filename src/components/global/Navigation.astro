@@ -1,72 +1,51 @@
 ---
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
-<div
-  x-data="{ open: false }"
-  class="relative flex flex-col w-full mx-auto rounded-xl md:rounded-full md:items-center md:justify-between md:flex-row py-6 border-b border-base-200"
->
-  <div class="flex flex-row items-center justify-between py-2 md:justify-start">
-    <a class="text-2xl font-bold tracking-tight uppercase font-display text-base-900 hover:text-[#0071BB] transition" href="/">
-      Otaku
-    </a>
-    <button
-      @click="open = !open"
-      class="inline-flex items-center justify-center p-2 text-base-900 hover:text-[#0071BB] focus:outline-none focus:text-base-900 md:hidden"
-      aria-label="Toggle Navigation"
-    >
-      <svg
-        class="w-6 h-6"
-        stroke="currentColor"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <path
-          :class="{'hidden': open, 'inline-flex': !open }"
-          class="inline-flex"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"></path>
-        <path
-          :class="{'hidden': !open, 'inline-flex': open }"
-          class="hidden"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-  </div>
-  <nav
-    :class="{'flex': open, 'hidden': !open}"
-    class="flex-col justify-center flex-grow hidden py-6 md:py-0 md:flex md:items-center md:flex-row"
-  >
-    <div
-      class="items-center justify-center list-none space-y-2 md:space-y-0 md:ml-auto md:inline-flex md:text-left gap-6"
-    >
-      <a
-        href="/"
-        class="text-base-700 hover:text-[#0071BB] text-sm font-medium transition"
-      >
-        Home
-      </a>
-      <a
-        href="/archive"
-        class="text-base-700 hover:text-[#0071BB] text-sm font-medium transition"
-      >
-        Archive
-      </a>
-      <a
-        href="/tags"
-        class="text-base-700 hover:text-[#0071BB] text-sm font-medium transition"
-      >
-        Tags
-      </a>
-      <a
-        href="/rss.xml"
-        class="text-base-700 hover:text-[#0071BB] text-sm font-medium transition"
-      >
-        RSS
-      </a>
+
+<header id="header-wrap" class="w-full relative z-10 shadow-md">
+  <div id="header" class="w-full">
+    <div class="max-w-6xl mx-auto px-6 sm:px-8 pt-8 pb-5">
+      <!-- Title & Tagline -->
+      <div id="pagetitle" class="flex flex-col md:flex-row md:items-center gap-2 md:gap-0">
+        <h1 class="logo text-3xl sm:text-4xl md:text-5xl">
+          <a href={`${basePath}/`}>
+            OTAKU- CEDRIC'S BLOG
+          </a>
+        </h1>
+        <h4 class="tagline text-lg sm:text-xl md:text-2xl md:border-l md:border-[#8e7762] md:pl-4 md:ml-4 leading-snug">
+          Thoughts on software engineering
+        </h4>
+      </div>
+
+      <!-- Navigation links -->
+      <nav class="mt-6 pt-3 border-t border-[#8e7762]/40 flex items-center justify-between text-sm">
+        <div class="flex items-center gap-6 font-bold tracking-wide">
+          <a
+            href={`${basePath}/`}
+            class="text-[#b5d1e6] hover:text-white transition drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+          >
+            Home
+          </a>
+          <a
+            href={`${basePath}/archive`}
+            class="text-[#b5d1e6] hover:text-white transition drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+          >
+            Archive
+          </a>
+          <a
+            href={`${basePath}/tags`}
+            class="text-[#b5d1e6] hover:text-white transition drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+          >
+            Tags
+          </a>
+          <a
+            href={`${basePath}/rss.xml`}
+            class="text-[#b5d1e6] hover:text-white transition drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]"
+          >
+            RSS
+          </a>
+        </div>
+      </nav>
     </div>
-  </nav>
-</div>
+  </div>
+</header>
