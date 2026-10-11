@@ -41,22 +41,24 @@ const archiveMonths = Array.from(monthsMap.values()).sort(
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
-<div class={`p-6 rounded-2xl border border-base-200 bg-base-50 shadow-xs ${className}`}>
-  <div class="flex items-center justify-between pb-3 mb-4 border-b border-base-200">
-    <h3 class="text-xs font-bold uppercase tracking-wider text-base-900 font-display">
+<div class={`rounded-xl border border-base-200 bg-white shadow-xs overflow-hidden ${className}`}>
+  <div class="bg-[#f44365] px-4 py-2 border-b border-[#e02f51]">
+    <h4 class="text-[14px] font-normal uppercase tracking-[-0.04em] text-white">
       Archives
-    </h3>
+    </h4>
   </div>
-  <ul class="divide-y divide-base-200/60 -my-1 text-sm">
-    {archiveMonths.map((item) => (
-      <li class="py-2.5 first:pt-1 last:pb-1">
-        <a
-          href={`${basePath}/${item.year}/${item.month}`}
-          class="text-base-800 hover:text-[#0071BB] font-medium leading-snug transition block"
-        >
-          {item.label}
-        </a>
-      </li>
-    ))}
-  </ul>
+  <div class="p-4">
+    <ul class="divide-y divide-base-100 -my-1 text-[13px] leading-[150%]">
+      {archiveMonths.map((item) => (
+        <li class="py-2 first:pt-0 last:pb-0">
+          <a
+            href={`${basePath}/${item.year}/${item.month}`}
+            class="text-[#0071BB] hover:text-[#f44365] transition block"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
 </div>
