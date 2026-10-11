@@ -30,13 +30,14 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <BaseLayout pageTitle={`#${tag} | Otaku`}>
   <div class="py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
     <section class="lg:col-span-9 min-w-0">
     <div class="mb-8">
-      <a href="/tags" class="inline-flex items-center text-xs font-medium text-base-600 hover:text-[#0071BB] mb-4 transition">
+      <a href={`${basePath}/tags`} class="inline-flex items-center text-xs font-medium text-base-600 hover:text-[#0071BB] mb-4 transition">
         ← All tags
       </a>
       <h1 class="text-3xl sm:text-4xl text-balance font-medium font-display text-base-900">
@@ -51,7 +52,7 @@ const { posts } = Astro.props;
       {
         posts.map((post) => (
           <BlogEntries
-            url={"/posts/" + post.id}
+            url={`${basePath}/posts/${post.id}`}
             title={post.data.title}
             description={post.data.description}
             alt={post.data.title}
