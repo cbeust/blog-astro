@@ -252,12 +252,12 @@ But things changed and some of these advanced features turned out to be not only
 Unfortunately, Python wasn't designed to grow.  It didn't follow the recipes laid out by Guy Steele's seminal paper _[Growing a language](http://homepages.inf.ed.ac.uk/wadler/steele-oopsla98.pdf)_, and as such, the inclusion of all these features took a heavy toll on Python's syntax (sometimes acceptable) and Python's consistency (much worse).
 
 For example, `static` was retrofitted in Python and must now be achieved like this:
-    
-    
-    def say_hello(cls):
-    print X.message
-    say_hello = classmethod(say_hello)
-    
+
+```python
+def say_hello(cls):
+print X.message
+say_hello = classmethod(say_hello)
+```
 
 That's right:  not only do you make a method `static` by invoking a magic function on it, you actually need to reassign the method to the value returned by this magic method.
 

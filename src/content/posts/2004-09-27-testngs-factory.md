@@ -33,32 +33,32 @@ Having said that, there is some undeniable power in the ability to express this 
 Imagine the following situation: you have a class that validates an XML file and you want to run this class on several files. The problem is: you don't know in advance what these XML files are (they might be "all the XML files in this directory"). Obviously, a programmatic approach is needed for this. 
 
 Enter @Factory. 
-    
-    
-    public class XMLFilesTest {
-    @Factory
-    public Object[] factory() {
-    List<Object> vResult = new ArrayList<File>();
-    File[] files = // read files from the directory
-    for (File f : files) {
-    vResult.add(new XMLValidatorTest(f));
-    }
-    return vResult.toArray(new Object[vResult.size()]);
-    }
-    }
-    
+
+```java
+public class XMLFilesTest {
+@Factory
+public Object[] factory() {
+List<Object> vResult = new ArrayList<File>();
+File[] files = // read files from the directory
+for (File f : files) {
+vResult.add(new XMLValidatorTest(f));
+}
+return vResult.toArray(new Object[vResult.size()]);
+}
+}
+```
 
 Once you have a test class that has a @Factory method, all you need to do is specify this method in your testng.xml: 
-    
-    
-    <suite>
-    <test name="XML" >
-    <classes>
-    <class name="test.sample.XMLFilesTest" />
-    </classes>
-    </test>
-    </suite>
-    
+
+```xml
+<suite>
+<test name="XML" >
+<classes>
+<class name="test.sample.XMLFilesTest" />
+</classes>
+</test>
+</suite>
+```
 
 TestNG will pick you your @Factory method, invoke it, retrieve all the objects you returned and consider each of them as a separate TestNG test class. 
 

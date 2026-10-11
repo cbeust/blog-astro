@@ -44,38 +44,38 @@ With this in mind, the requirements for testing TestNG are as follows:
 
 
 The design I have achieved so far allows me to write tests like this:
-    
-    
-    @Test
-    **public** **void** partialGroupsClass**(****)** **{**
-    addClass**(** "test.sample.PartialGroupTest"**)** ;
-    addIncludedGroup**(** "classGroup"**)** ;
-    run**(****)** ;
-    String**[****]** passed = **{**
-    "testMethodGroup", "testClassGroup"
-    **}** ;
-    String**[****]** failed = **{**
-    **}** ;
-    verifyTests**(** "Passed", passed, getPassedTests**(****)****)** ;
-    verifyTests**(** "Failed", failed, getFailedTests**(****)****)** ;
-    **}**
-    
+
+```java
+@Test
+**public** **void** partialGroupsClass**(****)** **{**
+addClass**(** "test.sample.PartialGroupTest"**)** ;
+addIncludedGroup**(** "classGroup"**)** ;
+run**(****)** ;
+String**[****]** passed = **{**
+"testMethodGroup", "testClassGroup"
+**}** ;
+String**[****]** failed = **{**
+**}** ;
+verifyTests**(** "Passed", passed, getPassedTests**(****)****)** ;
+verifyTests**(** "Failed", failed, getFailedTests**(****)****)** ;
+**}**
+```
 
 In this test, I specify the test class to be invoked and the group to be included for this run.  Then I run the tests and compare the methods actually run against the ones I expect to be run.
 
 As you can expect, the class PartialGroupTest contains several methods, of which only testMethodGroup() and testClassGroup() belong to the group "classGroup", so I only expect these methods to be invoked and to pass.
 
 Now, how does this work exactly?  It's quite simple:  the inner TestNG instance is configured in a "beforeTestMethod" method, so that it gets invoked before each test method.  This way, I am guaranteed to start with a clean inner TestNG instance for each test method:
-    
-    
-    @Configuration**(** beforeTestMethod = **true****)**
-    **public** **void** methodSetUp**(****)** **{**
-    setPassedTests**(****new** HashMap**(****)****)** ;
-    setFailedTests**(****new** HashMap**(****)****)** ;
-    setSkippedTests**(****new** HashMap**(****)****)** ;
-    // ...
-    **}**
-    
+
+```java
+@Configuration**(** beforeTestMethod = **true****)**
+**public** **void** methodSetUp**(****)** **{**
+setPassedTests**(****new** HashMap**(****)****)** ;
+setFailedTests**(****new** HashMap**(****)****)** ;
+setSkippedTests**(****new** HashMap**(****)****)** ;
+// ...
+**}**
+```
 
 This method is defined in a base class that all my tests inherit, so I don't need to worry about this when I write my tests.  It is also responsible for setting itself as a listener to the inner TestNG instance so that it gets notified each time a test passes, fails or skips.  Later, the method verifyTests() can be invoked by each test method to compare the methods run against the ones they expect.
 

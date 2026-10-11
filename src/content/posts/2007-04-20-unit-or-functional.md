@@ -209,17 +209,17 @@ Is it possible to have 100% unit test coverage and yet have an application that 
 Absolutely. 
 
 Consider the following code: 
-    
-    
-    public class Main {
-    public void openFile() {}
-    public void filterFile() {}
-    public static void main(String[] argv) {
-    filterFile();
-    openFile();
-    }
-    }
-    
+
+```java
+public class Main {
+public void openFile() {}
+public void filterFile() {}
+public static void main(String[] argv) {
+filterFile();
+openFile();
+}
+}
+```
 
 We have tests for `openFile()` and `filterFile()` and they all pass, however, since the `main` method should be calling `openFile()` first, our application is broken. 
 
@@ -230,17 +230,17 @@ Does this mean that unit tests are useless and that we should only write functio
 Not exactly, but I definitely want to make something very clear: while unit tests have been receiving a lot of exposure these past years, functional tests are ultimately the only way to guarantee that your application works the way your customers expect. 
 
 Let's write a few tests for the code above to make things clearer: 
-    
-    
-    public class MainTest {
-    @Test(groups = { "unit", "fast" })
-    public void openFileShouldWork() { ... }
-    @Test(groups = { "unit", "slow" })
-    public void filterFileShouldWork() { ... }
-    @Test(groups = { "functional", "slow"})
-    public void mainShouldWork() { ... }
-    }
-    
+
+```java
+public class MainTest {
+@Test(groups = { "unit", "fast" })
+public void openFileShouldWork() { ... }
+@Test(groups = { "unit", "slow" })
+public void filterFileShouldWork() { ... }
+@Test(groups = { "functional", "slow"})
+public void mainShouldWork() { ... }
+}
+```
 
 For illustration purposes, I'm assuming that `filterFile()` is slower to run than `openFile()`, so I put this method in the "slow" group. This test class if fairly extensive: it covers unit and functional tests, and achieves more than 100% coverage. 
 

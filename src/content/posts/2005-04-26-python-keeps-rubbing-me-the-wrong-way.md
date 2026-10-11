@@ -606,11 +606,12 @@ comments:
 ---
 
 In response to [Luke Hutteman's post on continuations](http://www.hutteman.com/weblog/2005/04/26-224.html), someone offered the following Python snippet to illustrate filtering:
-    
-    
-    values = range(10)
-    for nr in (nr for nr in values if nr%2==0):
-        print nr
+
+```python
+values = range(10)
+for nr in (nr for nr in values if nr%2==0):
+    print nr
+```
 
 There are several things that bother me with this code:
 
@@ -621,15 +622,16 @@ There are several things that bother me with this code:
 
 
 Here is a Ruby way of doing the same thing:
-    
-    
-    (0..10)
-      .find_all { |it|
-        it %2 == 0
-      }
-      .each { |it|
-        puts it;
-      }
+
+```ruby
+(0..10)
+  .find_all { |it|
+    it %2 == 0
+  }
+  .each { |it|
+    puts it;
+  }
+```
 
 What I like about it:
 

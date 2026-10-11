@@ -50,31 +50,31 @@ A better way to address this problem is to use annotations as a bridge between y
 #### Parameters
 
 Test methods don't have to be parameterless.  You can use an arbitrary number of parameters on each of your test method, and you instruct TestNG to pass you the correct parameters with the _parameters_ method on the @Test annotation.  For example:
-    
-    
-    @Test(parameters = { "first-name" })
-    public void testSingleString(String firstName) {
-    System.out.println("Invoked testString " + firstName);
-    assert "Cedric".equals(firstName);
-    }
-    
+
+```java
+@Test(parameters = { "first-name" })
+public void testSingleString(String firstName) {
+System.out.println("Invoked testString " + firstName);
+assert "Cedric".equals(firstName);
+}
+```
 
 In this code, we specify that the Java parameter "firstName" of your Java method should receive the value of the property called _first-name._   This property is defined in the testng.properties that you used to invoke this test:
-    
-    
-    #testng.properties
-    first-name = Cedric
-    
+
+```properties
+#testng.properties
+first-name = Cedric
+```
 
 #### The same technique can be used for the @Configuration annotations:
-    
-    
-    @Configuration(beforeTestMethod = true,
-    parameters = {"datasource", "jdbc-driver")
-    public void beforeTest(String ds, String jdbcDriver) {
-    m_dataSource = ...;  // look up the value of datasource
-    }
-    
+
+```java
+@Configuration(beforeTestMethod = true,
+parameters = {"datasource", "jdbc-driver")
+public void beforeTest(String ds, String jdbcDriver) {
+m_dataSource = ...;  // look up the value of datasource
+}
+```
 
 This time, the two Java parameter _ds_ and _driver_ will receive the value given to the properties _datasource_ and _jdbc-driver_ respectively.  Note that the properties are mapped to the Java parameters in the same order as they are found in the annotation, and TestNG will issue an error if the numbers don't match. 
 

@@ -81,23 +81,23 @@ In order to get this ugly rendition of code, I had to indent the snippet manuall
 _Solution_ : Use [Markdown Here](https://chrome.google.com/webstore/detail/markdown-here/elifhakcjgalahccnjkneoccemfahfoa?hl=en), a Chrome extension which not only allows you to format your code in Markdown but also uses some pretty nice CSS. 
 
 You only need a few backticks and, optionally, specify the language: 
-    
-    
-    ```java
-    public class SlidingWindowMap {
-      public SlidingWindowMap(Set keys, int maxCount, long periodMs) {
-        // ...
-      }
-      /**
-       * @return a key that has been used less than `maxCount` times during the
-       * past `periodMs` milliseconds or null if no such key exists.
-       */
-      public String getNextKey() {
-        // Your brilliant _Solution_ goes here
-      }
-    }
-    ```
-    
+
+````java
+```java
+public class SlidingWindowMap {
+  public SlidingWindowMap(Set keys, int maxCount, long periodMs) {
+    // ...
+  }
+  /**
+   * @return a key that has been used less than `maxCount` times during the
+   * past `periodMs` milliseconds or null if no such key exists.
+   */
+  public String getNextKey() {
+    // Your brilliant _Solution_ goes here
+  }
+}
+```
+````
 
 Click the Markdown button and voil??: 
 

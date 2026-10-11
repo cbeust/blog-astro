@@ -101,14 +101,15 @@ First of all, as many commenters pointed out, you can't really test for randomne
 ## Shuffling
 
 Let's get the first question out of the way. The [Fisher-Yates](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) shuffle is very simple to explain: start from the end and swap the element at that index with a random one. Then take the next to last and swap it with a random element between 0 and i -1. Here is the (simplified) Java library version, `Collections.shuffle()`:
-    
-    
-    public static void shuffle(List<?> list, Random rnd) {
-        int size = list.size();
-        for (int i = size; i > 1; i--)
-            swap(list, i - 1, rnd.nextInt(i));
-        }
+
+```java
+public static void shuffle(List<?> list, Random rnd) {
+    int size = list.size();
+    for (int i = size; i > 1; i--)
+        swap(list, i - 1, rnd.nextInt(i));
     }
+}
+```
 
 _Note: this is actually *not* the Fisher-Yates algorithm, which runs in O(n^2) but an improved version, which runs in linear time. For some reason, most people still call it the Fisher-Yates algorithm, probably because of its resemblance to it.  
 _
@@ -126,18 +127,20 @@ You might be thinking that such a matrix doesn't contain enough information. For
 Another thought might be that instead of counting the occurrences of these numbers, we could calculate the average of the number that each index has contained. And if you have some education in statistics, you know that once you start getting into the idea of computing averages, you can't avoid looking at standard deviations as well.
 
 Here is what we get for an evenly distributed algorithm:
-    
-    
-    Averages:[1.9988, 1.9992, 2.0023, 2.0011, 1.9983]
-    Stddev: [1.4131, 1.4145, 1.4145, 1.4147, 1.4140]
+
+```text
+Averages:[1.9988, 1.9992, 2.0023, 2.0011, 1.9983]
+Stddev: [1.4131, 1.4145, 1.4145, 1.4147, 1.4140]
+```
 
 The average is 2 since the elements range from 0 to 4 inclusive. The standard deviation is the square root of 2, which means that the numbers are evenly distributed around the average within a distance of 2.
 
 Here are the results for the identity function, which doesn't distribute at all:
-    
-    
-    Averages:[0.0, 1.0, 2.0, 3.0, 4.0]
-    Stddev: [2.0, 1.0, 0.0, 1.0, 2.0]
+
+```text
+Averages:[0.0, 1.0, 2.0, 3.0, 4.0]
+Stddev: [2.0, 1.0, 0.0, 1.0, 2.0]
+```
 
 Unsurprisingly, the average of numbers appearing in position 0 is 0 and 4 for the position 4. The elements in position 0 and 4 are 2 away from the average, etc...
 
@@ -146,174 +149,190 @@ So we can get some approximate information about how evenly distributed our func
 ## The count matrix
 
 Here is how the identity function spreads on the count matrix:
-    
-    
-    1000000 0 0 0 0
-    0 1000000 0 0 0
-    0 0 1000000 0 0
-    0 0 0 1000000 0
-    0 0 0 0 1000000
+
+```text
+1000000 0 0 0 0
+0 1000000 0 0 0
+0 0 1000000 0 0
+0 0 0 1000000 0
+0 0 0 0 1000000
+```
 
 And here is a typical run for `Collections.shuffle()`:
-    
-    
-    2000455 2000514 2000895 1998349 1999787
-    2001463 1999130 1999621 1999253 2000533
-    1997862 2000217 2001450 2000810 1999661
-    1999117 1999870 1998689 2000809 2001515
-    2001103 2000269 1999345 2000779 1998504
+
+```text
+2000455 2000514 2000895 1998349 1999787
+2001463 1999130 1999621 1999253 2000533
+1997862 2000217 2001450 2000810 1999661
+1999117 1999870 1998689 2000809 2001515
+2001103 2000269 1999345 2000779 1998504
+```
 
 This looks good but it's a bit difficult to read, so instead, let's count how many of these numbers differ from the expected value by, say, 1%:
-    
-    
-    for (int i = 0; i < N; i++) {
-      for (int j = 0; j < N; j++) {
-        float delta = Math.abs((RUNS / N) - mat[i][j]);
-        float percent = delta * 100f / N / RUNS;
-        if (percent > 0.01f) {
-          failures++;
-        }
-      }
+
+```java
+for (int i = 0; i < N; i++) {
+  for (int j = 0; j < N; j++) {
+    float delta = Math.abs((RUNS / N) - mat[i][j]);
+    float percent = delta * 100f / N / RUNS;
+    if (percent > 0.01f) {
+      failures++;
     }
+  }
+}
+```
 
 The outcome:
-    
-    
-    Failures: 0/25
+
+```text
+Failures: 0/25
+```
 
 We would expect the number of failures to increase as we reduce the number of runs:
-    
-    
-    Runs: 10000000, failures: 0/25
-    Runs: 1000000, failures: 0/25
-    Runs: 100000, failures: 15/25
-    Runs: 10000, failures: 24/25
-    Runs: 1000, failures: 24/25
+
+```text
+Runs: 10000000, failures: 0/25
+Runs: 1000000, failures: 0/25
+Runs: 100000, failures: 15/25
+Runs: 10000, failures: 24/25
+Runs: 1000, failures: 24/25
+```
 
 ## Doing it wrong
 
 Alright, so `Collections.shuffle()` seems to score well on this scale. Now let's turn our attention to the many ways you can get this algorithm wrong. Let's make a copy of it:
-    
-    
-    for (int i = N; i > 1; i--) {
-      Collections.swap(result, i-1, rnd.nextInt(N));
-    }
+
+```java
+for (int i = N; i > 1; i--) {
+  Collections.swap(result, i-1, rnd.nextInt(N));
+}
+```
 
 Let's reset RUNS to one million and try again:
-    
-    
-    Runs: 1000000, failures: 17/25
+
+```text
+Runs: 1000000, failures: 17/25
+```
 
 Oops. Running it again and again yields similar results. What happened?
 
 Okay, I'll admit it, I introduced a bug when copying the code, can you spot it?
-    
-    
-    Collections.swap(result, i-1, rnd.nextInt(N));  // incorrect
-    Collections.swap(result, i-1, rnd.nextInt(i));  // correct
+
+```text
+Collections.swap(result, i-1, rnd.nextInt(N));  // incorrect
+Collections.swap(result, i-1, rnd.nextInt(i));  // correct
+```
 
 It looks like selecting the random index to swap among the entire array totally wrecks the distribution, while selecting it from only these elements we haven't reached in our loop makes everything right. I'll leave the interpretation of this behavior as an exercise to the reader.
 
 Here is another way to get this wrong.
 
 When you look at the fundamentals of the algorithm, you may wonder if you really need to go through the entire array to perform the swaps. After all, once you reach the half point of the array, it's very likely that the second half of the array has been swapped randomly already, so why not stop there? Well, let's try (I am also increasing the size of the array to 10):
-    
-    
-    Runs: 1000000, failures: 25/100
+
+```text
+Runs: 1000000, failures: 25/100
+```
 
 Again, it looks like we messed up the algorithm. Let's take a look at the distribution matrix:
-    
-    
-    for (int i = N; i > N / 2; i--) {
-      Collections.swap(result, i-1, rnd.nextInt(i));
-    }
-    
-    
-     
-    
-    
-    499916 0 0 0 0 99893 100776 99757 99744 99914 0 499489 0 0 0 
-    100013 100040 100580 99643 100235 0 0 499929 0 0 99719 99753
-    100135 100363 100101 0 0 0 500268 0 99903 100346 99934 100079
-    99470 0 0 0 0 500255 99669 99766 100426 100040 99844 100364 100323
-    99846 99878 99909 100102 99518 99608 99934 100518 100392 99868 99843
-    100204 99662 100333 99544 99582 100313 100259 99946 100439 100138
-    99926 100406 99785 100144 99898 99773 99545 99906 99622 99748 100211
-    99641 100624 100149 100188 100003 99908 99476 100259 100496 99513
-    100127 99959 99964 99892 100108 100206
+
+```java
+for (int i = N; i > N / 2; i--) {
+  Collections.swap(result, i-1, rnd.nextInt(i));
+}
+
+
+ 
+
+
+499916 0 0 0 0 99893 100776 99757 99744 99914 0 499489 0 0 0 
+100013 100040 100580 99643 100235 0 0 499929 0 0 99719 99753
+100135 100363 100101 0 0 0 500268 0 99903 100346 99934 100079
+99470 0 0 0 0 500255 99669 99766 100426 100040 99844 100364 100323
+99846 99878 99909 100102 99518 99608 99934 100518 100392 99868 99843
+100204 99662 100333 99544 99582 100313 100259 99946 100439 100138
+99926 100406 99785 100144 99898 99773 99545 99906 99622 99748 100211
+99641 100624 100149 100188 100003 99908 99476 100259 100496 99513
+100127 99959 99964 99892 100108 100206
+```
 
 Our modified algorithm has introduced a strong bias in the first half of the array (the one we decided wasn't worth selecting on): number 0 has a 50% chance of being found in position 0, same for 1-4. From 5 to 9, the probability drops to the expected 10% odds.
 
 Let's see what happens if we go a bit further than the half point, say 3/4 of the array:
-    
-    
-    for (int i = N; i > N / 4; i--) {
-      Collections.swap(result, i-1, rnd.nextInt(i));
-    }
-    
-    
-    199836 0 100150 100374 100292 100139 99861 99665 99861 99822
-    0 200711 100183 99753 100317 99945 99761 99403 99879 100048
-    100283 99860 99936 99915 99693 100480 99786 100128 99848 100071
-    100057 99592 100152 99785 100017 99507 99550 100557 100564 100219
-    99933 100225 99808 100193 99844 100017 100212 99573 100462 99733
-    99776 99789 99895 99753 99953 99973 100124 100873 99518 100346
-    99921 100068 100020 100316 99589 99728 100461 100206 99900 99791
-    100169 99896 99941 99880 99922 100094 100168 99947 99754 100229
-    100217 99964 99812 100066 100413 100209 99975 99593 100216 99535
-    99808 99895 100103 99965 99960 99908 100102 100055 99998 100206
-    Runs: 1000000, failures: 4/100
+
+```java
+for (int i = N; i > N / 4; i--) {
+  Collections.swap(result, i-1, rnd.nextInt(i));
+}
+
+
+199836 0 100150 100374 100292 100139 99861 99665 99861 99822
+0 200711 100183 99753 100317 99945 99761 99403 99879 100048
+100283 99860 99936 99915 99693 100480 99786 100128 99848 100071
+100057 99592 100152 99785 100017 99507 99550 100557 100564 100219
+99933 100225 99808 100193 99844 100017 100212 99573 100462 99733
+99776 99789 99895 99753 99953 99973 100124 100873 99518 100346
+99921 100068 100020 100316 99589 99728 100461 100206 99900 99791
+100169 99896 99941 99880 99922 100094 100168 99947 99754 100229
+100217 99964 99812 100066 100413 100209 99975 99593 100216 99535
+99808 99895 100103 99965 99960 99908 100102 100055 99998 100206
+Runs: 1000000, failures: 4/100
+```
 
 Here is another way to mess it up. Let's restore our loop to swap the entire array:
-    
-    
-    for (int i = N; i > 1; i--) {
-      Collections.swap(result, i-1, new Random().nextInt(i));
-    }
+
+```java
+for (int i = N; i > 1; i--) {
+  Collections.swap(result, i-1, new Random().nextInt(i));
+}
+```
 
 Let's run it:
-    
-    
-    137244 44545 91552 87602 100969 122467 100299 125866 101490 87966
-    71720 138821 92466 107337 103311 123042 99610 73350 103791 86552
-    129376 113794 114303 98828 102760 55589 100312 102734 95621 86683
-    71216 112960 111268 115538 102947 99968 100271 98012 100026 87794
-    94519 94294 94709 94851 93888 103046 99956 100257 101460 123020
-    95533 96387 95852 96858 96351 96101 99570 99488 96360 127500
-    99901 99926 99890 99421 99929 100409 99989 99744 100489 100302
-    100233 99852 99969 99940 99872 99922 100016 100154 100071 99971
-    99725 99387 99817 99841 100002 99500 100061 100811 100863 99993
-    100533 100034 100174 99784 99971 99956 99916 99584 99829 100219
-    Runs: 1000000, failures: 49/100
+
+```text
+137244 44545 91552 87602 100969 122467 100299 125866 101490 87966
+71720 138821 92466 107337 103311 123042 99610 73350 103791 86552
+129376 113794 114303 98828 102760 55589 100312 102734 95621 86683
+71216 112960 111268 115538 102947 99968 100271 98012 100026 87794
+94519 94294 94709 94851 93888 103046 99956 100257 101460 123020
+95533 96387 95852 96858 96351 96101 99570 99488 96360 127500
+99901 99926 99890 99421 99929 100409 99989 99744 100489 100302
+100233 99852 99969 99940 99872 99922 100016 100154 100071 99971
+99725 99387 99817 99841 100002 99500 100061 100811 100863 99993
+100533 100034 100174 99784 99971 99956 99916 99584 99829 100219
+Runs: 1000000, failures: 49/100
+```
 
 Wow, that's another massive failure. What did I do wrong this time?
-    
-    
-    private Random rnd = new Random();
-    // ...
-    Collections.swap(result, i-1, rnd.nextInt(i));  // correct
-    Collections.swap(result, i-1, new Random().nextInt(i)); // incorrect
+
+```java
+private Random rnd = new Random();
+// ...
+Collections.swap(result, i-1, rnd.nextInt(i));  // correct
+Collections.swap(result, i-1, new Random().nextInt(i)); // incorrect
+```
 
 Why would creating a new `Random` object trigger such a bug while reusing the same `Random` object through our loops provides a good distribution?
 
 If you ever deal with random generation in Java (and probably other languages), you absolutely need to be aware of the way `java.lang.Random` is implemented. The problem here is that new objects are seeded with the current time, so creating objects within a loop pretty much guarantees that these objects will be created within a timeframe that's smaller than the clock granularity, which means that a lof ot the random numbers generated in succession will be identical. You address this either by reusing the same `Random` object (consider warming it up, too) or, better, by using `java.util.Math#random` (or even better: `java.security.SecureRandom)`.
 
 I'll show one more common mistake, which might actually not always be one:
-    
-    
-    for (int i = N; i > 1; i--) {
-      Collections.swap(result, i-1, rnd.nextInt(i - 1));  // was i
-    }
+
+```java
+for (int i = N; i > 1; i--) {
+  Collections.swap(result, i-1, rnd.nextInt(i - 1));  // was i
+}
+```
 
 The difference here is that the random index is picked between 0 and i-1, instead of between 0 and i. Here is the distribution:
-    
-    
-    0 249684 250515 249406 250395
-    250334 0 249828 249915 249923
-    249569 249612 0 250188 250631
-    249973 250505 250471 0 249051
-    250124 250199 249186 250491 0
-    Runs: 1000000, failures: 25/25
+
+```text
+0 249684 250515 249406 250395
+250334 0 249828 249915 249923
+249569 249612 0 250188 250631
+249973 250505 250471 0 249051
+250124 250199 249186 250491 0
+Runs: 1000000, failures: 25/25
+```
 
 We observe that no number i can ever be found in position i, which, while totally failing our even distribution test, possesses a few interesting qualities. This approach is actually known as the Sattolo algorithm, and it's actually useful because it always generates cycles (look it up in a section of its own in the [Fisher-Yates entry on Wikipedia](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle)).
 

@@ -20,27 +20,30 @@ Before we get into details, let's define exactly what we are trying to do and wh
 A library typically defines types and then offers functions that take parameters and returns values of that type. The only way to make use of that library is to find a way to bring your objects into that library's object world, or in other words, be able to convert your objects to objects that this library expects and vice versa. You will find many examples of type classes if you do a simple search: values that behave like a Number, Functor, Applicative, Monad, Monoid, Equality, Comparability, etc... In order not to repeat what's already out there and in an effort to remain focused on concrete problems, I'm going to pick a different field: JSON.
 
 The need to parse JSON and also convert your objects to JSON is pretty much universal, so in all likeliness, you are already using a JSON library in your code. And at some point, you have had to ask yourself a very simple question: "How do I convert my current objects to JSON so I can use this library". The library probably defines some kind of `JsonObject` type and most of its API is defined in terms of this type, either with functions accepting parameters of that type or returning such values:
-    
-    
-    interface JsonObject {
-        fun toJson() : String
-    }
+
+```kotlin
+interface JsonObject {
+    fun toJson() : String
+}
+```
 
 In order to leverage this library, converting your objects so they conform to this interface is very important, and once you have converted your objects, you gain full access to all the functionalities that this library offers, such as pretty printing in JSON, doing search/replaces in JSON, reshaping JSON object from one form to another, etc...
 
 If you own (i.e. you are the author of) these classes, doing so is very easy. For example, you can modify your class to implement that interface:
-    
-    
-    class Account : JsonObject {
-        fun override toJson() : String { ... }
-    }
+
+```kotlin
+class Account : JsonObject {
+    fun override toJson() : String { ... }
+}
+```
 
 The advantage of this approach is that you can now pass all your `Account` values directly to functions of the JSON libraries that accept a `JsonObject`. This is very useful, but the downside is that you have now polluted your class with a concern that makes your design more bloated. If you are going to extend this approach to other types, very soon, your `Account` class will extend multiple interfaces filling various functionalities, and you have now tied your business logic to a lot of dependencies (i.e. you now need this JSON library in order to compile your `Account`...).
 
 Another approach is simply to write a function that converts your business objects to `JsonObjects`:
-    
-    
-    fun Account.toJson() : JsonObject { ... }
+
+```kotlin
+fun Account.toJson() : JsonObject { ... }
+```
 
 This defines an extension function that adds the method `toJson()` directly on the `Account` class, where it belongs. The extension function buys us two very important benefits:
 
@@ -56,33 +59,36 @@ This is how far we can go with Kotlin today and this fits in Kotlin's general de
 ## Escaping the tyranny of nominal typing
 
 Let's look at another approach to implement ad hoc polymorphism. Consider the following simple function that saves an object to a database:
-    
-    
-    fun persist(person: Person) {
-        db.save(person.id, person)
-    }
+
+```kotlin
+fun persist(person: Person) {
+    db.save(person.id, person)
+}
+```
 
 The object is saved to the database and associated to its `id`. A little later, I want to persist an `Account` object, and in the spirit of proper software engineering, I'd rather abstract my existing code rather than writing a second `persist()` function. So I make my function more generic and in the process, I discover that in order to be persisted, my `Account` instance needs to be able to give me its `id`. After refactoring, my code now looks like this:
-    
-    
-    interface Id {
-        val id : String
-    }
-    class Person : Id {
-        override val id: String get() = "1"
-    }
-    fun persist(id: Id) { ... }
+
+```kotlin
+interface Id {
+    val id : String
+}
+class Person : Id {
+    override val id: String get() = "1"
+}
+fun persist(id: Id) { ... }
+```
 
 But now, I find myself having to make `Account` implement `Id`, which is exactly what I am trying to avoid with ad hoc polymorphism (either because I think it's bad design or more simply because the class `Account` is not mine, so I can't modify it). The realization here is that these type names get in the way of my goal and I'd rather keep all these concepts separate.
 
 What if, instead, the `persist()` method accepted an additional parameter (a function) that allows me to obtain an `Id` from its parameter?
-    
-    
-    fun <T> persist(o: T, toId: (T) -> String)
-    // Persist a Person: easy since Person extends Id
-    persist(person, { person -> person.id })
-    // Persist an Account: need to get an id some other way
-    persist(account, { account -> getAnIdForAccountSomehow(account) }
+
+```kotlin
+fun <T> persist(o: T, toId: (T) -> String)
+// Persist a Person: easy since Person extends Id
+persist(person, { person -> person.id })
+// Persist an Account: need to get an id some other way
+persist(account, { account -> getAnIdForAccountSomehow(account) }
+```
 
 This new approach has a few interesting characteristics:
 
@@ -96,10 +102,11 @@ This approach makes a drastic step toward a more functional solution to the prob
 ## An ad-hoc polymorphism proposal for Kotlin
 
 When I reflected about this problem a while ago, it occurred to me that ad-hoc polymorphism has a lot in common with Kotlin's extension functions: an extension function adds a function to a type outside of the definition of that type and ad-hoc polymorphism makes a type extend another type outside of the definition of that type. I came up with the concent of "Extension types" and I gave a quick overview of this idea [in this article](https://discuss.kotlinlang.org/t/extension-types-for-kotlin/1390). Extension types would allow us to make types retroactively implement other types with this made up syntax:
-    
-    
-    // Not legal Kotlin
-    override class Account: JsonObject<Account>
+
+```kotlin
+// Not legal Kotlin
+override class Account: JsonObject<Account>
+```
 
 The rest of the interface would be implemented with extension functions, as demonstrated in the link above. The downside of this proposal is that it adds some form of implicit conversion, something that is at odds with Kotlin's current design, so it's probably unlikely this proposal will go past the stage of strawman but I thought it would be interesting to draw a parallel between extension functions and extension types.
 

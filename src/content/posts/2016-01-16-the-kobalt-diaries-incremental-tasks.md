@@ -29,20 +29,20 @@ The downside is obviously that there is more bookkeeping required to preserve th
 ## Implementation
 
 Incremental tasks are not very different from regular tasks. An incremental task returns an `IncrementalTaskInfo` instance which is defined as follows: 
-    
-    
-    class IncrementalTaskInfo(
-    	val inputChecksum: String?,
-        val outputChecksum: () -> String?,
-        val task: (Project) -> TaskResult)
-    
+
+```kotlin
+class IncrementalTaskInfo(
+	val inputChecksum: String?,
+    val outputChecksum: () -> String?,
+    val task: (Project) -> TaskResult)
+```
 
 The last parameter is the task itself and the first two are the input and output checksums of your task. Your task simply uses the `@IncrementalTask` annotation instead of the regular `@Task` and it needs to return an instance of that class: 
-    
-    
-    @IncrementalTask(name = "compile", description = "Compile the source files")
-    fun taskCompile(project: Project) = IncrementalTaskInfo(/* ... */)
-    
+
+```kotlin
+@IncrementalTask(name = "compile", description = "Compile the source files")
+fun taskCompile(project: Project) = IncrementalTaskInfo(/* ... */)
+```
 
 Most of Kobalt's own tasks are now incremental (wherever that makes sense) including the Android plug-in. Here are a few timings showing incremental builds in action: 
 

@@ -42,31 +42,31 @@ I found Kotlin to be a very good match for Android even in the early days but re
 Kotlin M11 was released about a week ago and it added a functionality that makes the appeal of Kotlin absolutely irresistible for Android: automatically bound resources. Here is how it works. 
 
 Suppose you define the following View in your layout `activity_search.xml`: 
-    
-    
-    <Button ...
-        android:id="@+id/addFriendButton"
-    >
-    
+
+```xml
+<Button ...
+    android:id="@+id/addFriendButton"
+>
+```
 
 All you need to do is add a special kind of import to your source: 
-    
-    
-    import kotlinx.android.synthetic.activity_search.addFriendButton
-    
+
+```python
+import kotlinx.android.synthetic.activity_search.addFriendButton
+```
 
 and the identifier `addFriendButton` becomes magically available everywhere in your source, with the proper type. This basically obsoletes `ButterKnife/KotterKnife` (well, not quite, there's still `OnClick` which is pretty nice. Besides, Jake tells me he has something in the works). And if you press `Ctrl-b` on such an identifier, Android Studio takes you directly to the layout file where that View is defined. Very neat. 
 
 ## The server
 
 For the purpose of this article, I'm just mocking the server. Here is its definition: 
-    
-    
-    trait Server {
-        fun findUser(name: String) : Observable<JsonObject>
-        fun addFriend(user: User) : Observable<JsonObject>
-    }
-    
+
+```scala
+trait Server {
+    fun findUser(name: String) : Observable<JsonObject>
+    fun addFriend(user: User) : Observable<JsonObject>
+}
+```
 
 If you think this definition looks a lot like a [Retrofit](http://square.github.io/retrofit/) service interface, it's because it is. If you're not using Retrofit, you should. Right now, I'll be mocking this server by returning a set of hardcoded answers and also making each call sleep one second to simulate latency (and so we can see the progress bar on the screen). Note that each call on this interface returns an `Observable`, so they fit right in with our Rx implementation. 
 
@@ -91,17 +91,17 @@ There are various ways we can break this problem into observables and the final 
 ### The "EditText" Observable
 
 Let's start with our `EditText`. Its implementation is pretty straightforward: 
-    
-    
-    WidgetObservable.text(editText)
-        .doOnNext { e: OnTextChangeEvent ->
-            addFriendButton.setEnabled(false)
-            loading.setVisibility(View.INVISIBLE)
-        }
-        .map { e: OnTextChangeEvent -> e.text().toString() }
-        .filter { s: String -> s.length() >= 3 }
-        .subscribe { s: String -> mNameObservable.onNext(s) }
-    
+
+```kotlin
+WidgetObservable.text(editText)
+    .doOnNext { e: OnTextChangeEvent ->
+        addFriendButton.setEnabled(false)
+        loading.setVisibility(View.INVISIBLE)
+    }
+    .map { e: OnTextChangeEvent -> e.text().toString() }
+    .filter { s: String -> s.length() >= 3 }
+    .subscribe { s: String -> mNameObservable.onNext(s) }
+```
 
 Let's go through each line in turn: 
 
@@ -113,32 +113,32 @@ Let's go through each line in turn:
 
 
 ### The "name" Observable
-    
-    
-    val mNameObservable: BehaviorSubject<String> = BehaviorSubject.create()
-    
+
+```kotlin
+val mNameObservable: BehaviorSubject<String> = BehaviorSubject.create()
+```
 
 A `BehaviorSubject` is a special kind of `Observable` that you can send events to after its creation. I like to think of it as an event bus, except that it's focused on a very specific kind of events (as opposed to an event bus that is used to post pretty much anything to). Using a `Subject` here allows me to create that `Observable` early and only post new events to it as they come in, which is what we did with the snippet of code above. 
 
 Let's see how we use that `Observable` now, by simply subscribing to it, which means receiving names that have three or more characters in them. All we do is call the server and pass the result to the "user" observable: 
-    
-    
-    mNameObservable
-        .subscribe{ s: String ->
-            mServer.findUser(s).subscribe { jo: JsonObject ->
-                mUserObservable.onNext(jo)
-            }
+
+```kotlin
+mNameObservable
+    .subscribe{ s: String ->
+        mServer.findUser(s).subscribe { jo: JsonObject ->
+            mUserObservable.onNext(jo)
         }
-    
+    }
+```
 
 We're not quite done, though: we actually have another subscriber to that `Observable`: 
-    
-    
-    mNameObservable
-        .subscribe { s: String ->
-            loading.setVisibility(View.VISIBLE)
-        }
-    
+
+```kotlin
+mNameObservable
+    .subscribe { s: String ->
+        loading.setVisibility(View.VISIBLE)
+    }
+```
 
 We need to let the user know we just issued a network call, so we show the progress bar (this is a suboptimal implementation, this logic should be done at the server level, but we'll save this for later). 
 
@@ -147,45 +147,45 @@ Note that I'm intentionally hiding a very important part of this logic in order 
 ### The "User" Observable
 
 Next, we have the `User` Observable, which gets notified when the server sends us a response to the query "Does the user named 'foo' exist?": 
-    
-    
-    mUserObservable
-        .map { jo: JsonObject ->
-            if (mServer.isOk(jo)) {
-                User(jo.get("id").getAsString(), jo.get("name").getAsString())
-            } else {
-                null
-            }
+
+```kotlin
+mUserObservable
+    .map { jo: JsonObject ->
+        if (mServer.isOk(jo)) {
+            User(jo.get("id").getAsString(), jo.get("name").getAsString())
+        } else {
+            null
         }
-        .subscribe { user: User? ->
-            addFriendButton.setEnabled(user != null)
-            loading.setVisibility(View.INVISIBLE)
-            mUser = user
-        }
-    
+    }
+    .subscribe { user: User? ->
+        addFriendButton.setEnabled(user != null)
+        loading.setVisibility(View.INVISIBLE)
+        mUser = user
+    }
+```
 
 This `Observable` does two things: it updates our UI and it maps the JsonObject response to our data class `User`. If the call was a success, we assign this value to the field `mUser`. 
 
 ### The "Add friend" Observable
 
 Finally, we have the "Add friend" button, which only gets enabled once we have a valid `User`. If the user presses that button, we issue another call to the server to request that person to be added as a friend and then we update the UI depending on the response: 
-    
-    
-    ViewObservable.clicks(addFriendButton)
-        .subscribe { e: OnClickEvent ->
-            mServer.addFriend(mUser!!)
-                .subscribe { jo: JsonObject ->
-                    val toastText: String
-                    if (mServer.isOk(jo)) {
-                        toastText = "Friend added id: " + jo.get("id").getAsString()
-                        editText.setText("")
-                    } else {
-                        toastText = "ERROR: Friend not added"
-                    }
-                    Toast.makeText(this, toastText, Toast.LENGTH_LONG).show();
+
+```kotlin
+ViewObservable.clicks(addFriendButton)
+    .subscribe { e: OnClickEvent ->
+        mServer.addFriend(mUser!!)
+            .subscribe { jo: JsonObject ->
+                val toastText: String
+                if (mServer.isOk(jo)) {
+                    toastText = "Friend added id: " + jo.get("id").getAsString()
+                    editText.setText("")
+                } else {
+                    toastText = "ERROR: Friend not added"
                 }
-        }
-    
+                Toast.makeText(this, toastText, Toast.LENGTH_LONG).show();
+            }
+    }
+```
 
 ## Stepping back
 
@@ -204,31 +204,31 @@ How do we define "stopped typing"? Let's say that we'll decide that the user sto
 Again, the traditional approach would mean that each time our text change listener is invoked, we compare the current time with the timestamp of the last character typed and if it exceeds a certain value, we trigger the event. 
 
 As it turns out, observables have an operator that does this for us called `debounce()`, so our code becomes: 
-    
-    
-    WidgetObservable.text(editText)
-        .doOnNext {(e: OnTextChangeEvent) ->
-            addFriendButton.setEnabled(false)
-            loading.setVisibility(View.INVISIBLE)
-        }
-        .map { e: OnTextChangeEvent -> e.text().toString() }
-        .filter { s: String -> s.length() >= 3 }
-        .debounce(500, TimeUnit.MILLISECONDS)
-        .subscribe { s: String -> mNameObservable.onNext(s) }
-    
+
+```kotlin
+WidgetObservable.text(editText)
+    .doOnNext {(e: OnTextChangeEvent) ->
+        addFriendButton.setEnabled(false)
+        loading.setVisibility(View.INVISIBLE)
+    }
+    .map { e: OnTextChangeEvent -> e.text().toString() }
+    .filter { s: String -> s.length() >= 3 }
+    .debounce(500, TimeUnit.MILLISECONDS)
+    .subscribe { s: String -> mNameObservable.onNext(s) }
+```
 
 I know what you're thinking: "You just picked a problem that could be solved by an operator that already exists". Well, kind of, but that's not my point. First of all, this is not a made up problem and I'm sure a lot of developers who write user interface code will agree that this is pretty common. 
 
 However, my point is more general than this: the `debounce()` operator has nothing to do with Android. It is defined on `Observable`, which is the base library we are using. It's an operator that's generally useful to have on any source that emits events. These events might be graphical in nature (as is the case here) or of any other kind, such as a stream of network requests, coordinates of a mouse cursor or capturing data from a geolocation sensor. `debounce()` represents the general need for getting rid of redundancies in streams. 
 
 Not only do we get to reuse an existing implementation without having to rewrite it ourselves, we preserve the locality of our implementation (with the traditional approach, you would probably have polluted your class with a couple of fields) and we maintain the composition abilities of our observable computations. For example, do you need to make sure that the user is not adding themselves before calling the server? Easy: 
-    
-    
-    WidgetObservable.text(editText)
-        // ...
-        .filter { s: String -> s.length() >= 3 }
-        .filter { s: String -> s != myName }
-    
+
+```kotlin
+WidgetObservable.text(editText)
+    // ...
+    .filter { s: String -> s.length() >= 3 }
+    .filter { s: String -> s != myName }
+```
 
 ## Wrapping up
 

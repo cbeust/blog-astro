@@ -55,41 +55,41 @@ comments:
 I'm happy to see mostly correct answers to the [School coding challenge](http://beust.com/weblog/weblog/2013/02/13/coding-challenge-light-edition/#comments). 
 
 To make things more interesting, let's start by looking at a na??ve (and wrong) solution: 
-    
-    
-      @Override
-      public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((nickname == null) ? 0 : nickname.hashCode());
-        return result;
-      }
-      @Override
-      public boolean equals(Object obj) {
-        // ... details omitted
-        return other.nickname.equals(nickname) || other.name.equals(name);
-      }
-    
+
+```java
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((name == null) ? 0 : name.hashCode());
+    result = prime * result + ((nickname == null) ? 0 : nickname.hashCode());
+    return result;
+  }
+  @Override
+  public boolean equals(Object obj) {
+    // ... details omitted
+    return other.nickname.equals(nickname) || other.name.equals(name);
+  }
+```
 
 Let's create two School objects, make sure they are equal, add them to a set and then display this set: 
-    
-    
-        School school1 = new School("University of Pennsylvania", "upenn");
-        School school2 = new School("University of Pennsylvania", "Penn State");
-        System.out.println("Equals: " + school1.equals(school2));
-        Set<School> schools = Sets.newHashSet();
-        schools.add(school1);
-        schools.add(school2);
-        System.out.println("Set: " + schools);
-    
+
+```java
+    School school1 = new School("University of Pennsylvania", "upenn");
+    School school2 = new School("University of Pennsylvania", "Penn State");
+    System.out.println("Equals: " + school1.equals(school2));
+    Set<School> schools = Sets.newHashSet();
+    schools.add(school1);
+    schools.add(school2);
+    System.out.println("Set: " + schools);
+```
 
 The output: 
-    
-    
-    Equals: true
-    Set: [com.beust.School@d8e612c6, com.beust.School@7086780a]
-    
+
+```text
+Equals: true
+Set: [com.beust.School@d8e612c6, com.beust.School@7086780a]
+```
 
 This is obviously wrong and caused by the fact that this implementation breaks several laws, among which: "if two objects are equal, their hashcode should be equal as well". However, this is clearly not the case here since the two objects instantiated in the `main` method are equal but their hash code are different, since it's calculated from both the name and nickname. The consequences of such an implementation are disastrous in more ways than one, starting with the fact that your objects cannot reliably be stored in nor retrieved from identity-based collections (e.g. sets and maps). 
 

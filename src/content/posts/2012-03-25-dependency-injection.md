@@ -203,111 +203,111 @@ comments:
 ---
 
 Since the very early days of Java (and C-like languages overall), the canonical way to start your program has been something like this: 
-    
-    
-    public class A {
-      public static void main(String[] args) {
-        new A().run(args);
-      }
-      public void run(String[] args) {
-        // Your application starts here
-      }
-    }
-    
+
+```java
+public class A {
+  public static void main(String[] args) {
+    new A().run(args);
+  }
+  public void run(String[] args) {
+    // Your application starts here
+  }
+}
+```
 
 If you are still doing this, I'm here to tell you it's time to stop. 
 
 ### Letting go of 'new'
 
 First, install Guice in your project: 
-    
-    
-            <dependency>
-              <groupId>com.google.inject</groupId>
-               <artifactId>guice</artifactId>
-               <version>3.0</version>
-            </dependency>
-    
+
+```xml
+        <dependency>
+          <groupId>com.google.inject</groupId>
+           <artifactId>guice</artifactId>
+           <version>3.0</version>
+        </dependency>
+```
 
 and then, modify your `main` method as follows: 
-    
-    
-    public class A {
-      public static void main(String[] args) {
-        Injector.getInstance(A.class).run(args);
-      }
-    }
-    
+
+```java
+public class A {
+  public static void main(String[] args) {
+    Injector.getInstance(A.class).run(args);
+  }
+}
+```
 
 So, what does this buy you exactly? 
 
 You will find a lot of articles explaining the various benefits of Guice, such as being able to substitute different environments on the fly, but I'm going to use a different angle in this article. 
 
 Let's start by assuming the existence of a `Config` class that contains various configuration parameters. I'll just hardcode them for now and use fields to make the class smaller: 
-    
-    
-    public class Config {
-      String host = "com.example.com";
-      int port = 1234;
-    }
-    
+
+```java
+public class Config {
+  String host = "com.example.com";
+  int port = 1234;
+}
+```
 
 This class is a singleton, it is instantiated somewhere in your main class and not used anywhere else at the moment. One day, you realize you need this instance in another class which happens to be deep in your runtime hierarchy, which we will call `Deep`. For example, if you put a break point in the method where you need this config object, your debugger would show you stack frames similar to this: 
-    
-    
-    com.example.A.main()
-    com.example.B.f(int, String)
-    com.example.C.g(String)
-    com.example.Deep.h(Foo, int)
-    
+
+```java
+com.example.A.main()
+com.example.B.f(int, String)
+com.example.C.g(String)
+com.example.Deep.h(Foo, int)
+```
 
 The easy and wrong way to solve this problem is to make the `Config` instance static on some class (probably `A`) and access it directly from `Deep`. I'm hoping I don't need to explain why this is a bad idea: not only do you want to avoid using statics, but you also want to make sure that each object is exposed only to objects that need them, and making the `Config` object static would make your instance visible to your entire code base. Not a good thing. 
 
 The second thought is to pass the object down the stack, so you modify all the signatures as follows: 
-    
-    
-    com.example.A.main()
-    com.example.B.f(int, String, Config)
-    com.example.C.g(String, Config)
-    com.example.Deep.h(Foo, int, Config)
-    
+
+```java
+com.example.A.main()
+com.example.B.f(int, String, Config)
+com.example.C.g(String, Config)
+com.example.Deep.h(Foo, int, Config)
+```
 
 This is a bit better since you have severely restricted the exposure of the `Config` object, but note that you are still making it available to more methods than really need to: `B#f` and `C#g` have really nothing to do with this object, and a little sting of discomfort hits you when you start writing the Javadoc: 
-    
-    
-    public class C {
-      ...
-      /**
-       * @param config This method doesn't really use this parameter,
-       * it just passes it down so Deep#h can use it.
-       */
-      public void g(String s, Config config) {
-    
+
+```java
+public class C {
+  ...
+  /**
+   * @param config This method doesn't really use this parameter,
+   * it just passes it down so Deep#h can use it.
+   */
+  public void g(String s, Config config) {
+```
 
 Unnecessary exposure is actually not the worst part of this approach, the problem is that it changes all these signatures along the way, which is certainly undesirable in a private API and absolutely devastating in a public API. And of course, it's absolutely not scalable: if you keep adding a parameter to your method whenever you need access to a certain object, you will soon be dealing with methods that take ten parameters, most of which they just pass down the chain. 
 
 Here is how we solve this problem with dependency injection (performed by Guice in this example, but this is applicable to any library that implements [JSR 330](http://www.jcp.org/en/jsr/detail?id=330), obviously): 
-    
-    
-    public class Deep {
-      @Inject
-      private Config config;
-    
+
+```java
+public class Deep {
+  @Inject
+  private Config config;
+```
 
 and we're done. That's it. You don't need to modify the `Config` class in any way, nor do you need to make any change in any of the classes that separate `Deep` from your main class. With this, you have also minimized the exposure of the `Config` object to just the class that needs it. 
 
 ### Injecting right
 
 There are various ways you can inject object into your class but I'll just mention the two that, I think, are the most important. I just showed "field injection" in the previous paragraph, but be aware that you can also prefer to use "constructor injection": 
-    
-    
-    public class Deep {
-      private final Config config;
-      @Inject
-      public Deep(Config config) {
-        this.config = config;
-      }
-    
+
+```java
+public class Deep {
+  private final Config config;
+  @Inject
+  public Deep(Config config) {
+    this.config = config;
+  }
+```
 
 This time, you are adding a parameter to the constructor of your `Deep` class (which shouldn't worry you too much since you will never invoke it directly, Guice will) and you assign the parameter to the field in the constructor. The benefit is that you can declare your field `final`. The downside, obviously, is that this approach is much more verbose. 
 

@@ -124,17 +124,17 @@ The main problem with readers is that they get so easily distracted, so writing 
 Take my previous article called [Unit or functional tests?](http://beust.com/weblog/weblog/archives/000444.html). 
 
 In that post, I decided to show the importance of functional tests, and in order to make that point, I made up a code snippet where the ordering of method invocation (which is usually not captured by unit tests) is significant. I initially used the following code: 
-    
-    
-    public class Main {
-    public void g() {}
-    public void f() {}
-    public static void main(String[] argv) {
-    f();
-    g();
-    }
-    }
-    
+
+```java
+public class Main {
+public void g() {}
+public void f() {}
+public static void main(String[] argv) {
+f();
+g();
+}
+}
+```
 
 Once I was satisfied with the article, I reread it one last time before posting it and I wondered if the use of anonymous method names such as `f()` and `g()` were not going to weaken my arguments. I wanted to make sure that anyone reading my code would immediately see that these methods must be run in a certain order, so that I wouldn't even need to remind it throughout the article. 
 

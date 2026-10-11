@@ -286,27 +286,27 @@ I wish it were that simple.
 The sad truth is that sometimes, cyclical dependencies are not only necessary, they are actually quite essential and contribute greatly to making your code more readable and maintainable.
 
 The dangers of cyclical dependencies are well-known (stronger coupling, fragile build, etc...) as are the remedies (the introduction of an interface is usually a good start).  For example, the following dependency:
-    
-    
-    public class Person {
-    public List<Account> getAccounts();
-    }
-    public class Account {
-    public Person getOwner();
-    }
-    
+
+```java
+public class Person {
+public List<Account> getAccounts();
+}
+public class Account {
+public Person getOwner();
+}
+```
 
 can be refactored like this: 
-    
-    
-    public interface IAccount {
-    }
-    public class Account implements IAccount {
-    }
-    public class Person {
-    public List<IAccount> getAccounts();
-    }
-    
+
+```java
+public interface IAccount {
+}
+public class Account implements IAccount {
+}
+public class Person {
+public List<IAccount> getAccounts();
+}
+```
 
 By introducing an interface, you have decoupled your two concrete classes, which is usually a good thing.
 

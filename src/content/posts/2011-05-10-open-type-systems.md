@@ -109,19 +109,19 @@ This new type system doesn't care what the underlying concept actually is, all i
 Here is a quick example of what such a type might look like. 
 
 Let's suppose we want to make Java property files first class citizens in this new type system (it's a silly example since a simple hash table is good enough, but this is just for illustration). The idea is that whenever we encounter a file called "foo.properties", we'll create a class called `FooProperties` and each key/value found in this file will be represented as a getter. For example, loading this file in this new type system: 
-    
-    
-    # File: host.properties
-    host: 127.0.1.0
-    port: 1245
-    
+
+```bash
+# File: host.properties
+host: 127.0.1.0
+port: 1245
+```
 
 will allow you to write the following code: 
-    
-    
-    HostProperties fp = PropertyTypeLoader.load("host.properties");
-    System.out.println("Host:" + fp.getHost() + " port:" + fp.getPort());
-    
+
+```java
+HostProperties fp = PropertyTypeLoader.load("host.properties");
+System.out.println("Host:" + fp.getHost() + " port:" + fp.getPort());
+```
 
 The implementation of the corresponding `IType` and `IMethod` interfaces is pretty straightforward in this case, but this should give you an idea of the flexibility of such a type system. 
 

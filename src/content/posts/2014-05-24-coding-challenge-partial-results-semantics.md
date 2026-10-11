@@ -7,10 +7,10 @@ categories:
 ---
 
 Consider the simple following signature: 
-    
-    
-      List<Person> searchPeople(String query);
-    
+
+```java
+  List<Person> searchPeople(String query);
+```
 
 This method takes a search string (e.g. "Bill") and returns a list of `Person` that match this search string. This includes people with "Bill" as their first name, or as their last name, or maybe even using nicknames (someone whose name is "William" would match). 
 

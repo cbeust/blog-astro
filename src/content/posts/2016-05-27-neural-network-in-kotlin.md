@@ -26,29 +26,31 @@ The main characteristic of a neural network is that it starts completely empty b
 Let's start with a very simple example: `xor`.
 
 This is a trivial and fundamental binary arithmetic operation which returns 1 if the two inputs are different and 0 if they are equal. We will train the network by feeding it all four possible combinations and telling it what the expected outcome is. With the Kotlin implementation of the Neural Network, the code looks like this:
-    
-    
-    with(NeuralNetwork(inputSize = 2, hiddenSize = 2, outputSize = 1)) {
-    	val trainingValues = listOf(
-    	    NetworkData.create(listOf(0, 0), listOf(0)),
-    	    NetworkData.create(listOf(0, 1), listOf(1)),
-    	    NetworkData.create(listOf(1, 0), listOf(1)),
-    	    NetworkData.create(listOf(1, 1), listOf(0)))
-    	train(trainingValues)
-    	test(trainingValues)
-    }
+
+```kotlin
+with(NeuralNetwork(inputSize = 2, hiddenSize = 2, outputSize = 1)) {
+	val trainingValues = listOf(
+	    NetworkData.create(listOf(0, 0), listOf(0)),
+	    NetworkData.create(listOf(0, 1), listOf(1)),
+	    NetworkData.create(listOf(1, 0), listOf(1)),
+	    NetworkData.create(listOf(1, 1), listOf(0)))
+	train(trainingValues)
+	test(trainingValues)
+}
+```
 
 Let's ignore the parameters given to `NeuralNetwork` for now and focus on the rest. Each line of `NetworkData` contains the inputs (each combination of 0 and 1: (0,0), (0,1), (1,0), (1,1)) and the expected output. In this example, the output is just a single value (the result of the operation) so it's a list of one value, but networks can return an arbitrary number of outputs.
 
 The next step is to test the network. Since there are only four different inputs here and we used them all for training, let's just use that same list of inputs but this time, we'll display the ouput produced by the network instead of the expected one. The result of this run is as follows:
 
 Running neural network xor()
-    
-    
-    [0.0, 0.0] -> [0.013128957]
-    [0.0, 1.0] -> [0.9824073]
-    [1.0, 0.0] -> [0.9822749]
-    [1.0, 1.0] -> [-2.1314621E-4]
+
+```kotlin
+[0.0, 0.0] -> [0.013128957]
+[0.0, 1.0] -> [0.9824073]
+[1.0, 0.0] -> [0.9822749]
+[1.0, 1.0] -> [-2.1314621E-4]
+```
 
 As you can see, these values are pretty decent for such a simple network and such a small training data set and you might rightfully wonder: is this just luck? Or did the network cheat and memorize the values we fed it while we were training it?
 
@@ -61,42 +63,44 @@ This time, we are going to teach our network to determine whether a number is od
 You probably noticed in the example above that I used the same data to train and test the network. This is not a good practice but it was necessary for `xor` since there are so few cases. For better results, you usually want to train your network on a certain population of the data and then test it on data that your network hasn't seen yet. This will guarantee that you are not "overfitting" your network and also that it is able to generalize what you taught it to input values that it hasn't seen yet. Overfitting means that your network does great on the data you trained it with but poorly on new data. When this happens, you usually want to tweak your network so that it will possibly perform less well on the training data but it will return better results for new data.
 
 For our parity test network, let's settle on four bits (integers 0 - 15) and we'll train our network on about ten numbers and test it on the remaining six:
-    
-    
-    with(NeuralNetwork(inputSize = 4, hiddenSize = 2, outputSize = 1)) {
-    	val trainingValues = listOf(
-    	    NetworkData.create(listOf(0, 0, 0, 0), listOf(0)),
-    	    NetworkData.create(listOf(0, 0, 0, 1), listOf(1)),
-    	    NetworkData.create(listOf(0, 0, 1, 0), listOf(0)),
-    	    NetworkData.create(listOf(0, 1, 1, 0), listOf(0)),
-    	    NetworkData.create(listOf(0, 1, 1, 1), listOf(1)),
-    	    NetworkData.create(listOf(1, 0, 1, 0), listOf(0)),
-    	    NetworkData.create(listOf(1, 0, 1, 1), listOf(1)),
-    	    NetworkData.create(listOf(1, 1, 0, 0), listOf(0)),
-    	    NetworkData.create(listOf(1, 1, 0, 1), listOf(1)),
-    	    NetworkData.create(listOf(1, 1, 1, 0), listOf(0)),
-    	    NetworkData.create(listOf(1, 1, 1, 1), listOf(1))
-    	)
-    	train(trainingValues)
-    	val testValues = listOf(
-    	    NetworkData.create(listOf(0, 0, 1, 1), listOf(1)),
-    	    NetworkData.create(listOf(0, 1, 0, 0), listOf(0)),
-    	    NetworkData.create(listOf(0, 1, 0, 1), listOf(1)),
-    	    NetworkData.create(listOf(1, 0, 0, 0), listOf(0)),
-    	    NetworkData.create(listOf(1, 0, 0, 1), listOf(1))
-    	)
-    	test(testValues)
-    }
+
+```kotlin
+with(NeuralNetwork(inputSize = 4, hiddenSize = 2, outputSize = 1)) {
+	val trainingValues = listOf(
+	    NetworkData.create(listOf(0, 0, 0, 0), listOf(0)),
+	    NetworkData.create(listOf(0, 0, 0, 1), listOf(1)),
+	    NetworkData.create(listOf(0, 0, 1, 0), listOf(0)),
+	    NetworkData.create(listOf(0, 1, 1, 0), listOf(0)),
+	    NetworkData.create(listOf(0, 1, 1, 1), listOf(1)),
+	    NetworkData.create(listOf(1, 0, 1, 0), listOf(0)),
+	    NetworkData.create(listOf(1, 0, 1, 1), listOf(1)),
+	    NetworkData.create(listOf(1, 1, 0, 0), listOf(0)),
+	    NetworkData.create(listOf(1, 1, 0, 1), listOf(1)),
+	    NetworkData.create(listOf(1, 1, 1, 0), listOf(0)),
+	    NetworkData.create(listOf(1, 1, 1, 1), listOf(1))
+	)
+	train(trainingValues)
+	val testValues = listOf(
+	    NetworkData.create(listOf(0, 0, 1, 1), listOf(1)),
+	    NetworkData.create(listOf(0, 1, 0, 0), listOf(0)),
+	    NetworkData.create(listOf(0, 1, 0, 1), listOf(1)),
+	    NetworkData.create(listOf(1, 0, 0, 0), listOf(0)),
+	    NetworkData.create(listOf(1, 0, 0, 1), listOf(1))
+	)
+	test(testValues)
+}
+```
 
 And here is the output of the test:
-    
-    
-    Running neural network isOdd()
-    [0.0, 0.0, 1.0, 1.0] -> [0.9948013]
-    [0.0, 1.0, 0.0, 0.0] -> [0.0019584869]
-    [0.0, 1.0, 0.0, 1.0] -> [0.9950419]
-    [1.0, 0.0, 0.0, 0.0] -> [0.0053276513]
-    [1.0, 0.0, 0.0, 1.0] -> [0.9947305]
+
+```kotlin
+Running neural network isOdd()
+[0.0, 0.0, 1.0, 1.0] -> [0.9948013]
+[0.0, 1.0, 0.0, 0.0] -> [0.0019584869]
+[0.0, 1.0, 0.0, 1.0] -> [0.9950419]
+[1.0, 0.0, 0.0, 0.0] -> [0.0053276513]
+[1.0, 0.0, 0.0, 1.0] -> [0.9947305]
+```
 
 Notice that the network is now outputting correct results for numbers that it hadn't seen before, just because of the way it adapted itself to the training data it was initially fed. This gives us good confidence that the network has configured itself to classify numbers from any input values and not just the one it was trained for.
 

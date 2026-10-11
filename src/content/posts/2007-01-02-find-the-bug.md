@@ -359,12 +359,12 @@ comments:
 ---
 
 I know that making fun of the `java.util.Calendar` class is as cheap as laughing at the [Darwin award winners](http://darwinawards.com/darwin/darwin2006.html) , but I spent a half hour this morning debugging the following:
-    
-    
-    Calendar cal = Calendar.getInstance();
-    cal.set(2006, 12, 30, 8, 42);
-    Assert.assertEquals(2006, cal.get(Calendar.YEAR)); // FAIL
-    
+
+```java
+Calendar cal = Calendar.getInstance();
+cal.set(2006, 12, 30, 8, 42);
+Assert.assertEquals(2006, cal.get(Calendar.YEAR)); // FAIL
+```
 
 Here is what's wrong with `Calendar` in this example, in order of increasing moronityTM: 
 

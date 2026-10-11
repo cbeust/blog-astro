@@ -248,27 +248,30 @@ comments:
 A while ago, I explained [why I thought that Duck Typing was dangerous](http://beust.com/weblog/weblog/archives/000269.html). More recently, Scala popularized a different type of typing called Structural Typing, which is often described as being "type safe Duck Typing". Let's take a closer look at Structural Typing and see if it delivers on this promise.
 
 With Duck Typing, you send a message to an object in absolute darkness. You don't know whether this object knows this message and you just trust the caller to have passed you an object that does:
-    
-    
-    def test(o)
-      log o.getName   # Let's hope this will work
-    end
+
+```ruby
+def test(o)
+  log o.getName   # Let's hope this will work
+end
+```
 
 The code above might be broken, but you will only find out at runtime.
 
 Structural typing allows you to be a bit more explicit about your expectations on this object. In the following Scala example, I declare that the object passed in parameter should have at least one method, called `getName`, that should return a `String`:
-    
-    
-    def test(f: { def getName(): String }) {
-      log(f.getName)
-    }
+
+```java
+def test(f: { def getName(): String }) {
+  log(f.getName)
+}
+```
 
 This doesn't seem like much, but it does buy us a lot of type safety. For example, if I try to pass an object that doesn't define a `getName` method, the Scala compiler complains:
-    
-    
-    type mismatch;
-    found   : Test
-    required: AnyRef{def getName(): String}
+
+```java
+type mismatch;
+found   : Test
+required: AnyRef{def getName(): String}
+```
 
 I get the same error message if I try to pass an object that has a `getName` method that returns an `int` instead of a `String`.
 
@@ -295,29 +298,31 @@ Respects "Don't Repeat Yourself"| Yes (4)| No (5)| Yes (6)
 As you can see, Structural Typing is doing pretty well and the only problem is with the violation of the DRY principle that it requires as soon as you need to use it more than once for a signature. This can be easily avoided if you simply avoid using Structural Typing in this case and instead, encapsulate the method in a Class/Interface/Trait.
 
 Bad:
-    
-    
-    def test(f: { def getName(): String }) {
-      log(f.getName)
-    }
-    def toXml(f: { def getName(): String }) {
-      log("" + f.getName + "");
-    }
+
+```java
+def test(f: { def getName(): String }) {
+  log(f.getName)
+}
+def toXml(f: { def getName(): String }) {
+  log("" + f.getName + "");
+}
+```
 
 The repetition notwithstanding, the problem with the code above is that renaming one of the `getName` methods will not cause the other one to be automatically renamed as well since the compiler has no way of knowing that these methods are identical. In some way, it's ironic that the so-called Structural Typing doesn't preserve... the structure of the type we're actually passing.
 
 Better:
-    
-    
-    trait HasName {
-      def getName : String = { ... }
-    }
-    def test(HasName f) = {
-      log(f.getName)
-    }
-    def toXml(HasName f) = {
-      log("<log>" + f.getName + "</log>");
-    }
+
+```scala
+trait HasName {
+  def getName : String = { ... }
+}
+def test(HasName f) = {
+  log(f.getName)
+}
+def toXml(HasName f) = {
+  log("<log>" + f.getName + "</log>");
+}
+```
 
 So, Structural Typing... good or bad?
 

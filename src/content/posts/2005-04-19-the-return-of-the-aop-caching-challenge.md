@@ -105,10 +105,10 @@ I disagree with the "pre-defined" (sic) part.  Eviction policies should absolut
 Except for these points, Srini does a good job at framing the overall problem and he makes a convincing case to use AOP for caching.  However, caching with AOP is a very complicated thing to achieve, and a couple of years ago, I offered an [AOP caching challenge](http://www.beust.com/weblog/aop-thread.html) that turned out to to be much harder to solve than everybody thought initially (including myself).
 
 Srini's pointcut is the following:
-    
-    
-    List around(String productGroup) : getInterestRates(productGroup) {
-    
+
+```java
+List around(String productGroup) : getInterestRates(productGroup) {
+```
 
 The problem with this approach is that it explicitly references a method in the business code.
 
@@ -128,12 +128,13 @@ You should be able to determine a trait that "methods that can be cached" share 
 I think the annotation-based solution is the best compromise in this case, since it makes you independent of naming conventions and doesn't require any modification of your pointcuts as your code base grows.  Also, the burden on developers is minimal since all they need to remember is to add an annotation whenever a method can be cached.
 
 You can also imagine more annotation schemes that would allow for a better partitioning of your caching:
-    
-    
-    @Cacheable(category = "datasources")
-    public DataSource getDataSource(String driverName);
-    @Cacheable(category = "db.accounts")  // "use the cache for rows in table ACCOUNTS"
-    public Account findAccount(String customerName);
+
+```java
+@Cacheable(category = "datasources")
+public DataSource getDataSource(String driverName);
+@Cacheable(category = "db.accounts")  // "use the cache for rows in table ACCOUNTS"
+public Account findAccount(String customerName);
+```
 
 Jonas and Alex, from AspectWerkz, and Ramnivas Laddad, the author of "AspectJ in action" have published a [series](http://www.ibm.com/developerworks/java/library/j-aopwork3/) [of](http://www-128.ibm.com/developerworks/java/library/j-aopwork4/) [articles](http://www-128.ibm.com/developerworks/views/java/libraryview.jsp?search_by=AOP@work:) on annotation-based AOP with AspectJ/AspectWerkz which I strongly recommend.
 

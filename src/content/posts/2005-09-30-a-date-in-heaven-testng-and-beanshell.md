@@ -20,15 +20,15 @@ comments:
 ![](http://www.beanshell.org/images/bshsplash3.gif)
 
 Recently, several [TestNG](http://testng.org) users started asking for more control in the way test methods are selected.  For example, here is one way you specify which groups to run:
-    
-    
-    <groups>
-      <run>
-      <include name="nopackage"/>
-      <exclude name="broken" />
-      </run>
-    </groups>
-    
+
+```xml
+<groups>
+  <run>
+  <include name="nopackage"/>
+  <exclude name="broken" />
+  </run>
+</groups>
+```
 
 The include/exclude syntax is fairly flexible, but it doesn't help when you want to perform more complex expressions, such as _'run the test methods that belong to the group "g1" and "g2" but not "g3"'_.
 
@@ -44,35 +44,27 @@ After thinking about it for a while, I decided to go for [BeanShell](http://www.
 I was tempted to pick Groovy for a short while but I decided that the learning curve and the sheer size of its jar file made it a non-starter.  BeanShell is cleary designed to be embedded and has a solid reputation, so it was an easy choice.
 
   And so far, I don't regret my choice:  integrating BeanShell in TestNG took less than one hour, and you can now specify things such as:
-    
-    
-    <test>
-     <eval><![**CDATA**[
-           groups.containKey("group1") &&
-         method.getName().equals("test1")
-         ]]
-     </eval>
-     ...
-    </test>
-    
+
+```xml
+<test>
+ <eval><![**CDATA**[
+       groups.containKey("group1") &&
+     method.getName().equals("test1")
+     ]]
+ </eval>
+ ...
+</test>
+```
 
 Since I never miss an opportunity to do something silly, I tried the following expression:
-    
-    
-    
-    
-    0 == JOptionPane.showConfirmDialog(  
-    
-      new JFrame(),  
-    
-      "Run this method?\n" + method,  
-    
-      "TestNG",  
-    
-      JOptionPane.YES_NO_OPTION);
-    
-    
-    
+
+```java
+0 == JOptionPane.showConfirmDialog(  
+  new JFrame(),  
+  "Run this method?\n" + method,  
+  "TestNG",  
+  JOptionPane.YES_NO_OPTION);
+```
 
 which promptly displayed the following dialog for every single test method:
 

@@ -92,35 +92,35 @@ comments:
 ---
 
 A comment in my [previous entry](http://beust.com/weblog/weblog/archives/000173.html) asks why statics can cause problems. Here is a quick example of a program that wants to handle a -verbose option: 
-    
-    
-    public class Foo {
-    private static boolean m_verbose = false;
-    public static void main(String[] argv) {
-    if (/* argv contains -verbose */) {
-    m_verbose = true;
-    }
-    runProgram();
-    }
-    
+
+```java
+public class Foo {
+private static boolean m_verbose = false;
+public static void main(String[] argv) {
+if (/* argv contains -verbose */) {
+m_verbose = true;
+}
+runProgram();
+}
+```
 
 Now imagine you invoke your program twice in the same build file as follows: 
-    
-    
-    <java classname="Foo" line="-verbose"/>
-    ... and somewhere else
-    <java classname="Foo" />
-    
+
+```xml
+<java classname="Foo" line="-verbose"/>
+... and somewhere else
+<java classname="Foo" />
+```
 
 You will probably wonder why the second invocation keeps being invoked in verbose mode... 
 
 The solution is of course: 
-    
-    
-    <java fork="yes" classname="Foo" line="-verbose"/>
-    ... and somewhere else
-    <java fork="yes" classname="Foo" />
-    
+
+```xml
+<java fork="yes" classname="Foo" line="-verbose"/>
+... and somewhere else
+<java fork="yes" classname="Foo" />
+```
 
 If you forget to fork a new JVM, the static variables set in the previous invocations will not be reinitialized. The problem with the fork flag is that it creates a new JVM each time, which dramatically increases the time of your build. 
 

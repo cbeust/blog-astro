@@ -19,22 +19,22 @@ You will find the full change log below but here are the highlights of this new 
 ### Improved syntax for factories
 
 You no longer need to specify a separate factory method: you can now specify that the constructor of your test accepts a data provider and TestNG will instantiate one test class per set of values returned by the data provider: 
-    
-    
-    public class FactoryDataProviderSampleTest {
-      @Factory(dataProvider = "dp")
-      public FactoryDataProviderSampleTest(int n) {
-        super(n);
-      }
-      @DataProvider
-      static public Object[][] dp() {
-        return new Object[][] {
-          new Object[] { 41 },
-          new Object[] { 42 },
-        };
-      }
-    }
-    
+
+```java
+public class FactoryDataProviderSampleTest {
+  @Factory(dataProvider = "dp")
+  public FactoryDataProviderSampleTest(int n) {
+    super(n);
+  }
+  @DataProvider
+  static public Object[][] dp() {
+    return new Object[][] {
+      new Object[] { 41 },
+      new Object[] { 42 },
+    };
+  }
+}
+```
 
 [Link to the discussion](http://groups.google.com/group/testng-users/browse_thread/thread/9c21b07009904aef#). 
 
@@ -55,15 +55,15 @@ Thanks to everyone who contributed patches, ideas, feature requests and bug repo
 ### Availability
 
 As usual, you can either use Maven: 
-    
-    
-        <dependency>
-          <groupId>org.testng</groupId>
-          <artifactId>testng</artifactId>
-          <version>6.1</version>
-          <scope>test</scope>
-        </dependency>
-    
+
+```xml
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.1</version>
+      <scope>test</scope>
+    </dependency>
+```
 
 or [download the jar file directly](http://testng.org/doc/download.html). 
 

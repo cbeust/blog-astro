@@ -99,14 +99,14 @@ comments:
 There were quite a few interesting comments on [my previous entry](http://beust.com/weblog/weblog/archives/000522.html) about supporting unit tests directly inside a language, so I thought I'd address some of these observations. 
 
 Michael suggests to keep the unit tests near the method they test: 
-    
-    
-    @Tests({
-    @Test(3, 4: 7),
-    @Test(-2, 0: -2)
-    })
-    public int add(int x, int y) { return x + y; }
-    
+
+```java
+@Tests({
+@Test(3, 4: 7),
+@Test(-2, 0: -2)
+})
+public int add(int x, int y) { return x + y; }
+```
 
 My main hesitation about this approach is that the production code is now littered with test code, and even if you use an IDE that conveniently lets you fold these tests away, it's still painful to read such code in non-IDE environments, such as web browsing, code reviews, terminal diff, etc... This is one of the reasons why I suggested to have the unit test section in one place. 
 
@@ -117,16 +117,16 @@ Dan is worried about pulling test dependencies in your production code:
 > What about test-only dependencies? Your production code would depend on mock libraries, Hamcrest expressions, etc. 
 
 Yes, this is used to be my strongest argument when I was against the idea of mixing unit tests with code, but this objection disappears if you actually embed this functionality in the language. I argued in my post for a new keyword called `unittest` that would define a brand new section, so I don't see why this section couldn't include its own imports as well: 
-    
-    
-    unittest {
-    import org.testng.Assert;
-    public void positiveNumbers() {
-    Sum sum = new Sum();
-    Assert.assertTrue(sum.add(3,4) == 7);
-    }
-    }
-    
+
+```java
+unittest {
+import org.testng.Assert;
+public void positiveNumbers() {
+Sum sum = new Sum();
+Assert.assertTrue(sum.add(3,4) == 7);
+}
+}
+```
 
 This code will only be compiled if the compiler is invoked with the option `-unittest`, and otherwise, it will be simply ignored. 
 

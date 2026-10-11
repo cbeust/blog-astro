@@ -157,16 +157,16 @@ In this example, the knight move is between 0 and 5.
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/override.png)   
 This example is a bit ambiguous but you get the idea: I trace [0 4 5] and then I slide over 4 again to reach 3. 
 With these constraints in place, I wondered how many combinations were actually possible, so I wrote a short program to simulate it. It turns out there are quite a few: 389,112. Here is a breakdown: 
-    
-    
-    4 dots: 1624 solutions
-    5 dots: 7152 solutions
-    6 dots: 26016 solutions
-    7 dots: 72912 solutions
-    8 dots: 140704 solutions
-    9 dots: 140704 solutions
-    Total:  389112
-    
+
+```text
+4 dots: 1624 solutions
+5 dots: 7152 solutions
+6 dots: 26016 solutions
+7 dots: 72912 solutions
+8 dots: 140704 solutions
+9 dots: 140704 solutions
+Total:  389112
+```
 
 If you're not convinced, here is [a full list of all the four dot patterns](http://beust.com/weblog/keyguard.html) (the page only works on Firefox and it uses a big canvas object, it might take a few seconds to load). 
 

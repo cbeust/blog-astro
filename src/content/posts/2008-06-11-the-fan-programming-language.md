@@ -85,19 +85,19 @@ comments:
 I just came across a language that I never heard of before: [Fan](http://www.fandev.org/). 
 
 Here is a quick snippet: 
-    
-    
-    // find files less than one day old
-    files := dir.list.findAll |File f->Bool|
-    {
-    return DateTime.now - f.modified < 1day
-    }
-    // print the filenames to stdout
-    files.each |File f|
-    {
-    echo("$f.modified.toLocale:  $f.name")
-    }
-    
+
+```java
+// find files less than one day old
+files := dir.list.findAll |File f->Bool|
+{
+return DateTime.now - f.modified < 1day
+}
+// print the filenames to stdout
+files.each |File f|
+{
+echo("$f.modified.toLocale:  $f.name")
+}
+```
 
 After a few hours surveying the language, I have to say that Fan seems to get a lot of things right. Here is a short list of its features: 
 
@@ -121,54 +121,54 @@ After a few hours surveying the language, I have to say that Fan seems to get a 
 Here are a few code samples illustrating the main feature of Fan. 
 
 **Constructor**
-    
-    
-    class Point
-    {
-    new make(Int x, Int y) { this.x = x; this.y = y; }
-    Int x
-    Int y
-    }
-    // make a point
-    pt := Point.make(30, 40)
-    
+
+```java
+class Point
+{
+new make(Int x, Int y) { this.x = x; this.y = y; }
+Int x
+Int y
+}
+// make a point
+pt := Point.make(30, 40)
+```
 
 **Properties**
-    
-    
-    class Person
-    {
-    Str name
-    Int age { set { checkAge(val); @age = val } }
-    }
-    
+
+```java
+class Person
+{
+Str name
+Int age { set { checkAge(val); @age = val } }
+}
+```
 
 In the code above, `@age` is used to refer to the actual field and not the property. 
 
 **Facet**
-    
-    
-    @version=Version("1.2")
-    @todo=["fix it", "really fix it"]
-    class Account
-    {
-    }
-    
+
+```java
+@version=Version("1.2")
+@todo=["fix it", "really fix it"]
+class Account
+{
+}
+```
 
 You can pass methods when closures are expected. For example, [Thread.make](http://www.fandev.org/doc/sys/Thread.html#make) expects a closure that takes a Thread in parameters and returns an Obj: 
-    
-    
-    new make(Str name := null, |Thread -> Obj| run := null)
-    
+
+```text
+new make(Str name := null, |Thread -> Obj| run := null)
+```
 
 You don't need to create an object to invoke that method: 
-    
-    
-    static Void readerRun(Thread t) {
-    // ...
-    }
-    reader := Thread.make("reader", &readerRun;).start
-    
+
+```java
+static Void readerRun(Thread t) {
+// ...
+}
+reader := Thread.make("reader", &readerRun;).start
+```
 
 Here are some of my pet peeves about Fan: 
 
@@ -183,26 +183,28 @@ I'm sure they will change their mind in due time, and in the meantime, `List`, `
   * There doesn't seem to be any IDE support. I'm not sure how old Fan is, but the documentation states that it is approaching v1.0, so I'm hoping that the Fan developers will learn from Groovy's mistakes and focus their attention on IDE support as soon as possible. 
 
   * I prefer for constructors to have a fixed name instead of one arbitrarily chosen by the developer. While class declarations make it easy to pinpoint which methods are constructors (just look for "new"), it's not as easy to tell when you are on the call site, since a constructor invocation cannot be differentiated from a static call. From that respect, I still find that Ruby's approach (`Person.new`) represents the best of both worlds, although I think it could be perfected even further by eliminating the duality `"new"`/`"init"` completely. For example, instead of: 
-        
-        // Valid Fan
-        class Point {
-        new make(Int x, Int y) { this.x = x; this.y = y; }
-        Int x
-        Int y
-        }
-        p = Point.make(2, 3)
-        
+
+```java
+    // Valid Fan
+    class Point {
+    new make(Int x, Int y) { this.x = x; this.y = y; }
+    Int x
+    Int y
+    }
+    p = Point.make(2, 3)
+```
 
 Why not: 
-        
-        // Invalid Fan
-        class Point {
-        new(Int x, Int y) { this.x = x; this.y = y; }
-        Int x
-        Int y
-        }
-        p = Point.new(2, 3)
-        
+
+```java
+    // Invalid Fan
+    class Point {
+    new(Int x, Int y) { this.x = x; this.y = y; }
+    Int x
+    Int y
+    }
+    p = Point.new(2, 3)
+```
 
 ? (the same remark can be made about Ruby) 
 Except for partial generics, Fan doesn't seem to add as many innovations as its predecessors did, which is not necessarily a bad thing. It's pretty clear that the Fan authors have a solid knowledge of multiple languages and they ported these concepts, sometimes hardly modified, into Fan. And speaking of porting, I am thoroughly impressed by the fact that Fan works on both the JVM and .Net. 

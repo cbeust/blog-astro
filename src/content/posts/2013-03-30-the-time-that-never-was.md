@@ -70,45 +70,45 @@ comments:
 ---
 
 I spent some time tracking down a funny bug yesterday, which suddenly starting clogging our logs with the following error message: 
-    
-    
-    org.joda.time.IllegalFieldValueException: Value 22 for hourOfDay is not supported: Illegal instant due to time zone offset transition
-    
+
+```text
+org.joda.time.IllegalFieldValueException: Value 22 for hourOfDay is not supported: Illegal instant due to time zone offset transition
+```
 
 If there are two things I have learned about Joda-Time these past years, it's that 1) it hardly ever fails and 2) when it does, it's for a good reason. So I took a look at the code causing the exception and I found this: 
-    
-    
-    max = eventLocalTime.withTime(22, 0, 0, 0);
-    
+
+```java
+max = eventLocalTime.withTime(22, 0, 0, 0);
+```
 
 I see the "22" value but this code has been working flawlessly for weeks, what is suddenly causing it to fail? I fired the debugger, reproduced the problem and inspected the `eventLocalTime` variable. Something felt a bit unusual about its value: 
-    
-    
-    2013-03-30T22:32:00.000 (America/Godthab)
-    
+
+```text
+2013-03-30T22:32:00.000 (America/Godthab)
+```
 
 I won't claim that I know all the different time zones in existence in North America, but "America/Gothab" is certainly new to me. A quick Google search reveals that [this time zone is in Greenland](http://www.timezoneconverter.com/cgi-bin/zoneinfo.tzc?s=default&tz=America/Godthab). Alright, so we have users in Greenland, but why would this cause a problem? 
 
 Reading this page again, something strikes me: 
-    
-    
-    Next Scheduled DST Transition
-    DST will begin on Sat 30-Mar-2013 at 10:00:00 P.M. when local clocks are set forward 1 hour
-    
+
+```text
+Next Scheduled DST Transition
+DST will begin on Sat 30-Mar-2013 at 10:00:00 P.M. when local clocks are set forward 1 hour
+```
 
 and then everything falls into place. 
 
 The variable `eventLocalTime` is perfectly legitimate but today is March 29th, and adding 22 hours to it puts it into a nonexistent time, which happens whenever a time zone transitions to or from Daylight Savings Time. By adding twenty-two hours to the variable, we were trying to create a date "March 30th, 10pm", which doesn't exist because the clock in this time zone skips to 11pm. In the US, this nonexistent time period is usually between 2am and 3am, but for some reason, Greenland does this switch at 10pm. 
 
 The fix ended up looking as follows (happy to hear if there is a better solution): 
-    
-    
-    try {
-        max = eventLocalTime.withTime(22, 0, 0, 0);
-    } catch (IllegalFieldValueException e) {
-        max = eventLocalTime.withTime(23, 0, 0, 0);
-    }
-    
+
+```java
+try {
+    max = eventLocalTime.withTime(22, 0, 0, 0);
+} catch (IllegalFieldValueException e) {
+    max = eventLocalTime.withTime(23, 0, 0, 0);
+}
+```
 
 I am so happy that Joda will finally become standard with Java 8, and I have to tip my hat to Stephen, again, for his dedication to the terribly hard problem of date management. 
 

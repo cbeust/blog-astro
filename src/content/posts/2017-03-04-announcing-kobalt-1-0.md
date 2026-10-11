@@ -8,12 +8,12 @@ categories:
 ---
 
 I'm happy to announce the release of [Kobalt 1.0.](https://beust.com/weblog/kobalt) Kobalt has been stable for more than a year now but it's finally reached a point where all the features that I wanted to incorporate in a first release are now present. The most recent one is incremental Kotlin compilation from the Kotlin compiler itself. Kobalt already supports incremental builds at the task level (it can determine if a task needs to run and completely skip it if nothing needs to be done) but with Kotlin incremental compilation, build times are dramatically reduced for situations where you have only modified a few files: 
-    
-    
-    ===== kobalt-plugin-api:compile
-      Kotlin 1.1.0 compiling 163 files
-      Actual files that needed to be compiled: 1
-    
+
+```kotlin
+===== kobalt-plugin-api:compile
+  Kotlin 1.1.0 compiling 163 files
+  Actual files that needed to be compiled: 1
+```
 
 Here is a quick summary of Kobalt's features: 
 

@@ -11,20 +11,20 @@ categories:
 I recently added [`apt` support](http://beust.com/weblog/kobalt/plug-ins/index.html#apt) to [Kobalt](http://beust.com/weblog/kobalt), which is a requirement for a build system these days, and something interesting happened. 
 
 First of all, the feature itself in Kobalt: pretty straightforward. The `apt` plug-in adds a new dependency directive similar to `compile`: 
-    
-    
-    dependencies {
-        apt("com.google.dagger:dagger:2.0.2")
-    }
-    
+
+```kotlin
+dependencies {
+    apt("com.google.dagger:dagger:2.0.2")
+}
+```
 
 The processing tool can be further configured (output directory, arguments, etc...) with a separate `apt` directive: 
-    
-    
-    apt {
-        outputDir = "generated/sources/apt"
-    }
-    
+
+```kotlin
+apt {
+    outputDir = "generated/sources/apt"
+}
+```
 
 In order to test this new feature, I decided to implement a simple annotation processor project and I went for a `Version` class generator. As I wrote this processor, I realized that it was actually something I could definitely use in my other projects. 
 
@@ -33,22 +33,22 @@ Of course, you can always simply hard code the version number of your applicatio
 This is how [version-processor](https://github.com/cbeust/version-processor) was born. It's pretty simple really: all you need to do is annotate one of your classes with `@Version` and a `GeneratedVersion.java` file is created, which you can then refer to. That version number can either be hardcoded or specified in a properties file. Head over to the [project's main page](https://github.com/cbeust/version-processor) for the details. 
 
 And of course, it's built with [Kobalt](http://beust.com/weblog/kobalt) and if you are curious, [here is the processor's build file](https://github.com/cbeust/version-processor/blob/master/Build.kt#L11-L25): 
-    
-    
-    val processor = javaProject {
-        name = "version-processor"
-        group = "com.beust"
-        artifactId = name
-        version = "0.2"
-        directory = "processor"
-        assemble {
-            mavenJars {}
-        }
-        jcenter {
-            publish = true
-        }
+
+```kotlin
+val processor = javaProject {
+    name = "version-processor"
+    group = "com.beust"
+    artifactId = name
+    version = "0.2"
+    directory = "processor"
+    assemble {
+        mavenJars {}
     }
-    
+    jcenter {
+        publish = true
+    }
+}
+```
 
 Happy version generating! 
 

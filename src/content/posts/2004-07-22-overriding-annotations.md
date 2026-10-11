@@ -77,22 +77,21 @@ Here are a few thoughts on this subject.
    
 The overriding is specified in an external XML file which could look like this:  
 
-    
-    
-    <override>
-      <annotation-class names="javax.ejb3.TransactionAttribute" />
-      <scope>
-        <package names="com.foo" />
-        <class names="Account" />
-        <method names="deposit withdraw" />
-      </scope>
-      <overridden-values>
-        <value name="value"
-               old-value="javax.ejb3.TransactionAttributeType.SUPPORTS" />
-               new-value="javax.ejb3.TransactionAttributeType.REQUIRED" />
-      </overridden-values>
-    </override>
-    
+```xml
+<override>
+  <annotation-class names="javax.ejb3.TransactionAttribute" />
+  <scope>
+    <package names="com.foo" />
+    <class names="Account" />
+    <method names="deposit withdraw" />
+  </scope>
+  <overridden-values>
+    <value name="value"
+           old-value="javax.ejb3.TransactionAttributeType.SUPPORTS" />
+           new-value="javax.ejb3.TransactionAttributeType.REQUIRED" />
+  </overridden-values>
+</override>
+```
 
 An override is specified with three parameters:
 
@@ -113,13 +112,13 @@ The <overridden-values> stanza specifies the new values that need to be applied 
 The matching of the values in the XML file to the actual enum type can be performed through reflection, including enums, since it is possible to retrieve a String version of each enum value.  
    
 The API could probably be very similar to the existing one:
-    
-    
-    AnnotationOverrider ao = new AnnotationOverrider("override.xml");
-    Method m = ...;  // retrieve the method
-    TransactionType oa = ao.getAnnotation(m, TransactionType.class);
-    // oa.value() now contains the overridden annotation
-    
+
+```java
+AnnotationOverrider ao = new AnnotationOverrider("override.xml");
+Method m = ...;  // retrieve the method
+TransactionType oa = ao.getAnnotation(m, TransactionType.class);
+// oa.value() now contains the overridden annotation
+```
 
 Here are some open questions/concerns that have come up so far:
 
@@ -131,10 +130,11 @@ Here are some open questions/concerns that have come up so far:
  
   * Is the syntax too verbose?  For example, Bill Burke is suggesting to insert entire Java snippets to identify the targets:  
 
-        
-        <annotation method="public void setEM(javax.ejb.EntityManager)">
-        @javax.ejb.Inject
-        </annotation>
+```xml
+    <annotation method="public void setEM(javax.ejb.EntityManager)">
+    @javax.ejb.Inject
+    </annotation>
+```
 
 I personally think that writing Java code in an XML file is a very strong design smell, and it's a step backward since we are reintroducing redundancy in the programming model (if you rename this method in your Java code, you need to remember to update the fragile string in your deployment descriptor). 
 

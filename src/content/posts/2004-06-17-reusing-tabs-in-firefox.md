@@ -38,15 +38,17 @@ The instructions to enable this feature are in the FAQ but a bit scattered, so h
 
   * Add the following to your user.js:  
 
-        
-        // Stop reusing active windows:
-        user_pref("advanced.system.supportDDEExec", false);
+```java
+    // Stop reusing active windows:
+    user_pref("advanced.system.supportDDEExec", false);
+```
 
   * This file doesn't exist by default, so you must create it.  On Windows XP, it can be found at:  
 
-        
-        c:/Documents and Settings/[user name]/ApplicationData/
-        Mozilla/Profiles/default/[random chars].slt/user.js
+```text
+    c:/Documents and Settings/[user name]/ApplicationData/
+    Mozilla/Profiles/default/[random chars].slt/user.js
+```
 
   * Download and install [ TabBrowser extensions](http://white.sakura.ne.jp/~piro/xul/xpi/tabextensions_en.xpi)   
  

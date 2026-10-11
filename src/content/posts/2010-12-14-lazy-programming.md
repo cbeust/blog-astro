@@ -274,18 +274,18 @@ comments:
 In a nutshell, so called "dynamic languages" seem to be more used because they allow you to type less than because they use really dynamic features. 
 
 Maybe it's because static typing is so ingrained into my brain, but when I write something like: 
-    
-    
-    def raise_salary(employee)
-    ...
-    
+
+```text
+def raise_salary(employee)
+...
+```
 
 I really, REALLY, **REALLY** want to type: 
-    
-    
-    def raise_salary(Employee employee)
-    ...
-    
+
+```text
+def raise_salary(Employee employee)
+...
+```
 
 My fingers are just screaming to add this type information. Same for local variables or return types. It's in my head, it's in my code, why can't I just give this information to the compiler, the tools and to future readers and reviewers of this code? It's really not that much to type and it buys me so much. Think about it: refactorings that are guaranteed 100% correct. 
 

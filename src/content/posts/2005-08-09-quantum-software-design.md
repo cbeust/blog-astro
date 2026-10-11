@@ -302,83 +302,66 @@ Here is a concrete example of this problem.
 Imagine that some of your classes need to expose the properties "`shortName`" and "`longName`" with getters and setters.  While interfaces let you specify this contract easily (an interface with four methods), you still need to find a way to capture this implementation in a separate class.
 
 Let's start with the obvious:
-    
-    
-    
-    
-    public class Nameable {  
-    
-      private String m_shortName;  
-    
-      private String m_longName;  
-    
-      
-    
-      public String getShortName() {  
-    
-        return m_shortName;  
-    
-      }  
-    
-      
-    
-      public void setShortName(String s) {  
-    
-        m_shortName = s;  
-    
-      }
-    
-    
-    
-    
-      public String getLongName() {  
-    
-        return m_longName;  
-    
-      }  
-    
-      
-    
-      public void setLongName(String s) {  
-    
-        m_longName = s;  
-    
-      }  
-    
-    }
-    
-    
-    
+
+```java
+public class Nameable {  
+
+  private String m_shortName;  
+
+  private String m_longName;  
+
+  
+
+  public String getShortName() {  
+
+    return m_shortName;  
+
+  }  
+
+  
+
+  public void setShortName(String s) {  
+
+    m_shortName = s;  
+
+  }
+
+
+
+
+  public String getLongName() {  
+
+    return m_longName;  
+
+  }  
+
+  
+
+  public void setLongName(String s) {  
+
+    m_longName = s;  
+
+  }  
+
+}
+```
 
 At this point, Java forces you to use one of the three techniques described above, but imagine we could do the following:
-    
-    
-    
-    
-    public class Employee {  
-    
-      import com.beust.Nameable;  // illegal Java  
-    
-      // ...  
-    
-    }
-    
-    
-    
+
+```java
+public class Employee {  
+  import com.beust.Nameable;  // illegal Java  
+  // ...  
+}
+```
 
 Importing the class inside your own class is equivalent to doing a copy/paste of the content of the imported class, so that the following becomes valid:
-    
-    
-    
-    
-    Employee e = new Employee();  
-    
-    e.setShortName("Cedric");  
-    
-    e.setLongName("Cedric Beust");
-    
-    
-    
+
+```java
+Employee e = new Employee();  
+e.setShortName("Cedric");  
+e.setLongName("Cedric Beust");
+```
 
 There are a lot of things to like about this approach:
 

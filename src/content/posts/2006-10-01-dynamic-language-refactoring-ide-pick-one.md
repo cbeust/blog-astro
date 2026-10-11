@@ -1038,21 +1038,22 @@ It???s simple, really: dynamic languages that are not statically typed (i.e. let
 
 How could they? They just don???t have the type information to know exactly which types are being used to invoke your methods.  
 A few months ago, I offered the following code snippet to the author of the Ruby Refactoring Browser:
-    
-    
-    def f1(o)
-        o.init
+
+```ruby
+def f1(o)
+    o.init
+end
+
+def f2(o)
+    o.init
+end
+
+class C
+    def init
+        ...
     end
-    
-    def f2(o)
-        o.init
-    end
-    
-    class C
-        def init
-            ...
-        end
-    end
+end
+```
 
 And I asked him: ???If I rename C.init to C.init2, how do you know which o.init must be renamed in f1 and f2????.
 

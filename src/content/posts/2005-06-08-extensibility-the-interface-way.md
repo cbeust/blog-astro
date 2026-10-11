@@ -279,96 +279,57 @@ What the article doesn't say is how exactly you can leverage this pattern to act
 It's actually pretty easy.
 
 Imagine that you wrote a program to make coffee:
-    
-    
-    
-    
-    public void dispense(ICoffeeMaker coffeeMaker) {  
-    
-      coffeeMaker.pourBeans();  
-    
-      coffeeMaker.makeCoffee();  
-    
-    }
-    
-    
-    
+
+```java
+public void dispense(ICoffeeMaker coffeeMaker) {  
+  coffeeMaker.pourBeans();  
+  coffeeMaker.makeCoffee();  
+}
+```
 
 At some point, your coffee maker starts supporting pouring milk and since ` ICoffeeMaker` is now immutable, you need to create another immutable interface.  We could call it `ICoffeeMaker2` if there was no other suitable name, but `IMilkCoffeeMaker` is probably better in this case:
-    
-    
-    
-    
-    public interface IMilkCoffeeMaker extends ICoffeeMaker {  
-    
-      public void pourMilk();  
-    
-    }
-    
-    
-    
+
+```java
+public interface IMilkCoffeeMaker extends ICoffeeMaker {  
+  public void pourMilk();  
+}
+```
 
 _Note:   I initially used the example of decaf coffee for this but it occurred to me that this would be an implementation change, and not an interface modification.  Milk makes more sense because we are adding a functionality that hadn't been anticipated by the first version of this interface._
 
 Your code now becomes:
-    
-    
-    
-    
-    public void makeCoffee(ICoffeeMaker coffeeMaker) {  
-    
-      if (coffeeMaker instanceof IMilkCoffeeMaker) {  
-    
-        ((IMilkCoffeeMaker) coffeeMaker).pourMilk();  
-    
-      }  
-    
-      coffeeMaker.pourBeans();  
-    
-      coffeeMaker.makeCoffee();  
-    
-    }
-    
-    
-    
+
+```java
+public void makeCoffee(ICoffeeMaker coffeeMaker) {  
+  if (coffeeMaker instanceof IMilkCoffeeMaker) {  
+    ((IMilkCoffeeMaker) coffeeMaker).pourMilk();  
+  }  
+  coffeeMaker.pourBeans();  
+  coffeeMaker.makeCoffee();  
+}
+```
 
 As you can see, this is quite straightforward.  And it probably makes you cringe a little...  After all, weren't you warned over and over again to avoid `instanceof` as much as possible, and more generally, that your code should not rely on the existence or implementation of subclasses?
 
 This advice still stands, but like all advice, it has exceptions.  And future evolution as illustrated in the snippet above is a high enough reward that you should consider this approach when writing Truly Reusable Code.
 
 This technique is being used in many places in Eclipse, and it's actually so common that the Eclipse team generalized this principle by creating the ` IAdaptable` class.  It is extremely simple:
-    
-    
-    
-    
-    public interface IAdaptable {  
-    
-      /**  
-    
-      * Returns an object which is an instance of the given class  
-    
-      * associated with this object. Returns <code>null</code> if  
-    
-      * no such object can be found.  
-    
-      *  
-    
-      * @param adapter the adapter class to look up  
-    
-      * @return a object castable to the given class,   
-    
-      * or <code>null</code> if this object does not  
-    
-      * have an adapter for the given class  
-    
-      */  
-    
-      public Object getAdapter(Class adapter);  
-    
-    }
-    
-    
-    
+
+```java
+public interface IAdaptable {  
+  /**  
+  * Returns an object which is an instance of the given class  
+  * associated with this object. Returns <code>null</code> if  
+  * no such object can be found.  
+  *  
+  * @param adapter the adapter class to look up  
+  * @return a object castable to the given class,   
+  * or <code>null</code> if this object does not  
+  * have an adapter for the given class  
+  */  
+  public Object getAdapter(Class adapter);  
+}
+```
 
 There is a lot more to say about this interview and I don't want this post to become too lengthy, so I'll just wrap up for now by observing that this philosophy is quite at odds with what XP is trying to achieve, which is a nutshell is "Do the simplest thing that can possibly work". 
 

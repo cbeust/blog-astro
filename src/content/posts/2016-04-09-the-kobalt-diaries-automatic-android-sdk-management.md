@@ -22,17 +22,17 @@ The graphical tool used to download this repository, called "SDK Manager", is al
 Once I became more comfortable with the esoteric command line syntax used by the `"android"` tool, adding it to the Kobalt Android plug-in was trivial, and as a result, Kobalt is now able to completely install a full Android SDK from scratch. 
 
 In other words, all you need in your project is a simple Android configuration in your `Build.kt` file: 
-    
-    
-        android {
-            compileSdkVersion = "23"
-            buildToolsVersion = "23.0.1"
-            // ...
-        }
-        dependencies {
-            compile("com.android.support:appcompat-v7:aar:23.0.1")
-        }
-    
+
+```kotlin
+    android {
+        compileSdkVersion = "23"
+        buildToolsVersion = "23.0.1"
+        // ...
+    }
+    dependencies {
+        compile("com.android.support:appcompat-v7:aar:23.0.1")
+    }
+```
 
 The Kobalt Android plug-in will then automatically download everything you need to create an `apk` from this simple build file: 
 
@@ -43,35 +43,36 @@ The Kobalt Android plug-in will then automatically download everything you need 
 
 
 A typical run on a clean machine with nothing installed will look like this: 
-    
-    
-    $ ./kobaltw assemble
-    ...
-    Android SDK not found at /home/travis/.android/android-sdk-linux, downloading it
-    Couldn't find /home/travis/.android/android-sdk-linux/build-tools/23.0.1, downloading it
-    Couldn't find /home/travis/.android/android-sdk-linux/platform-tools, downloading it
-    Couldn't find /home/travis/.android/android-sdk-linux/platforms/android-23, downloading it
-    Couldn't find Maven repository for extra-android-m2repository, downloading it
-    Couldn't find Maven repository for extra-google-m2repository, downloading it
-    ...
-              ===========================
-              | Building androidFlavors |
-              ===========================
-    ------ androidFlavors:clean
-    ------ androidFlavors:generateR
-    ------ androidFlavors:compile
-      Java compiling 4 files
-    ------ androidFlavors:proguard
-    ------ androidFlavors:generateDex
-    ------ androidFlavors:signApk
-    Created androidFlavors/kobaltBuild/outputs/apk/androidFlavors.apk
-    
+
+```diff
+$ ./kobaltw assemble
+...
+Android SDK not found at /home/travis/.android/android-sdk-linux, downloading it
+Couldn't find /home/travis/.android/android-sdk-linux/build-tools/23.0.1, downloading it
+Couldn't find /home/travis/.android/android-sdk-linux/platform-tools, downloading it
+Couldn't find /home/travis/.android/android-sdk-linux/platforms/android-23, downloading it
+Couldn't find Maven repository for extra-android-m2repository, downloading it
+Couldn't find Maven repository for extra-google-m2repository, downloading it
+...
+          ===========================
+          | Building androidFlavors |
+          ===========================
+------ androidFlavors:clean
+------ androidFlavors:generateR
+------ androidFlavors:compile
+  Java compiling 4 files
+------ androidFlavors:proguard
+------ androidFlavors:generateDex
+------ androidFlavors:signApk
+Created androidFlavors/kobaltBuild/outputs/apk/androidFlavors.apk
+```
 
 Obviously, these downloads will not happen again unless you modify the dependencies in your build file. 
 
 I'm hopeful that Google will eventually make these support libraries available on a real remote Maven repository so we don't have to jump through these hoops any more, but until then, Kobalt has you covered. 
 
 This feature is available in the latest [`kobalt-android` plug-in](https://github.com/cbeust/kobalt-android) as follows: 
-    
-    
-    val p = plugins("com.beust:kobalt-android:0.81")
+
+```kotlin
+val p = plugins("com.beust:kobalt-android:0.81")
+```

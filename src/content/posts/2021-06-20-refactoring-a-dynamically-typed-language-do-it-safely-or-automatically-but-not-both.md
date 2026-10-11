@@ -42,44 +42,46 @@ First of all, my claim:
 > In languages that do not have type annotations (e.g. Python, Ruby, Javascript, Smalltalk), it is impossible to perform automatic refactorings that are safe, i.e., that are guaranteed to not break the code. Such refactorings require the supervision of the developer to make sure that the new code still runs.
 
 First of all, I decided to adapt the snippet of code I used in my previous article and write it in Python. Here is a small example I came up with:
-    
-    
-    class A:
-        def f(self):
-            print("A.f")
-    
-    class B:
-        def f(self):
-            print("B.f")
-    
-    if __name__ == '__main__':
-        if random() > 0.5:
-            x = A()
-        else:
-            x = B()
-        x.f()
+
+```python
+class A:
+    def f(self):
+        print("A.f")
+
+class B:
+    def f(self):
+        print("B.f")
+
+if __name__ == '__main__':
+    if random() > 0.5:
+        x = A()
+    else:
+        x = B()
+    x.f()
+```
 
 Pretty straightforward: this code will call the function `f()` on either an instance of class `A` or `B`.
 
 What happens when you ask your IDE to rename `f()` to `f2()`? Well, this is undecidable. You might think it's obvious that you need to rename both `A.f()` and `B.f()`, but that's just because this snippet is trivial. In a code base containing hundreds of thousands of lines, it's plain impossible for any IDE to decide what functions to rename with the guarantee of not breaking the code.
 
 This time, I decided to go one step further and to actually prove this point, since so many people are still refusing to accept it. So I launched PyCharm, typed this code, put the cursor on the line `x.f()` and asked the IDE to rename `f()` to `f2()`. And here is what happened:
-    
-    
-    class A:
-        def f2(self):
-            print("A.f")
-    
-    class B:
-        def f(self):
-            print("B.f")
-    
-    if __name__ == '__main__':
-        if random() > 0.5:
-            x = A()
-        else
-            x = B()
-        x.f2()
+
+```python
+class A:
+    def f2(self):
+        print("A.f")
+
+class B:
+    def f(self):
+        print("B.f")
+
+if __name__ == '__main__':
+    if random() > 0.5:
+        x = A()
+    else
+        x = B()
+    x.f2()
+```
 
 PyCharm renamed the first `f()` but not the second one! I'm not quite sure what the logic is here, but well, the point is that this code is now broken, and you will only find out at runtime.
 

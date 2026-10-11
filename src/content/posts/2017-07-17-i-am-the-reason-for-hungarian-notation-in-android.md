@@ -9,9 +9,10 @@ categories:
 I am the reason for Hungarian notation in Android
 
 You know, this: 
-    
-    
-    private String mName;
+
+```java
+private String mName;
+```
 
 That's because of me.
 
@@ -32,9 +33,10 @@ But my task was to write a Java style guide and one of our goals with Android si
 So I put my bias aside. I took some time reviewing both Sun's and Google's own internal Java coding style guides and I came up with our own Android style guide, which was pretty much 99% what these two style guides proposed but with a few very tiny changes.
 
 One of the difference I remember clearly was regarding braces. While both style guides require to use braces for everything, I introduced an exception when the continuing statement can fit on the same line. The idea behind this exception was to accomodate for the prevalent logging idiom in Android:
-    
-    
-    if (Log.DEBUG) Log.d(tag, "Logging");
+
+```java
+if (Log.DEBUG) Log.d(tag, "Logging");
+```
 
 Without this exception, log statements would take up a lot of vertical screen space, something we all agreed was not desirable.
 

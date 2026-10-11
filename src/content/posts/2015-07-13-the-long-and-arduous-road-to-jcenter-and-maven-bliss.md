@@ -29,50 +29,50 @@ What follows is not a tutorial (there are so many alrady) but instead, a series 
 ## 401 when uploading to bintray
 
 Verify your credentials. One way of setting them is: 
-    
-    
-    bintray {
-        user = properties.getProperty("bintray.user")
-        key = properties.getProperty("bintray.apikey")
-    
+
+```java
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+```
 
 I put these values in `local.properties`, which I load explicitly (`gradle.properties` might be a better location): 
-    
-    
-    bintray.user=...
-    bintray.apikey=...
-    
+
+```properties
+bintray.user=...
+bintray.apikey=...
+```
 
 ## Javadocs are not being published
 
 Maven Central will reject artifacts that don't contain Javadocs and these are typically not included by default: 
-    
-    
-    task javadocJar(type: Jar, dependsOn: javadoc) {
-        classifier = 'javadoc'
-        from 'build/docs/javadoc'
-    }
-    task sourcesJar(type: Jar) {
-        from sourceSets.main.allSource
-        classifier = 'sources'
-    }
-    artifacts {
-        archives jar
-        archives javadocJar
-        archives sourcesJar
-    }
-    
+
+```java
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+```
 
 ## Javadocs are not being uploaded
 
 One line to add to your `bintray` configuration: 
-    
-    
-    bintray {
-        // Without this, javadocs don't get uploaded
-        configurations = ['archives']
-    }
-    
+
+```java
+bintray {
+    // Without this, javadocs don't get uploaded
+    configurations = ['archives']
+}
+```
 
 ## "Cannot create task of type 'Jar' as it does not implement the Task interface."
 
@@ -81,36 +81,36 @@ At some point during my tribulations, I started encountering this mystifying err
 ## Artifacts are not being signed
 
 Add the following to your `signing` configuration: 
-    
-    
-    apply plugin: 'signing'
-    signing {
-        required { gradle.taskGraph.hasTask("bintrayUpload") }
-        sign configurations.archives
-    }
-    
+
+```java
+apply plugin: 'signing'
+signing {
+    required { gradle.taskGraph.hasTask("bintrayUpload") }
+    sign configurations.archives
+}
+```
 
 Then in your `gradle.properties` (**not** `local.properties`): 
-    
-    
-    signing.keyId=...
-    signing.password=...
-    signing.secretKeyRingFile=(path to .gnupg/secring.gpg)
-    
+
+```properties
+signing.keyId=...
+signing.password=...
+signing.secretKeyRingFile=(path to .gnupg/secring.gpg)
+```
 
 ## .asc files are not being generated
 
 Another requirement from Maven Central, which you fix in the `bintray` configuration: 
-    
-    
-    bintray {
-        pkg {
-            version {
-                gpg {
-                    // Without this, .asc files don't get generated
-                    sign = true
-                }
-    
+
+```java
+bintray {
+    pkg {
+        version {
+            gpg {
+                // Without this, .asc files don't get generated
+                sign = true
+            }
+```
 
 ## "Return code is: 400, ReasonPhrase: Bad Request"
 
@@ -127,18 +127,18 @@ Just to list a few. While the server won't give more details is beyond me and on
 ## "`./gradlew uploadArchives`" failing with mysterious HTTP errors
 
 Another mistake I initially made was to try to upload the artifacts directly to the Maven Central repo instead of Sonatype's Nexus staging host. The correct configuration is: 
-    
-    
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
-                    authentication(userName: System.getenv('SONATYPE_USER'), password: System.getenv('SONATYPE_PASSWORD'))
-                }
-                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
-                    authentication(userName: System.getenv('SONATYPE_USER'), password: System.getenv('SONATYPE_PASSWORD'))
-                }
-    
+
+```java
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: System.getenv('SONATYPE_USER'), password: System.getenv('SONATYPE_PASSWORD'))
+            }
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+                authentication(userName: System.getenv('SONATYPE_USER'), password: System.getenv('SONATYPE_PASSWORD'))
+            }
+```
 
 As I said at the top of this article, you then need to go deploy the archive manually from the Nexus UI. 
 

@@ -87,48 +87,48 @@ Mock verification, or more generally, systematic invocation of certain test meth
 As it turns out, there are apparently three ways that you can automate mock verification in TestNG: one that is incorrect, one that doesn't work and one that actually works. 
 
 Let's start with the incorrect one: 
-    
-    
-      @BeforeMethod
-      public void init() {
-        this.mock = // create mock
-      }
-      @Test
-      public void t1() {
-        // set up and play mock
-      }
-      @Test
-      public void t2() {
-        // set up and play mock
-      }
-      @AfterMethod
-      public void verify() {
-        this.mock.verify();
-      }
-    
+
+```java
+  @BeforeMethod
+  public void init() {
+    this.mock = // create mock
+  }
+  @Test
+  public void t1() {
+    // set up and play mock
+  }
+  @Test
+  public void t2() {
+    // set up and play mock
+  }
+  @AfterMethod
+  public void verify() {
+    this.mock.verify();
+  }
+```
 
 This approach will run the verification after each test method, but the problem is that this code is being run in a configuration method (`@AfterMethod`) instead of a test method (`@Test`). Configuration methods are handled differently by TestNG in how they fail and how they get reported (in a nutshell, a configuration method that fails typically aborts the entire run since your test environment is no longer stable). 
 
 My next thought was to use TestNG's groups and dependencies: 
-    
-    
-      @BeforeMethod
-      public void init() {
-        this.mock = // create mock
-      }
-      @Test(groups = "mock")
-      public void t1() {
-        // set up and play mock
-      }
-      @Test(groups = "mock")
-      public void t2() {
-        // set up and play mock
-      }
-      @Test(dependsOnGroups = "mock")
-      public void verify() {
-        this.mock.verify();
-      }
-    
+
+```java
+  @BeforeMethod
+  public void init() {
+    this.mock = // create mock
+  }
+  @Test(groups = "mock")
+  public void t1() {
+    // set up and play mock
+  }
+  @Test(groups = "mock")
+  public void t2() {
+    // set up and play mock
+  }
+  @Test(dependsOnGroups = "mock")
+  public void verify() {
+    this.mock.verify();
+  }
+```
 
 At least, this solution runs the verification in a `@Test` annotation, but because of the way dependencies are run, the order of invocation for the code above will be `t1()`, `t2()` and then `verify()`. This is obviously wrong since we will only be verifyin whatever mock was played last. You could consider having each test method create and store a different mock and then have `verify()` go through all these mocks and calling `verify()` on them, but it's clearly a subpar solution. 
 
@@ -137,65 +137,65 @@ So let's turn our attention to the correct solution, which involves the use of a
 I already feature method interceptors in a [previous entry](http://beust.com/weblog/weblog/2008/03/29/test-method-priorities-in-testng/) that showed you how to create a new annotation `@Priority` that allows you to order your methods. The idea is similar here, except that instead of reordering the methods that we want TestNG to run, we are going to change their number as well. 
 
 For this to work, we introduce two new annotations: `@Verify` which indicates that this method needs to be verified, and `@Verifier`, which annotates the method that performs the verification. Here is an example of how you use them: 
-    
-    
-      @Verify
-      @Test
-      public void t1() {
-        // set up and play mock
-      }
-      @Verify
-      @Test
-      public void t2() {
-        // set up and play mock
-      }
-      @Verifier
-      @Test
-      public void verify() {
-        this.mock.verify();
-      }
-    
+
+```java
+  @Verify
+  @Test
+  public void t1() {
+    // set up and play mock
+  }
+  @Verify
+  @Test
+  public void t2() {
+    // set up and play mock
+  }
+  @Verifier
+  @Test
+  public void verify() {
+    this.mock.verify();
+  }
+```
 
 Now we need to write a method interceptor that will go through all the `@Test` methods, locate the verifier and then return a list of methods where each method annotated with `@Verify` is followed by the invocation of the `@Verify` method. The code is straightforward: 
-    
-    
-    IMethodInterceptor mi = new IMethodInterceptor() {
-      public List<IMethodInstance> intercept(List<IMethodInstance> methods,
-          ITestContext context) {
-        List<IMethodInstance> result = Lists.newArrayList();
-        IMethodInstance verifier = null;
-        // Doing a naive approach here: we run through the list of methods
-        // twice, once to find the verifier and once more to actually create
-        // the result. Obviously, this can be done with just one loop
-        for (IMethodInstance m : methods) {
-          if (m.getMethod().getMethod().getAnnotation(Verifier.class) != null) {
-            verifier = m;
-            break;
-          }
-        }
-        // Create the result with each @Verify method followed by a call
-        // to the @Verifier method
-        for (IMethodInstance m : methods) {
-          if (m != verifier) {
-            result.add(m);
-          }
-          if (m.getMethod().getMethod().getAnnotation(Verify.class) != null) {
-            result.add(verifier);
-          }
-        }
-        return result;
+
+```java
+IMethodInterceptor mi = new IMethodInterceptor() {
+  public List<IMethodInstance> intercept(List<IMethodInstance> methods,
+      ITestContext context) {
+    List<IMethodInstance> result = Lists.newArrayList();
+    IMethodInstance verifier = null;
+    // Doing a naive approach here: we run through the list of methods
+    // twice, once to find the verifier and once more to actually create
+    // the result. Obviously, this can be done with just one loop
+    for (IMethodInstance m : methods) {
+      if (m.getMethod().getMethod().getAnnotation(Verifier.class) != null) {
+        verifier = m;
+        break;
       }
-    };
-    
+    }
+    // Create the result with each @Verify method followed by a call
+    // to the @Verifier method
+    for (IMethodInstance m : methods) {
+      if (m != verifier) {
+        result.add(m);
+      }
+      if (m.getMethod().getMethod().getAnnotation(Verify.class) != null) {
+        result.add(verifier);
+      }
+    }
+    return result;
+  }
+};
+```
 
 Running it produces the following output: 
-    
-    
-    t1
-    Verifying
-    t2
-    Verifying
-    
+
+```text
+t1
+Verifying
+t2
+Verifying
+```
 
 With this simple interceptor ([full source](http://code.google.com/p/testng/source/browse/trunk/test/src/test/verify/VerifyTest.java)), you can now completely factor out the boiler plate logic of your mocks and focus on their business logic. 
 

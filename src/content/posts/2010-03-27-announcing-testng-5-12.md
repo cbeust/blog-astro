@@ -89,13 +89,13 @@ The most important change is that JDK 1.4 and Javadoc annotations are no longer 
 The most notable new feature in this new release is the annotation [`@Listeners`](https://testng.org/javadocs/index.html), which lets you add listeners directly in Java (no need for XML). Any TestNG listener (i.e. any class that extends [`ITestNGListener`](https://testng.org/javadocs/org/testng/ITestNGListener.html)) can be used as a value for this annotation, except [`IAnnotationTransformer`](https://testng.org/javadocs/org/testng/IAnnotationTransformer.html) which needs to be known before TestNG starts parsing your annotations. 
 
 For example, suppose that one test class is failing and you want to share the full report with a coworker, you can use the `EmailableReporter` to generate a single HTML file that you can then email. All you need to do is add the following `@Listeners` annotation: 
-    
-    
-    @Listeners(EmailableReporter.class)
-    public class VerifySampleTest {
-      // ...
-    }
-    
+
+```java
+@Listeners(EmailableReporter.class)
+public class VerifySampleTest {
+  // ...
+}
+```
 
 and then run the class with TestNG, which will generate the following report: 
 

@@ -27,28 +27,28 @@ There's been a lot of activity in the TestNG world lately... Here are some highl
 Josh Cough has been busy working with [TestNG and Scala](http://jackcoughonsoftware.blogspot.com/2008/01/scala-and-testng-in-far-greater-detail.html). As a credit to Scala's great integration with the JVM, it looks like the task was rather easy and Josh is showing a few examples in this blog post. 
 
 I notice two interesting pieces. First, a Data Provider: 
-    
-    
-    @DataProvider{val name="generators"}
-    def createGenerators = {
-    val gens = Array(off, on)
-    for( x <- gens; y <- gens ) yield Array(x,y)
-    }
-    
+
+```kotlin
+@DataProvider{val name="generators"}
+def createGenerators = {
+val gens = Array(off, on)
+for( x <- gens; y <- gens ) yield Array(x,y)
+}
+```
 
 Notice how the same array is used to generate the two dimensions of the boolean matrix... This data provider will simply return the four possible combinations of "on" and "off" pairs. 
 
 The test making use of that Data Provider is fairly straightforward: 
-    
-    
-    @Test{ val dataProvider="generators" }
-    def testAndGateStates(genA: Generator, genB: Generator){
-    val and: AndGate = new AndGate(genA, genB);
-    val whatItShouldBe = genA.on && genB.on
-    assertThat( and.on, is(whatItShouldBe) );
-    println( and.on + "==" + genA.on + "&&" + genB.on )
-    }
-    
+
+```kotlin
+@Test{ val dataProvider="generators" }
+def testAndGateStates(genA: Generator, genB: Generator){
+val and: AndGate = new AndGate(genA, genB);
+val whatItShouldBe = genA.on && genB.on
+assertThat( and.on, is(whatItShouldBe) );
+println( and.on + "==" + genA.on + "&&" + genB.on )
+}
+```
 
 Notice also the appearance of HamCrest (`assertThat`). 
 

@@ -186,87 +186,91 @@ Let's cover briefly the most obvious scenarios where DI, and more specifically, 
 Once the injector has created your graph of objects, you are pretty much back to normal and instantiating your "runtime objects" (the objects you create during the life time of your application) the normal way, most likely with "new" or factories. However, you will quickly start noticing that you need some runtime information to create these objects, other parts of them could be injected.
 
 Let's take the following example: we have a `GeoService` interface that provides various geolocation functions, such as telling you if two addresses are close to each other:
-    
-    
-    public interface GeoService {
-    /**
-    * @return true if the two addresses are within @param{miles}
-    * miles of each other.
-    */
-        boolean isNear(Address address1, Address address2, int miles);
-    }
+
+```java
+public interface GeoService {
+/**
+* @return true if the two addresses are within @param{miles}
+* miles of each other.
+*/
+    boolean isNear(Address address1, Address address2, int miles);
+}
+```
 
 Then you have a `Person` class which uses this service and also needs a name and an address to be instantiated:
-    
-    
-      public class Person {    // Fields omitted
-        public Person(String name, Address address, GeoService gs) {
-          this.name = name;
-          this.address = address;
-          this.geoService = gs;
-        }
-        public boolean livesNear(Person otherPerson) {
-          return geoService.isNear(address, otherPerson.getAddress(), 2 /* miles */);
-        }
-      }
 
+```java
+  public class Person {    // Fields omitted
+    public Person(String name, Address address, GeoService gs) {
+      this.name = name;
+      this.address = address;
+      this.geoService = gs;
+    }
+    public boolean livesNear(Person otherPerson) {
+      return geoService.isNear(address, otherPerson.getAddress(), 2 /* miles */);
+    }
+  }
+```
 
 Something odd should jump at you right away with this class: while `name` and `address` are part of the identity of a `Person` object, the presence of the `GeoService` instance in it feels wrong. The service is a singleton that is created on start up, so a perfect candidate to be injected, but how can I achieve the creation of a `Person` object when some of its information is supplied by Guice and the other part by myself?
 
 Guice gives you a very elegant and flexible way to implement this scenario with "assisted injection".
 
 The first step is to define a factory for our objects that represents exactly how we want to create them:
-    
-    
-    public interface PersonFactory {
-      Person create(String name, Address address);
-    }
+
+```java
+public interface PersonFactory {
+  Person create(String name, Address address);
+}
+```
 
 Since only `name` and `address` participate in the identity of our `Person` objects, these are the only parameters we need to construct our objects. The other parameters should be supplied by Guice so we modify our `Person` constructor to let Guice know:
-    
-    
-      @Inject
-      private Person(@Assisted String name, @Assisted Address address,
-          GeoService geoService) {
-        this.name = name;
-        this.address = address;
-        this.geoService = geoService;
-      }
-    
+
+```java
+  @Inject
+  private Person(@Assisted String name, @Assisted Address address,
+      GeoService geoService) {
+    this.name = name;
+    this.address = address;
+    this.geoService = geoService;
+  }
+```
 
 In this code, I have added an ``@Inject`` annotation on the constructor and an ``@Assisted`` annotation on each parameter that I will be providing. Guice will take care of injecting the rest. Note that I also made this constructor private, so that nobody (except Guice) will ever be able to call it. This is what we want, since this constructor contains private information that callers should never know about.
 
 Finally, we connect the factory to its objects when creating the module:
-    
-    
-        Module module1 = new FactoryModuleBuilder()
-            .build(PersonFactory.class);
+
+```java
+    Module module1 = new FactoryModuleBuilder()
+        .build(PersonFactory.class);
+```
 
 The important part here is to realize that we will never instantiate `PersonFactory`: Guice will. From now on, all we need to do whenever we want to instantiate a `Person` object is to ask Guice to hand us a factory:
-    
-    
-    @Inject
-    private PersonFactory personFactory;
-    // ...
-    Person p = personFactory.create("Bob", new Address("1 Ocean st"));
-    
+
+```java
+@Inject
+private PersonFactory personFactory;
+// ...
+Person p = personFactory.create("Bob", new Address("1 Ocean st"));
+```
 
 If you want to find out more, take a look at the [main documentation for assisted injection](http://code.google.com/p/google-guice/wiki/AssistedInject), which explains how to support overloaded constructors and also how to create different kinds of objects within the same factory.
 
 ## Wrapping up
 
 Let's take a look at what we did. First, we started with a suspicious looking constructor:
-    
-    
-    public Person(String name, Address address, GeoService s) {
-    
+
+```java
+public Person(String name, Address address, GeoService s) {
+```
 
 This constructor is suspicious because it accepts parameters that do not participate in the identity of the object (you won't use the `GeoService` parameter when calculating the hash code of a `Person` object). Instead, we replaced this constructor with a factory that only accepts identity fields:
-    
-    
-    public interface PersonFactory {
-      Person create(String name, Address address);
-    }
+
+```java
+public interface PersonFactory {
+  Person create(String name, Address address);
+}
+```
 
 and we let Guice's assisted injection take care of creating a fully formed object for us. By doing so, we have also maximized encapsulation by making sure that private implementation details of the class are never leaked outside of that class.
 

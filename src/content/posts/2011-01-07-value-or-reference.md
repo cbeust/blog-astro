@@ -194,15 +194,15 @@ Death and Taxes are not the only two things that are certain in life: the regula
 Like all debates centered around words, it's pretty hard to get a final resolution when most participants don't agree on the meaning of these words. 
 
 This question makes for a great warm up interview question, though, but it would be pretty evil to ask it in these ambiguous terms, so instead, I simply prefer to show the candidate the two following snippets: 
-    
-    
-    public void foo1(Person p) {
-      p = new Person("Joe");
-    }
-    public void foo2(Person p) {
-      p.name = "Joe";
-    }
-    
+
+```java
+public void foo1(Person p) {
+  p = new Person("Joe");
+}
+public void foo2(Person p) {
+  p.name = "Joe";
+}
+```
 
 and then ask them to explain what these two methods do. 
 

@@ -21,23 +21,24 @@ There is only one new feature in this release, but it's quite a big one:  JDK 1
 Thanks to the restless efforts of Alexander "Mindstorm" Popescu, TestNG can now be run with JDK 1.4, using the familiar JavaDoc annotations.
 
 Here is an example:
-    
-    
-    import com.beust.testng.annotations.*;
-    public class SimpleTest {
-    /**
-    * @testng.configuration beforeTestClass = "true"
-    */
-    public void setUp() {
-    // code that will be invoked when this test is instantiated
-    }
-    /**
-    * @testng.test groups = "functest"
-    */
-    public void testItWorks() {
-    // your test code
-    }
-    }
+
+```java
+import com.beust.testng.annotations.*;
+public class SimpleTest {
+/**
+* @testng.configuration beforeTestClass = "true"
+*/
+public void setUp() {
+// code that will be invoked when this test is instantiated
+}
+/**
+* @testng.test groups = "functest"
+*/
+public void testItWorks() {
+// your test code
+}
+}
+```
 
 Using TestNG with JDK 1.4 is straightforward and very similar to how you invoke it with JDK 1.5, which will make future migrations easy:
 

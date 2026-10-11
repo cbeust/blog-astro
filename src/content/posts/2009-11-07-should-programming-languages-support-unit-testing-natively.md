@@ -266,43 +266,43 @@ I know [first hand](http://testng.org) that writing a test framework is not easy
 Interestingly, very few modern languages support unit testing, and the only one that I found among the "recent" ones is [D](http://www.digitalmars.com/d/2.0/class.html#unittest) (I'm sure commenters will be happy to point me to more languages). 
 
 D's approach is pretty minimal: you can declare a `unittest` section in your class. This keyword acts as a method and you simply write your tests inside: 
-    
-    
-    //
-    // D
-    //
-    class Sum
-    {
-    int add(int x, int y) { return x + y; }
-    unittest
-    {
-    Sum sum = new Sum;
-    assert(sum.add(3,4) == 7);
-    assert(sum.add(-2,0) == -2);
-    }
-    }
-    
+
+```java
+//
+// D
+//
+class Sum
+{
+int add(int x, int y) { return x + y; }
+unittest
+{
+Sum sum = new Sum;
+assert(sum.add(3,4) == 7);
+assert(sum.add(-2,0) == -2);
+}
+}
+```
 
 This is as barebones as it can get. The advantage is that the impact on the language itself is minimal, but I'm wondering if I might want to be able to write different unit test methods instead of having just one that contains all my tests. And if we're going down that path, why not make the `unittest` keyword be the equivalent of a class instead of just a method? 
-    
-    
-    //
-    // Pseudo-Java
-    //
-    public class Sum {
-    public int add(int x, int y) { return x + y; }
-    }
-    unittest {
-    public void positiveNumbers() {
-    Sum sum = new Sum();
-    assert(sum.add(3,4) == 7);
-    }
-    public void negativeNumbers() {
-    Sum sum = new Sum();
-    assert(sum.add(-2,0) == -2);
-    }
-    }
-    
+
+```java
+//
+// Pseudo-Java
+//
+public class Sum {
+public int add(int x, int y) { return x + y; }
+}
+unittest {
+public void positiveNumbers() {
+Sum sum = new Sum();
+assert(sum.add(3,4) == 7);
+}
+public void negativeNumbers() {
+Sum sum = new Sum();
+assert(sum.add(-2,0) == -2);
+}
+}
+```
 
 As I said earlier, I think it's very important for this feature to remain as simple as possible, so what features from sophisticated testing frameworks should we remove and which ones should we keep? 
 

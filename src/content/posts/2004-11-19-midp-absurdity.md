@@ -98,21 +98,21 @@ Except that...  Sun made it impossible for you to extend `Item` in MIDP 1.0.
 Why?
 
 Because the `Item` class only has package-protected constructors:
-    
-    
-    public abstract class Item {
-    Item(String label) { ... }
-    Item(String label, int num) { ... }
-    
+
+```java
+public abstract class Item {
+Item(String label) { ... }
+Item(String label, int num) { ... }
+```
 
 And a closer look at the class reveals that even the abstract methods mentioned above are package-protected as well...  I'm not sure what genius came up with this design but more distressing is the fact that Sun actually shipped this class, which is installed on millions of devices as we speak. 
 
 Interestingly, they seem to have realized their mistake because MIDP 2.0 comes with a new class, `CustomItem`, which exposes the carefully hidden constructors to the outside world:
-    
-    
-    public abstract class CustomItem extends Item {
-    protected Item(String label) { ... }
-    
+
+```java
+public abstract class CustomItem extends Item {
+protected Item(String label) { ... }
+```
 
 It's too bad that MIDP 2.0 will not be widely available on phones before at least a couple of years...
 

@@ -151,21 +151,21 @@ The message bus model brings a lot of simplification to a listener heavy framewo
 Another benefit is that looking at the system in terms of events will allow to remove quite a bit of overlap. For example, in TestNG, you can be notified both when a suite finishes and when your reporter should start doing its work (generating reports). Most of the time, these events coincide. 
 
 I started sketching out what such an API could look like and I came up with the following very early draft: 
-    
-    
-    public class App {
-      @Subscriber
-      public void event1(NotifyEvent ne) {
-        System.out.println("event1: " + ne);
-      }
-    }
-    
-    
-    
-    MessageBus mb = new MessageBus();
-    mb.register(new App());
-    mb.post(new NotifyEvent("notify"));
-    
+
+```java
+public class App {
+  @Subscriber
+  public void event1(NotifyEvent ne) {
+    System.out.println("event1: " + ne);
+  }
+}
+
+
+
+MessageBus mb = new MessageBus();
+mb.register(new App());
+mb.post(new NotifyEvent("notify"));
+```
 
 Receivers describe the kind of events they are interested in and publishers simply post these events. With these ideas in mind, I started looking around to see if anything like this exists and I quickly came across [EventBus](http://eventbus.org/), by Michael Bushe. 
 

@@ -85,22 +85,23 @@ comments:
 ---
 
 In a [recent entry](http://martinfowler.com/bliki/JunitNewInstance.html), Martin Fowler explains the reason behind JUnit reinstantiating your JUnit class before invoking each test method. He concludes by showing the following example: 
-    
-    
-    [TestFixture]
-    public class ServerTester
-    {
-    private IList list = new ArrayList();
-    [Test]
-    public void first() {
-    list.Add(1);
-    Assert.AreEqual(1, list.Count);
-    }
-    [Test]
-    public void second() {
-    Assert.AreEqual(0, list.Count);
-    }
-    }
+
+```java
+[TestFixture]
+public class ServerTester
+{
+private IList list = new ArrayList();
+[Test]
+public void first() {
+list.Add(1);
+Assert.AreEqual(1, list.Count);
+}
+[Test]
+public void second() {
+Assert.AreEqual(0, list.Count);
+}
+}
+```
 
 and pointing out that this example passes with JUnit but fails with [NUnit](http://www.google.com/url?sa=X&start=1&q=http://www.nunit.org/) and [TestNG](http://beust.com/weblog/testng). 
 
@@ -113,24 +114,25 @@ It seems pretty obvious this code will fail in Java and in C#.
 So why should your test framework behave differently? 
 
 By the way, here is the correct way to write this test with TestNG: 
-    
-    
-    @Test
-    public class ServerTester
-    {
-    private IList list = null;
-    @Configuration(beforeTestMethod = true)
-    public void init() {
-    list = new ArrayList();
-    }
-    public void first() {
-    list.Add(1);
-    Assert.AreEqual(1, list.Count);
-    }
-    public void second() {
-    Assert.AreEqual(0, list.Count);
-    }
-    }
+
+```java
+@Test
+public class ServerTester
+{
+private IList list = null;
+@Configuration(beforeTestMethod = true)
+public void init() {
+list = new ArrayList();
+}
+public void first() {
+list.Add(1);
+Assert.AreEqual(1, list.Count);
+}
+public void second() {
+Assert.AreEqual(0, list.Count);
+}
+}
+```
 
 Quick explanation: 
 

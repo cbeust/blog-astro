@@ -246,16 +246,16 @@ Second, I would provide two versions of the most common exception classes: one t
 
 
 Having said that, I'm not a fan of the idea that the entire exception hierarchy is now going to be duplicated, so maybe we could push this idea a bit further and use Generics to cut down on the number of classes: 
-    
-    
-      throw new FileNotFound<Bug>();
-    
+
+```java
+  throw new FileNotFound<Bug>();
+```
 
 or 
-    
-    
-      throw new FileNotFound<Exception>();
-    
+
+```java
+  throw new FileNotFound<Exception>();
+```
 
 Of course, the compiler would have to apply different rules depending on the Generic parameter, which I don't believe is feasible today, but you get the idea. 
 

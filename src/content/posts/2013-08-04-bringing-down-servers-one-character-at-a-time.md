@@ -95,14 +95,14 @@ comments:
 Last week, I mentioned a bug that I caused and a few people asked me details about it, so here is what happened. 
 
 The code in question is parsing a calendar and processing meetings. Before showing the buggy code, here is what a shortened version of the fix ended up looking like: 
-    
-    
-    while (maxDays < 7 && (eventCount < 20) || attendeeCount < 40) {
-        // process meetings
-        // increment maxDays whenever we cross a day boundary
-        // possibly increment eventCount or attendeeCount based on the meeting
-    }
-    
+
+```java
+while (maxDays < 7 && (eventCount < 20) || attendeeCount < 40) {
+    // process meetings
+    // increment maxDays whenever we cross a day boundary
+    // possibly increment eventCount or attendeeCount based on the meeting
+}
+```
 
 The bug went unnoticed in production for a few days until suddenly, the servers started pinning all their CPU's and shortly thereafter, depleting the memory of each instance. A restart was the only remedy. 
 

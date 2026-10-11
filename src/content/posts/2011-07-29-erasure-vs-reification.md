@@ -117,55 +117,57 @@ There is a lot of literature available on the subject of erasure and reified gen
 Let's start with a few concrete examples. Here are snippets of code which do **not** compile under an erasure system but which would work fine with reified generics. If you are not familiar with the issues involved, here is a short rule of thumb that should allow you to understand what is going on: whenever you see a generic type, replaced it with `Object` (since that's exactly what's happening behind the scenes):
 
 #### Overloading
-    
-    
-    public class Test<K, V> {
-      public void f(K k) {
-      }
-      public void f(V v) {
-      }
-    }
-    
-    
-    T.java:2: name clash: f(K) and f(V) have the same erasure
-      public void f(K k) {
-                  ^
-    T.java:5: name clash: f(V) and f(K) have the same erasure
-      public void f(V v) {
-    
+
+```java
+public class Test<K, V> {
+  public void f(K k) {
+  }
+  public void f(V v) {
+  }
+}
+
+
+T.java:2: name clash: f(K) and f(V) have the same erasure
+  public void f(K k) {
+              ^
+T.java:5: name clash: f(V) and f(K) have the same erasure
+  public void f(V v) {
+```
 
 The workaround here is simple: rename your methods.
 
 #### Introspection
-    
-    
-    public class Test {
-      public <T> void f() {
-        Object t;
-        if (t instanceof List<T>) { ... }
-      }
-    }
-    
-    
-    Test.java:6: illegal generic type for instanceof
-        if (t instanceof List<T>) {}
+
+```java
+public class Test {
+  public <T> void f() {
+    Object t;
+    if (t instanceof List<T>) { ... }
+  }
+}
+
+
+Test.java:6: illegal generic type for instanceof
+    if (t instanceof List<T>) {}
+```
 
 There is no easy workaround for this limitation, you will probably want to be more specific about the generic type (e.g. adding an upper bound) or ask yourself if you really need to know the generic type `T` or if the knowledge that t is an object of type `List` is sufficient.
 
 #### Instantiation
-    
-    
-    public class Test {
-      public <T> void f() {
-        T t = new T();
-      }
-    }
-    
-    
-    Test.java:3: unexpected type
-    found   : type parameter T
-    required: class
-        T t = new T();
+
+```java
+public class Test {
+  public <T> void f() {
+    T t = new T();
+  }
+}
+
+
+Test.java:3: unexpected type
+found   : type parameter T
+required: class
+    T t = new T();
+```
 
 This case is also a bit tricky but since it is, in my experience, more common than the others, I'll spend a little more time discussing it.
 
@@ -180,19 +182,20 @@ If you need to manipulate `T`, you will have to enable this through the type sys
 In 2006, Neal Gafter came up with [a clever idea](http://gafter.blogspot.com/2006/11/reified-generics-for-java.html) to make it possible to instantiate such erased types. He dubbed the technique "super type tokens", and like most good ideas, it's extremely simple: you force the creation of an anonymous class that contains the generic type, which you can then retrieve by a clever use of the introspection API.
 
 Here is an example:
-    
-    
-    abstract class TypeReference<T> {}
-    public class TT {
-      public static <T> void f(TypeReference<T> t) {
-        ParameterizedType pt = (ParameterizedType)
-            t.getClass().getGenericSuperclass();
-        System.out.println(pt.getActualTypeArguments()[0]);
-      }
-      public static void main(String[] args) {
-        TT.f(new TypeReference<String>() {});
-      }
-    }
+
+```java
+abstract class TypeReference<T> {}
+public class TT {
+  public static <T> void f(TypeReference<T> t) {
+    ParameterizedType pt = (ParameterizedType)
+        t.getClass().getGenericSuperclass();
+    System.out.println(pt.getActualTypeArguments()[0]);
+  }
+  public static void main(String[] args) {
+    TT.f(new TypeReference<String>() {});
+  }
+}
+```
 
 This will print `"class java.lang.String"` on the console, even though the method printing it is completely generic. The trick is on the highighted line: notice the empty braces, which create an anonymous instance of `TypeReference`, setting the stage for the introspection code in the method to retrieve the generic type.
 
@@ -201,9 +204,10 @@ Shortly thereafter, Bob Lee picked up this feature, fleshed it out and included 
 Ever since Java 5 came out, and despite my initial fears, I can't say that I have been bothered much by the absence of type information in Java generics, and I am tempted to generalize this observation to the general Java population. Erasure turns out to have quite a few advantages and as it turns out, reified generics come with their own set of issues. Here are some of them.
 
 The main problem is that reified generics would be incompatible with the current collections. In binary form, for sure, and probably in source form as well (we would want to distinguish between collections making used of reified types from their older counterpart). Rewriting would probably be mostly a matter of copy/pasting, except for the parts that make use of introspection and which would need to be adjusted. The generated byte code would also contain more information. For example, the following test:
-    
-    
-    o instanceof List<String>
+
+```kotlin
+o instanceof List<String>
+```
 
 would now test that the object is an instance of `List` but also that its elements are of type `String`. That's quite a bit more work.
 

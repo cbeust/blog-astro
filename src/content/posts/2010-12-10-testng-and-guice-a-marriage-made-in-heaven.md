@@ -105,12 +105,12 @@ comments:
 TestNG has allowed users to control the instantation of their objects for a while now (around 2007). 
 
 This is enabled by the `IObjectFactory` interface: 
-    
-    
-    public interface IObjectFactory extends Serializable {
-      Object newInstance(Constructor constructor, Object... params);
-    }
-    
+
+```java
+public interface IObjectFactory extends Serializable {
+  Object newInstance(Constructor constructor, Object... params);
+}
+```
 
 Implement this interface, let TestNG know about your implementation and whenever TestNG needs to instantiate a test class, it will call the `newInstance` method of your object factory. This allows for a lot of flexibility, and interestingly, this interface appeared in the TestNG distribution long before Dependency Injection became as popular as it is today. 
 
@@ -121,31 +121,31 @@ Implement this interface, let TestNG know about your implementation and whenever
 As it turns out, the answer is yes. 
 
 Meet my little new friend, the `guiceModule` attribute: 
-    
-    
-    @Test(guiceModule = GuiceExampleModule.class)
-    public class GuiceTest {
-      @Inject
-      ISingleton m_singleton;
-      @Test
-      public void singletonShouldWork() {
-        m_singleton.doSomething();
-      }
-    }
-    
+
+```java
+@Test(guiceModule = GuiceExampleModule.class)
+public class GuiceTest {
+  @Inject
+  ISingleton m_singleton;
+  @Test
+  public void singletonShouldWork() {
+    m_singleton.doSomething();
+  }
+}
+```
 
 And that's it! No need for `IObjectFactory` or modifying your build files, everything you need is contained in this new `guiceModule` attribute of the `@Test` annotation. 
 
 Obviously, this module needs to create the necessary bindings for the `@Inject` annotation to work properly, for example: 
-    
-    
-    public class GuiceExampleModule implements Module {
-      @Override
-      public void configure(Binder binder) {
-        binder.bind(ISingleton.class).to(ExampleSingleton.class)
-            .in(Singleton.class);
-      }
-    }
-    
+
+```java
+public class GuiceExampleModule implements Module {
+  @Override
+  public void configure(Binder binder) {
+    binder.bind(ISingleton.class).to(ExampleSingleton.class)
+        .in(Singleton.class);
+  }
+}
+```
 
 With this new attribute, using TestNG with Guice has never been easier. Try it for yourself, [download the beta](http://testng.org/beta) and [tell us what you think!](http://groups.google.com/group/testng-users)

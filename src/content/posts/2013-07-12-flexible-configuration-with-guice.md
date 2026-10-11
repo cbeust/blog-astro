@@ -58,11 +58,11 @@ comments:
 ---
 
 There are quite a few configuration libraries available in Java, such as [this one available from Apache Commons](http://commons.apache.org/proper/commons-configuration/), and they usually follow a very similar pattern: they parse a variety of configuration files and in the end, give you a `Property` or `Map` like structure where you can query your values: 
-    
-    
-    Double double = config.getDouble("number");
-    Integer integer = config.getInteger("number");
-    
+
+```java
+Double double = config.getDouble("number");
+Integer integer = config.getInteger("number");
+```
 
 I have always been unsatisfied with this approach for a couple of reasons: 
 
@@ -84,123 +84,123 @@ I want to:
 I don't care much about the front end: how these properties get gathered is not relevant to this framework, they can come from XML, JSON, the network, a database, and they can have arbitrarily complex resolution and overriding rules, let's save this for a future post. The input of this framework is a `Map` of properties and I take it from there. 
 
 By the time we're done, we will be able to do something like this: 
-    
-    
-        # Some property file
-        host=foo.com
-        port=1234
-    
+
+```bash
+    # Some property file
+    host=foo.com
+    port=1234
+```
 
 Using these configuration values in your code: 
-    
-    
-    public class A {
-        @Inject
-        @Prop(Property.HOST)
-        private String host;
-        @Inject
-        @Prop(Property.PORT)
-        private Integer port;
-        // ...
-    }
-    
+
+```java
+public class A {
+    @Inject
+    @Prop(Property.HOST)
+    private String host;
+    @Inject
+    @Prop(Property.PORT)
+    private Integer port;
+    // ...
+}
+```
 
 ### Implementation
 
 The definition of the `Prop` annotation is trivial: 
-    
-    
-    @Retention(RUNTIME)
-    @Target({ ElementType.FIELD, ElementType.PARAMETER })
-    @BindingAnnotation
-    public @interface Prop {
-      Property value();
-    }
-    
+
+```java
+@Retention(RUNTIME)
+@Target({ ElementType.FIELD, ElementType.PARAMETER })
+@BindingAnnotation
+public @interface Prop {
+  Property value();
+}
+```
 
 `Property` is an enum that captures all the information necessary for all your properties. In our case: 
-    
-    
-    public enum Property {
-        HOST("host",
-            "The host name",
-            new TypeLiteral<String>() {},
-            "foo.com"),
-        PORT("port",
-            "The port",
-            new TypeLiteral<Integer>() {},
-            1234);
-    }
-    
+
+```java
+public enum Property {
+    HOST("host",
+        "The host name",
+        new TypeLiteral<String>() {},
+        "foo.com"),
+    PORT("port",
+        "The port",
+        new TypeLiteral<Integer>() {},
+        1234);
+}
+```
 
 This enum contains the string name of the property, a description, its default value and its type. Note that this type is a `TypeLiteral`, so we can even offer properties that have generic types that would otherwise be erased, a trick that comes in handy to inject caches or other generic collections. Obviously, you can have additional parameters as you see fit (e.g. "`boolean deprecated`"). 
 
 The next step is to tie all the properties that we parsed as input -- we'll use a `Map` called `"allProps"` \-- into our module so that Guice knows how to inject them. 
 
 In order to do this, we iterate all these properties and bind them to their own provider. Because we are using typed names, note the use of `Key.get` from the Guice API, which lets us specifically target each property with a specific annotation: 
-    
-    
-        for (Property prop : Property.values()) {
-            Object value = PropertyConverters.getValue(prop.getType(), prop, allProps.asMap());
-            binder.bind(Key.get(prop.getType(), new PropImpl(prop)))
-                    .toProvider(new PropertyProvider(prop, value));
-        }
-    
+
+```java
+    for (Property prop : Property.values()) {
+        Object value = PropertyConverters.getValue(prop.getType(), prop, allProps.asMap());
+        binder.bind(Key.get(prop.getType(), new PropImpl(prop)))
+                .toProvider(new PropertyProvider(prop, value));
+    }
+```
 
 There are three classes in this piece of code that I haven't explained yet. The first one is `PropertyConverters`, which simply reads the string version of the property and converts it to a Java type. The second one is `PropertyProvider`, a trivial Guice provider: 
-    
-    
-    public class PropertyProvider<T> implements Provider<T> {
-        private final T value;
-        private final Property property;
-        public PropertyProvider(Property property, T value) {
-            this.property = property;
-            this.value = value;
-        }
-        @Override
-        public T get() {
-            return value;
-        }
+
+```java
+public class PropertyProvider<T> implements Provider<T> {
+    private final T value;
+    private final Property property;
+    public PropertyProvider(Property property, T value) {
+        this.property = property;
+        this.value = value;
     }
-    
+    @Override
+    public T get() {
+        return value;
+    }
+}
+```
 
 `PropImpl` is more tricky and also the one thing that has always prevented me from implementing such a framework, until I came across this obscure tidbit of the Guice documentation quoted above. In order to understand the necessity of its existence, we need to understand how Guice's `Key.get()` works. Guice uses this class to translate a type into a unique key that it can use to inject the correct value. The important part here is to notice that not only does this method work with both `Class` and `TypeLiteral` (which we are using), but it can also be given a specific annotation. This annotation can be `@Named`, which I'm not a big fan of because it's a string, so susceptible to typos, or a real annotation, which is what we want. However, annotations are special beasts in Java and you can't get an instance of them just like that. 
 
 This is where the trick mentioned at the top of this article comes into play: Java actually allows you to implement an annotation with a regular class. [The implementation turns out to be fairly trivial](https://github.com/cbeust/personal/blob/master/src/main/java/com/beust/prop/PropImpl.java), the difficulty was realizing that this was possible at all. 
 
 Now that we have all this in place, let's back track and dissect how the magic happens: 
-    
-    
-        @Inject
-        @Prop(Property.HOST)
-        private String host;
-    
+
+```java
+    @Inject
+    @Prop(Property.HOST)
+    private String host;
+```
 
 When Guice encounters this injection point, it looks into its binders and it finds multiple bindings for `Strings`. However, because they have all been bound with a `Key`, the key is actually a pair: `(String, a Prop)`. In this case, it will look up the pair `String, Property.HOST` and it will find a provider there. This provider was instantiated with the value found in the property file, so it knows what value to return. 
 
 ### Generalizing
 
 Once I had the basic logic in place, I wondered if I could turn this mini framework into a library so that others could use it. The only missing piece would be to allow the specification of a more general `Prop` annotation. In the example above, this annotation has a value of type `Property`, which is specific to my application: 
-    
-    
-    @Retention(RUNTIME)
-    @Target({ ElementType.FIELD, ElementType.PARAMETER })
-    @BindingAnnotation
-    public @interface Prop {
-        Property value();
-    }
-    
+
+```java
+@Retention(RUNTIME)
+@Target({ ElementType.FIELD, ElementType.PARAMETER })
+@BindingAnnotation
+public @interface Prop {
+    Property value();
+}
+```
 
 In order to make this more general, I need to make this attribute return an `enum` instead of my own: 
-    
-    
-    @Retention(RUNTIME)
-    @Target({ ElementType.FIELD, ElementType.PARAMETER })
-    @BindingAnnotation
-    public @interface Prop {
-        Enum value();
-    }
-    
+
+```java
+@Retention(RUNTIME)
+@Target({ ElementType.FIELD, ElementType.PARAMETER })
+@BindingAnnotation
+public @interface Prop {
+    Enum value();
+}
+```
 
 Unfortunately, this is not legal Java, because according to the JLS section 8.9, `Enum` and its generic variants are **not** enum types, something that Josh Bloch confirmed, to my consternation. 
 

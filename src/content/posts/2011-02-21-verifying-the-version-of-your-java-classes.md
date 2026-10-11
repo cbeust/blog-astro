@@ -63,14 +63,15 @@ One of the constraints when you work on [fundamental software](http://beust.com/
 Despite all my precautions, I have sometimes accidentally shipped classes that were using a compiler that's too recent. The latest occurrence of this incident was with TestNG's Eclipse plug-in. Despite all the settings specifying that the JDK should be 1.5, I ended up with 1.6 classes in the feature jar file. I eventually figured out that when you actually build the update site, Eclipse uses some ant tasks which seem to ignore the Eclipse preferences and which revert to the global environment's JAVA_HOME. 
 
 So I ended up writing a quick script that makes one last check before actually uploading the files to the site, which I thought some people might find interesting: 
-    
-    
-    for i in `find . -name \*class`
-    do
-      v=`od -h $i | head -1 | awk '{print $5}'`
-      if [ $v != "3100" ]
-      then
-        echo "Class $i has version $v, expected 3100"
-        exit -1
-      fi
-    done
+
+```text
+for i in `find . -name \*class`
+do
+  v=`od -h $i | head -1 | awk '{print $5}'`
+  if [ $v != "3100" ]
+  then
+    echo "Class $i has version $v, expected 3100"
+    exit -1
+  fi
+done
+```

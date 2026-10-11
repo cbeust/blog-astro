@@ -149,29 +149,29 @@ So what's the problem?
 Redundancy. 
 
 First of all, I have always had a hard time with the redundancy introduced by the necessity of casting in general. For example, instead of writing: 
-    
-    
-    Map accounts = new HashMap();  // no generics
-    ...
-    Account a = (Account) accounts.get("Cedric");
-    
+
+```java
+Map accounts = new HashMap();  // no generics
+...
+Account a = (Account) accounts.get("Cedric");
+```
 
 why can't I just write: 
-    
-    
-    Map m = new HashMap();  // no generics
-    ...
-    **Account a = m.get("Cedric");**
-    
+
+```java
+Map m = new HashMap();  // no generics
+...
+**Account a = m.get("Cedric");**
+```
 
 and let the compiler introduce a silent cast, since obviously, it's an object of type Account that I am trying to retrieve from the Map? 
 
 Obviously, Generics don't solve this problem entirely but they make a decent job at alleviating it somewhat. But they also make it worse in some other ways: 
-    
-    
-    Map<String, List<Account>> accounts =
-    new HashMap<String, List<Account>>();
-    
+
+```java
+Map<String, List<Account>> accounts =
+new HashMap<String, List<Account>>();
+```
 
 Ouch. 
 
@@ -182,12 +182,12 @@ Admittedly, there is no nice way to avoid this syntax when you are creating a ne
 Or so I thought at first. 
 
 But after thinking about it more, I realized that typedefs were the wrong solution to the problem, because simply put, they don't add anything to the use of a separate class to define your complex Generic type. 
-    
-    
-    class AccountMap extends HashMap<String, List<Account>> {
-    ...
-    }
-    
+
+```java
+class AccountMap extends HashMap<String, List<Account>> {
+...
+}
+```
 
 Except for the fact that you need to extend an implementation (HashMap, and not Map, obviously), this solution is probably better than introducing typedef, which has its own quirks. 
 

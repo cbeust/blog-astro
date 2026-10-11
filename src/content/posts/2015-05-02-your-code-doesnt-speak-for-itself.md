@@ -11,25 +11,25 @@ I recently reviewed a commit that said "Fix the list view bug". I reviewed it, s
 A few days later, another commit went by that said "Really fix the list view bug". This fix was a bit more involved and caused the first item in the list view to sometimes receive the wrong styling. I then realized that I shouldn't have approved the first commit without asking a few more questions. 
 
 Here is another scenario. Let's say you are asked to review the following code: 
-    
-    
-    public static int compare(@Nonnull Long a, @Nonnull Long b) {
-    	return a.compareTo(b);
-    }
-    
+
+```java
+public static int compare(@Nonnull Long a, @Nonnull Long b) {
+	return a.compareTo(b);
+}
+```
 
 Seems pretty harmless, doesn't it? No reason not to approve it. 
 
 How about this one: 
-    
-    
-    /**
-     * @return 0 if the two numbers are equal, 1 otherwise.
-     */
-    public int cmp(@Nonnull Long a, @Nonnull Long b) {
-    	return a.compareTo(b);
-    }
-    
+
+```java
+/**
+ * @return 0 if the two numbers are equal, 1 otherwise.
+ */
+public int cmp(@Nonnull Long a, @Nonnull Long b) {
+	return a.compareTo(b);
+}
+```
 
 Now we have a problem: the code and the comment do not agree. This should not be approved before asking the developer to fix this (either change the comment or change the code). 
 

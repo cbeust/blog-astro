@@ -255,54 +255,54 @@ comments:
 A question that has come up a few times already on the TestNG list is how to use asserts that won't abort the entire test method. 
 
 Here is [the latest example](http://groups.google.com/group/testng-users/browse_thread/thread/6f0bbab78616159e): 
-    
-    
-    @Test
-    public void verifyUi() {
-      selenium.open (/* url */);
-      assertTrue(selenium.isElementPresent("id=txtfiled"));
-      assertTrue(selenium.isElementPresent("id=submit"));
-      assertTrue(selenium.isElementPresent("id=drpdwn1"));
-      assertTrue(selenium.isElementPresent("id=radiobtn"));
-    }
-    
+
+```java
+@Test
+public void verifyUi() {
+  selenium.open (/* url */);
+  assertTrue(selenium.isElementPresent("id=txtfiled"));
+  assertTrue(selenium.isElementPresent("id=submit"));
+  assertTrue(selenium.isElementPresent("id=drpdwn1"));
+  assertTrue(selenium.isElementPresent("id=radiobtn"));
+}
+```
 
 The author would like each of these asserts to be run, even if one of them fails. 
 
 A simple solution to this problem is to use boolean tests to gather the state of each test and then have a final assert that will test them all: 
-    
-    
-    boolean el1 = selenium.isElementPresent("id=txtfiled");
-    boolean el2 = selenium.isElementPresent("id=submit");
-    boolean el3 = selenium.isElementPresent("id=drpdwn1");
-    boolean el3 = selenium.isElementPresent("id=radiobtn");
-    assertTrue(el1 && el2 && el3 && el4);
-    
+
+```java
+boolean el1 = selenium.isElementPresent("id=txtfiled");
+boolean el2 = selenium.isElementPresent("id=submit");
+boolean el3 = selenium.isElementPresent("id=drpdwn1");
+boolean el3 = selenium.isElementPresent("id=radiobtn");
+assertTrue(el1 && el2 && el3 && el4);
+```
 
 The downside of this approach is that if the test fails, you won't know exactly which element was not found on your web page, so we need to find a solution that will also provide a meaningful failure message. 
 
 Here is a more flexible way to approach this problem. It introduces a method `assertSoft()` that doesn't throw any exception in the case of failure but that records the message if the test didn't succeed. Error messages are accumulated in this variable, so it can contain more than one failure report. 
 
 Finally, a real `assert` method verifies that the error message is empty and throws an exception if it's not: 
-    
-    
-    public void assertSoft(boolean success, String message, StringBuilder messages) {
-      if (!success) messages.append(message);
-    }
-    public void assertEmpty(StringBuilder sb) {
-      if (sb.length() > 0) {
-        throw new AssertionException(sb.toString());
-      }
-    }
-    @Test
-    public void elementShouldBePresent() {
-      StringBuilder result = new StringBuilder();
-      assertSoft(selenium.isElementPresent("id=txtfiled"), "Couldn't find txtfiled ", result);
-      assertSoft(selenium.isElementPresent("id=txtfiled"), "Couldn't find submit ", result);
-      assertSoft(selenium.isElementPresent("id=txtfiled"), "Couldn't find drpdwn1 ", result);
-      assertSoft(selenium.isElementPresent("id=txtfiled"), "Couldn't find radiobtn ", result);
-      assertEmpty(result);
-    }
-    
+
+```java
+public void assertSoft(boolean success, String message, StringBuilder messages) {
+  if (!success) messages.append(message);
+}
+public void assertEmpty(StringBuilder sb) {
+  if (sb.length() > 0) {
+    throw new AssertionException(sb.toString());
+  }
+}
+@Test
+public void elementShouldBePresent() {
+  StringBuilder result = new StringBuilder();
+  assertSoft(selenium.isElementPresent("id=txtfiled"), "Couldn't find txtfiled ", result);
+  assertSoft(selenium.isElementPresent("id=txtfiled"), "Couldn't find submit ", result);
+  assertSoft(selenium.isElementPresent("id=txtfiled"), "Couldn't find drpdwn1 ", result);
+  assertSoft(selenium.isElementPresent("id=txtfiled"), "Couldn't find radiobtn ", result);
+  assertEmpty(result);
+}
+```
 
 Can you think of a better way to solve this problem?

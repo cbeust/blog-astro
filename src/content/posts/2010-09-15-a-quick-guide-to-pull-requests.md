@@ -39,16 +39,16 @@ Having said that, the web interface is convenient to quickly apply cosmetic comm
 ### git am
 
 The `git am` command allows you apply a diff to your working directory. Every pull request comes with a corresponding patch URL that you can retrieve and apply directly. You create this URL by adding ".patch" to the address: 
-    
-    
-    curl http://github.com/cbeust/testng/pull/17.patch | git am
-    
+
+```bash
+curl http://github.com/cbeust/testng/pull/17.patch | git am
+```
 
 This works with regular commits as well: 
-    
-    
-    curl https://github.com/sclasen/jcommander/commit/bd770141029f49bcfa2e0d6e6e6282b531e69179.patch | git am
-    
+
+```bash
+curl https://github.com/sclasen/jcommander/commit/bd770141029f49bcfa2e0d6e6e6282b531e69179.patch | git am
+```
 
 After this, you can just push your branch. 
 
@@ -57,35 +57,35 @@ I find this very convenient to apply patches that are coming from contributors t
 ### Merging the remote branch
 
 This approach and the next require you to create a remote tracking branch for the user that sent you a pull request. Once you have identified in which branch they created their patch (usually master, but savvy users tend to create a specific branch to make sure that only the commits that they want will be part of the pull request), you simply create a remote tracking branch, fetch it, merge it in your own and then push: 
-    
-    
-          # add the remote branch
-    $ git remote add nullin git://github.com/nullin/testng.git
-          # fetch it
-    $ git fetch nullin
-          # merge it into my current branch
-    $ git merge kneath/error-page
-          # push
-    $ git push origin master
-    
+
+```bash
+      # add the remote branch
+$ git remote add nullin git://github.com/nullin/testng.git
+      # fetch it
+$ git fetch nullin
+      # merge it into my current branch
+$ git merge kneath/error-page
+      # push
+$ git push origin master
+```
 
 ### Cherry picking
 
 This is similar to the previous approach and it is recommended when the pull request contains some extra commits that you are not interested in. They might be there either because the author of the pull request wants you to merge them but you disagree, or they simply made a few mistakes and added unrelated commits to their request (this can happen if they didn't bother creating a specific branch for the pull request). 
 
 The procedure is similar to the one above except that instead of merging the full remote branch, you just cherry pick the commits you want: 
-    
-    
-          # add the remote branch
-    $ git remote add nullin git://github.com/nullin/testng.git
-          # fetch it
-    $ git fetch nullin
-          # (inspect the commits on the nullin branch)
-          # only pick the commits I'm interested in
-    $ git cherry-pick commit1
-    $ git cherry-pick commit2
-          # push
-    $ git push origin master
-    
+
+```bash
+      # add the remote branch
+$ git remote add nullin git://github.com/nullin/testng.git
+      # fetch it
+$ git fetch nullin
+      # (inspect the commits on the nullin branch)
+      # only pick the commits I'm interested in
+$ git cherry-pick commit1
+$ git cherry-pick commit2
+      # push
+$ git push origin master
+```
 
 Have I forgotten anything? How do you handle pull requests?

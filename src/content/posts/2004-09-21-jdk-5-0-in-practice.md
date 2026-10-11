@@ -184,22 +184,22 @@ I have been writing JDK 5.0 code for over six months now, so I thought I would t
 The undisputed winner. I can't even begin to describe how good it feels to use the new `for` loop everywhere (well, almost everywhere). I mentally cringe the few times when I am forced to use the old `for` loop, typically when I need the index or that I want the Iterator to be visible outside the loop. 
 
 The code is much more readable and feels less cluttered with noise (e.g. indices when you don't need them or incrementation exposing the underlying implementation). This latter point was an unexpected benefit of the new loop, by the way. Imagine that you have: 
-    
-    
-    String[] names = ...;
-    for (String name : names) {
-    // ...
-    }
-    
+
+```java
+String[] names = ...;
+for (String name : names) {
+// ...
+}
+```
 
 and you decide that you want to change the type of `names` to a Collection. How do you modify your code? 
-    
-    
-    **List <String> names = ...;**
-    for (String name : names) {
-    // ...
-    }
-    
+
+```java
+**List <String> names = ...;**
+for (String name : names) {
+// ...
+}
+```
 
 That's right, just one line. It doesn't get better than that. 
 

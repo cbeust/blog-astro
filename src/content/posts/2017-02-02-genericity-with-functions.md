@@ -7,114 +7,114 @@ categories:
 ---
 
 I can't count the number of times I have manipulated trees and graphs in my career as a software engineer. They are the kind of structure that crops up over and over again in your code, pretty much regardless of the kind of application you are working on. And along these tasks, something that I've had to do over and over again is to display such a tree, usually for debugging purposes. Here is what a simple implementation can look like: 
-    
-    
-    class Node(val value: String, val children: List<Node> = emptyList())
-    fun displayGraph(roots: List<Node>, indent: String = "") {
-        roots.forEach {
-            println(indent + it.value)
-            displayGraph(it.children, indent + "  ")
-        }
+
+```kotlin
+class Node(val value: String, val children: List<Node> = emptyList())
+fun displayGraph(roots: List<Node>, indent: String = "") {
+    roots.forEach {
+        println(indent + it.value)
+        displayGraph(it.children, indent + "  ")
     }
-    
+}
+```
 
 The `Node` contains a payload and a list of children. The `displayGraph()` function simply displays the value of each current node and then calls itself recursively with an increased indentation. Here is an example of the output: 
-    
-    
-    val node = Node("Root", listOf(
-        Node("A", listOf(
-            Node("A1"),
-            Node("A2"),
-            Node("A3"))
-        ),
-        Node("B", listOf(
-            Node("B1"),
-            Node("B2", listOf(
-                    Node("B21"),
-                    Node("B22"))
-            )))
-        )
+
+```kotlin
+val node = Node("Root", listOf(
+    Node("A", listOf(
+        Node("A1"),
+        Node("A2"),
+        Node("A3"))
+    ),
+    Node("B", listOf(
+        Node("B1"),
+        Node("B2", listOf(
+                Node("B21"),
+                Node("B22"))
+        )))
     )
-    displayGraph(listOf(node))
-    
-    
-    
-    Root
-      A
-        A1
-        A2
-        A3
-      B
-        B1
-        B2
-          B21
-          B22
-    
+)
+displayGraph(listOf(node))
+
+
+
+Root
+  A
+    A1
+    A2
+    A3
+  B
+    B1
+    B2
+      B21
+      B22
+```
 
 ## Down the rabbit hole
 
 Now imagine that another part of your code is also manipulating graphs, and you'd like to display those as well. However, they are currently using their own data structure: 
-    
-    
-    class Tree(val payload: Int, val leaves: List<Tree>)
-    
+
+```kotlin
+class Tree(val payload: Int, val leaves: List<Tree>)
+```
 
 Different payload type, different name, but same structure. Obviously, your code should be able to display this structure in a generic fashion, so you introduce an interface: 
-    
-    
-    interface INode<T> {
-        val children: List<INode<T>>
-        val value: T
-    }
-    
+
+```kotlin
+interface INode<T> {
+    val children: List<INode<T>>
+    val value: T
+}
+```
 
 You rewrite your `displayGraph()` implementation with that interface: 
-    
-    
-    fun <T> displayGraph(roots: List<INode<T>>, indent: String = "") {
-        roots.forEach {
-            println(indent + it.value)
-            displayGraph(it.children, indent + "  ")
-        }
+
+```java
+fun <T> displayGraph(roots: List<INode<T>>, indent: String = "") {
+    roots.forEach {
+        println(indent + it.value)
+        displayGraph(it.children, indent + "  ")
     }
-    
+}
+```
 
 And you make your two types conform to that interface: 
-    
-    
-    class Node(override val value: String,
-        override val children: List<Node> = emptyList()) : INode<String>
-    class Tree(val payload: Int, val leaves: List<Tree>) : INode<Int> {
-        override val children: List<Tree> = leaves
-        override val value: Int = payload
-    }
-    
+
+```kotlin
+class Node(override val value: String,
+    override val children: List<Node> = emptyList()) : INode<String>
+class Tree(val payload: Int, val leaves: List<Tree>) : INode<Int> {
+    override val children: List<Tree> = leaves
+    override val value: Int = payload
+}
+```
 
 And you can now pass either `Node` or `Tree` to your `displayGraph()` function: 
-    
-    
-        val graph = listOf(Node("A", listOf(
-                Node("A1"),
-                Node("A2")))
-        )
-        displayGraph(graph)
-        val tree = listOf(Tree(1, listOf(
-                Tree(11),
-                Tree(12)))
-        )
-        displayGraph(tree)
-    
+
+```kotlin
+    val graph = listOf(Node("A", listOf(
+            Node("A1"),
+            Node("A2")))
+    )
+    displayGraph(graph)
+    val tree = listOf(Tree(1, listOf(
+            Tree(11),
+            Tree(12)))
+    )
+    displayGraph(tree)
+```
 
 Output: 
-    
-    
-    A
-      A1
-      A2
-    1
-      11
-      12
-    
+
+```text
+A
+  A1
+  A2
+1
+  11
+  12
+```
 
 So we made a solid step toward making our code generic while avoiding duplication, but we're not going to stop here. 
 
@@ -131,28 +131,26 @@ Well, we can ask the caller to pass us functions to manipulate this type. Lookin
   * The children of a node.
   * The value contained in a node.
 
-
-    
-    
-    fun <T, U> displayGraphGeneric(roots: List<T>,
-            children: (T) -> List<T>,
-            value: (T) -> U,
-            indent: String = "") {
-        roots.forEach {
-            println(indent + value(it))
-            displayGraphGeneric(children(it), children, value, indent + "  ")
-        }
+```java
+fun <T, U> displayGraphGeneric(roots: List<T>,
+        children: (T) -> List<T>,
+        value: (T) -> U,
+        indent: String = "") {
+    roots.forEach {
+        println(indent + value(it))
+        displayGraphGeneric(children(it), children, value, indent + "  ")
     }
-    
+}
+```
 
 As promised, you can see that the code above is manipulating an unknown type `T`, and in order to do that, we use the functions passed in parameters. Notice also the arrival of a second type parameter `U`, which is used to define the type of the payload. As you might have noticed, `Node` has a payload of type `String` while `Tree`'s is `Int`. Therefore, we need a second type parameter to capture this flexibility. 
 
 How do we call this new generic function for our two types? 
-    
-    
-    displayGraphGeneric(graph, Node::children, Node::value)
-    displayGraphGeneric(tree, Tree::leaves, Tree::payload)
-    
+
+```text
+displayGraphGeneric(graph, Node::children, Node::value)
+displayGraphGeneric(tree, Tree::leaves, Tree::payload)
+```
 
 What if you sometimes want to display the graph on standard out and other times display it with the logger? You guessed it: you can make this generic by passing an additional closure. 
 

@@ -309,26 +309,24 @@ Okay, there is more to say.
 First of all, what does this line of code do? It goes through every file in the given directory, sort them in reverse order while excluding any file that doesn't end in ".gz". 
 
 This code ported to Java is quite intimidating: 
-    
-    
-    
-    
-    
-    List<String> result = new ArrayList<String>();
-    File f = new File(directory);
-    for (String fileName : f.list()) {
-    if (fileName.endsWith(".gz")) {
-    result.add(fileName);
-    }
-    }
-    Collections.sort(result, new Comparator<String>() {
-    public int compare(String o1, String o2) {
-    return o2.compareTo(o1);
-    }
-    public boolean equals(Object o) {
-    return super.equals(o);
-    }
-    });
+
+```java
+List<String> result = new ArrayList<String>();
+File f = new File(directory);
+for (String fileName : f.list()) {
+if (fileName.endsWith(".gz")) {
+result.add(fileName);
+}
+}
+Collections.sort(result, new Comparator<String>() {
+public int compare(String o1, String o2) {
+return o2.compareTo(o1);
+}
+public boolean equals(Object o) {
+return super.equals(o);
+}
+});
+```
 
 This code comes from a log analyzer utility that I wrote some time ago. It goes through the Apache log of my Web server and allows me to easily plug-in listeners to collect various kinds of statistics. This utility has provided me with a flexible log analyzer framework into which I have plugged various additional loggers these past months. 
 

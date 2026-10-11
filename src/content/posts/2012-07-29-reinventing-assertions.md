@@ -208,10 +208,10 @@ comments:
 ---
 
 If you have ever written a test in Java, you are undoubtedly familiar with the `Assert` class: 
-    
-    
-      Assert.assertEquals(result, expected);
-    
+
+```java
+  Assert.assertEquals(result, expected);
+```
 
 Java 5 introduced the `assert` keyword, but because it wasn't enabled by default, the world of testing has continued to use the `Assert` class. 
 
@@ -226,16 +226,17 @@ Over the past years, I have received an increasing number of requests to make as
 I decided that the time had come to revisit assertions in order to make it more flexible so it can accomodate all these real world scenarios. 
 
 The first step is to create a new assertion class that supports exactly the same methods as `Assert` but without these methods being static. Here is a test that uses this new assertion class: 
-    
-    
-    import org.testng.asserts.Assertion;
-    @Test
-    public class A {
-      private Assertion m_assert = new Assertion();
-      public void test1() {
-        m_assert.assertTrue(true, "test1()");
-      }
-    }
+
+```java
+import org.testng.asserts.Assertion;
+@Test
+public class A {
+  private Assertion m_assert = new Assertion();
+  public void test1() {
+    m_assert.assertTrue(true, "test1()");
+  }
+}
+```
 
 On top of having all its assertion methods being instance methods and not static ones, the class `Assertion` defines several life cycle methods that subclasses can override. Here is the list as it stands today: 
 
@@ -245,107 +246,107 @@ On top of having all its assertion methods being instance methods and not static
   * `onAssertFailure()`
   * `onAfterAssert()` 
 I'm not going to go into details right now, these names should be self-explanatory. All these methods receive an instance of `IAssert` in parameter which captures the assert that's about to be run: 
-    
-    
-    public interface IAssert {
-      public String getMessage();
-      public void doAssert();
-    }
-    
+
+```java
+public interface IAssert {
+  public String getMessage();
+  public void doAssert();
+}
+```
 
 For example, here is what a class that logs each assert would look like: 
-    
-    
-    public class LoggingAssert extends Assertion {
-      private List<String> m_messages = Lists.newArrayList();
-      @Override
-      public void onBeforeAssert(IAssert a) {
-        m_messages.add("Test:" + a.getMessage());
-      }
-      public List<String> getMessages() {
-        return m_messages;
-      }
-    }
-    
+
+```java
+public class LoggingAssert extends Assertion {
+  private List<String> m_messages = Lists.newArrayList();
+  @Override
+  public void onBeforeAssert(IAssert a) {
+    m_messages.add("Test:" + a.getMessage());
+  }
+  public List<String> getMessages() {
+    return m_messages;
+  }
+}
+```
 
 Here's how to use this class in your test: 
-    
-    
-    @Test
-    public class A {
-      private LoggingAssert m_assert = new LoggingAssert();
-      public void test1() {
-        m_assert.assertTrue(true, "test1()");
-      }
-      public void test2() {
-        m_assert.assertTrue(true, "test2()");
-      }
-      @AfterClass
-      public void ac() {
-        System.out.println("Tests run in this class:" + m_assert.getMessages());
-      }
-    }
-    
+
+```java
+@Test
+public class A {
+  private LoggingAssert m_assert = new LoggingAssert();
+  public void test1() {
+    m_assert.assertTrue(true, "test1()");
+  }
+  public void test2() {
+    m_assert.assertTrue(true, "test2()");
+  }
+  @AfterClass
+  public void ac() {
+    System.out.println("Tests run in this class:" + m_assert.getMessages());
+  }
+}
+```
 
 Now let's take a look at the implementation of a "soft assert" class: we want each assert to just run but not throw an exception if it fails. Instead, we just want to record it and once we've reached the end of the class (or the suite), assert the whole result. 
 
 Here a simple implementation of such a class. The idea is simply to override the `executeAssert()` and if an exception occurs, catch it, store it and carry on: 
-    
-    
-    public class SoftAssert extends Assertion {
-      private Map<AssertionError, IAssert> m_errors = Maps.newHashMap();
-      @Override
-      public void executeAssert(IAssert a) {
-        try {
-          a.doAssert();
-        } catch(AssertionError ex) {
-          m_errors.put(ex, a);
-        }
-      }
-      public void assertAll() {
-        if (! m_errors.isEmpty()) {
-          StringBuilder sb =
-          		new StringBuilder("The following asserts failed:\n");
-          boolean first = true;
-          for (Map.Entry<AssertionError, IAssert> ae : m_errors.entrySet()) {
-            if (first) {
-              first = false;
-            } else {
-              sb.append(", ");
-            }
-            sb.append(ae.getValue().getMessage());
-          }
-          throw new AssertionError(sb.toString());
-        }
-      }
+
+```java
+public class SoftAssert extends Assertion {
+  private Map<AssertionError, IAssert> m_errors = Maps.newHashMap();
+  @Override
+  public void executeAssert(IAssert a) {
+    try {
+      a.doAssert();
+    } catch(AssertionError ex) {
+      m_errors.put(ex, a);
     }
-    
+  }
+  public void assertAll() {
+    if (! m_errors.isEmpty()) {
+      StringBuilder sb =
+      		new StringBuilder("The following asserts failed:\n");
+      boolean first = true;
+      for (Map.Entry<AssertionError, IAssert> ae : m_errors.entrySet()) {
+        if (first) {
+          first = false;
+        } else {
+          sb.append(", ");
+        }
+        sb.append(ae.getValue().getMessage());
+      }
+      throw new AssertionError(sb.toString());
+    }
+  }
+}
+```
 
 How to use it: 
-    
-    
-    @Test
-    public class A {
-      private SoftAssert m_assert = new SoftAssert();
-      public void multiple() {
-        m_assert.assertTrue(true, "Success 1");
-        m_assert.assertTrue(true, "Success 2");
-        m_assert.assertTrue(false, "Failure 1");
-        m_assert.assertTrue(true, "Success 3");
-        m_assert.assertTrue(false, "Failure 2");
-        m_assert.assertAll();
-      }
-    }
-    
+
+```java
+@Test
+public class A {
+  private SoftAssert m_assert = new SoftAssert();
+  public void multiple() {
+    m_assert.assertTrue(true, "Success 1");
+    m_assert.assertTrue(true, "Success 2");
+    m_assert.assertTrue(false, "Failure 1");
+    m_assert.assertTrue(true, "Success 3");
+    m_assert.assertTrue(false, "Failure 2");
+    m_assert.assertAll();
+  }
+}
+```
 
 The result: 
-    
-    
-    FAILED: multiple
-    java.lang.AssertionError: The following asserts failed:
-    Failure 2, Failure 1
-    	at org.testng.SoftAssert.assertAll(SoftAssert.java:32)
-    
+
+```text
+FAILED: multiple
+java.lang.AssertionError: The following asserts failed:
+Failure 2, Failure 1
+	at org.testng.SoftAssert.assertAll(SoftAssert.java:32)
+```
 
 On top of the default new assertion classes that TestNG will ship with, I expect the following techniques to become fairly common: 
 

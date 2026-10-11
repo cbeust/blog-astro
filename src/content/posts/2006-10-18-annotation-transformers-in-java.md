@@ -166,33 +166,32 @@ Another approach that blends these two techniques has also been under scrutiny r
 Here is why.  
   
 Consider the simple following code: 
-    
-    
-    public class Mytest {  
-      @Test(invocationCount = 10)  
-        public void verify() {  
-        // ...  
-      }}  
-    
+
+```java
+public class Mytest {  
+  @Test(invocationCount = 10)  
+    public void verify() {  
+    // ...  
+  }}  
+```
 
 This instructs TestNG to invoke the `verify()` test method ten times.  
   
 If I want to override this value at runtime, I find myself having to write a fairly complex piece of XML code in order to pinpoint the exact annotation I'm trying to override.  It would probably look like this:  
 
-    
-    
-    <override-annotation>
-      <package name="org.foo.tests">
-        <class name="MyClass">
-          <method name="verify">
-            <annotation name="org.testng.Test">
-              <attribute name="invocationCount" value="15" />
-            </annotation>
-          </method>
-        </class>
-      </package>
-    </override-annotation>
-    
+```xml
+<override-annotation>
+  <package name="org.foo.tests">
+    <class name="MyClass">
+      <method name="verify">
+        <annotation name="org.testng.Test">
+          <attribute name="invocationCount" value="15" />
+        </annotation>
+      </method>
+    </class>
+  </package>
+</override-annotation>
+```
 
 Of course, you might want to come up with a way to capture the override (the annotation/attribute part) so you can reuse it somewhere else in your XML file, in case you want this override to apply to more than just one method.  This would probably be achieved with the definition of an "override-ref" that you would define at the top of your XML file and that you would repeatedly use throughout your XML file (exactly like ant's classpath-ref, for example).  
   
@@ -202,27 +201,26 @@ Because of these shortcomings, I have been working on a slightly different appro
   
 TestNG introduces the following interface:  
 
-    
-    
-    public interface IAnnotationTransformer {  
-      public void transform(ITest annotation, Class testClass,   
-                            Constructor testConstructor, Method testMethod);  
-    }
+```java
+public interface IAnnotationTransformer {  
+  public void transform(ITest annotation, Class testClass,   
+                        Constructor testConstructor, Method testMethod);  
+}
+```
 
 and you use it as follows:  
 
-    
-    
-    public class MyTransformer implements IAnnotationTransformer {  
-      public void transform(ITest annotation, Class testClass,  
-                            Constructor testConstructor, Method testMethod)  
-      {  
-        if ("verify".equals(testMethod.getName())) {  
-          annotation.setInvocationCount(15);  
-        }  
-      }  
+```java
+public class MyTransformer implements IAnnotationTransformer {  
+  public void transform(ITest annotation, Class testClass,  
+                        Constructor testConstructor, Method testMethod)  
+  {  
+    if ("verify".equals(testMethod.getName())) {  
+      annotation.setInvocationCount(15);  
     }  
-    
+  }  
+}  
+```
 
 Here are a few observations about this technique:  
 

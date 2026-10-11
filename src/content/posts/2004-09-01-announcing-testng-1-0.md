@@ -79,22 +79,23 @@ As a quick reminder, TestNG is a testing framework using annotations to provide 
 TestNG also provides a very flexible configuration mechanism allowing you to specify arbitrary methods to be invoked at particular moments during your test run, such as "before every test method" or "after all the test methods have run".
 
 Here is a quick example of what TestNG code looks like:
-    
-    
-    import com.beust.testng.annotations.*;
-    
-    public class SimpleTest {
-        @Configuration(beforeTestClass = true)
-        public void setUp() {
-        // code that will be invoked when this test is instantiated
+
+```java
+import com.beust.testng.annotations.*;
+
+public class SimpleTest {
+    @Configuration(beforeTestClass = true)
+    public void setUp() {
+    // code that will be invoked when this test is instantiated
+}
+
+    @Test(groups = { "functest" })
+    public void itWorks() {
+      // This method will be invoked if the current run
+      // includes the group "functest"
     }
-    
-        @Test(groups = { "functest" })
-        public void itWorks() {
-          // This method will be invoked if the current run
-          // includes the group "functest"
-        }
-    }
+}
+```
 
 Some of the major changes since the previous versions include:
 

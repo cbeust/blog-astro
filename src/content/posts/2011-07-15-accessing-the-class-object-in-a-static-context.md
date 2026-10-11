@@ -215,46 +215,46 @@ comments:
 ---
 
 I often need to access the current class, for example for logging purposes: 
-    
-    
-    public class Foo {
-      private Logger logger = LoggerFactory.getLogger(getClass());
-    }
-    
+
+```java
+public class Foo {
+  private Logger logger = LoggerFactory.getLogger(getClass());
+}
+```
 
 However, this won't work in a static context, since you don't have any `this` object to call `getClass()` on: 
-    
-    
-    public class Foo {
-      static private Logger logger = LoggerFactory.getLogger(Foo.class);
-    }
-    
+
+```java
+public class Foo {
+  static private Logger logger = LoggerFactory.getLogger(Foo.class);
+}
+```
 
 It's always bothered me to have to copy/paste this line and then remember to replace the name of the class, so here is one way to make this snippet more generic: 
-    
-    
-    public class ClassUtil extends SecurityManager {
-      public static Class getCurrentClass() {
-        return getClassContext()[1];
-      }
-    }
-    
+
+```java
+public class ClassUtil extends SecurityManager {
+  public static Class getCurrentClass() {
+    return getClassContext()[1];
+  }
+}
+```
 
 Which you use as follows: 
-    
-    
-    public class Foo {
-      private static Logger logger = LoggerFactory.getLogger(
-          new ClassUtil().getCurrentClass());
-    }
-    
+
+```java
+public class Foo {
+  private static Logger logger = LoggerFactory.getLogger(
+      new ClassUtil().getCurrentClass());
+}
+```
 
 A somewhat less hacky and cheaper approach is to instantiate an anonymous class in order to materialize a `this` object: 
-    
-    
-      private static Class thisClass =
-          new Object() { }.getClass().getEnclosingClass();
-      private static Logger logger = LoggerFactory.getLogger(thisClass);
-    
+
+```java
+  private static Class thisClass =
+      new Object() { }.getClass().getEnclosingClass();
+  private static Logger logger = LoggerFactory.getLogger(thisClass);
+```
 
 Can you think of any other way?

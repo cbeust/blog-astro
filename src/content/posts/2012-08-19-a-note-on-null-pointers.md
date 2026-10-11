@@ -196,10 +196,10 @@ As you can see, `Options` come with their own trade offs and hard design decisio
 Which leads us to the next big misconception about this class: `Option` doesn't solve null pointer exceptions nor unexpected values, it just saves you from having to test against null. And actually, doing so (e.g. pattern matching your option against `Some`/`None`) is usually considered bad practice, even though it's sometimes necessary for Java interoperability reasons. 
 
 Personally, I favor the way Groovy, Fantom and Kotlin address the problem over having to lift all my values into `Option`. For example, here is how Kotlin lets you ignore `null` values encountered along a chain of invocations: 
-    
-    
-    bob?.department?.head?.name
-    
+
+```kotlin
+bob?.department?.head?.name
+```
 
 If either of these accesses returns `null`, the result of this expression will be `null`. No need to put your values into monadic boxes nor mapping through them, just use the standard composition operator you are familiar with if you are using a C family language. 
 

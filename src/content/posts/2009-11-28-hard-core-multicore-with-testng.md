@@ -107,19 +107,20 @@ Here are a few notes.
 ### The problem
 
 TestNG allows you to declare dependencies among your test methods. Here is a simple example:
-    
-    
-    @Test
-    public void a1() {}
-    
-    @Test(dependsOnMethods = "a1")
-    public void b1() {}
-    
-    @Test
-    public void x() {}
-    
-    @Test
-    public void y() {}
+
+```java
+@Test
+public void a1() {}
+
+@Test(dependsOnMethods = "a1")
+public void b1() {}
+
+@Test
+public void x() {}
+
+@Test
+public void y() {}
+```
 
 In this example, `b1()` will not run until `a1()` has completed and passed. If `a1()` fails, `b1()` will be marked as "Skipped". For the purpose of these articles, I call both method `a1()` and `b1()` "dependent" methods while `x()` and `y()` are "free" methods.  
 Things get more interesting when you want to run these four test methods in parallel. When you specify that these methods should be run in a pool of three threads, TestNG still needs to maintain the ordering of `a1()` and `b1()`. The way it accomplishes this is by running all the dependent methods in the same thread, guaranteeing that not only will they not overlap but also that the ordering will be strictly respected.  
@@ -207,41 +208,43 @@ Understanding the scenario above made me realize that the idea of a "Test Plan" 
 The only way to effectively implement this scenario is basically to reassess the entire execution every time a test method completes. Luckily, [`Executors`](http://java.sun.com/j2se/1.5.0/docs/api/java/util/concurrent/Executor.html) allow you to receive a callback each time a worker completes, so this is the perfect place for this. My next question was to wonder whether it was legal to add workers to an `Executor` when it's already running (the answer is: yes).  
 Here is an overview of what the new Executor looks like.  
 The `Executor` receives a graph of test methods to run in its constructor and then simply revolves around two methods:
-    
-    
-    /**
-    * Create one worker per node and execute them.
-    */
-    private void runNodes(Set<ITestNGMethod> nodes) {
-      List<IMethodWorker> runnables = m_factory.createWorkers(m_xmlTest, nodes);
-      for (IMethodWorker r : runnables) {
-        m_activeRunnables.add(r);
-        setStatus(r, Status.RUNNING);
-        try {
-          execute(r);
-        }
-        catch(Exception ex) {
-          // ...
-        }
-      }
+
+```java
+/**
+* Create one worker per node and execute them.
+*/
+private void runNodes(Set<ITestNGMethod> nodes) {
+  List<IMethodWorker> runnables = m_factory.createWorkers(m_xmlTest, nodes);
+  for (IMethodWorker r : runnables) {
+    m_activeRunnables.add(r);
+    setStatus(r, Status.RUNNING);
+    try {
+      execute(r);
     }
+    catch(Exception ex) {
+      // ...
+    }
+  }
+}
+```
 
 The second part is to reassess the state of the world every time a method completes:
-    
-    
-    @Override
-    public void afterExecute(Runnable r, Throwable t) {
-      m_activeRunnables.remove(r);
-      setStatus(r, Status.FINISHED);
-      synchronized(m_graph) {
-        if (m_graph.getNodeCount() == m_graph.getNodeCountWithStatus(Status.FINISHED)) {
-          shutdown();
-        } else {
-          Set<ITestNGMethod> freeNodes = m_graph.getFreeNodes();
-          runNodes(freeNodes);
-        }
-      }
+
+```java
+@Override
+public void afterExecute(Runnable r, Throwable t) {
+  m_activeRunnables.remove(r);
+  setStatus(r, Status.FINISHED);
+  synchronized(m_graph) {
+    if (m_graph.getNodeCount() == m_graph.getNodeCountWithStatus(Status.FINISHED)) {
+      shutdown();
+    } else {
+      Set<ITestNGMethod> freeNodes = m_graph.getFreeNodes();
+      runNodes(freeNodes);
     }
+  }
+}
+```
 
 When a worker finishes, the Executor updates its status in the graph. Then it checks if we have run all the nodes, and if we haven't, it asks the graph the new list of free nodes and schedules these nodes for running.
 

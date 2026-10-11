@@ -104,10 +104,13 @@ class PacketSender {
     @Inject
     val logger: Logger
 
-    fun sendPacket(packet: Packet) {
-        logger.log("Hello")
-        // send packet
-    }
+```kotlin
+fun sendPacket(packet: Packet) {
+    logger.log("Hello")
+    // send packet
+}
+```
+
 }
 ```
 

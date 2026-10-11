@@ -299,28 +299,28 @@ This is why I believe that a test framework needs to provide support for "depend
 With such a feature, the test run will be marked "1 SUCCESS, 1 FAIL, 20 SKIPS", which is much more accurate.
 
 Here is how I would write this test using [TestNG](http://beust.com/weblog/testng/):
-    
-    
-    @Test
-    public correctVM() {}
-    @Test
-    public serverStartedOk() {}
-    @Test(dependsOnMethods = { "correctVM", "serverStartedOk" })
-    public method1() {}
-    ...
-    
+
+```java
+@Test
+public correctVM() {}
+@Test
+public serverStartedOk() {}
+@Test(dependsOnMethods = { "correctVM", "serverStartedOk" })
+public method1() {}
+...
+```
 
 This is okay but having to list all the methods that we depend for each new test method on is error-prone, so instead, let's use TestNG's groups:
-    
-    
-    @Test(groups = { "init" })
-    public correctVM() {}
-    @Test(groups = { "init" })
-    public serverStartedOk() {}
-    @Test(dependsOnGroups = { "init.* })
-    public method1() {}
-    ...
-    
+
+```java
+@Test(groups = { "init" })
+public correctVM() {}
+@Test(groups = { "init" })
+public serverStartedOk() {}
+@Test(dependsOnGroups = { "init.* })
+public method1() {}
+...
+```
 
 We have gained a lot of flexibility with groups.  For example, imagine that I want to add another init test method, such as "firewall is on".  All I need to do is add this test method and declare that it is part of the group "init".
 
@@ -334,27 +334,26 @@ Also, I don't like the fact that "init" methods and "real" test methods are in t
 
 Therefore, I will restructure my tests like this:  
 
-    
-    
-    @Test(groups = "init")
-    public class BaseTest {
-      public correctVM() {}
-      public serverStartedOk() {}
-    }
-    
+```java
+@Test(groups = "init")
+public class BaseTest {
+  public correctVM() {}
+  public serverStartedOk() {}
+}
+```
 
 This is now the base class for my tests.  The @Test annotation is now on the class, which means it applies to all the public methods inside that class (so there is no need to repeat it on each individual method).  Therefore, each public method automatically becomes part of the group "init".
 
 Next, I write my test class as a subclass of BaseTest:
-    
-    
-    @Test(dependsOnGroups = { "init.*" })
-    public class TestServer extends BaseTest {
-      public method1() { ... }
-      public method2() { ... }
-      ...
-    }
-    
+
+```java
+@Test(dependsOnGroups = { "init.*" })
+public class TestServer extends BaseTest {
+  public method1() { ... }
+  public method2() { ... }
+  ...
+}
+```
 
 Here again, the @Test annotation is now on the class, which means that it applies to all the public test methods, making it easier to add new testing methods.  Also, since this class extends BaseTest, it "sees" not only the methods that are being inherited, but their annotations as well, so TestNG will include all the methods from the base class that belong to the "init.*" group to determine which methods need to be run first.
 

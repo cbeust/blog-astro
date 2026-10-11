@@ -47,15 +47,13 @@ comments:
 TestNG 5.13.1 is now available. The previous release was just three months ago, but as you can see below, a lot of fixes went into this new version. A big thanks to everyone who helped (hopefully credited below), and especially to Nalin Makar, who made some major contributions to TestNG these past months. 
 
 You can either download TestNG [from the web site](http://testng.org/doc/download.html) or from Maven: 
-    
-    
-        
-          org.testng
-          testng
-          5.13.1
-          test
-        
-    
+
+```text
+      org.testng
+      testng
+      5.13.1
+      test
+```
 
 Here is the complete list of changes, please refer to [the documentation](http://testng.org) for more details. 
 

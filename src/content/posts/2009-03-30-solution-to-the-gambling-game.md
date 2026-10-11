@@ -179,36 +179,36 @@ Or do I?
 Well, no. If you look at the rules carefully, you realize that what you are getting back if the roll is over 50 is not as obvious as it looks. Take the 66-75 range: you get 1.5 times your money, but you need to remember that part of this is the original bet. So if you bet $1, rolling between 66 and 75 will only make you richer by $0.5 and not $1.5. And the same applies to the other rolls. 
 
 Your gain expectation therefore is: 
-    
-    
-    -1*0.50 + 0.5*0.10 + 1*0.24 + 2*0.01 = **-0.19**
-    
+
+```text
+-1*0.50 + 0.5*0.10 + 1*0.24 + 2*0.01 = **-0.19**
+```
 
 For every dollar you bet, you will lose 19 cents. 
 
 Here is a simulation in Ruby: 
-    
-    
-    fortune = 0
-    max = 1000000
-    for i in 1..max do
-    n = (rand * 100).round
-    if (n < 50) then fortune = fortune - 1
-    elsif (n >= 50 && n <= 64) then fortune = fortune + 0
-    elsif (n >= 65 && n <= 75) then fortune = fortune + 0.5
-    elsif (n >= 76 && n <= 99) then fortune = fortune + 1
-    elsif (n == 100) then fortune = fortune + 2
-    else puts "#{i}: n:#{n}"
-    end
-    end
-    puts fortune
-    
+
+```ruby
+fortune = 0
+max = 1000000
+for i in 1..max do
+n = (rand * 100).round
+if (n < 50) then fortune = fortune - 1
+elsif (n >= 50 && n <= 64) then fortune = fortune + 0
+elsif (n >= 65 && n <= 75) then fortune = fortune + 0.5
+elsif (n >= 76 && n <= 99) then fortune = fortune + 1
+elsif (n == 100) then fortune = fortune + 2
+else puts "#{i}: n:#{n}"
+end
+end
+puts fortune
+```
 
 and the output: 
-    
-    
-    $ ruby ~/t/game.rb
-    -184887.0
-    
+
+```bash
+$ ruby ~/t/game.rb
+-184887.0
+```
 
 The mistake that a few commenters made (and which I made as well initially) was to have a few extra "ones" in their gain calculation.

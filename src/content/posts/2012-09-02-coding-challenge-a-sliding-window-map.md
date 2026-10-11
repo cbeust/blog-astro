@@ -165,20 +165,20 @@ A lot of sites offer programmatic access to their content via API's. The main ad
 Today's coding challenge is based on these requirements. 
 
 We want to make multiple calls to a site that only allows to use a key 500 times every 10mn. You are given a collection of keys (strings), a max count (e.g. 500) and a time period (e.g. 10mn) and your task is to implement `getNextKey()` as follows: 
-    
-    
-    public class SlidingWindowMap {
-      public SlidingWindowMap(Set<String> keys, int maxCount, long periodMs) {
-        // ...
-      }
-      /**
-       * @return a key that has been used less than `maxCount` times during the
-       * past `periodMs` milliseconds or null if no such key exists.
-       */
-      public String getNextKey() {
-        // Your brilliant solution goes here
-      }
-    }
-    
+
+```java
+public class SlidingWindowMap {
+  public SlidingWindowMap(Set<String> keys, int maxCount, long periodMs) {
+    // ...
+  }
+  /**
+   * @return a key that has been used less than `maxCount` times during the
+   * past `periodMs` milliseconds or null if no such key exists.
+   */
+  public String getNextKey() {
+    // Your brilliant solution goes here
+  }
+}
+```
 
 I'm keeping the statement of the problem as open as possible to encourage exploration, but feel free to ask for clarifications if something is not clear. Please post your solution on a pastebin/gist like site (or wherever your code will be easy to read) and link to it in your comment. All languages are welcome.

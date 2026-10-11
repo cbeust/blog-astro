@@ -1333,34 +1333,39 @@ The solutions basically fall into three categories:
 Overall, languages that support closures do well on the conciseness aspect, with solutions that can fit in 1-5 lines, among which:
 
 **Ruby**
-    
-    
-    (98..103).select { |x| x.to_s.size == x.to_s.split(//).uniq.size }
+
+```java
+(98..103).select { |x| x.to_s.size == x.to_s.split(//).uniq.size }
+```
 
 **Python**
-    
-    
-    (i for i in xrange(start, end) if len(str(i)) == len(set(str(i)))):
+
+```text
+(i for i in xrange(start, end) if len(str(i)) == len(set(str(i)))):
+```
 
 **Scala**
-    
-    
-    for (i <- 1 to 100000; s = i.toString; if HashSet[Char](s:_*).size ==
-    s.size) println(i)
+
+```java
+for (i <- 1 to 100000; s = i.toString; if HashSet[Char](s:_*).size ==
+s.size) println(i)
+```
 
 **J**
-    
-    
-    f =: [:(#;[:>./2-~/\])(#~([:*/[:~:":)"0)
+
+```text
+f =: [:(#;[:>./2-~/\])(#~([:*/[:~:":)"0)
+```
 
 For a minute, I thought that last entry was a joke or that maybe, the poster was disconnected in the middle of posting his solution. But no, [J is a real programming language](http://jsoftware.com).
 
 **Ursala**
-    
-    
-    #import nat
-    func = ^(nleq$^+ difference*typ,length)+ ~&triK2tkZ2FlS+
-    iota+successor; * ^lrhPX/~& %nP
+
+```python
+#import nat
+func = ^(nleq$^+ difference*typ,length)+ ~&triK2tkZ2FlS+
+iota+successor; * ^lrhPX/~& %nP
+```
 
 Quite an intidimidating syntax here too :-)
 

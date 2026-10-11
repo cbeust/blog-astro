@@ -378,10 +378,10 @@ Let's take them in turn.
 **1.   How can you determine if a number is a power of two?**
 
 The easiest way to answer this question is to notice that a power of two has exactly one 1 followed by only zero's (except for 1, which is also covered by the following solution).  Therefore, the quickest way is probably: 
-    
-    
-    return x != 0 && (x & (x-1)) == 0;
-    
+
+```java
+return x != 0 && (x & (x-1)) == 0;
+```
 
 The idea is that subtracting one from such a number will flip all its bits:  the 1 becomes a 0 and all the zeros become 1.  "and"ing these two numbers will therefore equal to zero.
 
@@ -392,22 +392,22 @@ I will accept any variations thereof:  at this point, I am just trying to see i
 **2.   How can you clear the rightmost bit?**
 
 There are several ways to answer this question and ideally, the candidate will start by giving me the easiest one and then, the bit-oriented one when pressed.  You can simply observe that clearing the rightmost bit is a no-op is the number is even and a decrement of the number if it is odd:
-    
-    
-    return (n % 2 == 0 ? n : (n - 1))
-    
+
+```java
+return (n % 2 == 0 ? n : (n - 1))
+```
 
 This is not very efficient so I will ask for a faster solutions.  There are a couple of options:
-    
-    
-    return n - (n & 1)
-    
+
+```java
+return n - (n & 1)
+```
 
 or
-    
-    
-    (n >> 1) << 1
-    
+
+```text
+(n >> 1) << 1
+```
 
 This last solution is mine, and I prefer it over the others because shifting is much faster than subtracting.  If the candidate doesn't provide it, I will usually suggest it and ask her to discuss the pros and cons of each.
 
@@ -416,14 +416,14 @@ This last solution is mine, and I prefer it over the others because shifting is 
 And finally, we reach this timeless classic.  If the candidate has never heard of it, she's in for a tough time.  And even if she does, I have my own twist to it that guarantees me that I will get to take a close look at the way she thinks.
 
 Let's start with the naive solution:  shift the number right and increment a counter each time the rightmost bit is 1:
-    
-    
-    int counter = 0;
-    while (n > 0) {
-    if (n % 2 == 1) counter++;
-    n >>= 1;
-    }
-    
+
+```java
+int counter = 0;
+while (n > 0) {
+if (n % 2 == 1) counter++;
+n >>= 1;
+}
+```
 
 Next comes the leap of faith:  "This algorithm executes p times, where p is the size in bits of n.  Can you think of a solution that executes in b times, where b is the number of 1 bits in n?".
 
@@ -432,14 +432,14 @@ Either she knows the answer or she doesn't, and if she doesn't, she'll be stumpe
 If you've never seen this trick, it's impossible to answer right away:  you will need to apply the formula on the board on a few numbers before you put the pieces together (which is already not very easy).  The answer is:  "It clears the rightmost 1 bit in n".
 
 With this in mind, the solution to the puzzle becomes:
-    
-    
-    int counter = 0;
-    while (n != 0) {
-    counter++;
-    n = n & (n-1);
-    }
-    
+
+```java
+int counter = 0;
+while (n != 0) {
+counter++;
+n = n & (n-1);
+}
+```
 
 If she gave me this answer without help, I will strongly suspect that she already knew the trick, so I will throw in my own twist:  "Can you demonstrate that _n & (n-1)_ clears the rightmost bit?".
 

@@ -63,30 +63,30 @@ comments:
 The war between procedural and functional programming continues to rage, and the latest skirmish appears in [this article](http://blog.objectmentor.com/articles/2010/06/12/c-algorithms-boost-and-function-currying), where the author shows two versions that add the contents of a vector. 
 
 ### Traditional C++
-    
-    
-    int Dice::total() const {
-      int total = 0;
-      for(const_iterator current = dice.begin();
-          current != dice.end();
-          ++current)
-        total += (*current)->faceValue();
-      return total;
-    }
-    
+
+```java
+int Dice::total() const {
+  int total = 0;
+  for(const_iterator current = dice.begin();
+      current != dice.end();
+      ++current)
+    total += (*current)->faceValue();
+  return total;
+}
+```
 
 ### Functional C++
-    
-    
-    int Dice::total() const {
-      return std::accumulate(
-          dice.begin(),
-          dice.end(),
-          0,
-          bind(std::plus(), _1, bind(&Die;::faceValue, _2))
-      );
-    }
-    
+
+```cpp
+int Dice::total() const {
+  return std::accumulate(
+      dice.begin(),
+      dice.end(),
+      0,
+      bind(std::plus(), _1, bind(&Die;::faceValue, _2))
+  );
+}
+```
 
 The comments show the usual dichotomy between people who prefer one style over the other (I continue to think the procedural style is vastly more readable), but interestingly, nobody seems to notice the one thing that makes both these snippets terrible examples of clean code: they both use iterators. 
 
@@ -97,28 +97,28 @@ Unfortunately, the STL also made iterators very popular, and although back then,
 When the first versions of the Java Collections came out, they enthusiastically embraced iterators as well. We can't blame the authors, nobody really knew better back then, and this kind of code: 
 
 ### Old Java
-    
-    
-    List<Integer> l = ...;
-    int result = 0;
-    for (Iterator<Integer> it = l.iterator(); it.hasNext(); ) {
-      result += it.next();
-    }
-    
+
+```java
+List<Integer> l = ...;
+int result = 0;
+for (Iterator<Integer> it = l.iterator(); it.hasNext(); ) {
+  result += it.next();
+}
+```
 
 was considered a marvel of abstraction. 
 
 It took a few years, but finally, the Java community started wondering why we needed iterators at all for such operations. We have a container, we have elements, and we want to apply a certain operation on these elements. In the description of this problem, iterators are nowhere to be found. This simple realization led to one of the best new features ever introduced in Java : the enhanced `for` loop. 
 
 ### New Java
-    
-    
-    List<Integer> l = ...;
-    int result = 0;
-    for (int n : l) {
-      result += n;
-    }
-    
+
+```java
+List<Integer> l = ...;
+int result = 0;
+for (int n : l) {
+  result += n;
+}
+```
 
 The syntax itself is unimportant (some languages use `foreach`, others `for i in l`, etc...), what really matters is that iterators are gone. 
 

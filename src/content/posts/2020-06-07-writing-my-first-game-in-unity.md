@@ -33,10 +33,10 @@ It???s always seemed counter intuitive to me to write a game while being so tigh
 ### Dependency injection
 
 Objects are organized in graphs in Unity, pretty much like any regular application, except that this graph is prominently and constantly displayed for you, which is very convenient. You are free to organize in any way you want, and that hierarchy can make sense from either a graphical or business logic standpoint. What was new to me is how objects can refer to each other. Unity???s solution to this is interesting. You can either look up objects dynamically (e.g. `GetComponentOfType()`), or statically. When that connection is statically, you simply declare a public property in your script: 
-    
-    
-    public GameObject TopWall;
-    
+
+```java
+public GameObject TopWall;
+```
 
 When you return to the Unity window, your new code is automatically compiled and a new field has appeared in your UI, under that script: 
 
@@ -64,18 +64,18 @@ Needless to say I encountered quite a few hurdles on my beginner journey. I am p
 ### Size
 
 I was very curious to find out how big my game would end up being once built for the web. The amount of packages and assets that are included by default in my project was quite daunting, so I was wondering if I wasn???t going to end up with some copy of the entire .net runtime on my website. 
-    
-    
-    ~/dodger$ ls -l Build
-    total 8016
-    -rw-r--r-- 1 ubuntu ubuntu  159307 Jun  3 15:04 UnityLoader.js
-    -rw-r--r-- 1 ubuntu ubuntu 2168234 Jun  3 15:04 html.data.unityweb
-    -rw-r--r-- 1 ubuntu ubuntu     500 Jun  3 15:04 html.json
-    -rw-r--r-- 1 ubuntu ubuntu 5779835 Jun  3 15:04 html.wasm.code.unityweb
-    -rw-r--r-- 1 ubuntu ubuntu   87452 Jun  3 15:04 html.wasm.framework.unityweb
-    ~/dodger$ du -sh .
-    8.0M    .
-    
+
+```bash
+~/dodger$ ls -l Build
+total 8016
+-rw-r--r-- 1 ubuntu ubuntu  159307 Jun  3 15:04 UnityLoader.js
+-rw-r--r-- 1 ubuntu ubuntu 2168234 Jun  3 15:04 html.data.unityweb
+-rw-r--r-- 1 ubuntu ubuntu     500 Jun  3 15:04 html.json
+-rw-r--r-- 1 ubuntu ubuntu 5779835 Jun  3 15:04 html.wasm.code.unityweb
+-rw-r--r-- 1 ubuntu ubuntu   87452 Jun  3 15:04 html.wasm.framework.unityweb
+~/dodger$ du -sh .
+8.0M    .
+```
 
 The entire WebGL application adds up to 8 MB. Not great. Not terrible. Probably a little on the heavy side from a purist standpoint, but considering all the support that I got from free, including the freedom of not having written a single line of Javascript, I feel pretty content with the trade off. 
 

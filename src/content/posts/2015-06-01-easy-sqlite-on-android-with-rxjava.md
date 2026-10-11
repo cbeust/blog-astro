@@ -22,78 +22,78 @@ One of the important design principles on Android is to never perform I/O on the
 I usually create one Java class per table and these tables are then managed by my [SQLiteOpenHelper](http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html). With this new approach, I decided to extend my use of the helper and make it the only point of access to anything that needs to read or write to my SQL tables. 
 
 Let's consider a simple example: a `USERS` table managed by the `UserTable` class: 
-    
-    
-    // UserTable.java
-    List<User> getUsers(SQLiteDatabase db, String userId) {
-      // select * from users where _id = {userId}
-    }
-    
+
+```java
+// UserTable.java
+List<User> getUsers(SQLiteDatabase db, String userId) {
+  // select * from users where _id = {userId}
+}
+```
 
 The problem with this method is that if you're not careful, you will call it on the main thread, so it's up to the caller to make sure they are always invoking this method on a background thread (and then to post their UI update back on the main thread, if they are updating the UI). Instead of relying on managing yet another thread pool or, worse, using `AsyncTask`, we are going to rely on RxJava to take care of the threading model for us. 
 
 Let's rewrite this method to return a callable instead: 
-    
-    
-    // UserTable.java
-    Callable<List<User>> getUsers(SQLiteDatabase db, String userId) {
-      return new Callable<List<User>>() {
-        @Override
-        public List<User> call() {
-          // select * from users where _id is userId
-        }
-      }
+
+```java
+// UserTable.java
+Callable<List<User>> getUsers(SQLiteDatabase db, String userId) {
+  return new Callable<List<User>>() {
+    @Override
+    public List<User> call() {
+      // select * from users where _id is userId
     }
-    
+  }
+}
+```
 
 In effect, we simply refactored our method to return a lazy result, which makes it possible for the database helper to turn this result into an `Observable`: 
-    
-    
-    // MySqliteOpenHelper.java
-    Observable<List<User>> getUsers(String userId) {
-      return makeObservable(mUserTable.getUsers(getReadableDatabase(), userId))
-        .subscribeOn(Schedulers.computation()) // note: do not use Schedulers.io()
-    }
-    
+
+```java
+// MySqliteOpenHelper.java
+Observable<List<User>> getUsers(String userId) {
+  return makeObservable(mUserTable.getUsers(getReadableDatabase(), userId))
+    .subscribeOn(Schedulers.computation()) // note: do not use Schedulers.io()
+}
+```
 
 Notice that on top of turning the lazy result into an `Observable`, the helper forces the subscription to happen on a background thread (the computation scheduler here; do not use `Schedulers.io()` because it's backed by an unbounded executor). This guarantees that callers don't have to worry about ever blocking the main thread. 
 
 Finally, the `makeObservable` method is pretty straightforward (and completely generic): 
-    
-    
-    // MySqliteOpenHelper.java
-    private static <T> Observable<T> makeObservable(final Callable<T> func) {
-      return Observable.create(
-          new Observable.OnSubscribe<T>() {
-              @Override
-              public void call(Subscriber<? super T> subscriber) {
-                try {
-                  subscriber.onNext(func.call());
-                } catch(Exception ex) {
-                  Log.e(TAG, "Error reading from the database", ex);
-                }
-              }
-        });
-    }
-    
+
+```java
+// MySqliteOpenHelper.java
+private static <T> Observable<T> makeObservable(final Callable<T> func) {
+  return Observable.create(
+      new Observable.OnSubscribe<T>() {
+          @Override
+          public void call(Subscriber<? super T> subscriber) {
+            try {
+              subscriber.onNext(func.call());
+            } catch(Exception ex) {
+              Log.e(TAG, "Error reading from the database", ex);
+            }
+          }
+    });
+}
+```
 
 At this point, all our database reads have become observables that guarantee that the queries run on a background thread. Accessing the database is now pretty standard Rx code: 
-    
-    
-    // DisplayUsersFragment.java
-    @Inject
-    MySqliteOpenHelper mDbHelper;
-    // ...
-    mDbHelper.getUsers(userId)
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe(new Action1<List<User>>()) {
-        @Override
-        public void onNext(List<User> users) {
-          // Update our UI with the users
-        }
-      }
+
+```java
+// DisplayUsersFragment.java
+@Inject
+MySqliteOpenHelper mDbHelper;
+// ...
+mDbHelper.getUsers(userId)
+  .observeOn(AndroidSchedulers.mainThread())
+  .subscribe(new Action1<List<User>>()) {
+    @Override
+    public void onNext(List<User> users) {
+      // Update our UI with the users
     }
-    
+  }
+}
+```
 
 And if you don't need to update your UI with the results, just observe on a background thread. 
 

@@ -265,26 +265,26 @@ comments:
 Scala 2.9 introduced [parallel collections](http://days2010.scala-lang.org/node/138/140), which mirror most of the existing collections with a parallel version. Collections that have been parallelized this way have received a new method called `par` which magically parallelize certain operations on this collection. 
 
 For example, here is a sequential version: 
-    
-    
-    scala> (1 to 5) foreach println
-    1
-    2
-    3
-    4
-    5
-    
+
+```text
+scala> (1 to 5) foreach println
+1
+2
+3
+4
+5
+```
 
 And the parallel version (notice the extra `par` keyword): 
-    
-    
-    scala> (1 to 5).par foreach println
-    1
-    4
-    3
-    2
-    5
-    
+
+```text
+scala> (1 to 5).par foreach println
+1
+4
+3
+2
+5
+```
 
 Obviously, the ordering will change each time you run the parallel version. 
 
@@ -313,13 +313,13 @@ This absence of configuration is a big blow to the parallel framework, and it re
 Over the past months, I have seen quite a few users pop in the `#scala` channel and complain that parallel collections are not working. Taking a closer look at their code, it usually becomes quickly obvious that their algorithm is not parallelizable, and either 1) they didn't realize it or 2) they were aware of that fact but they got the impression that `par` would magically take care of it. 
 
 Here is a quick example: 
-    
-    
-    scala> Set(1,2,3,4,5) mkString(" ")
-    res149: String = 5 1 2 3 4
-    scala> Set(1,2,3,4,5).par mkString(" ")
-    res149: String = 5 1 2 3 4
-    
+
+```text
+scala> Set(1,2,3,4,5) mkString(" ")
+res149: String = 5 1 2 3 4
+scala> Set(1,2,3,4,5).par mkString(" ")
+res149: String = 5 1 2 3 4
+```
 
 You can run the `par` version over and over, the result will remain the same. This is confusing. Note that I used a `Set` this time, which indicates that I don't care for the ordering of my collection. Calling `mkString` on the sequential version of my set reflects this. With this in mind, I would hope that calling `mkString` on the parallel version of my set would randomize its output, but that's not what's happening: I'm getting the same result as the sequential version, over and over. 
 

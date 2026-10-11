@@ -205,32 +205,18 @@ The Ember.js code is based on a 0.9x version and as Ember.js is approaching 1.0,
 There are a lot of fundamental differences in philosophy between Ember.js and Angular, and one of the most important ones is how they handle templates. 
 
 Ember.js follows the more classical way of making you write files that look like HTML but are not really since they are littered with directives that drive the template engine: 
-    
-    
-    
-        
-        
-          {{#each people}}
-            
-        * Hello, {{name}}!
-    
-      {{/each}}
-    
-    
-    
+
+```javascript
+      {{#each people}}
+    * Hello, {{name}}!
+  {{/each}}
+```
 
 In contrast, Angular template files use proprietary HTML attributes which will be processed by its compiler to modify the DOM: 
-    
-    
-    
-    
-    
-        
-        * Hello, {{person.name}}!
-    
-    
-    
-    
+
+```javascript
+    * Hello, {{person.name}}!
+```
 
 I have found that Angular's approach makes it easier to debug your templates because the HTML that you are inspecting is exactly what it looks like after expansion. Reading Ember.js processed templates is made harder by the fact that they are littered with magic Ember identifiers (e.g. "`id="metamorph-34-start"`"). 
 
@@ -241,13 +227,12 @@ Data binding is performed very differently between the two frameworks. Ember.js 
 Angular's data binding is much more straightforward (you just update the objects of your model directly) and "most of the time", it works. There are times where you will have to tell Angular to perform its updates, but these are rare. See this [very interesting explanation from Misko](http://stackoverflow.com/questions/9682092/databinding-in-angularjs) on StackOverflow. 
 
 Ember's data binding is also magic is a few more ways. You can bind values together (for example, defining that a "full name" is made of "first name" and "last name" by declaring dependencies between these fields) and you declare these by adding "Binding" to the end of the variable. This takes a little to get used to. Bindings at the template level are pretty awkward too, especially for attributes: 
-    
-    
-      
-      <img {{bindAttr alt="altText"}} />
-      
-      <img alt="{{altText}}" />
-    
+
+```xml
+  <img {{bindAttr alt="altText"}} />
+  
+  <img alt="{{altText}}" />
+```
 
 I had a few other items to cover in this comparison but I'll stop here, except for one last point: IDEA's Javascript support is light years ahead of Eclipse and a joy to work with. 
 

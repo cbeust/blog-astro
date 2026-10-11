@@ -383,59 +383,60 @@ Something else that distresses me about continuations is that they are often ill
 But here is the main problem I have with continuations:  how do you debug them?
 
 Out of curiosity, here is how you could implement Fibonacci in Java.  First as an iterator:
-    
-    
-    class FibonacciIterator implements Iterator {
-    private int **m_previous0** = 0;
-    private int **m_previous1** = 1;
-    public void remove() {
-    // not implemented
-    }
-    public Object next() {
-    int result = **m_previous0** + **m_previous1** ;
-    **m_previous0** = **m_previous1** ;
-    **m_previous1** = result;
-    return result;
-    }
-    public boolean hasNext() {
-    return true;
-    }
-    }
-    
+
+```java
+class FibonacciIterator implements Iterator {
+private int **m_previous0** = 0;
+private int **m_previous1** = 1;
+public void remove() {
+// not implemented
+}
+public Object next() {
+int result = **m_previous0** + **m_previous1** ;
+**m_previous0** = **m_previous1** ;
+**m_previous1** = result;
+return result;
+}
+public boolean hasNext() {
+return true;
+}
+}
+```
 
 Implementing this as an `Iterator` makes it possible to use it in the new for loop:
-    
-    
-    public class FibonacciContinuation implements Iterable {
-    public Iterator iterator() {
-    return new FibonacciIterator();
-    }
-    }
-    
+
+```java
+public class FibonacciContinuation implements Iterable {
+public Iterator iterator() {
+return new FibonacciIterator();
+}
+}
+```
 
 such as: 
-    
-    
-    public static void main(String[] argv) {
-    int n = 10;
-    FibonacciContinuation fib = new FibonacciContinuation();
-    for (Object o : fib) {
-    System.out.println(o);
-    if (n-- <= 0) break;
-    }
-    }
-    
+
+```java
+public static void main(String[] argv) {
+int n = 10;
+FibonacciContinuation fib = new FibonacciContinuation();
+for (Object o : fib) {
+System.out.println(o);
+if (n-- <= 0) break;
+}
+}
+```
 
 which outputs:
-    
-    
-    1
-    2
-    3
-    5
-    8
-    13
-    21
+
+```text
+1
+2
+3
+5
+8
+13
+21
+```
 
 This example is admittedly a little bit more verbose than Don's, but it's because I wanted to make it fancy, and I contend that it has a big advantage over a continuation-based implementation:  it can be debugged.
 

@@ -31,25 +31,26 @@ comments:
 ---
 
 Can you spot why the following program:
-    
-    
-    public class Split {
-    public static void main(String[] argv) {
-    String STRING = "foo  bar";
-    String[] s = STRING.split(" ");
-    for (int i = 0; i < s.length; i++) {
-    System.out.println(i + " '" + s[i] + "'");
-    }
-    }
-    }
+
+```java
+public class Split {
+public static void main(String[] argv) {
+String STRING = "foo  bar";
+String[] s = STRING.split(" ");
+for (int i = 0; i < s.length; i++) {
+System.out.println(i + " '" + s[i] + "'");
+}
+}
+}
+```
 
 displays: 
-    
-    
-    0 'foo'
-    1 ''
-    2 'bar'
-    
+
+```text
+0 'foo'
+1 ''
+2 'bar'
+```
 
 The reason is that split() works a little differently from StringTokenizer:  it accepts a regular expression as a separator.  In the code above, I define this regular expression as " " (one space character) but the input string contains two of them.  Therefore, we can solve this problem by using the " +" as a regular expression ("at least one space character").
 

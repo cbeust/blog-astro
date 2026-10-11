@@ -65,24 +65,24 @@ TestNG 5.1 is now available for download from [ http://testng.org](http://testng
 TestNG makes it very easy for you to run your tests in separate threads, which provides a very significant speed up in a lot of cases (this particular user said that switching to multithreaded tests [ reduced their test run times from forty minutes down to... four minutes!](http://groups.google.com/group/testng-users/browse_frm/thread/dff9feb2d28a59d0/6894d9b909c2b722?lnk=gst&q=feuer&rnum=2#6894d9b909c2b722)).  However, when you do this, you can encounter various problems if the classes you are testing are not multithread-safe (which is very often the case).
 
 For example:
-    
-    
-    public class ATest {
-    private A a;
-    @BeforeClass
-    public void init() {
-    this.a = new A();
-    }
-    @Test
-    public void testf1() {
-    // test a.f1();
-    }
-    @Test
-    public void testf2() {
-    // test a.f2();
-    }
-    }
-    
+
+```java
+public class ATest {
+private A a;
+@BeforeClass
+public void init() {
+this.a = new A();
+}
+@Test
+public void testf1() {
+// test a.f1();
+}
+@Test
+public void testf2() {
+// test a.f2();
+}
+}
+```
 
 In this example, the two test methods `testf1()` and `testf2()` test the methods `A#f1` and `A#f2` respectively, but when you ask TestNG to run these tests in parallel mode, these two methods will be invoked from different threads, and if they don't properly synchronize with each other, you will most likely end up in a corrupt state.
 

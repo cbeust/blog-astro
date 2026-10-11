@@ -33,11 +33,11 @@ First of all, what do I call "fundamental" software? It's a bit hard to define p
 TestNG is built in two forms: via ant (which produces a jar file that is self-contained) and via Maven, which builds a jar file that only contains the TestNG classes. With Maven, If I'm building version N in my `pom.xml`, I can't tell my tests to use TestNG version N to run, since this would create a circular dependency, and Maven forbids it. 
 
 Instead, I have to create two pom.xml files: one that builds version N-SNAPSHOT (`pom.xml` but doesn't run the tests and one that depends on N-SNAPSHOT (which must have been previously installed and deployed) which only runs the tests (`pom-tests.xml`). The entire build with Maven is therefore a two step process: 
-    
-    
-    mvn clean install -Dgpg.skip=true
-    mvn -f pom-test.xml test
-    
+
+```bash
+mvn clean install -Dgpg.skip=true
+mvn -f pom-test.xml test
+```
 
 Note that it's important to `install` in the first step, otherwise, the second step won't be able to find the snapshot. 
 
@@ -64,20 +64,16 @@ JCommander obviously uses TestNG to run its tests, and it turns out that TestNG 
 Mystery solved. 
 
 As it turns out, there is actually a way out of this, which Brett Porter kindly pointed out to me. The solution is to have your Surefire dependency explicitly specify which version of JCommander it wants: 
-    
-    
-    
-     org.apache.maven.plugins
-     maven-surefire-plugin
-     
-       
-         com.beust
-         jcommander
-         ${project.version}
-       
-     
-    
-    
+
+```java
+ org.apache.maven.plugins
+ maven-surefire-plugin
+ 
+   
+     com.beust
+     jcommander
+     ${project.version}
+```
 
 _(Update: this still doesn't quite seem to work, trying to investigate with Brett's help)._
 

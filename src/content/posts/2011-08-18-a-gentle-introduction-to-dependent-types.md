@@ -207,37 +207,37 @@ comments:
 ---
 
 Most of you are certainly familiar with this piece of code: 
-    
-    
-    List<Integer>
-    
+
+```text
+List<Integer>
+```
 
 This is the syntax for generic (parameterized) types, which has been available in Java since 2004. And of course, you know what you're supposed to put between the brackets: a type (class or interface). But have you ever wondered what else we could use there, besides types? 
 
 For example, how about: 
-    
-    
-    List<Integer><2> // not legal Java
-    
+
+```text
+List<Integer><2> // not legal Java
+```
 
 Instead of a type, I'm now using a value of a certain type (an integer) as a type parameter. 
 
 What could this possibly mean? Well, since I'm making up the syntax (and I'll use that liberty a bit more in the rest of this post), I might as well make up what it means as well. How about we say that the integer here represents the size of the list? 
 
 In other words: 
-    
-    
-    List<Integer><2> l = List(1, 2);  // compiles
-    List<Integer><2> l = List(1);  // does not compile
-    
+
+```text
+List<Integer><2> l = List(1, 2);  // compiles
+List<Integer><2> l = List(1);  // does not compile
+```
 
 Or we could decide that if the type that we are indexing (`Integer`) supports the `+` operator, then that value is the sum of all its elements: 
-    
-    
-    List<Integer><2> l = List(2); // compiles
-    List<Integer><2> l = List(0, 1, 1);  // compiles
-    List<Integer><2> l = List(0, 1);  // does not compile
-    
+
+```text
+List<Integer><2> l = List(2); // compiles
+List<Integer><2> l = List(0, 1, 1);  // compiles
+List<Integer><2> l = List(0, 1);  // does not compile
+```
 
 You probably guessed it by now: `List<Integer><2>` is a dependent type. A type parameterized not just by other types but by values of other types. The correct terminology here is that the type is "indexed" by the value (not to be confused with the meaning of "index" in the context of a list). 
 
@@ -250,18 +250,18 @@ Let's get back to our list: how do we manipulate a dependent list with a fixed s
 I used the easy situation in the code snippets above by initializing my lists with constants, but obviously, this is not very useful: you pretty much never use lists that are initialized with constants at declaration time, except maybe in tests. Very often, we create a list, we populate it at runtime with some algorithm and if it's mutable, we alter it in various ways. 
 
 First, we need to create our list without putting any elements in it, but doesn't this violate the constraint? 
-    
-    
-    List<Integer><2> l = new ArrayList<Integer><2>(); // should not compile
-    
+
+```text
+List<Integer><2> l = new ArrayList<Integer><2>(); // should not compile
+```
 
 If we can't even compile this, then we'll never be able to use anything but lists initialized with constants, so let's imagine that the compiler will let us get away with it. How do we populate our list now? As it turns out, we haven't made much progress: 
-    
-    
-    List<Integer><2> l = new ArrayList<Integer><2>(); // assume this compiles
-    l.add(1);    // will not compile
-    l.add(2);   // would compile if the previous line compiled
-    
+
+```text
+List<Integer><2> l = new ArrayList<Integer><2>(); // assume this compiles
+l.add(1);    // will not compile
+l.add(2);   // would compile if the previous line compiled
+```
 
 Having a list with one element would be a type error, so the second line in the snippet above should not compile. You could work around this limitation by having `add()` return a different list **of a different type**. It will still be a `List`, but indexed by the value `+1` of the original one. And now you have to determine how a `List<Integer><1>` and a `List<Integer><2>` can interact and how compatible they are.. 
 

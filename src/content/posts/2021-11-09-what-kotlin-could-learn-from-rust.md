@@ -62,30 +62,33 @@ I have always had a love hate relationship with macros in languages, especially 
 Rust macros meet these two requirements and as a result, unlock a set of very interesting capabilities, which I???m pretty sure we???ve only started exploring.
 
 For example, the `dbg!()` macro:
-    
-    
-    let a = 2;
-    let b = 3;
-    dbg!(a + b);
+
+```kotlin
+let a = 2;
+let b = 3;
+dbg!(a + b);
+```
 
 Will print
-    
-    
-    [src\main.rs:158] a + b = 5
+
+```kotlin
+[src\main.rs:158] a + b = 5
+```
 
 Note: not just the source file and line number but the full expression that???s being displayed (???`a + b`???).
 
 Another great example of the power of macros can be seen in the `[debug_plotter](https://crates.io/crates/debug_plotter)` crate, which allows you to plot variables:
-    
-    
-    fn main() {
-        for a in 0..10 {
-            let b = (a as f32 / 2.0).sin() * 10.0;
-            let c = 5 - (a as i32);
-    
-            debug_plotter::plot!(a, b, c; caption = "My Plot");
-        }
+
+```rust
+fn main() {
+    for a in 0..10 {
+        let b = (a as f32 / 2.0).sin() * 10.0;
+        let c = 5 - (a as i32);
+
+        debug_plotter::plot!(a, b, c; caption = "My Plot");
     }
+}
+```
 
 ![](https://github.com/fabianboesiger/debug-plotter/raw/HEAD/plots/My_Plot.png)
 
@@ -106,31 +109,34 @@ Also, macros integrate very neatly with???
 ## Attributes for preprocessing
 
 Attributes are Rust???s version of annotations and they start either with `#` or `#!`:
-    
-    
-    #![crate_type = "lib"]
-    
-    #[test]
-    fn test_foo() {}
+
+```rust
+#![crate_type = "lib"]
+
+#[test]
+fn test_foo() {}
+```
 
 Nothing groundbreaking here, but what I want to discuss is the [conditional compilation](https://doc.rust-lang.org/reference/conditional-compilation.html) aspect.
 
 Conditional compilation is achieved in Rust by combining attributes and macros with `cfg`, which is available as both an attribute and a macro.
 
 The macro version allows you to compile conditionally a statement or an expression:
-    
-    
-    #[cfg(target_os = "macos")]
-    fn macos_only() {}
+
+```rust
+#[cfg(target_os = "macos")]
+fn macos_only() {}
+```
 
 In the code above, the function `macos_only()` will only be compiled if the operating system is macOS.
 
 The macro version of `cfg()` allows you to add more logic to the condition:
-    
-    
-    let machine_kind = if cfg!(unix) {
-        "unix"
-    } else { ??? }
+
+```kotlin
+let machine_kind = if cfg!(unix) {
+    "unix"
+} else { ??? }
+```
 
 At the risk of repeating myself: the above code is a macro, which means it's evaluated at compile time. Any part of the condition that is not meant will be completely ignored by the compiler.
 
@@ -147,22 +153,23 @@ Regardless of where you stand in this debate, I have to say I really enjoy how t
 Extension traits allow you to make a structure conform to a trait ???after the fact???, even if you don???t own either of these. This last point bears repeating: it doesn???t matter if the structure or the trait belong to libraries that you didn???t write. You will still be able to make that structure conform to that trait.
 
 For example, if we want to implement a `last_digit()` function on the type `u8`:
-    
-    
-    trait LastDigit {
-        fn last_digit(&self) -> u8;
+
+```rust
+trait LastDigit {
+    fn last_digit(&self) -> u8;
+}
+
+impl LastDigit for u8 {
+    fn last_digit(&self) -> u8 {
+        self % 10
     }
-    
-    impl LastDigit for u8 {
-        fn last_digit(&self) -> u8 {
-            self % 10
-        }
-    }
-    
-    fn main() {
-        println!("Last digit for 123: {}", 123.last_digit());
-        // prints ???3???
-    }
+}
+
+fn main() {
+    println!("Last digit for 123: {}", 123.last_digit());
+    // prints ???3???
+}
+```
 
 I might be biased about this feature because unless I am mistaken, I was the first person to suggest a similar functionality for Kotlin back in 2016 ([link to the discussion](https://discuss.kotlinlang.org/t/extension-types-for-kotlin/1390)).
 

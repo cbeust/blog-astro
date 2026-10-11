@@ -68,40 +68,41 @@ BlockingQueue in parameter, which is the queue that the Executor will use to pro
 All you need to do is to use that queue instead of the default one when you create your Executor and then make sure that the workers you pass it have a natural ordering. In this case, the weight of a worker is how many other workers depend on it, which is very easy to calculate.  
 On a related topic, I wanted to get a closer look at how the algorithm I described in my previous blog post actually works. I described the theory and I have tests that show that it seems to work as expected, but it occurred to me that I could actually "view it from the inside" with little effort.  
 First, I added a method called `toDot` which generates a [Graphviz file](http://www.graphviz.org/) representing the current graph. This turned out to be trivial:
-    
-    
-    /**
-    * @return a .dot file (GraphViz) version of this graph.
-    */
-    public String toDot() {
-      String FREE = "[style=filled color=yellow]";
-      String RUNNING = "[style=filled color=green]";
-      String FINISHED = "[style=filled color=grey]";
-      StringBuilder result = new StringBuilder("digraph g {\n");
-      Set<T> freeNodes = getFreeNodes();
-      String color;
-      for (T n : m_nodesReady) {
-        color = freeNodes.contains(n) ? FREE : "";
-        result.append("  " + getName(n) + color + "\n");
-      }
-      for (T n : m_nodesRunning) {
-        color = freeNodes.contains(n) ? FREE : RUNNING;
-        result.append("  " + getName(n) + color + "\n");
-      }
-      for (T n : m_nodesFinished) {
-        result.append("  " + getName(n) + FINISHED+ "\n");
-      }
-      result.append("\n");
-      for (T k : m_dependingOn.getKeys()) {
-        List<T> nodes = m_dependingOn.get(k);
-        for (T n : nodes) {
-          String dotted = m_nodesFinished.contains(k) ? "style=dotted" : "";
-          result.append("  " + getName(k) + " -> " + getName(n) + " [dir=back " + dotted + "]\n");
-        }
-      }
-      result.append("}\n");
-      return result.toString();
+
+```java
+/**
+* @return a .dot file (GraphViz) version of this graph.
+*/
+public String toDot() {
+  String FREE = "[style=filled color=yellow]";
+  String RUNNING = "[style=filled color=green]";
+  String FINISHED = "[style=filled color=grey]";
+  StringBuilder result = new StringBuilder("digraph g {\n");
+  Set<T> freeNodes = getFreeNodes();
+  String color;
+  for (T n : m_nodesReady) {
+    color = freeNodes.contains(n) ? FREE : "";
+    result.append("  " + getName(n) + color + "\n");
+  }
+  for (T n : m_nodesRunning) {
+    color = freeNodes.contains(n) ? FREE : RUNNING;
+    result.append("  " + getName(n) + color + "\n");
+  }
+  for (T n : m_nodesFinished) {
+    result.append("  " + getName(n) + FINISHED+ "\n");
+  }
+  result.append("\n");
+  for (T k : m_dependingOn.getKeys()) {
+    List<T> nodes = m_dependingOn.get(k);
+    for (T n : nodes) {
+      String dotted = m_nodesFinished.contains(k) ? "style=dotted" : "";
+      result.append("  " + getName(k) + " -> " + getName(n) + " [dir=back " + dotted + "]\n");
     }
+  }
+  result.append("}\n");
+  return result.toString();
+}
+```
 
 Then I modified the executor to dump the graph every time a worker terminates, and finally, I wrote a shell script to convert these dot files into images and to create an HTML file. I ran a simple test case, processed the files with the shell script and [here is the final result](http://beust.com/weblog/topo/graphs.html).  
 A yellow node is "free", green means that the node is "ready" (to be run in the thread pool), grey is "finished" and white nodes haven't been processed yet. Dotted arrows represent dependencies that have been satisfied.

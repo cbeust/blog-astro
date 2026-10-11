@@ -110,10 +110,10 @@ comments:
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/splitting-atom.jpg)
 
 I always seem to underestimate how much readers of this blog enjoy a good coding challenge. A few days ago, one of my coworkers was tripped by a line of code and I thought I'd share his confusion with people [following me on Twitter](http://twitter.com/cbeust), which turned out to be a fitting medium for this micro challenge: 
-    
-    
-    Pop quiz: "abc.def".split(".").length should return...?
-    
+
+```java
+Pop quiz: "abc.def".split(".").length should return...?
+```
 
 I really didn't think much of it but I got much more responses than I anticipated. A lot of them were incorrect (hey, if I throw a challenge, there has to be a trick), but I still want to congratulate everyone for playing the game and answering without testing the code first. That's the spirit! 
 
@@ -128,12 +128,12 @@ The bottom line is that this method is terribly designed. First of all, the stri
 API clarity is not the only benefit of this approach, there is also the performance aspect. 
 
 With the current signature, each call to `split()` causes the regular expression to be recompiled, as the source sadly confirms: 
-    
-    
-    public String[] split(String regex, int limit) {
-    return Pattern.compile(regex).split(this, limit);
-    }
-    
+
+```java
+public String[] split(String regex, int limit) {
+return Pattern.compile(regex).split(this, limit);
+}
+```
 
 Since it's not uncommon to have such parsing code in a loop, this can become a significant performance bottleneck. On the other hand, if we had an overloaded version of `split()` that accepts a `Pattern`, it would be possible to precompile this pattern outside the loop. 
 

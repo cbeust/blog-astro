@@ -102,19 +102,19 @@ If I had to pick the most prominent features for TestNG 6.0, they would be:
 ### YAML
 
 As most of you know, TestNG uses an XML file to capture the entire description of your test suite, and while I think the schema for this file has managed to remain fairly simple over the years, the XML aspect of it can sometimes get in the way of making quick changes. I considered supporting an additional format for a while and I ended up narrowing my choices down to JSON and YAML. In the end, YAML won on tiny details such as not requiring the constant use of double quotes and the fact that JSON seems to be more optimized for computer than human consumption. Here is a short TestNG YAML example: 
-    
-    
-    name: SingleSuite
-    threadCount: 4
-    parameters: { n: 42 }
-    tests:
-      - name: Regression2
-        parameters: { count: 10 }
-        excludedGroups: [ broken ]
-        classes:
-          - test.listeners.ResultEndMillisTest
-          - test.listeners.TimeOutTest
-    
+
+```java
+name: SingleSuite
+threadCount: 4
+parameters: { n: 42 }
+tests:
+  - name: Regression2
+    parameters: { count: 10 }
+    excludedGroups: [ broken ]
+    classes:
+      - test.listeners.ResultEndMillisTest
+      - test.listeners.TimeOutTest
+```
 
 Unfortunately, YAML and JSON don't have as much tooling support as XML especially when it comes to editing and validation, but one thing that I liked in YAML is that it's much more "copy/paste friendly" than XML. In XML, it's rarely possible to just cut a line and paste it somewhere else in the file: you usually end up having to add surrounding tags or move closing tags. In YAML, you can usually just cut/paste lines right away. It's also much easier to comment out regions than XML's awkward "`<!--`" and "`-->`" delimiters. 
 
@@ -127,18 +127,18 @@ From the very early days (around 2006), TestNG has made it possible for users to
 The release of [Guice](http://code.google.com/p/google-guice/) made this interface even more useful: instead of instantiating their test objects, users were now able to simply ask Guice to hand them a fully injected instance. This worked great but considering the number of discussions and requests that we received on the mailing-list on this topic, I started wondering if we couldn't provide an even better way to support Guice directly with TestNG. 
 
 A few hours later, TestNG's official Guice support was born: 
-    
-    
-    @Guice(modules = GuiceExampleModule.class)
-    public class GuiceTest {
-      @Inject
-      ISingleton m_singleton;
-      @Test
-      public void singletonShouldWork() {
-        m_singleton.doSomething();
-      }
-    }
-    
+
+```java
+@Guice(modules = GuiceExampleModule.class)
+public class GuiceTest {
+  @Inject
+  ISingleton m_singleton;
+  @Test
+  public void singletonShouldWork() {
+    m_singleton.doSomething();
+  }
+}
+```
 
 In this example, TestNG will use the `GuiceExampleModule` module to retrieve an instance of the `GuiceTest` class and then use that instance to run the tests. 
 
@@ -245,13 +245,11 @@ These are the big items, here is the full change log, along with the contributor
 ###  Upgrading to TestNG 6.0 
 
 Ant users can download TestNG 6.0 [directly from the web site](http://testng.org/doc/download.html) while Maven users only need to specify the following dependency: 
-    
-    
-        
-          org.testng
-          testng
-          6.0
-        
-    
+
+```text
+      org.testng
+      testng
+      6.0
+```
 
 Don't forget to [update your Eclipse plug-in](http://testng.org/doc/download.html) as well.

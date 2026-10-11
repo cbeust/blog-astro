@@ -193,11 +193,11 @@ comments:
 A very cool new site:  [javadocs.org](http://javadocs.org).  It contains all the Sun JavaDocs and also allows you to search directly from the URL.
 
 I created the following bookmark with FireFox:
-    
-    
-    Location: [http://javadocs.org/%s](http://javadocs.org/%25s)
-    Keyword: jd
-    
+
+```text
+Location: [http://javadocs.org/%s](http://javadocs.org/%25s)
+Keyword: jd
+```
 
 This way, I can type "jd url" in the FireFox address bar and I get the documentation for java.net.URL right away. 
 

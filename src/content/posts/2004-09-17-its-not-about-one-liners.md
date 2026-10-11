@@ -54,13 +54,14 @@ comments:
 ---
 
 I have received quite a few comments on the previous entry so I thought I would clarify something. Jonas Galvez says: 
-    
-    
-    The Python version is pretty much a one-liner too:
-    
-    
-    
-    files = filter(lambda s: re.match("gz$", s), sorted(os.listdir(dir))[::-1])
+
+```python
+The Python version is pretty much a one-liner too:
+
+
+
+files = filter(lambda s: re.match("gz$", s), sorted(os.listdir(dir))[::-1])
+```
 
 I don't care about the size of the code (I find that ten lines of Java are usually more readable that one line of Perl). 
 

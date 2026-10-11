@@ -591,28 +591,30 @@ comments:
 The idea behind "Duck Typing", which has recently be made popular again by Ruby and other script languages, is to make the concept of types less restrictive.
 
 Consider the following:
-    
-    
-    public interface ILifeCycle {
-    public void onStart();
-    public void onStop();
-    public void onPause();
-    }
-    // ...
-    public void runObject(ILifeCycle object) {
-    object.onStart();
-    // ...
-    object.onStop();
-    }
+
+```java
+public interface ILifeCycle {
+public void onStart();
+public void onStop();
+public void onPause();
+}
+// ...
+public void runObject(ILifeCycle object) {
+object.onStart();
+// ...
+object.onStop();
+}
+```
 
 Faced with this kind of construct, some languages decide that the existence and even the name of the interface `ILifeCycle` is unimportant.  The only thing that really matters is the fact that `runObject()` needs the methods `onStart()` and `onStop()` to exist on the parameter, and that's all.
 
 In short, it boils down to:
-    
-    
-    public void runObject("any object that responds to the methods onStart and onStop" object) {
-    // ...
-    }
+
+```java
+public void runObject("any object that responds to the methods onStart and onStop" object) {
+// ...
+}
+```
 
 Late-binding languages are actually even less restrictive than that, since the verification that the object does respond to such methods is not made when the object is passed as a parameter to the method, but on the invocation of the said methods, which explains why parameters to methods are usually not typed all.
 

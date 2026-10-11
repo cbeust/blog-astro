@@ -61,12 +61,12 @@ I have been exchanging emails with Patrick Linskey recently about [the thread on
 In short, Patrick is saying that it can be important for the container to determine if the callback it is about to invoke is a no-op or if it contains an implementation written by the user, because the container might have some potentially expensive work to do before invoking the said callback.
 
 If each callback is encapsulated in its own interface, making this decision becomes a simple matter of testing instanceof on the object:
-    
-    
-    if (o instanceof ILoadCallback) {
-      ((ILoadCallback) o).onLoad();
-    }
-    
+
+```java
+if (o instanceof ILoadCallback) {
+  ((ILoadCallback) o).onLoad();
+}
+```
 
 The assumption here being:  if the developer declared she implements this interface, she is going to provide an implementation for the method it contains, so it should always be called by the container.  Therefore, there are indeed cases when you need to know whether the method you are going to invoke is empty or not.
 
@@ -75,39 +75,39 @@ But are interfaces the best way to solve this problem?
 The more I thought about it, the more this problem reminded me of marker interfaces (Serializable, Cloneable), which solve a real problem by pushing the usage of interfaces beyond what it was designed for.
 
 Then it occurred to me that annotations would probably a better way to do this.  For example, we could create a simple @NoOp annotation:
-    
-    
-    import java.lang.annotation.*;
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target(java.lang.annotation.ElementType.METHOD)
-    public @interface NoOp {
-    }
-    
+
+```java
+import java.lang.annotation.*;
+@Retention(RetentionPolicy.RUNTIME)
+@Target(java.lang.annotation.ElementType.METHOD)
+public @interface NoOp {
+}
+```
 
 All the classes that implement the callback methods with empty implementations can be flagged with the @NoOp annotation:
-    
-    
-    public class LoadCallbackAdapter implements ILoadCallback {
-      @NoOp
-      public void onLoad() {}
-    }
-    
+
+```java
+public class LoadCallbackAdapter implements ILoadCallback {
+  @NoOp
+  public void onLoad() {}
+}
+```
 
 And any class that extends this adapter will simply override the method without the annotation:
-    
-    
-    public class MyClass extends LoadCallbackAdapter {
-      public void onLoad() { /* ... */}
-    }
-    
+
+```java
+public class MyClass extends LoadCallbackAdapter {
+  public void onLoad() { /* ... */}
+}
+```
 
 The nice thing about this technique is that it is totally transparent to the user:  they don't need to know about the @NoOp annotation at all.  But the container will be looking for it, and if it can't find it, it will invoke the callback:
-    
-    
-    Method m = o.getClass().getMethod("onLoad", null);
-    if (null != m.getAnnotation(NoOp.class)) {
-      // invoke o.onLoad()
-    }
-    
+
+```java
+Method m = o.getClass().getMethod("onLoad", null);
+if (null != m.getAnnotation(NoOp.class)) {
+  // invoke o.onLoad()
+}
+```
 
 Personally, I find this approach cleaner than using interfaces, which pollutes the type system of your object to address a concern that you should know nothing about.

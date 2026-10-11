@@ -143,28 +143,28 @@ comments:
 I have a love-hate relationship with JUnit's suite() feature. 
 
 Quick reminder: a JUnit class can either have test methods (starting with _test_) or a _suite()_ method such as this: 
-    
-    
-    public static Test suite() {
-    TestSuite suite= new TestSuite();
-    suite.addTest(new MoneyTest("testMoneyEquals"));
-    suite.addTest(new MoneyTest("testSimpleAdd"));
-    return suite;
-    }
-    
+
+```java
+public static Test suite() {
+TestSuite suite= new TestSuite();
+suite.addTest(new MoneyTest("testMoneyEquals"));
+suite.addTest(new MoneyTest("testSimpleAdd"));
+return suite;
+}
+```
 
 In which case, the Tests returned by your suite() method will be inspected recursively for either test methods or more suites. 
 
 This is a powerful concept that allows you to define an entire hierarchy of tests easily. Typically, you can end up with a "root" suite such as: 
-    
-    
-    public static Test suite() {
-    TestSuite suite= new TestSuite();
-    suite.addTest(new BackEndSuite());
-    suite.addTest(new FrontEndSuite());
-    return suite;
-    }
-    
+
+```java
+public static Test suite() {
+TestSuite suite= new TestSuite();
+suite.addTest(new BackEndSuite());
+suite.addTest(new FrontEndSuite());
+return suite;
+}
+```
 
 and in turn, have BackEndSuite() contain more suites (DataBaseSuite, SecuritySuite, UserProfileSuite, etc...) and FrontEndSuite() contain things such as HTMLSuite, TemplateSuite, PostSuite, etc... 
 
@@ -175,17 +175,17 @@ In short, there is not a single file that you can look at and get an overall vie
 Confronted with this problem with [TestNG](http://beust.com/weblog/testng), I am not sure what to do. I like the idea of the hierarchy but I wonder if it doesn't have more downsides than upsides. 
 
 For now, I have decided to try the "one file only" approach, and that file is your build.xml. The  ant task allows you to specify a fileset, so you would have something like this: 
-    
-    
-    <testng outputDir = "${basedir}/test-output">
-    <fileset dir="${basedir}">
-    <include name="back-end/database/testng.xml" />
-    <include name="back-end/security/testng.xml" />
-    <include name="front-end/html/testng.xml" />
-    ...
-    </fileset>
-    </testng>
-    
+
+```xml
+<testng outputDir = "${basedir}/test-output">
+<fileset dir="${basedir}">
+<include name="back-end/database/testng.xml" />
+<include name="back-end/security/testng.xml" />
+<include name="front-end/html/testng.xml" />
+...
+</fileset>
+</testng>
+```
 
 If I wanted to introduce the concept of a hierarchy of tests, I would simply allow testng.xml to reference other testng.xml files. 
 

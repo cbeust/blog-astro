@@ -127,29 +127,29 @@ I have been writing a lot of Lua recently, and it hasn't been a very pleasant ex
 The first thing that took a little while to get used to is the fact that table indices start at 1, not 0. Admittedly, it is possible to configure this, but the default is certainly confusing and I have been battling `nil` errors in tables that I knew couldn't be empty. 
 
 But the worst was the following: 
-    
-    
-    function f()
-      print("f()")
-    end
-    f(2)
-    function f(n)
-      print("f(n):" .. n)
-    end
-    
+
+```javascript
+function f()
+  print("f()")
+end
+f(2)
+function f(n)
+  print("f(n):" .. n)
+end
+```
 
 This snippet will print **`"f()"`** , indicating that when the interpreter read `f(2)` and couldn't find a matching function (since it wasn't defined yet), it decided to get rid of my parameter and call `f()` instead. And all this without any error or warning. 
 
 It doesn't stop here: 
-    
-    
-    function f(n)
-      if n then print("f(n):" .. n)
-      else print("f(nil)")
-      end
-    end
-    f()
-    
+
+```javascript
+function f(n)
+  if n then print("f(n):" .. n)
+  else print("f(nil)")
+  end
+end
+f()
+```
 
 This will print... `f(nil)`. 
 
@@ -161,14 +161,15 @@ A couple more things of interest:
 
   * Writing in Lua has confirmed me in my conviction that using `end` as a closing statement is really painful. Not only is it noise when I read a source but it just makes it impossible to match a closing end to its opening statement (you will also notice that there is not always such a thing: `if` requires a `then` but the declaration of functions doesn't require anything). If you're going to create a language, do me a favor and pick symmetric opening/closing tokens (or significant spacing, like Python). 
   * Lua is doing something clever with its comment syntax, which I haven't seen in any other languages: comment blocks are defined by `--[[` and `--]]` but if you add a third hyphen on the opening part, then the commenting is disabled again: 
-        
-        --[[
-          This is commented out
-          --]]
-          ---[[
-          ... but this is not
-          --]]
-          
+
+```text
+    --[[
+      This is commented out
+      --]]
+      ---[[
+      ... but this is not
+      --]]
+```
 
 I like the practicality of this idea. 
 What I find disappointing is that Lua is a language that's more recent than Python, so it's hard to understand why it's being so lackdaisical about signaling errors. Having said that, there is no question that Lua is alive and well and used increasingly more often as an embedded languages, especially in video games, so it's most likely here to stay...

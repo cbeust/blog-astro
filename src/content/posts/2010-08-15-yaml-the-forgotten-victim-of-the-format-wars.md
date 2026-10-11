@@ -94,44 +94,35 @@ I have been thinking about providing an additional way of specifying test suites
 [YAML](http://www.yaml.org/) attracted my attention when I started playing with Ruby on Rails a few years ago. It's fairly expressive and concise, but for some reason, it never really took off in the Java world. These past few days, I started experimenting with YAML and TestNG, and I have to say that the initial results are pretty promising. 
 
 Here is a simple testng.xml: 
+
+```xml
+  <parameter name="n" value="42" />
     
+        <exclude name="broken" />
     
-    
-    
-      <parameter name="n" value="42" />
-      
-        
-          
-            <exclude name="broken" />
-          
-        
-        
-          <class name="test.listeners.ResultEndMillisTest" />
-        
-      
-    
-    
+      <class name="test.listeners.ResultEndMillisTest" />
+```
 
 and here is its YAML version: 
-    
-    
-    name: SingleSuite
-    threadCount: 4
-    parameters: { n: 42 }
-    tests:
-      - name: Regression2
-        parameters: { count: 10 }
-        excludedGroups: [ broken ]
-        classes:
-          - test.listeners.ResultEndMillisTest
-    
+
+```java
+name: SingleSuite
+threadCount: 4
+parameters: { n: 42 }
+tests:
+  - name: Regression2
+    parameters: { count: 10 }
+    excludedGroups: [ broken ]
+    classes:
+      - test.listeners.ResultEndMillisTest
+```
 
 The result is even more telling on bigger files: 
-    
-    
-    -rw-r--r--  1 cbeust  502  17638 Aug  6 11:07 src/test/resources/testng.xml
-    -rw-r--r--  1 cbeust  502  10732 Aug 12 16:03 src/test/resources/testng.yaml
-    
+
+```text
+-rw-r--r--  1 cbeust  502  17638 Aug  6 11:07 src/test/resources/testng.xml
+-rw-r--r--  1 cbeust  502  10732 Aug 12 16:03 src/test/resources/testng.yaml
+```
 
 That's almost a 40% reduction in size. And the gain in readability is also pretty obvious: here is [testng.xml](http://github.com/cbeust/testng/blob/yaml/src/test/resources/testng.xml) and [testng.yaml](http://github.com/cbeust/testng/blob/yaml/src/test/resources/testng.yaml). By the way, this is the main file that describes all the TestNG tests and the YAML file is completely equivalent to its XML version. 
 
@@ -142,27 +133,27 @@ TestNG's XML front-end is entirely captured in the [org.testng.xml](http://www.t
 The only task was therefore to parse the YAML file and create all the XML objects that TestNG expects. YAML makes this pretty easy since it lets you map keywords to classes. 
 
 The entire effort is contained in these few lines: 
-    
-    
-    Constructor constructor = new Constructor(XmlSuite.class);
-    TypeDescription suiteDescription = new TypeDescription(XmlSuite.class);
-    suiteDescription.putListPropertyType("packages", XmlPackage.class);
-    suiteDescription.putListPropertyType("listeners", String.class);
-    suiteDescription.putListPropertyType("tests", XmlTest.class);
-    suiteDescription.putListPropertyType("method-selectors",
-        XmlMethodSelector.class);
-    constructor.addTypeDescription(suiteDescription);
-    TypeDescription testDescription = new TypeDescription(XmlTest.class);
-    testDescription.putListPropertyType("classes", XmlClass.class);
-    testDescription.putMapPropertyType("metaGroups", String.class, List.class);
-    testDescription.putListPropertyType("method-selectors",
-        XmlMethodSelector.class);
-    constructor.addTypeDescription(testDescription);
-    Loader loader = new Loader(constructor);
-    org.yaml.snakeyaml.Yaml y = new org.yaml.snakeyaml.Yaml(loader);
-    FileInputStream is = new FileInputStream(new File(filePath));
-    XmlSuite result = (XmlSuite) y.load(is);
-    
+
+```java
+Constructor constructor = new Constructor(XmlSuite.class);
+TypeDescription suiteDescription = new TypeDescription(XmlSuite.class);
+suiteDescription.putListPropertyType("packages", XmlPackage.class);
+suiteDescription.putListPropertyType("listeners", String.class);
+suiteDescription.putListPropertyType("tests", XmlTest.class);
+suiteDescription.putListPropertyType("method-selectors",
+    XmlMethodSelector.class);
+constructor.addTypeDescription(suiteDescription);
+TypeDescription testDescription = new TypeDescription(XmlTest.class);
+testDescription.putListPropertyType("classes", XmlClass.class);
+testDescription.putMapPropertyType("metaGroups", String.class, List.class);
+testDescription.putListPropertyType("method-selectors",
+    XmlMethodSelector.class);
+constructor.addTypeDescription(testDescription);
+Loader loader = new Loader(constructor);
+org.yaml.snakeyaml.Yaml y = new org.yaml.snakeyaml.Yaml(loader);
+FileInputStream is = new FileInputStream(new File(filePath));
+XmlSuite result = (XmlSuite) y.load(is);
+```
 
 This part was really easy. I had to make a few additional adjustments that I'll gloss over, but overall, the process was very smooth. 
 
@@ -175,19 +166,20 @@ As for YAML itself, the specification makes it look harder than it really is, so
   * Single line list: [ a, b, c ] 
   * Single line map: { a:1, b:2, c:3 } 
   * Multi line list: 
-        
-        - a
-            - b
-            - c
-          
+
+```text
+    - a
+        - b
+        - c
+```
 
   * Multi line map: 
-        
-        a: 1
-            b: 2
-            c: 3
-          
 
+```yaml
+    a: 1
+        b: 2
+        c: 3
+```
 
 There are a couple of downsides to YAML: there are not a lot of tools available for it and it's also not very easy to validate (I am not aware of anything similar to a DTD or a schema). Despite these limitations, I'm still very tempted to officially add support for YAML in TestNG because of the convenience it brings. 
 

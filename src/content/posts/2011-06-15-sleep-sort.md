@@ -113,20 +113,20 @@ comments:
 ---
 
 It's not very often that someone invents a new sort, but I have certainly never seen [that one](http://dis.4chan.org/read/prog/1295544154) before: 
-    
-    
-    #!/bin/bash
-    function f() {
-        sleep "$1"
-        echo "$1"
-    }
-    while [ -n "$1" ]
-    do
-        f "$1" &
-        shift
-    done
-    wait
-    
+
+```java
+#!/bin/bash
+function f() {
+    sleep "$1"
+    echo "$1"
+}
+while [ -n "$1" ]
+do
+    f "$1" &
+    shift
+done
+wait
+```
 
 The idea is simple: you take the first element of the array, say n, you fork a new process which sleeps n seconds then displays that number. Repeat for the next element. 
 

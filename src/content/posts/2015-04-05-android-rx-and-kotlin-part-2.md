@@ -37,37 +37,37 @@ The parameter you give to these methods is a `Scheduler`, an Rx abstraction that
 Additionally, RxAndroid defines the more Android-specific `AndroidSchedulers.mainThread()`, which is self explanatory. 
 
 A typical piece of code on Android is to run a few tasks in the background (network access, expensive computation, database update, etc...) and based on the result of that action, you update your UI. The way to implement this with Rx is straightforward: you subscribe on whichever background thread is more appropriate for your actions and you observe on the main thread: 
-    
-    
-    trait Server {
-        fun findUser(name: String) : Observable<JsonObject>
+
+```scala
+trait Server {
+    fun findUser(name: String) : Observable<JsonObject>
+}
+data class User(val id: String, val name: String)
+fun p(s: String) {
+    println("[${Thread.currentThread().getName()}] ${s}")
+}
+Observable.just("cedric")
+    .subscribeOn(Schedulers.io())
+    .flatMap {
+    	p("Calling server.findUser");
+    	server.findUser("cedric")
     }
-    data class User(val id: String, val name: String)
-    fun p(s: String) {
-        println("[${Thread.currentThread().getName()}] ${s}")
-    }
-    Observable.just("cedric")
-        .subscribeOn(Schedulers.io())
-        .flatMap {
-        	p("Calling server.findUser");
-        	server.findUser("cedric")
-        }
-        .map{jo ->
-            p("Mapping to a User object")
-        	User(jo.get("id").getAsString(),
-                 jo.get("name").getAsString())
-         }
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe{ u -> p("User: ${u}a") }
-    
+    .map{jo ->
+        p("Mapping to a User object")
+    	User(jo.get("id").getAsString(),
+             jo.get("name").getAsString())
+     }
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribe{ u -> p("User: ${u}a") }
+```
 
 We start with a string (which could come from an `EditText` and we specify that we'll be subscribing from the I/O thread. Then we call the server with that name (on the I/O thread), turn the JSON response into a `User` object and we print that object: 
-    
-    
-    [IoThreadScheduler-1] Calling server.findUser
-    [IoThreadScheduler-1] Mapping to a User object
-    [Main] User: User(id=123, name=cedric)
-    
+
+```kotlin
+[IoThreadScheduler-1] Calling server.findUser
+[IoThreadScheduler-1] Mapping to a User object
+[Main] User: User(id=123, name=cedric)
+```
 
 Note that even though you can specify multiple `subscribeOn`, all the subscriptions will happen on the first scheduler (subsequent `subscribeOn` will be ignored). I'm not sure if this is by design or just an oversight, but it's not really a problem in practice. If you ever want to subscribe on multiple schedulers, you can always make this happen in the body of your subscription itself (for example, in the example above, if the server call was actually using Retrofit, you would see it's using its own thread pool to make that call). 
 

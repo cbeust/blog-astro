@@ -181,23 +181,23 @@ Here are the main issues with `PropertyChangeSupport`:
 #### Extreme boilerplate
 
 Any bean or model class that wants to notify the rest of the world that its value changed needs to include the following: 
-    
-    
-    public class SomeBean {
-     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
-     public void setProperty(String newValue) {
-      String oldValue = property;
-      property = newValue;
-      changeSupport.firePropertyChange("propertyName", oldValue, newValue);
-     }
-     public void addPropertyChangeListener(PropertyChangeListener l) {
-      changeSupport.add(l);
-     }
-     public void removePropertyChangeListener(PropertyChangeListener l) {
-      changeSupport.remove(l);
-     }
-    }
-    
+
+```java
+public class SomeBean {
+ private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
+ public void setProperty(String newValue) {
+  String oldValue = property;
+  property = newValue;
+  changeSupport.firePropertyChange("propertyName", oldValue, newValue);
+ }
+ public void addPropertyChangeListener(PropertyChangeListener l) {
+  changeSupport.add(l);
+ }
+ public void removePropertyChangeListener(PropertyChangeListener l) {
+  changeSupport.remove(l);
+ }
+}
+```
 
 That's a lot of code for something that should be very simple. 
 
@@ -224,47 +224,47 @@ And then, I remembered [a post that I wrote a few months ago](http://beust.com/w
 My implementation of the local bus is very small and very simple and is similar to what I described in the blog post linked above: listeners are methods and they declare themselves with a `@Subscriber` annotation. These methods are expected to accept one parameter which represents the class of the event they are interested in. 
 
 Here is a quick example: 
-    
-    
-    public class App {
-      @Subscriber
-      public void event1(NotifyEvent ne) {
-        System.out.println("event1: " + ne);
-      }
-    }
-    
-    
-    
-    JBus mb = new JBus();
-    jb.register(new App());
-    jb.post(new NotifyEvent("notify"));
-    
+
+```java
+public class App {
+  @Subscriber
+  public void event1(NotifyEvent ne) {
+    System.out.println("event1: " + ne);
+  }
+}
+
+
+
+JBus mb = new JBus();
+jb.register(new App());
+jb.post(new NotifyEvent("notify"));
+```
 
 This is the first part of the plumbing. GUI elements that want to receive updates will simply declare themselves as subscribers for certain types of events (typically, `PropertyChangeEvent`, but it doesn't have to be restricted to that). 
 
 The second part is to automate the publication of events as much as possible, and I ended up creating a class `Property` for this. Here is an example of how to use it: 
-    
-    
-    public class Person {
-      // A property that the GUI is interested in
-      private Property<String> name;
-      // A field that the GUI is not interested in
-      private int age;
-      public void setName(String n) {
-        name.set(n);
-      }
-    }
-    
+
+```java
+public class Person {
+  // A property that the GUI is interested in
+  private Property<String> name;
+  // A field that the GUI is not interested in
+  private int age;
+  public void setName(String n) {
+    name.set(n);
+  }
+}
+```
 
 The first thing you notice is that because they are of type `Property`, properties that publish events are easy to identify in the code. Additionally, properties will automatically publish events whenever their setter is invoked, which imply that 1) they need to have an instance of the message bus and 2) they need to know the name of the property that changes will be published under. 
 
 Therefore, the `Property` constructor looks like this: 
-    
-    
-    public class Property<T> {
-      public Property(JBus bus, String propertyName, Object source) { ... }
-    }
-    
+
+```java
+public class Property<T> {
+  public Property(JBus bus, String propertyName, Object source) { ... }
+}
+```
 
 The source is optional but if you specify it, it will make it possible for events to be discriminated based on where they came from, which has several practical uses. 
 

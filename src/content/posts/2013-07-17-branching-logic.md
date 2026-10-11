@@ -248,85 +248,85 @@ comments:
 ---
 
 How does the following code make you feel: 
-    
-    
-      runSomeLogic(account, person, true, false);
-    
+
+```java
+  runSomeLogic(account, person, true, false);
+```
 
 ? 
 
 Me? Annoyed. 
 
 I wish we could do away completely with this kind of code but I've come to the conclusion that such calls are unavoidable for a simple reason: 
-    
-    
-      private void complexStuff() {
-        // ... gnarly code here...
-        if (some condition) {
-          doA
-        } else {
-          doB
-        }
-        // ... more gnarly code...
-      }
-    
+
+```java
+  private void complexStuff() {
+    // ... gnarly code here...
+    if (some condition) {
+      doA
+    } else {
+      doB
+    }
+    // ... more gnarly code...
+  }
+```
 
 Accepting branching parameters in the signature is a good way to minimize the amount of duplication that you will write, however, this doesn't mean that you need to expose your callers to this implementation detail, or at least, that you can do it in a safer way than using naked booleans. 
 
 There is a whole spectrum to cover such cases, and the example above sits at one end of it. Let's see if we can enumerate the alternatives. 
 
 Let's start with the lazy way, which doesn't require any code change: 
-    
-    
-      runSomeLogic(account, person,
-            true /* use memcache */,
-            false /* no security check */);
-    
+
+```java
+  runSomeLogic(account, person,
+        true /* use memcache */,
+        false /* no security check */);
+```
 
 This gives me a better sense of what the code is doing but it's still error prone since comments are easily forgotten. Can we get the compiler to help us? 
-    
-    
-      /** Never call this, call the overloaded helper methods */
-      private void runSomeLogic(Account account, Person person, boolean useMemcache,
-          boolean securityCheck) { ... }
-      public void runSomeLogicNoCacheSecurity(Account account, Person person) {
-        runSomeLogic(account, person, false, true);
-      }
-      public void runSomeLogicCacheSecurity(Account account, Person person) {
-        runSomeLogic(account, person, true, true);
-      }
-      // ... you get the idea
-    
+
+```java
+  /** Never call this, call the overloaded helper methods */
+  private void runSomeLogic(Account account, Person person, boolean useMemcache,
+      boolean securityCheck) { ... }
+  public void runSomeLogicNoCacheSecurity(Account account, Person person) {
+    runSomeLogic(account, person, false, true);
+  }
+  public void runSomeLogicCacheSecurity(Account account, Person person) {
+    runSomeLogic(account, person, true, true);
+  }
+  // ... you get the idea
+```
 
 A bit better and the compiler will keep us honest, but you can see the combinatorial explosion here: each new boolean forces you to multiply the number of methods by two. Not really scalable. One way to make it scalable is to prevent more than one boolean parameter, but this is really just kicking the can down the road. 
 
 Maybe booleans are the problems, how about something more descriptive? 
-    
-    
-      enum CacheInfo {
-        USE,
-        DONT_USE
-      }
-      enum SecurityInfo {
-        USE,
-        DONT_USE
-      }
-      runSomeLogic(account, person, CacheInfo.USE, SecurityInfo.DONT_USE);
-    
+
+```java
+  enum CacheInfo {
+    USE,
+    DONT_USE
+  }
+  enum SecurityInfo {
+    USE,
+    DONT_USE
+  }
+  runSomeLogic(account, person, CacheInfo.USE, SecurityInfo.DONT_USE);
+```
 
 This looks somewhat better: it's both enforced by the compiler and readable, although maybe we can improve on that by creating one big enum instead of plenty of tiny ones: 
-    
-    
-      enum Use {
-        MEMCACHE,
-        SECURITY
-      }
-      enum DontUse {
-        MEMCACHE,
-        SECURITY
-      }
-      runSomeLogic(account, person, Use.MEMCACHE, DontUse.SECURITY);
-    
+
+```java
+  enum Use {
+    MEMCACHE,
+    SECURITY
+  }
+  enum DontUse {
+    MEMCACHE,
+    SECURITY
+  }
+  runSomeLogic(account, person, Use.MEMCACHE, DontUse.SECURITY);
+```
 
 The cost is two uber enums that everybody needs to import but the code reads more fluently. The downside of this approach is that we've weakened static guarantees considerably: it's now possible to pass a `Use.MEMCACHE` where a security configuration setting is expected. 
 

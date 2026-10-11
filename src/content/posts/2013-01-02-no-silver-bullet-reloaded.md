@@ -202,11 +202,11 @@ This is a pretty silly statement since functional programming languages have ass
 > Let??s look at a functional program for the squares of integers. We??ll use the language Clojure for this, though the concepts we??re going to explore work the same in any functional language. (take 25 (squares-of (integers))) 
 
 I find the use of Clojure (or more generally, Lisp) to illustrate his points a bit puzzling because while the question of whether functional programming will play a big part in the software industry's future is still up for debate, it seems pretty clear to me that 1) object orientation and 2) static typing are two concepts that have clearly established themselves as powerhouse ideas that have an established track record and a bright future ahead of them. Scala or Kotlin would have been a better choice, especially they are not that much more verbose on such a trivial example: 
-    
-    
-    // Kotlin
-    ints.map { it * it }.take(25)
-    
+
+```kotlin
+// Kotlin
+ints.map { it * it }.take(25)
+```
 
 > Read that sentence again; because I did something important there. I took the three separate definitions of the functions that I gave you in the preceding paragraph and combined them into a single sentence. That??s called: (are you ready for the buzzword?) Referential Transparency. [cue: Fanfare, glitter, ticker tape, cheering crowds] 
 

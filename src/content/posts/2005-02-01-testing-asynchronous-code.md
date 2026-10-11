@@ -25,23 +25,23 @@ comments:
 A user recently submitted his problem on the TestNG mailing-list:  he needed to send asynchronous messages (this part hardly ever failed) and then wanted to use TestNG to make sure that the response to these messages was well received.
 
 As I was considering adding asynchronous support to TestNG, it occurred to me that it was actually very easy to achieve:
-    
-    
-    private boolean m_success = false;
-    @BeforeClass
-    public void sendMessage() {
-      // send the message, specify the callback
-    }
-    private void callback() {
-      // if we receive the correct result, m_success = true
-    }
-    @Test(timeOut = 10000)
-    public void waitForAnswer() {
-      while (! m_success) {
-        Thread.sleep(1000);
-      }
-    }
-    
+
+```java
+private boolean m_success = false;
+@BeforeClass
+public void sendMessage() {
+  // send the message, specify the callback
+}
+private void callback() {
+  // if we receive the correct result, m_success = true
+}
+@Test(timeOut = 10000)
+public void waitForAnswer() {
+  while (! m_success) {
+    Thread.sleep(1000);
+  }
+}
+```
 
 In this test, the message is sent as part of the initialization of the test with `@BeforeClass`, guaranteeing that this code will be executed before the test methods are invoked.
 
@@ -51,32 +51,33 @@ This code can be adapted to more sophisticated needs:
 
   * If the sending of the message can also fail and you want to test that as well, you should turn the `sendMessage()` into a `@Test` method as well, and in order to guarantee that it will be called before `waitForAnswer()`, simply have `waitForAnswer()` depend on `sendMessage()`:  
 
-        
-        @Test(groups = { "send" })
-        public void sendMessage() {
-          // send the message, specify the callback
-        }
-        @Test(timeOut = 10000, dependsOnGroups = { "send" })
-        public void waitForAnswer() {
-          while (! m_success) {
-            Thread.sleep(1000);
-          }
-        }
-        
+```java
+    @Test(groups = { "send" })
+    public void sendMessage() {
+      // send the message, specify the callback
+    }
+    @Test(timeOut = 10000, dependsOnGroups = { "send" })
+    public void waitForAnswer() {
+      while (! m_success) {
+        Thread.sleep(1000);
+      }
+    }
+```
 
 The difference with the code above is that now that `sendMessage()` is a `@Test` method, it will be included in the final report. 
   
   
 
   * It is not uncommon for messaging systems to be unreliable (or more precisely, "as reliable as the underlying medium"), so your business logic should take into account the potential loss of packets.  To achieve this, you can use the "partial failure" feature of TestNG: 
-        
-        @Test(timeOut = 10000, invocationCount = 1000, successPercentage = 98)
-        public void waitForAnswer() {
-          while (! m_success) {
-            Thread.sleep(1000);
-          }
-        }
-        
+
+```java
+    @Test(timeOut = 10000, invocationCount = 1000, successPercentage = 98)
+    public void waitForAnswer() {
+      while (! m_success) {
+        Thread.sleep(1000);
+      }
+    }
+```
 
 which instructs TestNG to invoke this method a thousand times, but to consider the overall test passed even if only 98% of them succeed (of course, in order for this test to work, you should invoke sendMessage() a thousand times as well).
 

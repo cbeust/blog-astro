@@ -66,15 +66,15 @@ comments:
 I recently decided to go over some of the Haskell examples from the ["Learn you a Haskell" web site](http://learnyouahaskell.com/) and port them to [Fantom](http://fantom.org). 
 
 The first one I worked on is the [RPN calculator](http://learnyouahaskell.com/functionally-solving-problems). Here is the Haskell version: 
-    
-    
-    solveRPN :: (Num a, Read a) => String -> a
-    solveRPN = head . foldl foldingFunction [] . words
-        where   foldingFunction (x:y:ys) "*" = (x * y):ys
-                foldingFunction (x:y:ys) "+" = (x + y):ys
-                foldingFunction (x:y:ys) "-" = (y - x):ys
-                foldingFunction xs numberString = read numberString:xs
-    
+
+```text
+solveRPN :: (Num a, Read a) => String -> a
+solveRPN = head . foldl foldingFunction [] . words
+    where   foldingFunction (x:y:ys) "*" = (x * y):ys
+            foldingFunction (x:y:ys) "+" = (x + y):ys
+            foldingFunction (x:y:ys) "-" = (y - x):ys
+            foldingFunction xs numberString = read numberString:xs
+```
 
 There is a lot going on in this small snippet, so if you're not familiar with Haskell, here is a brief explanation. 
 
@@ -89,49 +89,49 @@ The heart of this implementation is the `foldl` function, which is short for "fo
 The trick that is important to understand before trying to port this function in Fantom was to understand exactly how `foldl` was being used. The folding operation acts on a list and it takes an initial value and a closure. `fold` takes each element of the list in turn, passes it to the closure along with the initial value, takes the return value and makes *that* the new initial value. 
 
 The code snippets that you will see in manuals will often use a simple type for the initial value, such as integer, which is used to accumulate values as the calculations go through the list: 
-    
-    
-    foldl (+) 0 [1,2,3] => 6
-    
+
+```text
+foldl (+) 0 [1,2,3] => 6
+```
 
 The important part here is to realize that the folding function is polymorphic and that the type of this accumulator can be anything. The only constraint is that the closure's return type needs to be similar to that of the accumulator. This may seem obvious since that return value will be passed to the next closure call, but keep this in mind as we move forward. 
 
 For example, the simplest closure signature would be `(int, int) -> int` (using a pseudo notation for a method signature). But nothing stops you from having `(char, int) -> char` or `(Person, int) -> Person`. Again, the only constraint is that the accumulator (first parameter) and the return types need to be similar (or compatible, but let's keep things simple). 
 
 Revisiting the `foldingFunction` above, you will realize that the accumulator type is an entire list. And the return type is, of course, a list as well. This list will sometimes grow and sometimes shrink. If the next symbol encountered in the input is a number, then that number will be added to the list. But if that symbol is an operator, then that operator will be applied to the first two elements of the list, which will be replaced by the result: 
-    
-    
-    foldingFunction([3, 5], "2")    -> [2 3 5]
-    foldingFunction([2, 3, 5], "*") -> [6, 5]
-    
+
+```text
+foldingFunction([3, 5], "2")    -> [2 3 5]
+foldingFunction([2, 3, 5], "*") -> [6, 5]
+```
 
 As it turns out, Fantom's `List` class has a folding function, and it's called `reduce`, so here is the Fantom version: 
-    
-    
-    foldingFunction := | Int[] n, Str p -> Int[] | {
-      echo("n:" + n)
-      switch(p) {
-        case "*" : return n.push(n.pop * n.pop)
-        case "+" : return n.push(n.pop + n.pop)
-        case "-" : return n.push(n.pop - n.pop)
-        case "/" : return n.push(n.pop / n.pop)
-        default: return n.push(p.toInt)
-      }
-    };
-    "8 1 2 + 5 * +".split.reduce([,], foldingFunction)
-    
+
+```java
+foldingFunction := | Int[] n, Str p -> Int[] | {
+  echo("n:" + n)
+  switch(p) {
+    case "*" : return n.push(n.pop * n.pop)
+    case "+" : return n.push(n.pop + n.pop)
+    case "-" : return n.push(n.pop - n.pop)
+    case "/" : return n.push(n.pop / n.pop)
+    default: return n.push(p.toInt)
+  }
+};
+"8 1 2 + 5 * +".split.reduce([,], foldingFunction)
+```
 
 Here is the output: 
-    
-    
-    n:[,]
-    n:[8]
-    n:[8, 1]
-    n:[8, 1, 2]
-    n:[8, 3]
-    n:[8, 3, 5]
-    n:[8, 15]
-    
+
+```text
+n:[,]
+n:[8]
+n:[8, 1]
+n:[8, 1, 2]
+n:[8, 3]
+n:[8, 3, 5]
+n:[8, 15]
+```
 
 Let's start with the last line of the code, which splits the input into a list containing each individual symbol and then invokes the `reduce` method with an empty list as the initial value for the accumulator and the folding function defined above. 
 

@@ -46,29 +46,31 @@ Enough preamble, let???s dig in. To give you an idea of what lies ahead, here ar
 ## Constructors and default parameters
 
 Let???s say we want to create a Window with coordinates and a `boolean `visibility attribute, which defaults to `false`. Here is what it looks like in Rust:
-    
-    
-    struct Window {  x: u16,
-      y: u16,
-      visible: bool,
+
+```rust
+struct Window {  x: u16,
+  y: u16,
+  visible: bool,
+}
+
+impl Window {
+  fn new_with_visibility(x: u16, y: u16, visible: bool) -> Self {
+    Window {
+      x, y, visible
     }
-    
-    impl Window {
-      fn new_with_visibility(x: u16, y: u16, visible: bool) -> Self {
-        Window {
-          x, y, visible
-        }
-      }
-    
-      fn new(x: u16, y: u16) -> Self {
-        Window::new_with_visibility(x, y, false)
-      }
-    }
+  }
+
+  fn new(x: u16, y: u16) -> Self {
+    Window::new_with_visibility(x, y, false)
+  }
+}
+```
 
 And now in Kotlin:
-    
-    
-    class Window(x: Int, y: Int, visible: Boolean = false)
+
+```kotlin
+class Window(x: Int, y: Int, visible: Boolean = false)
+```
 
 That???s a huge difference. Not just in line count, but in cognitive overload. There is a lot to parse in Rust before you conceptually understand what this class is and does, whereas reading one line in Kotlin immediately gives you this information.
 
@@ -95,28 +97,32 @@ This is a feature that I consider more ???nice to have??? than really essential,
 Here again, Kotlin hits a sweet spot by allowing to name parameters but not requiring you to use these names all the time (a mistake that both Smalltalk and Objective C made). Therefore, you get the best of both worlds: most of the time, invoking a function is intuitive enough without naming the parameters, but now and then, they come in very handy to disambiguate complex signatures.
 
 For example, imagine we add a boolean to the Window structure above to denote whether our window is black and white: 
-    
-    
-    class Window(x: Int, y: Int, visible: Boolean = false, blackAndWhite: Boolean = false)  
-    ---  
-  
+
+```diff
+class Window(x: Int, y: Int, visible: Boolean = false, blackAndWhite: Boolean = false)  
+---  
+```
+
 Without named parameters, calls to the constructor can be ambiguous to a reader:
-    
-    
-    val w = Window(0, 0, false, true) // mmmh, which boolean means what?
+
+```kotlin
+val w = Window(0, 0, false, true) // mmmh, which boolean means what?
+```
 
 Kotlin lets you mix unnamed and named parameters to disambiguate the call:
-    
-    
-    val w = Window(0, 0, visible = false, blackAndWhite = true)
+
+```kotlin
+val w = Window(0, 0, visible = false, blackAndWhite = true)
+```
 
 Note that in this code, `x` and `y` are not explicitly named (because their meaning is implied to be obvious), but the boolean parameters are.
 
 As an added bonus, named parameters can be used in any order, which reduces the cognitive load on the developer since you no longer need to remember in which order these parameters are defined. Note also that this feature combines harmoniously with default parameters:
-    
-    
-    // skip 'visible', use its default value
-    val w = Window(0, 0, blackAndWhite = true)
+
+```kotlin
+// skip 'visible', use its default value
+val w = Window(0, 0, blackAndWhite = true)
+```
 
 In the absence of this feature, you will have to define an additional constructor in your Rust structure, one for each combination of parameters that you want to support. If you are keeping count, you now need four constructors:
 
@@ -140,44 +146,47 @@ Rust???s enums are almost as good, but they omit one critical component that 
 I???ll give a quick example. One of my recent projects was to write an Apple][ emulator, which includes a 6502 processor emulator. Processor emulation is a pretty easy problem to solve: you define opcodes with their hexadecimal value, string representation, and size, and you implement a giant switch to match the bytes that you read from the file against these opcodes.
 
 In Kotlin, you could define these opcodes as enums as follows:
-    
-    
-    enum class Opcode(val opcode: Int, val opName: String, val size: Int) {
-      BRK(0x00, "BRK", 1),
-      JSR(0x20, "JSR", 3)
-      //...
-    }
+
+```kotlin
+enum class Opcode(val opcode: Int, val opName: String, val size: Int) {
+  BRK(0x00, "BRK", 1),
+  JSR(0x20, "JSR", 3)
+  //...
+}
+```
 
 While Rust???s enums are pretty powerful overall (especially when coupled with Rust???s destructuring match syntax), they only allow you to define signatures for each of your enum instances (which Kotlin supports too) but you can???t define parameters at your enum level, so the code above is just impossible to replicate in a Rust enum.
 
 My solution to this specific problem was to first define all the opcodes as constants and put them in a vector as tuples:
-    
-    
-    pub const BRK: u8 = 0x00;
-    pub const JSR: u8 = 0x20;
-    // ...
-    
-    // opcode hex, opcode name, instruction size
-    let ops: Vec<(u8, &str, usize)> = vec![
-      (BRK, "BRK", 1),
-      (JSR, "JSR", 3),
-      // ...
-    ];
-    | | | | | | | | 
+
+```kotlin
+pub const BRK: u8 = 0x00;
+pub const JSR: u8 = 0x20;
+// ...
+
+// opcode hex, opcode name, instruction size
+let ops: Vec<(u8, &str, usize)> = vec![
+  (BRK, "BRK", 1),
+  (JSR, "JSR", 3),
+  // ...
+];
+| | | | | | | | 
+```
 
 And then enumerate this vector to create instances of an Opcode structure, and put these in a HashMap, indexed by their opcode value:
-    
-    
-    struct Opcode {
-      opcode: u8,
-      name: &'static str,
-      size: usize,
-    }
-    
-    let mut result: HashMap<u8, Opcode> = HashMap::new();
-    for op in ops {
-      result.insert(op.0, Opcode::new(op.0, op.1, op.2));
-    }
+
+```rust
+struct Opcode {
+  opcode: u8,
+  name: &'static str,
+  size: usize,
+}
+
+let mut result: HashMap<u8, Opcode> = HashMap::new();
+for op in ops {
+  result.insert(op.0, Opcode::new(op.0, op.1, op.2));
+}
+```
 
 I???m sure there are various ways to reach the same result, but they all end up with a significant amount of boilerplate, and since it???s not really possible to use Rust???s enums here, we lose the benefits that they have to offer. Allowing Rust enums to be instantiated with constant values would significantly decrease the amount of boilerplate and make it a lot more readable as a result.
 

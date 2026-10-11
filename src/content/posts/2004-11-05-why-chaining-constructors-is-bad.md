@@ -384,53 +384,53 @@ This is why I use the following two rules when I write overloaded constructors:
 
 
 Here is an example, from worst: 
-    
-    
-    public class Person {
-      private String m_firstName = null;
-      private String m_lastName = null;
-      private long m_ssn = 0;
-      public Person(String lastName) {
-        m_firstName = null;
-        m_lastName = lastName;
-        m_ssn = getSsn();
-      }
-      public Person(String firstName, String lastName) {
-        m_firstName = firstName;
-        m_lastName = lastName;
-      }
-    
+
+```java
+public class Person {
+  private String m_firstName = null;
+  private String m_lastName = null;
+  private long m_ssn = 0;
+  public Person(String lastName) {
+    m_firstName = null;
+    m_lastName = lastName;
+    m_ssn = getSsn();
+  }
+  public Person(String firstName, String lastName) {
+    m_firstName = firstName;
+    m_lastName = lastName;
+  }
+```
 
 ... to better: 
-    
-    
-    public Person(String lastName) {
-      this(null, lastName);
-      m_ssn = getSsn();
-    }
-    public Person(String firstName, String lastName) {
-      m_firstName = firstName;
-      m_lastName = lastName;
-    }
-    
+
+```java
+public Person(String lastName) {
+  this(null, lastName);
+  m_ssn = getSsn();
+}
+public Person(String firstName, String lastName) {
+  m_firstName = firstName;
+  m_lastName = lastName;
+}
+```
 
 ... to best: 
-    
-    
-    public Person(String lastName) {
-      init(null, lastName);
-    }
-    public Person(String firstName, String lastName) {
-      init(firstName, lastName);
-    }
-    private void init(String firstName, String lastName) {
-      m_firstName = null;
-      m_lastName = lastName;
-      if (null == m_firstName) {
-        m_ssn = getSsn();
-      }
-    }
-    
+
+```java
+public Person(String lastName) {
+  init(null, lastName);
+}
+public Person(String firstName, String lastName) {
+  init(firstName, lastName);
+}
+private void init(String firstName, String lastName) {
+  m_firstName = null;
+  m_lastName = lastName;
+  if (null == m_firstName) {
+    m_ssn = getSsn();
+  }
+}
+```
 
 Here is why the latter form is preferable:
 
