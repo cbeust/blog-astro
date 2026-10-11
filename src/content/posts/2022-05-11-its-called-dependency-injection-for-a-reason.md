@@ -28,39 +28,40 @@ No, passing dependencies as parameters is not DI and it's actually a terrible wa
 ## Dependency Injection, the wrong way
 
 Let's imagine a typical application that starts at `main()` and then ends up calling a function you are working on, let's call it "`sendPacket()`":
-    
-    
-    fun main() {
-      f()
-    }
-    
-    fun f() {
-      g()
-    }
-    
-    fun g() {
-      sendPacket(packet)
-    }
-    
-    fun sendPacket(packet: Packet) { ... }
+```kotlin
+fun main() {
+  f()
+}
+
+fun f() {
+  g()
+}
+
+fun g() {
+  sendPacket(packet)
+}
+
+fun sendPacket(packet: Packet) { ... }
+```
 
 Next, you decide you want to log whenever a packet is sent, so you need a logger. The traditional, non DI (and wrong) way to do this would be to instantiate this logger as high as possible (so it can be used by other functions) and then passed down:
-    
-    
-    fun main() {
-      val logger = Logger()
-      f(logger)
-    }
-    
-    fun f(logger: Logger) {
-      g(logger)
-    }
-    
-    fun g(logger: Logger) {
-      sendPacket(packet, logger)
-    }
-    
-    fun sendPacket(packet: Packet, logger: Logger) { ... }
+
+```kotlin
+fun main() {
+  val logger = Logger()
+  f(logger)
+}
+
+fun f(logger: Logger) {
+  g(logger)
+}
+
+fun g(logger: Logger) {
+  sendPacket(packet, logger)
+}
+
+fun sendPacket(packet: Packet, logger: Logger) { ... }
+```
 
 Here are some things that are immediately apparent in this new version of the code:
 
@@ -97,17 +98,18 @@ And this is where the word "Injection" comes into play.
 Java and Kotlin have a great mechanism for DI (they are not the only ones, but I'll focus on them since their approach is fairly well known by now).
 
 It's very simple: you use the annotation `@Inject` to mark values as dependencies, and this annotation can be used in different places based on your scenario. The limitation of this annotation in Java and Kotlin is that it cannot be directly injected into a function (and just that function), so instead, we declare it in the class that this function belongs to, but the effect is the same:
-    
-    
-    class PacketSender {
-        @Inject
-        val logger: Logger
-    
-        fun sendPacket(packet: Packet) {
-            logger.log("Hello")
-            // send packet
-        }
+
+```kotlin
+class PacketSender {
+    @Inject
+    val logger: Logger
+
+    fun sendPacket(packet: Packet) {
+        logger.log("Hello")
+        // send packet
     }
+}
+```
 
 The encapsulation aspect is neatly fixed by this approach: the developer of the `PacketSender` class can add and remove dependencies with abandon without ever impacting the signature of `sendPacket()`, which means that its users will never break.
 
@@ -127,12 +129,12 @@ We have established that functions need two kinds of parameters:
 
 
 The interesting observation here is that these two kinds of parameters are coming from different origins, and the signature of the function should reflect that. Which led me to the following (hypothetical) syntax:
-    
-    
-    fun sendPacket(packet: Packet)(logger: Logger) {
-        logger.log("Hi")
-        // send packet
-    }
+```kotlin
+fun sendPacket(packet: Packet)(logger: Logger) {
+    logger.log("Hi")
+    // send packet
+}
+```
 
 We now have two lists of parameters, with the second one being optional. Any parameter mentioned in that second list of parameters will have to be supplied by the DI runtime of the language and its parameters are only visible while inside the function. Callers of such functions only have to supply the parameters in the first list and can completely ignore the dependency parameter list.
 
