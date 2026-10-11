@@ -8,7 +8,7 @@ export async function GET(context) {
   return rss({
     title: "Otaku — Cédric's Blog",
     description: "Personal blog and archive by Cédric",
-    site: context.site || 'https://otakublog.com',
+    site: context.site || 'https://beust.com',
     items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.pubDate,
