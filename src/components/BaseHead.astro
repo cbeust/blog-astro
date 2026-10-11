@@ -1,0 +1,60 @@
+---
+import "../styles/global.css";
+import { AstroSeo } from "@lexingtonthemes/seo";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Otaku — Cédric's Blog",
+  description = "A personal blog and archive by Cédric.",
+} = Astro.props;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Otaku",
+  url: "https://otakublog.com/",
+  description: description,
+};
+---
+
+<AstroSeo
+  title={title}
+  description={description}
+  canonical="https://otakublog.com/"
+  openGraph={{
+    url: "https://otakublog.com/",
+    title: title,
+    description: description,
+    site_name: "Otaku",
+    type: "website",
+    locale: "en_US",
+  }}
+  twitter={{
+    cardType: "summary_large_image",
+  }}
+/>
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="author" content="Cédric" />
+<meta name="theme-color" content="#ffffff" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+<link rel="preconnect" href="https://rsms.me/" />
+<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+<link
+  href="https://api.fontshare.com/v2/css?f[]=jet-brains-mono@1,2&display=swap"
+  rel="stylesheet"
+/>
+
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>

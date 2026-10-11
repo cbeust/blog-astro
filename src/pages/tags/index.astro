@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const allPosts = await getCollection("posts");
+const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())].filter(Boolean);
+const sortedTags = tags.sort((a, b) => a.localeCompare(b));
+
+const pageTitle = "Tags | Otaku";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <section class="py-12">
+    <div class="max-w-xl">
+      <h1 class="text-4xl text-balance font-medium font-display text-base-900">
+        All tags
+      </h1>
+      <p class="mt-2 text-sm text-base-500">
+        Browse posts by topic ({sortedTags.length} tags)
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-2.5 mt-8">
+      {
+        sortedTags.map((tag) => (
+          <a
+            class="text-xs font-medium text-base-700 bg-base-50 hover:bg-base-100 hover:text-blue-600 px-3 py-1.5 rounded-full border border-base-200 transition"
+            href={`/tags/${tag}`}
+          >
+            #{tag}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

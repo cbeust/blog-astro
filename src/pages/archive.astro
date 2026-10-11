@@ -1,219 +1,106 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
 
 const allPosts = await getCollection('posts');
 
 // Sort chronologically descending (newest first)
-allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 ---
 
-<Layout title="Archive | Otaku Blog">
-	<section class="archive-intro">
-		<h1 class="archive-title">Post Archive</h1>
-		<p class="archive-desc">
-			Browsing all <strong>{allPosts.length}</strong> posts.
-		</p>
-		<div class="search-box">
-			<input
-				type="text"
-				id="search-input"
-				placeholder="Filter posts by title, tag, or category..."
-				autocomplete="off"
-			/>
-		</div>
-	</section>
+<BaseLayout pageTitle="Archive | Otaku" description="Browse the complete post archive.">
+  <section class="py-12">
+    <div class="max-w-xl mx-auto text-center mb-10">
+      <h1 class="text-4xl font-medium font-display text-base-900 tracking-tight">
+        Post Archive
+      </h1>
+      <p class="mt-2 text-sm text-base-500">
+        Browsing all <strong class="text-base-900 font-semibold">{allPosts.length}</strong> posts.
+      </p>
 
-	<section class="posts-section">
-		<ul class="posts-list" id="posts-list">
-			{allPosts.map((post) => {
-				const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
-					year: 'numeric',
-					month: 'short',
-					day: 'numeric',
-				});
-				const commentCount = post.data.comments ? post.data.comments.length : 0;
-				const searchString = `${post.data.title} ${post.data.categories?.join(' ') || ''} ${post.data.tags?.join(' ') || ''}`.toLowerCase();
+      <div class="mt-6">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Filter posts by title or tag..."
+          autocomplete="off"
+          class="block w-full max-w-md mx-auto px-4 py-2.5 text-sm rounded-full border border-base-200 bg-white placeholder-base-400 text-base-900 focus:outline-none focus:ring-2 focus:ring-base-800 transition shadow-xs"
+        />
+      </div>
+    </div>
 
-				return (
-					<li class="post-card" data-search={searchString}>
-						<div class="post-card-header">
-							<time datetime={new Date(post.data.date).toISOString()} class="post-date">
-								{formattedDate}
-							</time>
-							{commentCount > 0 && (
-								<span class="post-comments">💬 {commentCount}</span>
-							)}
-						</div>
-						<h2 class="post-title">
-							<a href={`/posts/${post.id}`}>{post.data.title}</a>
-						</h2>
-						{((post.data.categories && post.data.categories.length > 0) || (post.data.tags && post.data.tags.length > 0)) && (
-							<div class="post-taxonomies">
-								{post.data.categories?.map((cat: string) => (
-									<span class="badge category">{cat}</span>
-								))}
-								{post.data.tags?.map((tag: string) => (
-									<span class="badge tag">#{tag}</span>
-								))}
-							</div>
-						)}
-					</li>
-				);
-			})}
-		</ul>
-		<p id="no-results" class="no-results" style="display: none;">No matching posts found.</p>
-	</section>
-</Layout>
+    <div class="space-y-4 max-w-2xl mx-auto" id="posts-list">
+      {allPosts.map((post) => {
+        const formattedDate = new Date(post.data.pubDate).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        });
+        const commentCount = post.data.comments ? post.data.comments.length : 0;
+        const searchString = `${post.data.title} ${post.data.tags?.join(' ') || ''}`.toLowerCase();
+
+        return (
+          <article
+            class="post-item p-4 rounded-xl border border-base-200 hover:border-base-400 bg-white transition flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+            data-search={searchString}
+          >
+            <div class="flex-grow">
+              <h2 class="text-base font-medium text-base-900 leading-snug">
+                <a href={`/posts/${post.id}`} class="hover:text-blue-600 transition">
+                  {post.data.title}
+                </a>
+              </h2>
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="flex flex-wrap gap-1.5 mt-1.5">
+                  {post.data.tags.slice(0, 3).map((tag: string) => (
+                    <a href={`/tags/${tag}`} class="text-[11px] text-base-500 hover:text-blue-600">
+                      #{tag}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div class="flex items-center gap-3 text-xs text-base-400 shrink-0">
+              <time datetime={new Date(post.data.pubDate).toISOString()}>{formattedDate}</time>
+              {commentCount > 0 && <span>💬 {commentCount}</span>}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <p id="no-results" class="text-center py-12 text-sm text-base-400" style="display: none;">
+      No matching posts found.
+    </p>
+  </section>
+</BaseLayout>
 
 <script>
-	const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
-	const postsList = document.getElementById('posts-list');
-	const noResults = document.getElementById('no-results');
+  const searchInput = document.getElementById('search-input') as HTMLInputElement | null;
+  const postsList = document.getElementById('posts-list');
+  const noResults = document.getElementById('no-results');
 
-	if (searchInput && postsList) {
-		const items = postsList.querySelectorAll<HTMLLIElement>('.post-card');
+  if (searchInput && postsList) {
+    const items = postsList.querySelectorAll<HTMLElement>('.post-item');
 
-		searchInput.addEventListener('input', () => {
-			const query = searchInput.value.toLowerCase().trim();
-			let visibleCount = 0;
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
 
-			items.forEach((item) => {
-				const data = item.getAttribute('data-search') || '';
-				if (!query || data.includes(query)) {
-					item.style.display = '';
-					visibleCount++;
-				} else {
-					item.style.display = 'none';
-				}
-			});
+      items.forEach((item) => {
+        const data = item.getAttribute('data-search') || '';
+        if (!query || data.includes(query)) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
 
-			if (noResults) {
-				noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-			}
-		});
-	}
+      if (noResults) {
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    });
+  }
 </script>
-
-<style>
-	.archive-intro {
-		margin-bottom: 2.5rem;
-		text-align: center;
-	}
-
-	.archive-title {
-		font-size: 2.5rem;
-		font-weight: 800;
-		color: #0f172a;
-		margin: 0 0 0.5rem 0;
-	}
-
-	.archive-desc {
-		font-size: 1.15rem;
-		color: var(--color-text-muted);
-		margin: 0 0 1.5rem 0;
-	}
-
-	.search-box {
-		max-width: 480px;
-		margin: 0 auto;
-	}
-
-	.search-box input {
-		width: 100%;
-		padding: 0.75rem 1rem;
-		border: 1px solid var(--color-border);
-		border-radius: 8px;
-		font-size: 1rem;
-		outline: none;
-		background: var(--color-surface);
-		transition: border-color 0.2s, box-shadow 0.2s;
-	}
-
-	.search-box input:focus {
-		border-color: var(--color-primary);
-		box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-	}
-
-	.posts-section {
-		margin-top: 1.5rem;
-	}
-
-	.posts-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 1.25rem;
-	}
-
-	.post-card {
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: 10px;
-		padding: 1.25rem 1.5rem;
-		transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
-	}
-
-	.post-card:hover {
-		border-color: #cbd5e1;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-	}
-
-	.post-card-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 0.5rem;
-		font-size: 0.875rem;
-		color: var(--color-text-muted);
-	}
-
-	.post-title {
-		font-size: 1.35rem;
-		margin: 0 0 0.75rem 0;
-		line-height: 1.3;
-	}
-
-	.post-title a {
-		color: #0f172a;
-		text-decoration: none;
-	}
-
-	.post-title a:hover {
-		color: var(--color-primary);
-		text-decoration: underline;
-	}
-
-	.post-taxonomies {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.4rem;
-	}
-
-	.badge {
-		display: inline-block;
-		padding: 0.15rem 0.5rem;
-		border-radius: 9999px;
-		font-size: 0.75rem;
-		font-weight: 500;
-	}
-
-	.category {
-		background: #e0f2fe;
-		color: #0369a1;
-	}
-
-	.tag {
-		background: #f1f5f9;
-		color: #475569;
-	}
-
-	.no-results {
-		text-align: center;
-		padding: 3rem 0;
-		color: var(--color-text-muted);
-		font-size: 1.1rem;
-	}
-</style>
