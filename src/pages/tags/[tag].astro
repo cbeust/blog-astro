@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import TopEntries from "@/components/global/TopEntries.astro";
 import BlogEntries from "@/components/entries/BlogEntry.astro";
 import { getCollection } from "astro:content";
 
@@ -30,7 +31,8 @@ const { posts } = Astro.props;
 ---
 
 <BaseLayout pageTitle={`#${tag} | Otaku`}>
-  <section class="py-12">
+  <div class="py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <section class="lg:col-span-8 min-w-0">
     <div class="mb-8">
       <a href="/tags" class="inline-flex items-center text-xs font-medium text-base-600 hover:text-[#0071BB] mb-4 transition">
         ← All tags
@@ -64,5 +66,11 @@ const { posts } = Astro.props;
         ))
       }
     </div>
-  </section>
+    </section>
+
+    <!-- Right column: Top Entries -->
+    <aside class="lg:col-span-4 lg:sticky lg:top-8 mt-4 lg:mt-0">
+      <TopEntries />
+    </aside>
+  </div>
 </BaseLayout>

@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import TopEntries from "@/components/global/TopEntries.astro";
 
 const { frontmatter } = Astro.props;
 
@@ -19,7 +20,8 @@ const comments = frontmatter.comments || [];
       ← Back to home
     </a>
 
-    <article class="p-6 sm:p-10 rounded-2xl border border-base-200 bg-base-50 shadow-xs">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <article class="lg:col-span-8 min-w-0 p-6 sm:p-10 rounded-2xl border border-base-200 bg-base-50 shadow-xs">
       <header class="mb-10 pb-8 border-b border-base-200">
         <h1 class="text-3xl sm:text-4xl font-medium font-display text-base-900 leading-tight">
           {frontmatter.title}
@@ -127,5 +129,11 @@ const comments = frontmatter.comments || [];
         </section>
       )}
     </article>
+
+      <!-- Right column: Top Entries -->
+      <aside class="lg:col-span-4 lg:sticky lg:top-8 mt-4 lg:mt-0">
+        <TopEntries />
+      </aside>
+    </div>
   </div>
 </BaseLayout>

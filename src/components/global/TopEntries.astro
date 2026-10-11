@@ -1,0 +1,80 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const topEntries = [
+  {
+    slug: "i-am-the-reason-for-hungarian-notation-in-android",
+    title: "I am the reason for Hungarian notation in Android",
+  },
+  {
+    slug: "dynamic-language-refactoring-ide-pick-one",
+    title: "Dynamic language, refactoring: pick one",
+  },
+  {
+    slug: "announcing-kobalt-1-0",
+    title: "Announcing Kobalt 1.0",
+  },
+  {
+    slug: "the-kobalt-diaries-templates",
+    title: "The Kobalt diaries: Templates",
+  },
+  {
+    slug: "hard-core-multicore-with-testng",
+    title: "Hardcore multicore with TestNG",
+  },
+  {
+    slug: "more-on-multithreaded-topological-sorting-2",
+    title: "More on parallel topological sorting",
+  },
+  {
+    slug: "return-of-the-statically-typed-languages",
+    title: "The return of statically typed languages",
+  },
+  {
+    slug: "structural-typing-vs-duck-typing",
+    title: "Structural typing vs/ duck typing",
+  },
+  {
+    slug: "agile-people-still-dont-get-it",
+    title: "Agile people still don't get it",
+  },
+  {
+    slug: "various-ways-to-get-randomness-wrong",
+    title: "Various ways to get randomness wrong",
+  },
+  {
+    slug: "coding-challenge",
+    title: "Coding challenge",
+  },
+  {
+    slug: "coding-challenge-wrap-up",
+    title: "Coding challenge wrap up",
+  },
+];
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+---
+
+<div class={`p-6 rounded-2xl border border-base-200 bg-base-50 shadow-xs ${className}`}>
+  <div class="flex items-center justify-between pb-3 mb-4 border-b border-base-200">
+    <h3 class="text-xs font-bold uppercase tracking-wider text-base-900 font-display">
+      Top entries
+    </h3>
+  </div>
+  <ul class="divide-y divide-base-200/60 -my-1 text-sm">
+    {topEntries.map((entry) => (
+      <li class="py-2.5 first:pt-1 last:pb-1">
+        <a
+          href={`${basePath}/posts/${entry.slug}`}
+          class="text-base-800 hover:text-[#0071BB] font-medium leading-snug transition block"
+        >
+          {entry.title}
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>

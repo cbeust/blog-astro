@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import TopEntries from "@/components/global/TopEntries.astro";
 import Cta from "@/components/global/Cta.astro";
 import { getCollection, render } from "astro:content";
 
@@ -28,8 +29,9 @@ const renderedPosts = await Promise.all(
 ---
 
 <BaseLayout pageTitle="Otaku — Cédric's Blog">
-  <section class="py-12">
-    <!-- Header banner -->
+  <div class="py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <section class="lg:col-span-8 min-w-0">
+      <!-- Header banner -->
     <div class="mb-12">
       <h1 class="text-4xl sm:text-5xl font-medium font-display text-base-900 tracking-tight">
         Otaku
@@ -146,5 +148,11 @@ const renderedPosts = await Promise.all(
     </div>
 
     <Cta />
-  </section>
+    </section>
+
+    <!-- Right column: Top Entries -->
+    <aside class="lg:col-span-4 lg:sticky lg:top-8 mt-4 lg:mt-0">
+      <TopEntries />
+    </aside>
+  </div>
 </BaseLayout>
