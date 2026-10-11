@@ -1,0 +1,225 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('posts');
+	return posts.map((post) => ({
+		params: { id: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = new Date(post.data.date).toLocaleDateString('en-US', {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+});
+---
+
+<Layout title={`${post.data.title} | Otaku Blog`}>
+	<article class="post">
+		<header class="post-header">
+			<a href="/" class="back-link">← Back to all posts</a>
+			<h1 class="post-title">{post.data.title}</h1>
+			<div class="post-meta">
+				<time datetime={new Date(post.data.date).toISOString()}>{formattedDate}</time>
+				{post.data.categories && post.data.categories.length > 0 && (
+					<span class="meta-separator">•</span>
+					<div class="categories">
+						{post.data.categories.map((cat: string) => (
+							<span class="badge category">{cat}</span>
+						))}
+					</div>
+				)}
+				{post.data.tags && post.data.tags.length > 0 && (
+					<span class="meta-separator">•</span>
+					<div class="tags">
+						{post.data.tags.map((tag: string) => (
+							<span class="badge tag">#{tag}</span>
+						))}
+					</div>
+				)}
+			</div>
+		</header>
+
+		<div class="prose">
+			<Content />
+		</div>
+
+		{post.data.comments && post.data.comments.length > 0 && (
+			<section class="comments-section" id="comments">
+				<h2>Comments ({post.data.comments.length})</h2>
+				<div class="comments-list">
+					{post.data.comments.map((comment: any) => (
+						<div class="comment-item">
+							<div class="comment-header">
+								<strong class="comment-author">{comment.author || 'Anonymous'}</strong>
+								<time class="comment-date">
+									{new Date(comment.date).toLocaleDateString('en-US', {
+										year: 'numeric',
+										month: 'short',
+										day: 'numeric',
+									})}
+								</time>
+							</div>
+							<div class="comment-body">
+								<p>{comment.content}</p>
+							</div>
+							{comment.replies && comment.replies.length > 0 && (
+								<div class="comment-replies">
+									{comment.replies.map((reply: any) => (
+										<div class="comment-item reply">
+											<div class="comment-header">
+												<strong class="comment-author">{reply.author || 'Anonymous'}</strong>
+												<time class="comment-date">
+													{new Date(reply.date).toLocaleDateString('en-US', {
+														year: 'numeric',
+														month: 'short',
+														day: 'numeric',
+													})}
+												</time>
+											</div>
+											<div class="comment-body">
+												<p>{reply.content}</p>
+											</div>
+										</div>
+									))}
+								</div>
+							)}
+						</div>
+					))}
+				</div>
+			</section>
+		)}
+	</article>
+</Layout>
+
+<style>
+	.post {
+		max-width: 100%;
+	}
+
+	.post-header {
+		margin-bottom: 2.5rem;
+		border-bottom: 1px solid var(--color-border);
+		padding-bottom: 1.5rem;
+	}
+
+	.back-link {
+		display: inline-block;
+		margin-bottom: 1.25rem;
+		color: var(--color-primary);
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 0.95rem;
+	}
+
+	.back-link:hover {
+		text-decoration: underline;
+	}
+
+	.post-title {
+		font-size: 2.25rem;
+		line-height: 1.25;
+		margin: 0 0 1rem 0;
+		color: #0f172a;
+	}
+
+	.post-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.95rem;
+		color: var(--color-text-muted);
+	}
+
+	.meta-separator {
+		color: var(--color-border);
+	}
+
+	.badge {
+		display: inline-block;
+		padding: 0.2rem 0.6rem;
+		border-radius: 9999px;
+		font-size: 0.8rem;
+		font-weight: 500;
+	}
+
+	.category {
+		background: #e0f2fe;
+		color: #0369a1;
+	}
+
+	.tag {
+		background: #f1f5f9;
+		color: #475569;
+	}
+
+	.comments-section {
+		margin-top: 4rem;
+		padding-top: 2rem;
+		border-top: 2px solid var(--color-border);
+	}
+
+	.comments-section h2 {
+		font-size: 1.5rem;
+		margin-bottom: 1.5rem;
+		color: #0f172a;
+	}
+
+	.comments-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.comment-item {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: 8px;
+		padding: 1.25rem;
+	}
+
+	.comment-header {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 0.5rem;
+	}
+
+	.comment-author {
+		color: #0f172a;
+	}
+
+	.comment-date {
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+	}
+
+	.comment-body {
+		font-size: 0.95rem;
+		line-height: 1.5;
+		white-space: pre-line;
+	}
+
+	.comment-body p {
+		margin: 0;
+	}
+
+	.comment-replies {
+		margin-top: 1rem;
+		padding-left: 1.5rem;
+		border-left: 2px solid var(--color-border);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.comment-item.reply {
+		background: #f8fafc;
+	}
+</style>
