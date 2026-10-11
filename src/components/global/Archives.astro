@@ -47,7 +47,7 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
       Archives
     </h3>
   </div>
-  <ul class="divide-y divide-base-200/60 -my-1 text-sm max-h-96 overflow-y-auto pr-1">
+  <ul class="divide-y divide-base-200/60 -my-1 text-sm">
     {archiveMonths.map((item) => (
       <li class="py-2.5 first:pt-1 last:pb-1">
         <a
@@ -60,19 +60,3 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
     ))}
   </ul>
 </div>
-
-<style>
-  ul::-webkit-scrollbar {
-    width: 5px;
-  }
-  ul::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ul::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 9999px;
-  }
-  ul::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.3);
-  }
-</style>
