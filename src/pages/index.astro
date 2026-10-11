@@ -32,7 +32,7 @@ const renderedPosts = await Promise.all(
 
 <BaseLayout pageTitle="Otaku — Cédric's Blog">
   <div class="py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-    <section class="lg:col-span-8 min-w-0">
+    <section class="lg:col-span-9 min-w-0">
       {tags.length > 0 && (
         <div class="flex flex-wrap items-center gap-2 mb-10 pb-6 border-b border-base-200">
           <span class="text-xs font-semibold uppercase tracking-wider text-base-600 mr-1">
@@ -143,7 +143,7 @@ const renderedPosts = await Promise.all(
     </section>
 
     <!-- Right column: Top Entries, Recent Posts, and Archives -->
-    <aside class="lg:col-span-4 space-y-6 mt-4 lg:mt-0">
+    <aside class="lg:col-span-3 space-y-6 mt-4 lg:mt-0">
       <TopEntries />
       <RecentPosts />
       <Archives />

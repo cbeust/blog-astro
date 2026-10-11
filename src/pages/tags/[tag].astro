@@ -34,7 +34,7 @@ const { posts } = Astro.props;
 
 <BaseLayout pageTitle={`#${tag} | Otaku`}>
   <div class="py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-    <section class="lg:col-span-8 min-w-0">
+    <section class="lg:col-span-9 min-w-0">
     <div class="mb-8">
       <a href="/tags" class="inline-flex items-center text-xs font-medium text-base-600 hover:text-[#0071BB] mb-4 transition">
         ← All tags
@@ -71,7 +71,7 @@ const { posts } = Astro.props;
     </section>
 
     <!-- Right column: Top Entries, Recent Posts, and Archives -->
-    <aside class="lg:col-span-4 space-y-6 mt-4 lg:mt-0">
+    <aside class="lg:col-span-3 space-y-6 mt-4 lg:mt-0">
       <TopEntries />
       <RecentPosts />
       <Archives />

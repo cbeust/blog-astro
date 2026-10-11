@@ -48,7 +48,7 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 <BaseLayout pageTitle={`${monthName} ${year} | Otaku`}>
   <div class="py-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-    <section class="lg:col-span-8 min-w-0">
+    <section class="lg:col-span-9 min-w-0">
       <div class="mb-8">
         <a
           href={`${basePath}/archive`}
@@ -90,7 +90,7 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
     </section>
 
     <!-- Right column: Top Entries, Recent Posts, and Archives -->
-    <aside class="lg:col-span-4 space-y-6 mt-4 lg:mt-0">
+    <aside class="lg:col-span-3 space-y-6 mt-4 lg:mt-0">
       <TopEntries />
       <RecentPosts />
       <Archives />
