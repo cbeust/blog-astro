@@ -56,16 +56,18 @@ const comments = frontmatter.comments || [];
             )}
           </div>
 
-          {frontmatter.tags && frontmatter.tags.length > 0 && (
+          {frontmatter.tags?.filter((t: string) => t.toLowerCase() !== 'uncategorized').length > 0 && (
             <div class="flex flex-wrap gap-1.5">
-              {frontmatter.tags.map((tag: string) => (
-                <a
-                  href={`/tags/${tag}`}
-                  class="bg-base-200 hover:bg-base-300 hover:text-[#0071BB] text-base-700 px-2.5 py-1 rounded-full text-[11px] font-medium border border-base-300 transition"
-                >
-                  #{tag}
-                </a>
-              ))}
+              {frontmatter.tags
+                .filter((t: string) => t.toLowerCase() !== 'uncategorized')
+                .map((tag: string) => (
+                  <a
+                    href={`/tags/${tag}`}
+                    class="bg-base-200 hover:bg-base-300 hover:text-[#0071BB] text-base-700 px-2.5 py-1 rounded-full text-[11px] font-medium border border-base-300 transition"
+                  >
+                    #{tag}
+                  </a>
+                ))}
             </div>
           )}
         </div>

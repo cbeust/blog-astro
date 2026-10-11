@@ -63,16 +63,18 @@ const {
       )}
     </div>
 
-    {tags && tags.length > 0 && (
+    {tags?.filter((t) => t.toLowerCase() !== 'uncategorized').length > 0 && (
       <div class="flex flex-wrap gap-1.5 mt-4 pt-3 border-t border-base-200">
-        {tags.map((tag) => (
-          <a
-            href={`/tags/${tag}`}
-            class="text-[11px] font-medium text-base-700 bg-base-200 hover:bg-base-300 hover:text-[#0071BB] px-2.5 py-0.5 rounded-full transition"
-          >
-            #{tag}
-          </a>
-        ))}
+        {tags
+          .filter((t) => t.toLowerCase() !== 'uncategorized')
+          .map((tag) => (
+            <a
+              href={`/tags/${tag}`}
+              class="text-[11px] font-medium text-base-700 bg-base-200 hover:bg-base-300 hover:text-[#0071BB] px-2.5 py-0.5 rounded-full transition"
+            >
+              #{tag}
+            </a>
+          ))}
       </div>
     )}
   </div>

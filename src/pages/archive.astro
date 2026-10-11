@@ -50,13 +50,16 @@ allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pub
                   {post.data.title}
                 </a>
               </h2>
-              {post.data.tags && post.data.tags.length > 0 && (
+              {post.data.tags?.filter((t: string) => t.toLowerCase() !== 'uncategorized').length > 0 && (
                 <div class="flex flex-wrap gap-1.5 mt-1.5">
-                  {post.data.tags.slice(0, 3).map((tag: string) => (
-                    <a href={`/tags/${tag}`} class="text-[11px] text-base-600 hover:text-[#0071BB]">
-                      #{tag}
-                    </a>
-                  ))}
+                  {post.data.tags
+                    .filter((t: string) => t.toLowerCase() !== 'uncategorized')
+                    .slice(0, 3)
+                    .map((tag: string) => (
+                      <a href={`/tags/${tag}`} class="text-[11px] text-base-600 hover:text-[#0071BB]">
+                        #{tag}
+                      </a>
+                    ))}
                 </div>
               )}
             </div>
