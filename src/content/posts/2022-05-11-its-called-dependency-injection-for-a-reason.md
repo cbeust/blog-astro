@@ -8,7 +8,7 @@ comments:
 - id: 10845
   author: Michael Bayne
   date: '2022-05-11T20:43:39'
-  content: "Scala 3???s implicit function arguments were designed for purposes like this, among other things. https://docs.scala-lang.org/scala3/reference/contextual/using-clauses.html\r\n\r\nI recall an article or presentation from Martin taking exactly about this when he first proposed implicit function arguments for Dotty but I can???t track it down at the moment."
+  content: "Scala 3's implicit function arguments were designed for purposes like this, among other things. https://docs.scala-lang.org/scala3/reference/contextual/using-clauses.html\r\n\r\nI recall an article or presentation from Martin taking exactly about this when he first proposed implicit function arguments for Dotty but I can't track it down at the moment."
   replies: []
 - id: 10852
   author: Laurent Simon

@@ -1027,16 +1027,16 @@ In a recent entry, [Tim Bray revisits the old debate about refactoring dynamical
 > 
 > Of course, the problem is harder with dynamic languages, because variables aren't declared, and because you can screw around with the insides of classes at runtime,
 > 
-> As always in this kind of debate, a commenter was quick to point out that ???Smalltalk already did it???:
+> As always in this kind of debate, a commenter was quick to point out that "Smalltalk already did it":
 > 
-> As with everything else: it???s all be done before: Smalltalk. In fact refactoring was pioneered (like many other things, oop, gui, unit testing, agile/xp ???) in Smalltalk!  
+> As with everything else: it's all be done before: Smalltalk. In fact refactoring was pioneered (like many other things, oop, gui, unit testing, agile/xp...) in Smalltalk!  
 > Smalltalk has 30 years of experience making the Ruby object model fast.
 
 First of all, that commenter is wrong. All the Smalltalk IDE did for renaming was search and replace, which is, frankly, the best it could do. And clearly unacceptable today.
 
-It???s simple, really: dynamic languages that are not statically typed (i.e. let you get away with not typing variables) simply *cannot* do certain refactorings, among which ???renaming???.
+It's simple, really: dynamic languages that are not statically typed (i.e. let you get away with not typing variables) simply *cannot* do certain refactorings, among which "renaming".
 
-How could they? They just don???t have the type information to know exactly which types are being used to invoke your methods.  
+How could they? They just don't have the type information to know exactly which types are being used to invoke your methods.  
 A few months ago, I offered the following code snippet to the author of the Ruby Refactoring Browser:
 
 ```ruby
@@ -1055,18 +1055,18 @@ class C
 end
 ```
 
-And I asked him: ???If I rename C.init to C.init2, how do you know which o.init must be renamed in f1 and f2????.
+And I asked him: "If I rename C.init to C.init2, how do you know which o.init must be renamed in f1 and f2?".
 
 His response was unequivocal:
 
-> This problem is difficult for dynamically typed language. I think computer can???t determine whether those must be renamed or not.
+> This problem is difficult for dynamically typed language. I think computer can't determine whether those must be renamed or not.
 > 
-> Therefore Ruby Refactoring Browser provides two functions, one is renaming all methods that have same name, and another is renaming only methods and calls that cleary belong the class. The former renames o.init in f1 and f2, and the latter doesn???t rename them.
+> Therefore Ruby Refactoring Browser provides two functions, one is renaming all methods that have same name, and another is renaming only methods and calls that cleary belong the class. The former renames o.init in f1 and f2, and the latter doesn't rename them.
 
-This shouldn???t come as a surprise. One of the main reasons why people like dynamically typed languages is precisely because they don???t have to specify these types. Is it really so shocking that this convenience comes at the price of not being able to perform any operation that requires type information on this code?
+This shouldn't come as a surprise. One of the main reasons why people like dynamically typed languages is precisely because they don't have to specify these types. Is it really so shocking that this convenience comes at the price of not being able to perform any operation that requires type information on this code?
 
-As for Tim???s solution to this problem, which consists in having the IDE gain this knowledge by running your code instead of analyzing it statically: it???s clearly not going to work either.
+As for Tim's solution to this problem, which consists in having the IDE gain this knowledge by running your code instead of analyzing it statically: it's clearly not going to work either.
 
-In order for this approach to work, you would need to have 100% coverage with your tests which, I claim, is probably achieved by 0.001% of the projects out there, all of which are simple ???Hello world??? programs. And without this, who wants an IDE that performs a correct refactoring ???most of the time????
+In order for this approach to work, you would need to have 100% coverage with your tests which, I claim, is probably achieved by 0.001% of the projects out there, all of which are simple "Hello world" programs. And without this, who wants an IDE that performs a correct refactoring "most of the time"?
 
 So is there any way out of this conundrum? I think there is: dynamic languages that allow you to type your variables if you feel like it, and the only language that I can think of that does that at the moment is Groovy. This is clearly the best of both worlds, because you only need to type your variables once (i.e. in your method signature) and type inference will save you the trouble of duplicating this information from that point on.

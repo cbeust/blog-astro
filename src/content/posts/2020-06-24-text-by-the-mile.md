@@ -10,7 +10,7 @@ categories:
 
 [This article resonated a lot with me](https://onezero.medium.com/this-35-keyboard-for-children-transformed-me-into-a-novelist-436a55370ee5), especially this part: 
 
-> Writing is not the hardest job in the world, but it???s taxing enough that, like working out or scrubbing the baseboards, I???ll subconsciously drift over to any other task that requires even a little less effort. 
+> Writing is not the hardest job in the world, but it's taxing enough that, like working out or scrubbing the baseboards, I'll subconsciously drift over to any other task that requires even a little less effort. 
 
 Anyone who's ever had to write more than a few pages know how interruptible an activity writing is. 
 
