@@ -1,0 +1,55 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+
+const otherContent = [
+  {
+    title: "Scuba trip to Cozumel",
+    url: "https://beust.com/cozumel/",
+  },
+    {
+    title: "Scuba trip to Grand Cayman",
+    url: "https://beust.com/grand-cayman/",
+  },
+  {
+    title: "Trip to Japan",
+    url: "https://beust.com/0205-japan"
+  },
+  {
+    title: "A fabulous prank",
+    url: "https://beust.com/birthday"
+  },
+  {
+    title: "A Rubik's cube solution that's easy to memorize",
+    url: "https://beust.com/rubik"
+  }
+
+
+
+];
+---
+
+<div class={`rounded-xl border border-base-200 bg-white shadow-xs overflow-hidden ${className}`}>
+  <div class="bg-[#f44365] px-4 py-2">
+    <h4 class="text-[14px] font-normal uppercase tracking-[-0.04em] text-white">
+      Other Content
+    </h4>
+  </div>
+  <div class="p-4">
+    <ul class="text-[13px] leading-snug space-y-1">
+      {otherContent.map((item) => (
+        <li>
+          <a
+            href={item.url}
+            class="text-[#0071BB] hover:text-[#f44365] transition block"
+          >
+            {item.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>

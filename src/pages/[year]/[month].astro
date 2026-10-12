@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import TopEntries from "@/components/global/TopEntries.astro";
 import RecentPosts from "@/components/global/RecentPosts.astro";
+import OtherContent from "@/components/global/OtherContent.astro";
 import Archives from "@/components/global/Archives.astro";
 import BlogEntries from "@/components/entries/BlogEntry.astro";
 import { getCollection } from "astro:content";
@@ -89,10 +90,11 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
       </div>
     </section>
 
-    <!-- Right column: Top Entries, Recent Posts, and Archives -->
+    <!-- Right column: Top Entries, Recent Posts, Other Content, and Archives -->
     <aside class="lg:col-span-3 space-y-6 mt-4 lg:mt-0">
       <TopEntries />
       <RecentPosts />
+      <OtherContent />
       <Archives />
     </aside>
   </div>
