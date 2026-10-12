@@ -5,6 +5,7 @@ import RecentPosts from "@/components/global/RecentPosts.astro";
 import OtherContent from "@/components/global/OtherContent.astro";
 import Archives from "@/components/global/Archives.astro";
 import Cta from "@/components/global/Cta.astro";
+import DateBadge from "@/components/DateBadge.astro";
 import { getCollection, render } from "astro:content";
 
 const allPosts = await getCollection("posts");
@@ -71,40 +72,44 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
         return (
           <article class="p-6 sm:p-8 rounded-2xl border border-base-200 bg-base-50 shadow-xs">
             <header class="mb-6 pb-6 border-b border-base-200">
-              <h2 class="text-2xl sm:text-3xl font-medium font-display text-base-900 leading-snug">
-                <a href={`${basePath}/posts/${post.id}`} class="hover:text-[#0071BB] transition">
-                  {post.data.title}
-                </a>
-              </h2>
-
-              <div class="flex items-center gap-2 text-xs text-base-500 mt-2">
-                <span class="font-medium text-base-800">{post.data.author || 'Cédric'}</span>
-                <span>&middot;</span>
-                <time datetime={new Date(post.data.pubDate).toISOString()}>{formattedDate}</time>
-                {commentsCount > 0 && (
-                  <>
-                    <span>&middot;</span>
-                    <a href={`${basePath}/posts/${post.id}#comments`} class="hover:text-[#0071BB] transition">
-                      💬 {commentsCount} comments
+              <div class="flex items-start gap-4">
+                <DateBadge date={post.data.pubDate} class="mt-1" />
+                <div class="min-w-0 flex-1">
+                  <h2 class="text-2xl sm:text-3xl font-medium font-display text-base-900 leading-snug">
+                    <a href={`${basePath}/posts/${post.id}`} class="hover:text-[#0071BB] transition">
+                      {post.data.title}
                     </a>
-                  </>
-                )}
-              </div>
+                  </h2>
 
-              {post.data.tags?.filter((t: string) => t.toLowerCase() !== 'uncategorized').length > 0 && (
-                <div class="flex flex-wrap gap-1.5 mt-3">
-                  {post.data.tags
-                    .filter((t: string) => t.toLowerCase() !== 'uncategorized')
-                    .map((tag: string) => (
-                      <a
-                        href={`${basePath}/tags/${tag}`}
-                        class="text-[11px] font-medium text-base-700 bg-base-200 hover:bg-base-300 hover:text-[#0071BB] px-2.5 py-0.5 rounded-full transition"
-                      >
-                        #{tag}
+                  <div class="text-xs text-base-600 flex flex-wrap items-center gap-x-2 gap-y-1 mt-2">
+                    {post.data.tags?.filter((t: string) => t.toLowerCase() !== 'uncategorized').length > 0 && (
+                      <span>
+                        In{" "}
+                        {post.data.tags
+                          .filter((t: string) => t.toLowerCase() !== 'uncategorized')
+                          .map((tag: string, i: number, arr: string[]) => (
+                            <>
+                              <a href={`${basePath}/tags/${tag}`} class="text-[#0071BB] hover:underline">
+                                {tag}
+                              </a>
+                              {i < arr.length - 1 ? ", " : ""}
+                            </>
+                          ))}
+                      </span>
+                    )}
+                    {post.data.tags?.filter((t: string) => t.toLowerCase() !== 'uncategorized').length > 0 && (
+                      <span class="text-base-400" aria-hidden="true">&middot;</span>
+                    )}
+                    {commentsCount > 0 ? (
+                      <a href={`${basePath}/posts/${post.id}#comments`} class="text-[#0071BB] hover:underline">
+                        💬 {commentsCount} {commentsCount === 1 ? 'comment' : 'comments'}
                       </a>
-                    ))}
+                    ) : (
+                      <span class="text-base-500">Comments off</span>
+                    )}
+                  </div>
                 </div>
-              )}
+              </div>
             </header>
 
             <div class="prose prose-base max-w-none">

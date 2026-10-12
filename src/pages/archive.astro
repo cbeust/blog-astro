@@ -5,6 +5,7 @@ import TopEntries from '@/components/global/TopEntries.astro';
 import RecentPosts from '@/components/global/RecentPosts.astro';
 import OtherContent from '@/components/global/OtherContent.astro';
 import Archives from '@/components/global/Archives.astro';
+import DateBadge from '@/components/DateBadge.astro';
 
 const allPosts = await getCollection('posts');
 
@@ -47,17 +48,18 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 
         return (
           <article
-            class="post-item p-4 rounded-xl border border-base-200 hover:border-base-400 bg-base-50 transition flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-xs"
+            class="post-item p-3.5 sm:p-4 rounded-xl border border-base-200 hover:border-base-400 bg-base-50 transition flex items-center gap-3.5 shadow-xs"
             data-search={searchString}
           >
-            <div class="flex-grow">
+            <DateBadge date={post.data.pubDate} size="sm" class="shrink-0" />
+            <div class="flex-grow min-w-0">
               <h2 class="text-base font-medium text-base-900 leading-snug">
                 <a href={`${basePath}/posts/${post.id}`} class="hover:text-[#0071BB] transition">
                   {post.data.title}
                 </a>
               </h2>
               {post.data.tags?.filter((t: string) => t.toLowerCase() !== 'uncategorized').length > 0 && (
-                <div class="flex flex-wrap gap-1.5 mt-1.5">
+                <div class="flex flex-wrap gap-1.5 mt-1">
                   {post.data.tags
                     .filter((t: string) => t.toLowerCase() !== 'uncategorized')
                     .slice(0, 3)
@@ -70,10 +72,11 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
               )}
             </div>
 
-            <div class="flex items-center gap-3 text-xs text-base-500 shrink-0">
-              <time datetime={new Date(post.data.pubDate).toISOString()}>{formattedDate}</time>
-              {commentCount > 0 && <span>💬 {commentCount}</span>}
-            </div>
+            {commentCount > 0 && (
+              <div class="flex items-center gap-1.5 text-xs text-base-500 shrink-0">
+                <span>💬 {commentCount}</span>
+              </div>
+            )}
           </article>
         );
       })}
