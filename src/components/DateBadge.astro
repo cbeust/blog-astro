@@ -2,10 +2,11 @@
 interface Props {
   date: string | Date;
   size?: "sm" | "md" | "lg";
+  showYear?: boolean;
   class?: string;
 }
 
-const { date, size = "md", class: className = "" } = Astro.props;
+const { date, size = "md", showYear = true, class: className = "" } = Astro.props;
 
 let d: Date;
 if (date instanceof Date) {
@@ -34,6 +35,11 @@ const day = isValid
   ? d.toLocaleDateString("en-US", { day: "numeric" })
   : "";
 
+// Year: 4-digit year e.g. "2023"
+const year = isValid
+  ? d.toLocaleDateString("en-US", { year: "numeric" })
+  : "";
+
 const fullDate = isValid
   ? d.toLocaleDateString("en-US", {
       year: "numeric",
@@ -45,10 +51,10 @@ const fullDate = isValid
 const isoDate = isValid ? d.toISOString() : "";
 
 const sizeClasses = {
-  sm: "w-[36px] h-[36px]",
-  md: "w-[40px] h-[40px]",
-  lg: "w-[48px] h-[48px]",
-}[size] || "w-[40px] h-[40px]";
+  sm: showYear ? "w-[36px] min-h-[42px]" : "w-[36px] h-[36px]",
+  md: showYear ? "w-[40px] min-h-[48px]" : "w-[40px] h-[40px]",
+  lg: showYear ? "w-[48px] min-h-[58px]" : "w-[48px] h-[48px]",
+}[size] || (showYear ? "w-[40px] min-h-[48px]" : "w-[40px] h-[40px]");
 
 const monthTextClasses = {
   sm: "text-[8.5px] leading-[13px] tracking-wider",
@@ -57,16 +63,22 @@ const monthTextClasses = {
 }[size] || "text-[9.5px] leading-[15px] tracking-wider";
 
 const dayTextClasses = {
-  sm: "text-[14px]",
-  md: "text-[16px]",
-  lg: "text-[20px]",
-}[size] || "text-[16px]";
+  sm: showYear ? "text-[12px]" : "text-[14px]",
+  md: showYear ? "text-[14px]" : "text-[16px]",
+  lg: showYear ? "text-[17px]" : "text-[20px]",
+}[size] || (showYear ? "text-[14px]" : "text-[16px]");
+
+const yearTextClasses = {
+  sm: "text-[7.5px] leading-tight pb-0.5",
+  md: "text-[8.5px] leading-tight pb-1",
+  lg: "text-[10px] leading-tight pb-1.5",
+}[size] || "text-[8.5px] leading-tight pb-1";
 ---
 
 <time
   datetime={isoDate}
   title={fullDate}
-  class={`post-date inline-flex flex-col ${sizeClasses} shrink-0 rounded-[3px] overflow-hidden border border-[#d6cfb8] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.08)] text-center select-none ${className}`}
+  class={`post-date ${showYear ? "has-year !h-auto" : ""} inline-flex flex-col ${sizeClasses} shrink-0 rounded-[3px] overflow-hidden border border-[#d6cfb8] bg-white shadow-[0_1px_2px_rgba(0,0,0,0.08)] text-center select-none ${className}`}
 >
   <span
     class={`month block bg-[#f44365] text-white font-bold uppercase border-b border-white ${monthTextClasses}`}
@@ -74,8 +86,15 @@ const dayTextClasses = {
     {month}
   </span>
   <span
-    class={`day flex-1 flex items-center justify-center bg-white text-black font-bold leading-none ${dayTextClasses}`}
+    class={`day flex-1 flex items-center justify-center bg-white text-black font-bold leading-none ${dayTextClasses} ${showYear ? "pt-0.5" : ""}`}
   >
     {day}
   </span>
+  {showYear && (
+    <span
+      class={`year block bg-white text-[#6E6255] font-semibold leading-none tracking-tight ${yearTextClasses}`}
+    >
+      {year}
+    </span>
+  )}
 </time>

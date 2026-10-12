@@ -288,3 +288,26 @@ pre, code {
   line-height: 1;
 }
 
+.post-date.has-year {
+  height: auto;
+  min-height: 48px;
+}
+
+.post-date.has-year .day {
+  flex: none;
+  font-size: 14px;
+  padding-top: 2px;
+  padding-bottom: 1px;
+}
+
+.post-date .year {
+  background: #ffffff;
+  color: #6e6255;
+  font-size: 8.5px;
+  font-weight: 600;
+  line-height: 1;
+  padding-bottom: 3px;
+  letter-spacing: -0.02em;
+  display: block;
+}
+
