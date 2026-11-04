@@ -74,7 +74,7 @@ Besides, good luck finding the 17th println in your console.
 
 At least, I can tell a debugger to stop the 17th time the breakpoint is hit. With your method, I need to discard manually and visually the first 16 println.
 
-[Mike said](http://beust.com/weblog/weblog/mt-comments.cgi?entry_id=55):
+[Mike said](/posts/the-power-of-debuggers):
 
 > Cedric, I completely disagree with just about everything you say here. I find debuggers are enormous time wasters, and often cause enormous ancillary problems - timeouts, missing multi-threading problems, etc. 
 > 

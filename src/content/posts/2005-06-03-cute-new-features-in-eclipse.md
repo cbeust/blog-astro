@@ -64,7 +64,7 @@ I noticed two interesting features in the latest 3.1-RC1 Eclipse build:
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/partial-completion.png)   
  
 
-  * This is partial completion of types.  Notice that I typed "PT" (uppercase) and that `ParameterTest` came up as a potential match.  Very useful (and this functionality replaces a plug-in I mentioned in an [earlier blog](http://www.beust.com/weblog/weblog/archives/000193.html)).  
+  * This is partial completion of types.  Notice that I typed "PT" (uppercase) and that `ParameterTest` came up as a potential match.  Very useful (and this functionality replaces a plug-in I mentioned in an [earlier blog](/posts/cool-eclipse-plug-in-gotofile)).  
  
 
 

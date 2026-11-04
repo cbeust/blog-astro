@@ -162,7 +162,7 @@ comments:
   replies: []
 ---
 
-My [previous post on interfaces](http://beust.com/weblog/weblog/archives/000291.html) has generated quite a few comments:
+My [previous post on interfaces](/posts/extensibility-the-interface-way) has generated quite a few comments:
 
 > I prefer to rely on API versionning than to have I*2 for additional methods in an interface.
 

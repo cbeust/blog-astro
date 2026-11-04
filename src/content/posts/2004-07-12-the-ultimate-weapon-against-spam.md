@@ -178,6 +178,6 @@ comments:
   replies: []
 ---
 
-[This article](http://beust.com/weblog/challenge-response.html) describes a simple system that has good chances to become a very effective protection against spam.
+[This article](/posts/the-ultimate-weapon-against-spam) describes a simple system that has good chances to become a very effective protection against spam.
 
 Comments welcome (except for the Slashdot spam form).

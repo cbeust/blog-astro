@@ -7,7 +7,7 @@ categories:
 - Kotlin
 ---
 
-I haven't been quite honest with you [my previous post](http://beust.com/weblog/weblog/2015/03/23/android-rx-and-kotlin-a-case-study/): the code I showed in the article doesn't exactly result in the short video of the application at the top of the article. 
+I haven't been quite honest with you [my previous post](/posts/android-rx-and-kotlin-a-case-study): the code I showed in the article doesn't exactly result in the short video of the application at the top of the article. 
 
 If you run the code as is, you will notice something very irritating (and unacceptable in any application): whenever the app is pretending to make a network call, the entire user interface freezes for a second. You can't type anything and the loading icon stops spinning. This is the classic symptom of blocking the main thread. You will remember that I am simulating network calls by simply sleeping for a little while, and obviously, if you do this on the main thread, you will freeze your UI. 
 
@@ -75,4 +75,4 @@ And that's about all there is to get started with thread management with Rx on A
 
 With the growing number of Android libraries adding support for Rx, it's becoming even more trivial to use these libraries within this framework and combine them in straightforward yet powerful ways. You can see in the examples I used in this post and the previous one how Rx makes it trivial to combine network calls and GUI updates simply by the fact that Retrofit returns Observables. You should also take a look at [SQLBrite`](https://github.com/square/sqlbrite), which wraps `SQLiteOpenHelper` in Observables to offer you similar flexibility but for database access. 
 
-Read [part 1](http://beust.com/weblog/weblog/2015/03/23/android-rx-and-kotlin-a-case-study/), [part 3](http://beust.com/weblog/weblog/2015/04/11/android-rx-and-kotlin-part-3/).
+Read [part 1](/posts/android-rx-and-kotlin-a-case-study), [part 3](/posts/android-rx-and-kotlin-part-3).

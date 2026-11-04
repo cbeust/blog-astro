@@ -12,7 +12,7 @@ comments:
   replies: []
 ---
 
-![](http://beust.com/weblog/doclipse/pictures/completion2.jpg)
+![](/posts/announcing-doclipse/pictures/completion2.jpg)
 
 I just released Doclipse 0.6.0, which contains a lot of improvements over the previous version:
 
@@ -27,4 +27,4 @@ I just released Doclipse 0.6.0, which contains a lot of improvements over the pr
 
 
 
-Check out the [new documentation](http://beust.com/weblog/doclipse), I updated it and it contains screenshots of the new preference pages (I broke them down in several pages now).
+Check out the [new documentation](/posts/announcing-doclipse), I updated it and it contains screenshots of the new preference pages (I broke them down in several pages now).

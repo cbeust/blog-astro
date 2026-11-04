@@ -525,7 +525,7 @@ comments:
   replies: []
 ---
 
-I am baffled by the comments that [this older weblog entry](http://beust.com/weblog/weblog/archives/000169.html) is receiving.  As you can see, I am simply announcing that I moved some of my projects over to java.net.  Since then, it appears that a group of Indian students have not only misunderstood the point of that post, but are also maintaining the delusion that I am offering to provide ideas for Java projects that they could do for their final year exam (on what major or studies?  I have no idea).
+I am baffled by the comments that [this older weblog entry](/posts/mysterious-comments) is receiving.  As you can see, I am simply announcing that I moved some of my projects over to java.net.  Since then, it appears that a group of Indian students have not only misunderstood the point of that post, but are also maintaining the delusion that I am offering to provide ideas for Java projects that they could do for their final year exam (on what major or studies?  I have no idea).
 
 The phrasing of the request is also quite rude, and even though English is obviously not their native language, they are most likely able to express themselves fluently in this language.  At any rate, it doesn't give a very good impression.
 

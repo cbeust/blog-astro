@@ -57,7 +57,7 @@ comments:
 ---
 
 ![](http://beust.com/weblog/topo/03.png)  
-I received [a few interesting comments](http://beust.com/weblog/weblog/2009/11/28/hard-core-multicore-with-testng/) on my previous entry regarding the new multithreaded topological sort I implemented in TestNG and there is one in particular from Rafael Naufal that I wanted to address:
+I received [a few interesting comments](/posts/hard-core-multicore-with-testng) on my previous entry regarding the new multithreaded topological sort I implemented in TestNG and there is one in particular from Rafael Naufal that I wanted to address:
 
 > The @Priority annotation couldn't be adapted to say which free methods get scheduled first? BTW, the responsibility of knowing which nodes are free couldn't be moved to the graph of test methods?
 

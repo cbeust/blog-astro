@@ -12,7 +12,7 @@ tags:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/rust-kotlin.png)
 
-_[Update:[Part Two ](https://www.beust.com/weblog/2021/11/09/what-kotlin-could-learn-from-rust/)is up]_
+_[Update:[Part Two ](/posts/what-kotlin-could-learn-from-rust)is up]_
 
 When I started studying Rust, I didn't expect to like it.
 

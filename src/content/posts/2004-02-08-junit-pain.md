@@ -578,6 +578,6 @@ Then I realized that this justification was stupid for two reasons:
   * The setUp() method is called before each test method, thus guaranteeing that the state of the object is restored before each invocation. 
 The more I thought about it, the more I realized that being able to share some state between test methods, such as a JDBC connection or a parsed XML file, was actually quite useful. The problem is that JUnit makes this simply impossible:  you have to put this code in setUp() and therefore, rerun it before every test method.
 
-At this point, and after finding [all](http://www.jroller.com/page/cbeust/20030425) [these](http://www.jroller.com/page/cbeust/20030426) [deficiencies](http://beust.com/weblog/weblog/archives/000077.html) in JUnit's design and implementation, I am beginning to think we are once more stuck with a de facto standard that is utterly broken.
+At this point, and after finding [all](http://www.jroller.com/page/cbeust/20030425) [these](http://www.jroller.com/page/cbeust/20030426) [deficiencies](/posts/junit-pain) in JUnit's design and implementation, I am beginning to think we are once more stuck with a de facto standard that is utterly broken.
 
 Unless someone can explain to me this behavior?

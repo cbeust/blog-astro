@@ -164,7 +164,7 @@ I am happy to announce the release of TestNG 4.6 (the Eclipse and IDEA plug-ins 
 > @Test(invocationCount = 10, threadPoolSize = 3, timeOut = 10000)  
 >  **public  ****void  **f1() { ... }
 
-In this example, the method f1() will be invoked ten times from a pool made of three threads.  If any of these invocations fail to complete with ten seconds, TestNG will abort the test and mark it failed.  You can find more information on this feature in [this article](http://beust.com/weblog/weblog/archives/000369.html) and in [the documentation](http://testng.org/doc/documentation-main.html#parallel-running).   
+In this example, the method f1() will be invoked ten times from a pool made of three threads.  If any of these invocations fail to complete with ten seconds, TestNG will abort the test and mark it failed.  You can find more information on this feature in [this article](/posts/announcing-testng-4-6) and in [the documentation](http://testng.org/doc/documentation-main.html#parallel-running).   
  
   * A new [Reporter API](http://testng.org/javadocs/org/testng/Reporter.html) lets you log messages that will be reproduced in the HTML reports, either on each individual method or as a combined output.
 

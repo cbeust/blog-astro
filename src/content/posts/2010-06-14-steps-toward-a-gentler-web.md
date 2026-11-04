@@ -31,7 +31,7 @@ comments:
   replies: []
 ---
 
-In [this article](http://jimlynch.com/index.php/2010/06/07/safari-reader-apples-weapon-of-mass-destruction/), Jim Lynch is going a bit far when trying to assess the effet of the new "Reader" feature of Safari 5, which I touched on [in a previous post](http://beust.com/weblog/weblog/2010/06/10/713/): 
+In [this article](http://jimlynch.com/index.php/2010/06/07/safari-reader-apples-weapon-of-mass-destruction/), Jim Lynch is going a bit far when trying to assess the effet of the new "Reader" feature of Safari 5, which I touched on [in a previous post](/posts/713-2): 
 
 > Apple has essentially destroyed the web publishing model completely with the release of Safari 5 
 

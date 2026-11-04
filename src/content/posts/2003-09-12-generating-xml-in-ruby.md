@@ -68,7 +68,7 @@ My ISP conveniently stores the logs for my Web site every night in a well-define
 
 Finally, I had to choose a language.  Since I opted for the static approach, I am not limited to the languages that my ISP supports for CGI programming (PHP and Perl).  The obvious choice was Ruby, which excels at this kind of treatment with its native support for regular expressions, invocation of external commands and offers an object-oriented language from the ground up giving me extreme flexibility in my attempt to write a utility that will be easy to extend for my future log parsing needs. 
 
-Since I was going to have to generate HTML, I thought I would port a small Java class that I have been using to generate XML in [EJBGen](http://beust.com/weblog/ejbgen) called XMLStringBuffer.  The idea is simply to not have to worry about indentation and closing the tags.  With this class, generating XML is as simple as: 
+Since I was going to have to generate HTML, I thought I would port a small Java class that I have been using to generate XML in [EJBGen](https://beust.com/ejbgen) called XMLStringBuffer.  The idea is simply to not have to worry about indentation and closing the tags.  With this class, generating XML is as simple as: 
 
 > ` XMLStringBuffer xsb = new XMLStringBuffer();  
 >  xsb.push("person");  

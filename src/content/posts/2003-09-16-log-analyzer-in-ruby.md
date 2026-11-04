@@ -106,7 +106,7 @@ I want to write a Log analyzer that will make it easy for me to collect various 
   * Number of hits on my site.
   * For my weblog, number of HTML and RSS hits.
   * The list of referrers for, say, the past three days.
-  * The number of [EJBGen](http://beust.com/weblog/ejbgen) downloads each day.
+  * The number of [EJBGen](https://beust.com/ejbgen) downloads each day.
   * The keywords typically used on search engines to reach my site.
 
 

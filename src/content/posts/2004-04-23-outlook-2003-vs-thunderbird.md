@@ -667,4 +667,4 @@ comments:
   replies: []
 ---
 
-After using both tools for quite a while, I decided to write down my impressions on their respective strengths and weaknesses. Since the post ended up being longer than I thought, I posted it directly on [my Web site](http://beust.com/weblog/outlook-thunderbird.html).
+After using both tools for quite a while, I decided to write down my impressions on their respective strengths and weaknesses. Since the post ended up being longer than I thought, I posted it directly on [my Web site](/posts/outlook-2003-vs-thunderbird).

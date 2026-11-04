@@ -58,7 +58,7 @@ comments:
   replies: []
 ---
 
-One of the constraints when you work on [fundamental software](http://beust.com/weblog/weblog/2010/12/17/developing-in-the-meta/) is that you need to be very careful about the classes that you ship. Not just the code itself, but also the version of the compiler that you used to compile these classes. 
+One of the constraints when you work on [fundamental software](/posts/developing-in-the-meta) is that you need to be very careful about the classes that you ship. Not just the code itself, but also the version of the compiler that you used to compile these classes. 
 
 Despite all my precautions, I have sometimes accidentally shipped classes that were using a compiler that's too recent. The latest occurrence of this incident was with TestNG's Eclipse plug-in. Despite all the settings specifying that the JDK should be 1.5, I ended up with 1.6 classes in the feature jar file. I eventually figured out that when you actually build the update site, Eclipse uses some ant tasks which seem to ignore the Eclipse preferences and which revert to the global environment's JAVA_HOME. 
 

@@ -193,7 +193,7 @@ Except for the fact that you need to extend an implementation (HashMap, and not 
 
 I haven't gone to this trouble so far, but my recommendation would be: do it if you write the type more than three times (twice in the initialization and you use it more than once in your code). 
 
-Except for this little annoyance, I am quite happy with Generics overall and I particulary enjoy reading the [TestNG Javadocs](http://beust.com/weblog/testng/javadocs/com/beust/testng/SuiteRunner.html) so nicely typed. 
+Except for this little annoyance, I am quite happy with Generics overall and I particulary enjoy reading the [TestNG Javadocs](https://testng.org/javadocs/com/beust/testng/SuiteRunner.html) so nicely typed. 
 
 **Conclusion**
 

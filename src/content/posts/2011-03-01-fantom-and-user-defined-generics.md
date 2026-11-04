@@ -73,7 +73,7 @@ comments:
   replies: []
 ---
 
-My [post from last week](http://beust.com/weblog/weblog/2011/02/23/from-scala-back-to-java/) generated some interesting discussions and reactions, but one in particularly grabbed my attention. 
+My [post from last week](/posts/from-scala-back-to-java) generated some interesting discussions and reactions, but one in particularly grabbed my attention. 
 
 Both Stephen Haberman and Tom Davies made the following observation: 
 

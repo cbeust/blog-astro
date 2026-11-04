@@ -252,4 +252,4 @@ If we run the entire class, not only will the functional test fail, but at least
 
 Ideally, you want your application to be covered by both unit and functional tests, but if you are pressed for time and you need to choose between implementing a unit test or a functional test, I therefore recommend going for the latter (because it serves your users) and then down the road, implement more unit tests as you see fit (for your own comfort). 
 
-Note: this topic (and many others) is covered in greater details in [our upcoming book](http://beust.com/weblog/weblog/archives/000438.html).
+Note: this topic (and many others) is covered in greater details in [our upcoming book](/posts/upcoming-testing-book).

@@ -100,7 +100,7 @@ comments:
 
 [  
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/Topo2.png)  
-](http://beust.com/weblog/topo/Topo2.dot)  
+](/pics/Topo2.png)  
 I recently implemented a new feature in TestNG that took me down an interesting technical path that ended up mixing graph theory with concurrency.  
 Here are a few notes.
 
@@ -140,7 +140,7 @@ Dependent methods are a very popular feature of TestNG, especially in web testin
 For example, consider the following example:  
 [  
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/Topo7.png)  
-](http://beust.com/weblog/topo/Topo7.dot)  
+](/pics/Topo7.png)  
 Since all four methods are dependent, they will all be running in the same thread, regardless of the thread pool size. An obvious improvement would be to run `a1()` and `b1()` in one thread and `a2()` and `b2()` in a different thread.  
 But why not push thing further and see if we can't just throw all these four methods in the main thread pool and still respect their ordering?  
 This thought led me to take a closer look at the concurrent primitives availables in the JDK, and more specifically, [Executors](http://java.sun.com/j2se/1.5.0/docs/api/java/util/concurrent/Executors.html).  
@@ -167,21 +167,21 @@ The following graphs represent test methods and how they depend on
 each other. Methods in green are "free methods": they don't depend on any other methods. Arrows represent dependencies and dotted arrows are dependencies that have been satisfied. Finally, grey nodes are methods that have been executed.  
 [  
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/Topo1.png)  
-](http://beust.com/weblog/topo/Topo1.dot)  
+](/pics/Topo1.png)  
 First iteration, we have four free methods. These four methods are ready to be run.  
 Result so far: **{ a1, a2, x, y }**  
 [  
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/Topo2.png)  
-](http://beust.com/weblog/topo/Topo2.dot)  
+](/pics/Topo2.png)  
 The four methods have been run and they "freed" two new nodes, `b1` and `b2`, which become eligible for the next wave of executions. Note that while one of `d`'s dependencies has been satisfied (`a1`), `d` still depends on `b1` so it's not free yet.  
 Result so far: **{ a1, a2, x, y, b1, b2 }**  
 [  
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/Topo3.png)  
-](http://beust.com/weblog/topo/Topo3.dot)  
+](/pics/Topo3.png)  
 ` b2` and `b1` have run and they free three additional methods.  
 [  
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/Topo4.png)  
-](http://beust.com/weblog/topo/Topo4.dot)  
+](/pics/Topo4.png)  
 The last methods have run, we're done.  
 Final result: **{ a1, a2, x, y, b1, b2, c1, c2, d }**  
 Again, note that this is not the only valid topological sort for this example: you can reorder certain elements as long as the dependencies are respected. For example, a result that would start with **{a2, a1}** would be as correct as the one above, which starts with **{a1, a2}**.  
@@ -189,16 +189,16 @@ This is a pretty static, academic example. In the case of TestNG, things are a l
 For example, let's go back to the following state:  
 [  
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/Topo2.png)  
-](http://beust.com/weblog/topo/Topo2.dot)  
+](/pics/Topo2.png)  
 At this stage, we have two methods that get added to the thread pool and run on two different threads: `b1` and `b2`. We can then have two different situations depending on which one completes first:  
 [  
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/Topo6.png)  
-](http://beust.com/weblog/topo/Topo6.dot)  
+](/pics/Topo6.png)  
 `b1` finishes first and frees both `c1` and `d`.  
 Or...  
 [  
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/Topo5.png)  
-](http://beust.com/weblog/topo/Topo5.dot)  
+](/pics/Topo5.png)  
 `b2` finishes first but doesn't free any new node.
 
 ### A new kind of Executor
@@ -256,5 +256,5 @@ When I ran the tests with this new engine, very few tests failed and the ones th
 
 This new engine will be available in TestNG 5.11, which you can beta test [here](http://testng.org/beta).
 
-_Update: I posted a follow up[here](https://www.beust.com/weblog/more-on-multithreaded-topological-sorting-2/).  
+_Update: I posted a follow up[here](/posts/more-on-multithreaded-topological-sorting-2).  
 _

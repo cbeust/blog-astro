@@ -89,7 +89,7 @@ Now that I have an audio file, I need to transfer it on my phone. As an Android 
 
 Do you know what's perfect for this? Podcasts. What if I could turn this audio file into a podcast so I could play it with a podcast app? Podcast apps perform this kind of management automatically so that I never have to worry about cleaning up. The only remaining problem is that podcast apps usually connect to podcast feeds (as far as I know, happy to be hear about more clever apps), so I would have to set up such a feed. 
 
-Setting up a podcast feed turned out to be trivial: it's a forty line script written in, [you guessed it](http://beust.com/weblog/weblog/2011/08/09/i-like-php/)... Perl! Just kidding, it's PHP, of course. 
+Setting up a podcast feed turned out to be trivial: it's a forty line script written in, [you guessed it](/posts/i-like-php)... Perl! Just kidding, it's PHP, of course. 
 
 The script scans a directory and returns the ten most recent files as a podcast RSS feed. Now, all I need to do once I have the audio file is copy to my server in the right directory and I'm done. 
 

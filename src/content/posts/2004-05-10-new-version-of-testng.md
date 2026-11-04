@@ -34,7 +34,7 @@ comments:
   replies: []
 ---
 
-I have just uploaded a new version of [ TestNG](http://beust.com/weblog/testng), the annotation-based test framework.  A lot has gone into this new release:
+I have just uploaded a new version of [ TestNG](https://testng.org), the annotation-based test framework.  A lot has gone into this new release:
 
   * Revamped documentation
   * Transparent support for JUnit tests.
@@ -46,4 +46,4 @@ I have just uploaded a new version of [ TestNG](http://beust.com/weblog/testng),
 
 Extensible API allowing you to generate your own reports or even your own testing methods (two are supported right now:  annotations and JUnit).
 
-The HTML reports are still fairly basic but they convey the results of the entire test run pretty well.  You can see an example [here](http://beust.com/weblog/testng/test-output/index.html) or just go directly to the [main documentation page](http://beust.com/weblog/testng).
+The HTML reports are still fairly basic but they convey the results of the entire test run pretty well.  You can see an example [here](https://testng.org/test-output/index.html) or just go directly to the [main documentation page](https://testng.org).

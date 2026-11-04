@@ -404,7 +404,7 @@ comments:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/humane.png)
 
-I am not a big fan of YAGNI, and I have stated it in[many occasions](http://www.beust.com/weblog/weblog/archives/000087.html).  In so doing, I am in disagreement with most of the XP crowd, including Martin Fowler, [ who says](http://www.martinfowler.com/articles/designDead.html#id2249302):
+I am not a big fan of YAGNI, and I have stated it in[many occasions](/posts/yagni-is-not-just-stupid-its-arrogant).  In so doing, I am in disagreement with most of the XP crowd, including Martin Fowler, [ who says](http://www.martinfowler.com/articles/designDead.html#id2249302):
 
 > You don't want to spend effort adding new capability that won't be needed until a future iteration. And even if the cost is zero, you still don't want to it because it increases the cost of modification even if it costs nothing to put in.
 

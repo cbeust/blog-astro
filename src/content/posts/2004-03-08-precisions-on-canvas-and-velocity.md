@@ -76,7 +76,7 @@ comments:
   replies: []
 ---
 
-I have to say I am surprised by some of the comments I have received about [Canvas](http://beust.com/weblog/weblog/archives/000093.html), and in particular from people who say that the Velocity Template Language (VTL) is a better choice than Groovy because it's not a "real" language, so you are not tempted to mix presentation and business logic.
+I have to say I am surprised by some of the comments I have received about [Canvas](/posts/canvas-a-velocity-killer), and in particular from people who say that the Velocity Template Language (VTL) is a better choice than Groovy because it's not a "real" language, so you are not tempted to mix presentation and business logic.
 
 First of all, the assumption that the generated template is for "presentation" (probably meaning:  a Web page) is a generalization.  Velocity is used for much more than just generating Web pages, so this argument is weak in my opinion.
 

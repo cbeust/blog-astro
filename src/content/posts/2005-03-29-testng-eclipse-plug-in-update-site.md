@@ -16,4 +16,4 @@ comments:
   replies: []
 ---
 
-By popular demand, I created an update site for the TestNG Eclipse plug-in.  The update site is _<http://beust.com/weblog/eclipse>_ and instructions to install the plug-in can be found [here](http://beust.com/weblog/testng/main.html#download).
+By popular demand, I created an update site for the TestNG Eclipse plug-in.  The update site is _</posts/hippie-completion-in-eclipse>_ and instructions to install the plug-in can be found [here](https://testng.org#download).

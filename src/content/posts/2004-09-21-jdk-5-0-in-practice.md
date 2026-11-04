@@ -205,7 +205,7 @@ That's right, just one line. It doesn't get better than that.
 
 **Annotations**
 
-Obviously, I am partial to annotations since they are at the heart of [TestNG](http://beust.com/weblog/testng) but I am a firm believer that annotations are going to change the way we build software in Java. We have been relying for far too long on reflection hacks to introduce meta-data in our programs, and annotations are finally going to provide an excellent solution to this problem. 
+Obviously, I am partial to annotations since they are at the heart of [TestNG](https://testng.org) but I am a firm believer that annotations are going to change the way we build software in Java. We have been relying for far too long on reflection hacks to introduce meta-data in our programs, and annotations are finally going to provide an excellent solution to this problem. 
 
 Also, I haven't felt the need to use some of the predefined annotations such as @Override, so I haven't formed an opinion on them yet. 
 

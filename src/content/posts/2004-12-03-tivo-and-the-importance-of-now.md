@@ -56,7 +56,7 @@ comments:
   replies: []
 ---
 
-In a comment to my [TiVo entry](http://beust.com/weblog/weblog/archives/000211.html), Noah makes the following observation:
+In a comment to my [TiVo entry](/posts/tivo-and-the-future-of-advertising), Noah makes the following observation:
 
 > You can circumvent most of the advertising by waiting for the DVD Season box set to be released on Netflix. Sure it puts you behind a few months (years!? :), but you are not only rewarded with no advertisements, but you also get bonus footage surrounding the show. 
 > 

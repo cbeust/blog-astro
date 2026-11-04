@@ -7,7 +7,7 @@ categories:
 - Kotlin
 ---
 
-One of the recent additions to [Kobalt](http://beust.com/weblog/kobalt) is incremental tasks. This is the ability for each build task to be able to check whether it should run or not based on whether something has changed compared to the previous run. Here are a few quick outlines of how this feature works in Kobalt. 
+One of the recent additions to [Kobalt](/kobalt) is incremental tasks. This is the ability for each build task to be able to check whether it should run or not based on whether something has changed compared to the previous run. Here are a few quick outlines of how this feature works in Kobalt. 
 
 ## Overview
 
@@ -74,6 +74,6 @@ u2020:assembleInternalDebug | 0 ms | 0 ms
 
 At the moment, Kobalt only supports checksum-based incremental tasks since that approach subsumes all the other approaches but I'm not ruling out adding input-specific incremental tasks in the future if there's interest. In the meantime, checksums are working very well and pretty efficiently, even on large directories and/or large files. 
 
-If you are curious to try it yourself, please [download Kobalt](http://beust.com/weblog/kobalt) and report back! 
+If you are curious to try it yourself, please [download Kobalt](/kobalt) and report back! 
 
-_The full series of articles on Kobalt can be found[here](http://beust.com/weblog/weblog/category/kobalt/)_.
+_The full series of articles on Kobalt can be found[here](/tags/kobalt)_.

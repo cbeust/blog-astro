@@ -17,4 +17,4 @@ Groups can also include other groups.  For example, you might want to define a 
 >  testng.includedGroups = all  
 > 
 
-I have also added new Javadocs and more code excerpts to the documentation.  For all the details, please refer to the [ TestNG main page](http://beust.com/weblog/testng).
+I have also added new Javadocs and more code excerpts to the documentation.  For all the details, please refer to the [ TestNG main page](https://testng.org).

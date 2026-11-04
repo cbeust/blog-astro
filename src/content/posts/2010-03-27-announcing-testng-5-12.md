@@ -105,7 +105,7 @@ I also made a few improvements to the Eclipse plug-in, such as a New File wizard
 
 ![](https://testng.org/pictures/new-2.png)
 
-You can download [TestNG](https://testng.org/doc/download.html) and the [TestNG Eclipse plug-in](https://beust.com/weblog/eclipse) at the usual places, and the new version will be available in the main Maven repository shortly. Here is the full change log for 5.12: 
+You can download [TestNG](https://testng.org/doc/download.html) and the [TestNG Eclipse plug-in](/posts/hippie-completion-in-eclipse) at the usual places, and the new version will be available in the main Maven repository shortly. Here is the full change log for 5.12: 
 
 **Core**
 

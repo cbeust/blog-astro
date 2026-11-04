@@ -160,7 +160,7 @@ comments:
   replies: []
 ---
 
-One of the basic tenets of unit testing is that test methods should be independent of each other.  JUnit goes to extremes to guarantee this principle by [ reinstantiating your test class before every method](http://www.beust.com/weblog/weblog/archives/000175.html).  I personally think that as soon as you do more than unit testing, your test methods will invariably become dependent on each other (and as a matter of fact, [what are `setUp()` and `tearDown()`](http://beust.com/weblog/weblog/archives/000252.html) if not dependent methods?), and that a testing framework needs to account for that.  But that's not the point of this post.
+One of the basic tenets of unit testing is that test methods should be independent of each other.  JUnit goes to extremes to guarantee this principle by [ reinstantiating your test class before every method](/posts/more-on-junit-and-multiple-instantiations).  I personally think that as soon as you do more than unit testing, your test methods will invariably become dependent on each other (and as a matter of fact, [what are `setUp()` and `tearDown()`](/posts/the-call-super-anti-pattern) if not dependent methods?), and that a testing framework needs to account for that.  But that's not the point of this post.
 
 Recently, I started wondering why this principle seemed to be so important and I asked the following question to several developers:  _" Why is it important to have test methods that are independent of each other?"_.
 
@@ -174,7 +174,7 @@ Every night, thousands of tests are run and when I come into the office in the m
 
 Now, imagine a testing framework that would give you a very easy way to rerun only the tests that failed in the previous run.  Would independence of test methods from each other be so important any more?
 
-With that in mind, I spent a couple of hours on the plane yesterday coding this feature for [TestNG](http://beust.com/weblog/testng) (you saw that coming, didn't you?), and it turned out to be quite trivial.
+With that in mind, I spent a couple of hours on the plane yesterday coding this feature for [TestNG](https://testng.org) (you saw that coming, didn't you?), and it turned out to be quite trivial.
 
 TestNG runs tests based on a definition file called `testng.xml`.  Whenever tests fail in a test run, TestNG will create a corresponding ` testng-failed.xml` that will contain only the tests that failed.  Therefore, a typical session will look like this:
 

@@ -24,7 +24,7 @@ comments:
   replies: []
 ---
 
-I just went through an intense refactoring session for [EJBGen](http://beust.com/weblog/ejbgen).  There is more to come, but I have basically turned around the entire implementation in prevision of incoming features and new integrations.  The interesting thing about this is:  users will never notice.
+I just went through an intense refactoring session for [EJBGen](https://beust.com/ejbgen).  There is more to come, but I have basically turned around the entire implementation in prevision of incoming features and new integrations.  The interesting thing about this is:  users will never notice.
 
 Some users are already using the improved version but of course, they have no idea how much it is different from the previous drop.  To them, it's the same tool as the previous version, hopefully without any regression introduced.
 

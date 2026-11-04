@@ -157,7 +157,7 @@ comments:
   replies: []
 ---
 
-This coding challenge is a bit different from the previous one ([[1]](http://beust.com/weblog/weblog/2008/08/28/coding-challenge-wrap-up/) [[2]](http://beust.com/weblog/weblog/2008/06/27/)) because it is shorter and also a bit more closely tied to Java. 
+This coding challenge is a bit different from the previous one ([[1]](/posts/coding-challenge-wrap-up) [[2]](/posts/coding-challenge)) because it is shorter and also a bit more closely tied to Java. 
 
 A `School` has either a `name` ("Stanford") or a `nickname` ("UCSD") or both. 
 

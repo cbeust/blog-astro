@@ -25,7 +25,7 @@ comments:
   replies: []
 ---
 
-Inspired by the success of my [`ReadLater` bookmarklet](http://beust.com/weblog/weblog/archives/000254.html) for [del.icio.us](http://del.icio.us), I created the [ DFR bookmarklet](javascript:location.href='http://del.icio.us/api/posts/delete?url='+escape\(location.href\)) (Delete From ReadLater, but since these bookmarklets go into my toolbar, I want to keep their names short).
+Inspired by the success of my [`ReadLater` bookmarklet](/posts/another-del-icio-us-bookmarklet) for [del.icio.us](http://del.icio.us), I created the [ DFR bookmarklet](javascript:location.href='http://del.icio.us/api/posts/delete?url='+escape\(location.href\)) (Delete From ReadLater, but since these bookmarklets go into my toolbar, I want to keep their names short).
 
 When you have finished reading an article filed with this tag, just click on the bookmarklet and it will get automatically removed from your `read_later` category.  Note that you don't need to make any modification to this bookmarklet since it will use the cookie stored by del.icio.us to authenticate you (it might ask you for your password the first time you invoke it), so you can just drag it onto your toolbar and you're ready to go.
 

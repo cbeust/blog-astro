@@ -16,4 +16,4 @@ comments:
   replies: []
 ---
 
-[Something happened to me that I will remember forever.](http://beust.com/weblog/birthday)
+[Something happened to me that I will remember forever.](/birthday)

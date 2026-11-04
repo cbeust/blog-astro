@@ -161,4 +161,4 @@ You put down some money and you roll a die between 1 and 100. Depending on your 
   * **100** : You get 3 times your money 
 Do you want to play? 
 
-_Update: here is[the solution](http://beust.com/weblog/weblog/archives/000509.html)_
+_Update: here is[the solution](/posts/solution-to-the-gambling-game)_

@@ -137,6 +137,6 @@ Justin says:
 
 > Having written an eclipse plugin, I think the two best thing the Eclipse group ever did were to have the bindings specified by XML and most of the application functionality implemented via plugins. 
 
-I couldn't agree more, and I like this approach so much that I based [TestNG](http://beust.com/weblog/testng) on it.  A careful mix of XML and sound coding patterns is the ultimate reusability weapon.  Having said that, there are still a lot of pitfalls to avoid (too much XML or too much modularization, reusing in a flexible but overly complex architecture), and I suspect that we will be discovering a lot of new concepts in the next years.
+I couldn't agree more, and I like this approach so much that I based [TestNG](https://testng.org) on it.  A careful mix of XML and sound coding patterns is the ultimate reusability weapon.  Having said that, there are still a lot of pitfalls to avoid (too much XML or too much modularization, reusing in a flexible but overly complex architecture), and I suspect that we will be discovering a lot of new concepts in the next years.
 
 Keep the comments coming, I am trying to figure this out as much as anybody else!

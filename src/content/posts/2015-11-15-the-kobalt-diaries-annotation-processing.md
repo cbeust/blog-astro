@@ -8,7 +8,7 @@ categories:
 - Kotlin
 ---
 
-I recently added [`apt` support](http://beust.com/weblog/kobalt/plug-ins/index.html#apt) to [Kobalt](http://beust.com/weblog/kobalt), which is a requirement for a build system these days, and something interesting happened. 
+I recently added [`apt` support](/kobalt/plug-ins/index.html#apt) to [Kobalt](/kobalt), which is a requirement for a build system these days, and something interesting happened. 
 
 First of all, the feature itself in Kobalt: pretty straightforward. The `apt` plug-in adds a new dependency directive similar to `compile`: 
 
@@ -32,7 +32,7 @@ Of course, you can always simply hard code the version number of your applicatio
 
 This is how [version-processor](https://github.com/cbeust/version-processor) was born. It's pretty simple really: all you need to do is annotate one of your classes with `@Version` and a `GeneratedVersion.java` file is created, which you can then refer to. That version number can either be hardcoded or specified in a properties file. Head over to the [project's main page](https://github.com/cbeust/version-processor) for the details. 
 
-And of course, it's built with [Kobalt](http://beust.com/weblog/kobalt) and if you are curious, [here is the processor's build file](https://github.com/cbeust/version-processor/blob/master/Build.kt#L11-L25): 
+And of course, it's built with [Kobalt](/kobalt) and if you are curious, [here is the processor's build file](https://github.com/cbeust/version-processor/blob/master/Build.kt#L11-L25): 
 
 ```kotlin
 val processor = javaProject {
@@ -52,4 +52,4 @@ val processor = javaProject {
 
 Happy version generating! 
 
-_The full series of articles on Kobalt can be found[here](http://beust.com/weblog/weblog/category/kobalt/)_.
+_The full series of articles on Kobalt can be found[here](/tags/kobalt)_.

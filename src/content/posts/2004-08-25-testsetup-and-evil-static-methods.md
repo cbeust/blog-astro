@@ -99,7 +99,7 @@ comments:
   replies: []
 ---
 
-[TestSetup](http://www.jdocs.com/junit/3.8.1/api/junit/extensions/TestSetup.html) is a JUnit class you can use if you want to introduce initialization in your JUnit tests that only get invoked once, and not once before test method, which is what JUnit does (making it difficult to make sure that an initialization method is only invoked once during the lifetime of the class). I wrote more about this oddity [not long ago](http://www.beust.com/weblog/weblog/archives/000082.html). 
+[TestSetup](http://www.jdocs.com/junit/3.8.1/api/junit/extensions/TestSetup.html) is a JUnit class you can use if you want to introduce initialization in your JUnit tests that only get invoked once, and not once before test method, which is what JUnit does (making it difficult to make sure that an initialization method is only invoked once during the lifetime of the class). I wrote more about this oddity [not long ago](/posts/testng-testing-the-next-generation). 
 
 A [recent weblog entry about TestSetup](http://jroller.com/page/raible/20040825#one_time_setup_with_testsetup) shows how to use it, which is pretty straightforward. I still have a big problem with this solution, and what JUnit forces you to do to work around this "design choice": it forces you to introduce static methods in your code. 
 
@@ -120,4 +120,4 @@ Classes in object-oriented programming obey very simple rules:
   * If your content is not static, it is guaranteed to be private to your instance. 
 JUnit violates these two principles and I just can't get used to it. Instead of righting a wrong with another wrong, why not return to the most intuitive way of doing this and letting test writers implement methods that are guaranteed to be invoked once? 
 
-Of course, these is also [an alternative](http://beust.com/weblog/testng). :-)
+Of course, these is also [an alternative](https://testng.org). :-)

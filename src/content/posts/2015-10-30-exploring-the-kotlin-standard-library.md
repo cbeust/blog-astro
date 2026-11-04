@@ -168,4 +168,4 @@ fun readProperties() = Properties().apply {
 
 The `apply()` call tells us that the type of this expression is that of the object `apply()` is invoked on, which is `Properties`. Inside this block, `this` is now of type `Properties`, which allows us to call `load()` on it directly. In between, we create a `FileInputStream` that we use to populate this property object. And once we call `use()` on it, that `FileInputStream` will be automatically closed before this function returns, saving us from the ugly `try`/`catch`/`finally ` combo that Java requires.
 
-You will find a lot of these constructs in the [Kobalt build tool](https://beust.com/weblog/kobalt) code, feel free to browse it.
+You will find a lot of these constructs in the [Kobalt build tool](/kobalt) code, feel free to browse it.

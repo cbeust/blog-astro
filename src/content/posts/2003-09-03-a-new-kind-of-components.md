@@ -148,7 +148,7 @@ comments:
   replies: []
 ---
 
-In "[Where are the components](http://sys-con.com/java/article.cfm?id=2195)", Joseph Ottinger makes some interesting points about the absence of reusable components in the Java land.  In many ways, I share his concerns and I said so in a [previous entry](http://beust.com/weblog/weblog/archives/000016.html).  However, there are a few inaccuracies in his editorial that I'd like to address.
+In "[Where are the components](http://sys-con.com/java/article.cfm?id=2195)", Joseph Ottinger makes some interesting points about the absence of reusable components in the Java land.  In many ways, I share his concerns and I said so in a [previous entry](/posts/components-in-java).  However, there are a few inaccuracies in his editorial that I'd like to address.
 
 Joseph says:
 

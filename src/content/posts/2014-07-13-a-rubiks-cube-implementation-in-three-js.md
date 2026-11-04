@@ -6,13 +6,13 @@ categories:
 - General
 ---
 
-[ ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/rubik.png) ](http://beust.com/weblog/rubik)
+[ ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/rubik.png) ](/rubik)
 
 In 2003, I took the time to put together a page that explains how to solve the Rubik's cube with a set of formulas that are easy to memorize. The idea was not necessarily to solve the cube quickly (it takes about 50-60 seconds to solve the cube with this approach) but to make it easy for anyone to beat the cube with little effort, as opposed to the hundreds of formulas that speed cubists have to memorize to remain competitive. 
 
 Back then, I used a Java applet that represents a cube with formulas and then playing these formulas to explain to the reader how exactly they work. As everybody knows, Java applets have fallen out of favor even more today than they already were ten years ago, so I've been wanting to update my page with more modern technologies for a while, especially if these technologies don't show a scary warning to everyone who reaches my web site. 
 
-I finally took the time to update my page and I reimplemented the entire cube animation in Javascript with Three.js. [Here is how it looks like today](http://beust.com/weblog/rubik). 
+I finally took the time to update my page and I reimplemented the entire cube animation in Javascript with Three.js. [Here is how it looks like today](/rubik). 
 
 While it's easy to find rapidly implemented Rubik's cubes in [Three.js](http://threejs.org/), I couldn't find anything that came remotely close to what I needed, namely, being able to configure a cube directly from the HTML page along with the formula, and playing this formula at the click of a button. Three.js turned out to be a great match for this, with the perfect amount of abstraction and power. And with Three.js came a few free bonus tools, such as being able to move the cube around and also effortlessly zooming in and out. Of course, it's equally trivial to modify the size of the cube, the position of the camera, the field of view, and just as easy to add more fancy stuff such as lighting, shadows and fancy materials. 
 

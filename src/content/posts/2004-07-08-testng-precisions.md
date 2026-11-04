@@ -339,7 +339,7 @@ comments:
   replies: []
 ---
 
-Robert (sorry, couldn't figure out his name) wrote a [few interesting criticisms](http://twasink.net/blog/archives/2004/07/what_i_dont_lik.html) about [TestNG](http://beust.com/weblog/testng):
+Robert (sorry, couldn't figure out his name) wrote a [few interesting criticisms](http://twasink.net/blog/archives/2004/07/what_i_dont_lik.html) about [TestNG](https://testng.org):
 
 > JUnit's got huge traction in the Java community because of the tool support. 
 

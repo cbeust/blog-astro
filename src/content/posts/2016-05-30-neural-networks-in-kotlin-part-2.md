@@ -7,7 +7,7 @@ categories:
 - neural_networks
 ---
 
-In the [previous installment](https://www.beust.com/weblog/neural-network-in-kotlin/), I introduced a mystery class `NeuralNetwork` which is capable of calculating different results depending on the data that you train it with. In this article, we'll take a closer look at this neural network and crunch a few numbers.
+In the [previous installment](/posts/neural-network-in-kotlin), I introduced a mystery class `NeuralNetwork` which is capable of calculating different results depending on the data that you train it with. In this article, we'll take a closer look at this neural network and crunch a few numbers.
 
 ## Neural networks overview
 

@@ -40,7 +40,7 @@ comments:
 
 The TestNG team is happy to announce the availability of TestNG 2.3.
 
-The version is available at [ http://beust.com/weblog/testng](http://beust.com/weblog/testng) as well as the new documentation, which has been considerably improved (highlighted code snippets, [detailed DTD](http://beust.com/weblog/testng/testng-1.0.dtd.html), ant task and description of all the new features).
+The version is available at [ https://testng.org](https://testng.org) as well as the new documentation, which has been considerably improved (highlighted code snippets, [detailed DTD](https://testng.org/testng-1.0.dtd.html), ant task and description of all the new features).
 
 What's new:
 
@@ -53,7 +53,7 @@ What's new:
 
 
 
-For Eclipse users, a new version (1.1.1) of the Eclipse plug-in that includes this new TestNG version is available on the [ remote update site](http://beust.com/weblog/eclipse) or for [direct download](http://beust.com/weblog/testng/testng-eclipse.zip).
+For Eclipse users, a new version (1.1.1) of the Eclipse plug-in that includes this new TestNG version is available on the [ remote update site](/posts/hippie-completion-in-eclipse) or for [direct download](https://testng.org/testng-eclipse.zip).
 
 Also, TestNG has joined [ OpenSymphony](http://opensymphony.com) (big thanks to Patrick and Hani for setting this up).  As a consequence of this move, there is now a [TestNG users forum](http://forums.opensymphony.com/forum.jspa?forumID=14) as well as a Wiki and JIRA for issue tracking.
 

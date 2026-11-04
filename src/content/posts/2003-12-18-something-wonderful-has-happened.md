@@ -6,7 +6,7 @@ categories:
 - Java
 ---
 
-It took me a while to get my first virus but as some of you already know, it happened [not long ago](http://beust.com/weblog/weblog/archives/000011.html).  Well, it happened again, but things were a little bit worse this time.
+It took me a while to get my first virus but as some of you already know, it happened [not long ago](/posts/my-first-virus).  Well, it happened again, but things were a little bit worse this time.
 
 A few days ago, my home network started acting up, mysteriously crawling to a halt to the point where 90% of my packets couldn't even reach my gateway.  I soon identified the faulty machine and I disabled the network interface until I had time to deal with the problem, because solving it would probably require me to resort to a packet sniffer.  I finally found some time to investigate the issue.
 

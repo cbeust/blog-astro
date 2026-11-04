@@ -17,4 +17,4 @@ comments:
   replies: []
 ---
 
-[![](http://s98219.gridserver.com/weblog/wp-content/uploads/2010/04/android.jpg)](http://s98219.gridserver.com/weblog/wp-content/uploads/2010/04/android.jpg)
+[![](http://s98219.gridserver.com/pics/android.jpg)](http://s98219.gridserver.com/pics/android.jpg)

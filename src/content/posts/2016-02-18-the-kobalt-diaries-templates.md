@@ -7,7 +7,7 @@ categories:
 - Kotlin
 ---
 
-The latest addition to [Kobalt](https://beust.com/weblog/kobalt) is [templates](https://beust.com/weblog/kobalt/documentation/index.html#templates), also known as "archetypes" in Maven.
+The latest addition to [Kobalt](/kobalt) is [templates](/kobalt/documentation/index.html#templates), also known as "archetypes" in Maven.
 
 Templates are actions performed by plug-ins that create a set of files in your project. They are typically used when uou are beginning a brand new project and you want some default files to be created. Of course, nothing stops you from invoking templates even if you already have an existing project since templates can generate pretty much any kind of files. Here is how they work in Kobalt.
 
@@ -122,4 +122,4 @@ interface ITemplateContributor {
 
 Each template provides a name, a description and a function that actually generates the files for the current project. Feel free to browse how [Kobalt's Android plug-in implements its templates.](https://github.com/cbeust/kobalt-android/blob/master/src/main/kotlin/com/beust/kobalt/plugin/android/Templates.kt)
 
-_The full series of articles on Kobalt can be found[here](https://beust.com/weblog/weblog/category/kobalt/)_.
+_The full series of articles on Kobalt can be found[here](/tags/kobalt)_.

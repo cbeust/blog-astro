@@ -83,10 +83,10 @@ comments:
   replies: []
 ---
 
-![](http://beust.com/weblog/doclipse/pictures/completion2.jpg)
+![](/posts/announcing-doclipse/pictures/completion2.jpg)
 
 I am happy to announce the first version of Doclipse, an Eclipse plug-in to help you write Java source files with Javadoc tags, either for documentation purposes or to be processed by a tool such as EJBGen or XDoclet.
 
 Once you have installed Doclipse, you can add your own definition files for JavaDoc tags and they become available immediately in the editor.
 
-Check out the [Doclipse home page](http://beust.com/weblog/doclipse) for more details.
+Check out the [Doclipse home page](/posts/announcing-doclipse) for more details.

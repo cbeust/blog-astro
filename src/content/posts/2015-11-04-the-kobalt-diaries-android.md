@@ -8,11 +8,11 @@ categories:
 - Kotlin
 ---
 
-A lot of work has gone into [Kobalt](http://beust.com/weblog/kobalt) since I announced its alpha: 
+A lot of work has gone into [Kobalt](/kobalt) since I announced its alpha: 
 
   * New plug-in architecture.
   * Various plug-ins.
-  * [An IDEA plug-in to synchronize your build files.](https://beust.com/weblog/kobalt/idea-plug-in/index.html)
+  * [An IDEA plug-in to synchronize your build files.](/kobalt/idea-plug-in/index.html)
   * Expanding the DSL.
   * ... and much more!
 

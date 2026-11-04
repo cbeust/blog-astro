@@ -9,11 +9,11 @@ categories:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/parallel-build-result.png)
 
-I've always wondered why the traditional build systems we use on the JVM (Maven, Gradle) don't support parallel builds (edit: this is not quite true, see the comments), so now that I developed my [own build system](https://beust.com/weblog/kobalt), I decided to find out if there was any particular difficulty to this problem that I had overlooked. This turned out to be easier than I anticipated and with interesting benefits. Here is a preliminary result of my findings. 
+I've always wondered why the traditional build systems we use on the JVM (Maven, Gradle) don't support parallel builds (edit: this is not quite true, see the comments), so now that I developed my [own build system](/kobalt), I decided to find out if there was any particular difficulty to this problem that I had overlooked. This turned out to be easier than I anticipated and with interesting benefits. Here is a preliminary result of my findings. 
 
 ## Defining parallel builds
 
-While most builds are sequential by nature (task B can't usually run until task A has completed), projects that contain multiple sub projects can greatly benefit from the performance boost of parallel builds. This speed up will obviously not apply to single projects or subprojects that have direct dependencies on each other (although this is not quite true as we will see below). If you're curious, the engine that powers Kobalt's parallel builds is an improved version of TestNG's own `DynamicGraphExecutor`, which I described in details [in this post](https://beust.com/weblog/weblog/2009/11/28/hard-core-multicore-with-testng/). 
+While most builds are sequential by nature (task B can't usually run until task A has completed), projects that contain multiple sub projects can greatly benefit from the performance boost of parallel builds. This speed up will obviously not apply to single projects or subprojects that have direct dependencies on each other (although this is not quite true as we will see below). If you're curious, the engine that powers Kobalt's parallel builds is an improved version of TestNG's own `DynamicGraphExecutor`, which I described in details [in this post](/posts/hard-core-multicore-with-testng). 
 
 In order to measure the efficacy of parallel builds, I needed a more substantial project, so I picked [ktor](https://github.com/Kotlin/ktor), Kotlin's web framework developed by JetBrains. ktor is interesting because it contains more than twenty sub projects with various dependencies with each other. Here is a dependency graph: 
 
@@ -110,4 +110,4 @@ This task-based approach can improve build times significantly since tests (espe
 
 I started implementing parallel builds mostly as a curiosity and with very low expectations but I ended up being very surprised to see how well they work and how they improve my build times, even when just considering project-based concurrency and not task-based concurrency. I'd be curious to hear back from Kobalt users on how well this new feature performs on their own projects. 
 
-And if you haven't tried Kobalt yet, it's extremely easy [to get started](https://beust.com/weblog/kobalt).
+And if you haven't tried Kobalt yet, it's extremely easy [to get started](/kobalt).

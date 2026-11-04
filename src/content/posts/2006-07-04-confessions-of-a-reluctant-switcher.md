@@ -442,7 +442,7 @@ I've been using computers pretty much since the age of 10 and since then, I have
 
 At my work, I now find myself constantly switching between Windows, Linux and Mac OS. And I'm not exaggerating. I'm using at least two of these operating systems every day and more and more often, all three of them. 
 
-Finally, I don't succumb easily to the [fan syndrome](http://www.beust.com/weblog/weblog/archives/000348.html) and I try to keep a technical and objective judgment on everything. 
+Finally, I don't succumb easily to the [fan syndrome](/posts/confessions-of-a-reluctant-switcher-part-2) and I try to keep a technical and objective judgment on everything. 
 
 Now that this is out of the way, here are my impressions after one week of diving into Mac OS. 
 
@@ -466,7 +466,7 @@ Now that this is out of the way, here are my impressions after one week of divin
 
   * The Alt key doesn't work on XEmacs (a define-key will probably fix that). 
 
-  * The Alt-Tab behavior takes some time to get used to. As opposed to Windows, Alt-Tab only switches between applications. Once you are in the desired application, you still need to use Alt-~ to select the right window. This would be acceptable if Alt-~ gave me a minimized version of the various windows available to me, but it doesn't: it raises all the windows to the foreground one by one. This is not only annoying (since it messes up the Z-order of your windows), it's actually downright silly and completely inconsistent with Alt-Tab. I can still select the individual windows in the right part of the Dock, apparently, but I still want to be able to do this from the keyboard. In short, switching windows on Mac OS is a pain. The ultimate task switcher in my opinion is [Task Switch XP](http://www.beust.com/weblog/weblog/archives/000326.html), which lets you switch between all windows but also allows you to switch windows only within the current application with a different hot key (Alt-Control-Tab). 
+  * The Alt-Tab behavior takes some time to get used to. As opposed to Windows, Alt-Tab only switches between applications. Once you are in the desired application, you still need to use Alt-~ to select the right window. This would be acceptable if Alt-~ gave me a minimized version of the various windows available to me, but it doesn't: it raises all the windows to the foreground one by one. This is not only annoying (since it messes up the Z-order of your windows), it's actually downright silly and completely inconsistent with Alt-Tab. I can still select the individual windows in the right part of the Dock, apparently, but I still want to be able to do this from the keyboard. In short, switching windows on Mac OS is a pain. The ultimate task switcher in my opinion is [Task Switch XP](/posts/confessions-of-a-reluctant-switcher), which lets you switch between all windows but also allows you to switch windows only within the current application with a different hot key (Alt-Control-Tab). 
 
   * The Mac Book Pro is hot. Very hot. And I don't mean that metaphorically. It is hot as in "put it in your lap for a few hours in a row and you'll go sterile". Use a protection on your lap if you are going to use your Mac Book Pro for extended periods of time. 
 

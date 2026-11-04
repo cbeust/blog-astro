@@ -522,7 +522,7 @@ Well, you're a pragmatic kind of guy and even though the idea seems wacky, I'm s
 
 > Not harder to build dynamic tools than for static languages, just different. 
 
-I still strongly disagree with that. It is different *and* harder (and in some cases, [impossible](http://beust.com/weblog/weblog/archives/000414.html)). Your point regarding the fact that static refactoring doesn't cover 100% of the cases is well taken, but it's 1) darn close to 100% and 2) getting closer to it much faster than any dynamic tool ever could. By the way, Java refactorings correcting comments, XML and property files are getting pretty common these days, but good luck trying to perform a reliable method renaming in 100 Ruby files. 
+I still strongly disagree with that. It is different *and* harder (and in some cases, [impossible](/posts/dynamic-language-refactoring-ide-pick-one)). Your point regarding the fact that static refactoring doesn't cover 100% of the cases is well taken, but it's 1) darn close to 100% and 2) getting closer to it much faster than any dynamic tool ever could. By the way, Java refactorings correcting comments, XML and property files are getting pretty common these days, but good luck trying to perform a reliable method renaming in 100 Ruby files. 
 
 ###  Generics 
 

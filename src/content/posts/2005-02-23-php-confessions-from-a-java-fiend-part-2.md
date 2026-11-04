@@ -146,7 +146,7 @@ comments:
   replies: []
 ---
 
-_[Read part 1.](http://beust.com/weblog/weblog/archives/000245.html)_
+_[Read part 1.](/posts/php-confessions-from-a-java-fiend)_
 
 When you are putting together a Web site, there are two things you need from a language:
 

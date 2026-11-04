@@ -245,7 +245,7 @@ comments:
   replies: []
 ---
 
-A while ago, I explained [why I thought that Duck Typing was dangerous](http://beust.com/weblog/weblog/archives/000269.html). More recently, Scala popularized a different type of typing called Structural Typing, which is often described as being "type safe Duck Typing". Let's take a closer look at Structural Typing and see if it delivers on this promise.
+A while ago, I explained [why I thought that Duck Typing was dangerous](/posts/the-perils-of-duck-typing). More recently, Scala popularized a different type of typing called Structural Typing, which is often described as being "type safe Duck Typing". Let's take a closer look at Structural Typing and see if it delivers on this promise.
 
 With Duck Typing, you send a message to an object in absolute darkness. You don't know whether this object knows this message and you just trust the caller to have passed you an object that does:
 
@@ -284,7 +284,7 @@ Can be automatically refactored| No (2)| Yes (3)| Yes
 Respects "Don't Repeat Yourself"| Yes (4)| No (5)| Yes (6)  
   
   1. I'm conflating classes, interfaces and traits. They have different semantic, but mean the same in the context of typing.
-  2. More details on the impossibility to refactor Duck Typed code can be found in [the blog entry linked above](http://beust.com/weblog/weblog/archives/000269.html).
+  2. More details on the impossibility to refactor Duck Typed code can be found in [the blog entry linked above](/posts/the-perils-of-duck-typing).
   3. Any attempt to rename the `getName` method in either of the three locations (inside the class for the instance passed in parameter, in the method signature or inside the method body) will cause all the other locations to be properly renamed as well.
   4. Since you declare no types at all with duck typing, there is no repetition.
   5. If you need to declare more than one method that accepts a parameter with a `getName` method on it, you will have to repeat the entire `(f: { def getName(): String }` statement for each one. 

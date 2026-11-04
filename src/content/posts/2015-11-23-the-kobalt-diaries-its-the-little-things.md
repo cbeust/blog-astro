@@ -7,7 +7,7 @@ categories:
 - Kotlin
 ---
 
-When I embarked on the ridiculously ambitious goal of [writing a build tool](http://beust.com/weblog/kobalt), I had plans to tackle both big problems and small problems. My previous (and probably future) blog post cover the big problems such as performance, plug-in architecture and DSL syntax, but in this post, I'm going to cover a few little things that I was quite happy to finally be able to get from my build tool. 
+When I embarked on the ridiculously ambitious goal of [writing a build tool](/kobalt), I had plans to tackle both big problems and small problems. My previous (and probably future) blog post cover the big problems such as performance, plug-in architecture and DSL syntax, but in this post, I'm going to cover a few little things that I was quite happy to finally be able to get from my build tool. 
 
 I've always found it a hassle to keep up with the latest versions of the dependencies of my build, especially since it's its job to tell me. Therefore, Kobalt has a handy `--checkVersions` parameter that will check to see if it can find any new version of your dependencies: 
 
@@ -46,4 +46,4 @@ $ ./kobaltw runFreeRelease // build, install and launch that variant
 
 I've made a lot of improvements to the Android plug-in lately, but that will be the topic for another post. 
 
-_The full series of articles on Kobalt can be found[here](http://beust.com/weblog/weblog/category/kobalt/)_.
+_The full series of articles on Kobalt can be found[here](/tags/kobalt)_.

@@ -95,7 +95,7 @@ I don't know about you, but while 99% of the emails I receive are in HTML, very 
 >  To: Cedric  
 >  Subject:  Cool tool!  
 >    
->  Hey Ced, check out this tool, it really helps speed up EJB development:  <http://beust.com/weblog/ejbgen>
+>  Hey Ced, check out this tool, it really helps speed up EJB development:  <https://beust.com/ejbgen>
 
 A few months ago, I noticed this and wondered how come nobody bothers to use real links in their emails?  After all, it's not like senders are not familiar with HTML and they certainly know how to insert an _href_ in a text, regardless of the tool they use.  So why don't we see more emails such as:
 
@@ -103,7 +103,7 @@ A few months ago, I noticed this and wondered how come nobody bothers to use rea
 >  To: Cedric  
 >  Subject:  Cool tool!  
 >    
->  Hey Ced, [check out this tool](http://beust.com/weblog/ejbgen), it really helps speed up EJB development. 
+>  Hey Ced, [check out this tool](https://beust.com/ejbgen), it really helps speed up EJB development. 
 
 It is trivial to insert a link with Mozilla (Ctrl-L) and Outlook (Ctrl-K, same as FrontPage), so why don't people use this feature more?  Once you start using links in your emails, the need for tinyurl is greatly reduced.  I still use tinyurl for my Yahoo Messenger status, though.
 

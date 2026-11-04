@@ -91,7 +91,7 @@ comments:
   replies: []
 ---
 
-A comment in my [previous entry](http://beust.com/weblog/weblog/archives/000173.html) asks why statics can cause problems. Here is a quick example of a program that wants to handle a -verbose option: 
+A comment in my [previous entry](/posts/testsetup-and-evil-static-methods) asks why statics can cause problems. Here is a quick example of a program that wants to handle a -verbose option: 
 
 ```java
 public class Foo {

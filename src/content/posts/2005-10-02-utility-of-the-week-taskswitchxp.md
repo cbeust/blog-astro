@@ -54,7 +54,7 @@ comments:
 
 ![](http://www.ntwind.com/taskswitchxp/images/tsxp_default.png)
 
-I enjoyed playing with [Entbloess](http://www.beust.com/weblog/weblog/archives/000209.html) but more for its aesthetic value than its practicality.  With [TaskSwitchXP](http://www.ntwind.com/taskswitchxp/), I might have found a task switcher that is actually better than Windows' default one.
+I enjoyed playing with [Entbloess](/posts/entbloess-expose-on-windows-xp) but more for its aesthetic value than its practicality.  With [TaskSwitchXP](http://www.ntwind.com/taskswitchxp/), I might have found a task switcher that is actually better than Windows' default one.
 
 TaskSwitchXP has many features, but there are really two that I already started getting quite used to:
 

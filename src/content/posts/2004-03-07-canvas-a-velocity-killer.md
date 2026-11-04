@@ -262,6 +262,6 @@ Not only is Groovy a cool language that borrows features from two of my favorite
 
 With that in mind, it took me just a few hours to put together this quick prototype of a product reusing the Velocity API but using Groovy as its expression language.  The good news is that the dependency is now limited to one jar file:  groovy.jar.
 
-I called this product Canvas and you can read more about it on its [home page](http://beust.com/weblog/canvas).
+I called this product Canvas and you can read more about it on its [home page](https://beust.com/canvas).
 
 Also, I'd like to take this opportunity to hereby claim the title of the smallest framework ever:  Canvas only has three classes.  You can't get more lightweight than that!

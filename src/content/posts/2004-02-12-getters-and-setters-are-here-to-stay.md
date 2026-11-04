@@ -151,7 +151,7 @@ comments:
   replies: []
 ---
 
-Getters and setters are [not going away](http://www.beust.com/weblog/weblog/archives/000022.html). Deal with it. 
+Getters and setters are [not going away](/posts/holub-is-at-it-again). Deal with it. 
 
 Don't believe what [wannabe pundits](http://www.javaworld.com/javaworld/jw-09-2003/jw-0905-toolbox.html) and OO purists tell you. At the end of the day, every object becomes a primitive type. 
 

@@ -114,7 +114,7 @@ Greg explains [why he likes JUnit](http://freeroller.net/page/gstamp):
 > 
 
 
-I certainly acknowledge point 2 since I provide a JUnit mode in [TestNG](http://beust.com/weblog/testng) (read:  I emulate JUnit's bugs :-)).  But you can't possibly be serious about point 1, Greg, can you?  What is good about JUnit is _what they left out_?!?
+I certainly acknowledge point 2 since I provide a JUnit mode in [TestNG](https://testng.org) (read:  I emulate JUnit's bugs :-)).  But you can't possibly be serious about point 1, Greg, can you?  What is good about JUnit is _what they left out_?!?
 
 Here is what happens when a framework is not only simple but simplistic:  people start fixing its deficiencies on their own and you end up with an explosion of customized tools built on top of it.
 

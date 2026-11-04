@@ -433,7 +433,7 @@ comments:
   replies: []
 ---
 
-It's been a while since I offered a [coding challenge](http://beust.com/weblog/weblog/2008/06/27/coding-challenge/), so let's remedy this. 
+It's been a while since I offered a [coding challenge](/posts/coding-challenge), so let's remedy this. 
 
 This one comes from [this week's Car Talk's puzzler](http://www.cartalk.com/content/puzzler/transcripts/201143/index.html). Here is the short version of it: 
 

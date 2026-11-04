@@ -26,9 +26,9 @@ comments:
   replies: []
 ---
 
-I am happy to announce the availability of [ TestNG 2.1](http://beust.com/weblog/testng).  Some of the new features include:
+I am happy to announce the availability of [ TestNG 2.1](https://testng.org).  Some of the new features include:
 
-  * **`invocationCount` and `successPercentage`**, which I described in a [ previous entry](http://beust.com/weblog/weblog/archives/000236.html), and which allow you to invoke a test method a certain number of times while allowing some of these invocations to fail.  If the number of failures is under a certain threshold, the test is still considered a success.  
+  * **`invocationCount` and `successPercentage`**, which I described in a [ previous entry](/posts/announcing-testng-2-1), and which allow you to invoke a test method a certain number of times while allowing some of these invocations to fail.  If the number of failures is under a certain threshold, the test is still considered a success.  
  
   * **`timeOut`** is now applicable to all test methods.  Whether you are running your tests in parallel or not, you can specify a time-out for your test method and if it fails to complete within the given amount of time, TestNG will mark it as a failure.  
  

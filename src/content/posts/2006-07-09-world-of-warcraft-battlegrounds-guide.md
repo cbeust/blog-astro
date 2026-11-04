@@ -78,4 +78,4 @@ comments:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/einstein-wow.jpg)
 
-I just wrote up a quick [Battlegrounds for Dummies](http://beust.com/weblog/wow-battlegrounds.html) article... Comments welcome.
+I just wrote up a quick [Battlegrounds for Dummies](/wow-battlegrounds.html) article... Comments welcome.

@@ -24,8 +24,8 @@ comments:
   replies: []
 ---
 
-I just uploaded a new version of [Doclipse](http://beust.com/weblog/doclipse), which now contains a definition file for Hibernate tags (thanks Ryan!) and also an improved preference page that allows you deselect files individually:
+I just uploaded a new version of [Doclipse](/posts/announcing-doclipse), which now contains a definition file for Hibernate tags (thanks Ryan!) and also an improved preference page that allows you deselect files individually:
 
-![](http://beust.com/weblog/doclipse/pictures/preference2.jpg)
+![](/posts/announcing-doclipse/pictures/preference2.jpg)
 
 You should delete the previous directory of the plug-in before installing this one (the directory inside the zip no longer contains the version number, which makes things simpler for now).

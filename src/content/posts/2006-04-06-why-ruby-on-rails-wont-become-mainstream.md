@@ -2187,7 +2187,7 @@ comments:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/crossing-chasm.jpg)
 
-_Update: here is a[follow-up to this article](http://beust.com/weblog/weblog/2008/01/04/has-ruby-on-rails-become-mainstream/), written two years later_. 
+_Update: here is a[follow-up to this article](/posts/has-ruby-on-rails-become-mainstream), written two years later_. 
 
 You won't be reading any Ruby on Rails bashing in this blog post for a simple reason:  I love Ruby and I love Ruby on Rails.
 

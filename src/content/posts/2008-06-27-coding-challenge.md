@@ -3967,7 +3967,7 @@ comments:
   replies: []
 ---
 
-_Update: I posted a wrap-up[here](https://www.beust.com/weblog/coding-challenge-wrap-up/)_. Here is an interesting coding challenge: write a counter function that counts from 1 to max but only returns numbers whose digits don't repeat. For example, part of the output would be: 
+_Update: I posted a wrap-up[here](/posts/coding-challenge-wrap-up)_. Here is an interesting coding challenge: write a counter function that counts from 1 to max but only returns numbers whose digits don't repeat. For example, part of the output would be: 
 
   * 8, 9, 10, 12 (11 is not valid)
   * 98, 102, 103 (99, 100 and 101 are not valid)

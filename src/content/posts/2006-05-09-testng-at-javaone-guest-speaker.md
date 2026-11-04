@@ -26,6 +26,6 @@ comments:
 
 ![](http://blogs.sun.com/roller/resources/tor/javaone.gif)
 
-As I mentioned in a [previous entry](http://www.beust.com/weblog/weblog/archives/000356.html), I will not be able to attend JavaOne this year, so I'm happy to announce that [Hani](http://jroller.com/page/fate) has kindly accepted to give the TestNG talk on my behalf.  Come meet the BileBoy in person and leave with a brand new outlook on Java testing!
+As I mentioned in a [previous entry](/posts/testng-at-javaone-guest-speaker), I will not be able to attend JavaOne this year, so I'm happy to announce that [Hani](http://jroller.com/page/fate) has kindly accepted to give the TestNG talk on my behalf.  Come meet the BileBoy in person and leave with a brand new outlook on Java testing!
 
 See you all in a few weeks.

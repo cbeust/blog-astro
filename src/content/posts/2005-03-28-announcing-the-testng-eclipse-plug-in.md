@@ -64,7 +64,7 @@ comments:
   replies: []
 ---
 
-![](http://beust.com/weblog/testng/pictures/success.png)
+![](https://testng.org/pictures/success.png)
 
 The TestNG team is happy to announce the first release of the TestNG Eclipse plug-in.  This first release covers the basic functionalities of TestNG, among which:
 

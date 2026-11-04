@@ -31,7 +31,7 @@ The best way to test a testing framework is, of course, to use it on itself.  T
  
   * It's a great way to refine the listening API and make sure it covers all possible cases (this is the API that allows clients to be informed of when a test is being called, is succeeding, failing, etc...).  
  
-  * It also allows me to make sure that [TestNG](http://beust.com/weblog/testng) is reentrant, since it is basically calling itself.  This is important since TestNG supports parallel execution of tests, so no deadlocks are permitted.
+  * It also allows me to make sure that [TestNG](https://testng.org) is reentrant, since it is basically calling itself.  This is important since TestNG supports parallel execution of tests, so no deadlocks are permitted.
 
 
 

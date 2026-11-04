@@ -103,7 +103,7 @@ Assert.AreEqual(0, list.Count);
 }
 ```
 
-and pointing out that this example passes with JUnit but fails with [NUnit](http://www.google.com/url?sa=X&start=1&q=http://www.nunit.org/) and [TestNG](http://beust.com/weblog/testng). 
+and pointing out that this example passes with JUnit but fails with [NUnit](http://www.google.com/url?sa=X&start=1&q=http://www.nunit.org/) and [TestNG](https://testng.org). 
 
 Here is why. 
 

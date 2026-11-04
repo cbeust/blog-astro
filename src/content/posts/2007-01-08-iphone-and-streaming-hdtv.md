@@ -50,7 +50,7 @@ Speaking of Apple, it's not exactly been a glorious past month:
 
 Speaking of Apple's phone, assuming it's real, will it be successful?
 
-On one hand, the inexplicable success of the RAZR is unequivocally proving that phone users are much more interested in the form factor than the UI.  For having worked to make [ Gmail for Mobile](http://beust.com/weblog/weblog/archives/000421.html) work reasonably well on the RAZR for a while, I can tell you this is no picnic, and Motorola had to cut a lot of corners in order to make the RAZR look so good.  Everything in this phone is crippled:  memory, CPU, screen size and density, etc...  And it's even worse in the SLVR.
+On one hand, the inexplicable success of the RAZR is unequivocally proving that phone users are much more interested in the form factor than the UI.  For having worked to make [ Gmail for Mobile](/posts/gmail-for-mobile) work reasonably well on the RAZR for a while, I can tell you this is no picnic, and Motorola had to cut a lot of corners in order to make the RAZR look so good.  Everything in this phone is crippled:  memory, CPU, screen size and density, etc...  And it's even worse in the SLVR.
 
 Still, the RAZR has been one the best-selling phones these past years, so it's safe to assume that as long as the Apple phone looks cool, it will sell, regardless of how good the phone really is.  Which doesn't mean that you can get away with anything when you make a phone.  If Apple wants to be able to sell to the mainstream public (not only Mac users, which only represent less than 5% of computer users in America), they will have to make it possible to synchronize their phone with Outlook and all other kinds of Windows-specific software. 
 

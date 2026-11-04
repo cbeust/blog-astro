@@ -41,7 +41,7 @@ Highlights of this release:
 
 The full list of changes is included below.  
   
-The Eclipse plug-in has also been updated (2.5.0) and is available from the update site (<http://beust.com/weblog/eclipse>) or downloadable as a zip file from [http://testng.org](http://testng.org/download.html).  
+The Eclipse plug-in has also been updated (2.5.0) and is available from the update site (</posts/hippie-completion-in-eclipse>) or downloadable as a zip file from [http://testng.org](http://testng.org/download.html).  
   
 Thanks a lot to everyone who contributed to this release, it's a pretty major step for TestNG!  
   

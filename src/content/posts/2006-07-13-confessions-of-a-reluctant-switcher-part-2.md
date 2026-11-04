@@ -376,13 +376,13 @@ This is bad for two reasons:
   * If you are looking for a window, you first need to remember if you minimized it or not, and then you know in which location you should look for it. 
 This latter part is really a momentous UI error, and it's known in the UI field as a "mode". Modes have been deemed evil a long time ago and most modern UI interfaces avoid them like the plague, Windows Office applications being a pretty good example of how to achieve that goal. When your application has a "mode", you are putting a burden on the user and you are forcing her to remember what the current mode is before she can decide what a certain command is going to do. One of the first (and worst) offenders is the famous `vi`, on which every single letter will have a different action depending on whether you're in edit mode or not. 
 
-This also explains some of the comments I have received on my [previous entry](http://beust.com/weblog/weblog/archives/000394.html), such as _"I rarely ever minimize, I just leave all the windows open all the time"_. I initially thought the person who wrote that was kidding, but I know now that he was serious, and the reason is obvious now: when you have a mix of minimized and open windows, finding the right one becomes a challenge, so your only bet is to always minimize or to never minimize. Coming from Windows, this is a philosophy that's extremely hard to embrace. 
+This also explains some of the comments I have received on my [previous entry](/posts/confessions-of-a-reluctant-switcher), such as _"I rarely ever minimize, I just leave all the windows open all the time"_. I initially thought the person who wrote that was kidding, but I know now that he was serious, and the reason is obvious now: when you have a mix of minimized and open windows, finding the right one becomes a challenge, so your only bet is to always minimize or to never minimize. Coming from Windows, this is a philosophy that's extremely hard to embrace. 
 
 I understand the initial intent of trying to separate "applications" from "documents", but this metaphor is completely broken nowadays. Is a FireFox windows with many tabs open an application or a document? Well, this is actually the wrong question, you should really ask "Did I minimize that window last time I saw it or did I just move it in the background?". 
 
 Again, Windows gets it right by putting all the windows in the same stack. Whenever you need to look for one, you look in one place, and some third-party utilities let you refine your search. 
 
-Well, to be honest, Windows only gets it partially right as well, since it won't let you narrow down your search to only windows of the current application, hence my confessed love for [TaskSwitch XP](http://www.beust.com/weblog/weblog/archives/000326.html). 
+Well, to be honest, Windows only gets it partially right as well, since it won't let you narrow down your search to only windows of the current application, hence my confessed love for [TaskSwitch XP](/posts/confessions-of-a-reluctant-switcher). 
 
 ![](http://www.ntwind.com/taskswitchxp/images/tsxp_default.png)   
 **The ultimate window switcher?**

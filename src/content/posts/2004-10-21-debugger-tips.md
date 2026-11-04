@@ -555,7 +555,7 @@ comments:
 
 Debuggers are back in the spotlight with a recent post from [Kasia](http://www.unix-girl.com/blog/archives/001607.html).  She likes debuggers, so do I.
 
-I have already expressed my views [ here](http://beust.com/weblog/weblog/2003/12/08/the-power-of-debuggers/) and [here](http://beust.com/weblog/weblog/2003/12/11/more-on-debuggers/) on the importance of debuggers and my philosophy is quite simple:
+I have already expressed my views [ here](/posts/the-power-of-debuggers) and [here](/posts/more-on-debuggers) on the importance of debuggers and my philosophy is quite simple:
 
 > No matter how productive you are with your current tools, I guarantee you will be more productive **with** an IDE and **with** a debugger. 
 

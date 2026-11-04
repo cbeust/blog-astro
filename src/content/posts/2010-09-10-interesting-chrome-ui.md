@@ -48,4 +48,4 @@ comments:
 
 I noticed this interesting menu in Chrome earlier. 
 
-I have expressed [a few dislikes for Chrome](http://beust.com/weblog/weblog/2010/05/31/sorry-chrome-i-really-want-to-like-you-but/) in the past, and while I still don't appreciate the non-standard menu, I like the innovation attempt here.
+I have expressed [a few dislikes for Chrome](/posts/sorry-chrome-i-really-want-to-like-you-but) in the past, and while I still don't appreciate the non-standard menu, I like the innovation attempt here.

@@ -60,7 +60,7 @@ comments:
   replies: []
 ---
 
-[ SGen](http://beust.com/weblog/sgen) has caused [ quite a stir](http://theserverside.com/news/thread.jsp?thread_id=24320), so I thought a few clarifications were in order.
+[ SGen](https://beust.com/sgen) has caused [ quite a stir](http://theserverside.com/news/thread.jsp?thread_id=24320), so I thought a few clarifications were in order.
 
 **JAM**
 

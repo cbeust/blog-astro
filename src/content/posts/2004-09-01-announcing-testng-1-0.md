@@ -72,7 +72,7 @@ comments:
   replies: []
 ---
 
-I am happy to announce the availability of [TestNG 1.0](http://beust.com/weblog/testng). A lot of changes have been made since the early releases thanks to the recent addition of Jolly Chen to the team.
+I am happy to announce the availability of [TestNG 1.0](https://testng.org). A lot of changes have been made since the early releases thanks to the recent addition of Jolly Chen to the team.
 
 As a quick reminder, TestNG is a testing framework using annotations to provide a more powerful way to test your code in various ways: unit, regression, functional, integration, etc... TestNG allows you to clearly separate your Java code from the way your tests are run. You never need to recompile any of your classes if you decide to run a different set of tests or suites.
 
@@ -102,12 +102,12 @@ Some of the major changes since the previous versions include:
   * **XML**. The property files were easy to work with in the beginning but it was quickly obvious that they wouldn't scale. Now, the information for a suite run (which contains several tests, each test containing several classes) is conveniently located in one XML file.
   * **Dependent methods**. With this feature, you can guarantee that certain groups of methods are always invoked before others. If the dependents didn't run or fail, the method will be marked as a SKIP, which can be seen as less critical than a FAILURE since SKIPs will typically be automatically resolved when the FAILURE that caused them is fixed.
   * **Groups of groups**. Once you have specified that your test methods belong in specific groups, you can specify bigger groups, giving you a lot of flexibility on exactly what tests are run each time.
-  * **Better reporting**. Not only does TestNG have its [own HTML reporting](http://beust.com/weblog/testng/test-output/index.html), it is also compatible with JUnitReport. You can see an example [here](http://beust.com/weblog/testng/test-report/junit-noframes.html).
+  * **Better reporting**. Not only does TestNG have its [own HTML reporting](https://testng.org/test-output/index.html), it is also compatible with JUnitReport. You can see an example [here](https://testng.org/test-report/junit-noframes.html).
   * **Open API**. TestNG exposes its engine with a convenient set of listeners which allow you to plug-in your own reporting mechanism or for any other purpose (as a matter of fact, the JUnitReport code is such a listener). It is also trivial to invoke TestNG programmatically, thus skipping the XML phase and providing TestNG with direct Java objects.
 
 
 
-The XML is fully validate and has a [public DTD](http://beust.com/weblog/testng/testng-1.0.dtd), but here is a quick description. testng.xml lets you specify a test Suite, which contains parameters and tests. Tests contain three kinds of data:
+The XML is fully validate and has a [public DTD](https://testng.org/testng-1.0.dtd), but here is a quick description. testng.xml lets you specify a test Suite, which contains parameters and tests. Tests contain three kinds of data:
 
   * **Parameters** , which override the Suite parameters.
   * **Groups** , made of two parts, definitions and runs.
@@ -124,4 +124,4 @@ In turn, groups are made of two parts:
 
 The TODO list for future versions is pretty long but this version should give you a good idea of the future directions.
 
-[Download TestNG](http://beust.com/weblog/testng) and try it, you won't regret it!
+[Download TestNG](https://testng.org) and try it, you won't regret it!

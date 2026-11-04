@@ -170,7 +170,7 @@ comments:
   replies: []
 ---
 
-A few people answered correctly to [my little challenge](http://beust.com/weblog/weblog/archives/000508.html), but not everyone. 
+A few people answered correctly to [my little challenge](/posts/do-you-want-to-play-a-game), but not everyone. 
 
 At first sight, the rules look pretty favorable to the player: half of the time, I lose my money, but the other half, I get back at least as much as I bet. 
 

@@ -121,7 +121,7 @@ It's not enough to start writing with a very clear goal in mind: you actually ne
 
 The main problem with readers is that they get so easily distracted, so writing your article really boils down to making sure that nothing in the various examples, text or code snippets that you are showing will make them react in a direction that is not the one you are trying to pursue. 
 
-Take my previous article called [Unit or functional tests?](http://beust.com/weblog/weblog/archives/000444.html). 
+Take my previous article called [Unit or functional tests?](/posts/unit-or-functional). 
 
 In that post, I decided to show the importance of functional tests, and in order to make that point, I made up a code snippet where the ordering of method invocation (which is usually not captured by unit tests) is significant. I initially used the following code: 
 
@@ -148,6 +148,6 @@ And sure enough, it was a mistake. Next thing I know, readers start posting comm
 
 It's very humbling, in a sense, and as the author of this blog, the fault is entirely mine. If I can't find the right phrasing and interesting examples that will make my readers think, I am not doing my job correctly. 
 
-Hopefully, [the book that Hani and I are now done writing](http://beust.com/weblog/weblog/archives/000438.html) will not suffer from this problem, but you, dear readers, will be the judges. 
+Hopefully, [the book that Hani and I are now done writing](/posts/upcoming-testing-book) will not suffer from this problem, but you, dear readers, will be the judges. 
 
 And by the way, I was just kidding. I don't really hate you, I'm sorry I said that.

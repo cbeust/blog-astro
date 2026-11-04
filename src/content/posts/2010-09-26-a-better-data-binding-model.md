@@ -217,7 +217,7 @@ Because Java doesn't natively support properties, not only do you find yourself 
 
 All these considerations started bugging me quite a bit recently as I was busy working on an Eclipse plug-in. I was multiplying the number of `PropertyChangeSupport` objects throughout my models and mostly extending the same class over and over (if I was lucky) or just copy/pasting the code above (most of the time). I strongly disliked the amount of pollution that was beginning to invade my code and I started considering alternatives. 
 
-And then, I remembered [a post that I wrote a few months ago](http://beust.com/weblog/weblog/2010/07/26/local-message-bus/) about "local buses". It occurred to me that if I could insert a message bus between the model and its listeners, then the two worlds would become completely decoupled. On top of that, I might be able to add some kind of property support that would hide most of the complexity. 
+And then, I remembered [a post that I wrote a few months ago](/posts/local-message-bus) about "local buses". It occurred to me that if I could insert a message bus between the model and its listeners, then the two worlds would become completely decoupled. On top of that, I might be able to add some kind of property support that would hide most of the complexity. 
 
 ### JBus and properties
 

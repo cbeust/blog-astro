@@ -197,7 +197,7 @@ The email client is even harder to switch away from, because the amount of perso
 
 With that in mind, it's not without a certain sense of excitement that I recently made the decision to switch away from Outlook to...  [GMail](http://gmail.com).
 
-First of all, let me get something out of the way:  since I work for Google, you might think my decision has a corporate side to it, but those of you who read my weblog regularly know that I am fairly pragmatic person when it comes to picking the most productive tools.  A year ago, I wrote a [comprehensive comparison between Outlook 2003 and Thunderbird](http://www.beust.com/weblog/weblog/archives/000118.html) where I explained my decision to prefer one over the other.
+First of all, let me get something out of the way:  since I work for Google, you might think my decision has a corporate side to it, but those of you who read my weblog regularly know that I am fairly pragmatic person when it comes to picking the most productive tools.  A year ago, I wrote a [comprehensive comparison between Outlook 2003 and Thunderbird](/posts/outlook-2003-vs-thunderbird) where I explained my decision to prefer one over the other.
 
 I spent these past months using both Outlook and GMail in an effort to evaluate and compare these two tools.  Outlook sets the bar pretty high in terms of functionalities and convenience, but what eventually tilted the scale was my one-week vacation Hawaii last week.  More about this below.
 
@@ -211,7 +211,7 @@ As I stated in the article above, Outlook is much more powerful and seamless to 
 
 **Spam handling**
 
-There are many anti-spam programs available for Outlook (I reviewed some of them [here](http://www.beust.com/weblog/weblog/archives/000162.html)) and after a few evaluations, I had settled on SpamBully for Outlook, which is very good but also very slow.  As a consequence, running it on an Inbox that hasn't been updated for a week can take almost an hour.  Yes, it's **that** slow.  But it was so good that I didn't mind taking the hit.  GMail's spam filter has been absolutely terrific so far.
+There are many anti-spam programs available for Outlook (I reviewed some of them [here](/posts/spam-software-review-part-1)) and after a few evaluations, I had settled on SpamBully for Outlook, which is very good but also very slow.  As a consequence, running it on an Inbox that hasn't been updated for a week can take almost an hour.  Yes, it's **that** slow.  But it was so good that I didn't mind taking the hit.  GMail's spam filter has been absolutely terrific so far.
 
 **Synchronization**
 

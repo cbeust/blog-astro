@@ -85,7 +85,7 @@ comments:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/lego.jpg)
 
-In a [previous entry](http://beust.com/weblog/weblog/archives/000312.html), I discussed how using mix-ins lets you compose your code to a finer level and allows you to create smaller bundles of functionalities that you can import and use on demand.
+In a [previous entry](/posts/java-component-object-model), I discussed how using mix-ins lets you compose your code to a finer level and allows you to create smaller bundles of functionalities that you can import and use on demand.
 
 Of course, it is quite possible to take this practice too far and end up with code that is not only broken down too much but also spends most of its time exchanging messages between its various components using more complex communication ways than it should.  Sometimes, it just makes sense to group certain methods and fields in the same class.
 

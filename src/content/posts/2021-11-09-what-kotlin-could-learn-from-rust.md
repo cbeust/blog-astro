@@ -42,7 +42,7 @@ comments:
   replies: []
 ---
 
-This is a follow up to [my previous article](http://www.beust.com/weblog/2021/10/20/what-rust-could-learn-from-kotlin/), in which I explored a few aspects of Kotlin that Rust could learn from. This time, I am going to look at some features that I really enjoy in Rust and which I wish that Kotlin adopted.
+This is a follow up to [my previous article](/posts/what-rust-could-learn-from-kotlin), in which I explored a few aspects of Kotlin that Rust could learn from. This time, I am going to look at some features that I really enjoy in Rust and which I wish that Kotlin adopted.
 
 Before we begin, I'd like to reiterate that my point is not to start a language war between the two languages, nor am I trying to turn one language into the other. I spent careful time analyzing which features I want to discuss and automatically excluded features that make perfect sense for one language and would be absurd in the other. For example, it would be silly to ask for garbage collection in Rust (since its main proposition is a very tight control on memory allocation) and reciprocally, it would make no sense for Kotlin to adopt a borrow checker, since the fact that Kotlin is garbage collected is one of its main appeals.
 

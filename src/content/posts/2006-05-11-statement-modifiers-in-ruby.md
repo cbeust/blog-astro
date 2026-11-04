@@ -161,7 +161,7 @@ I have always found this construct suspicious.  After all, the saving is fairly
 
 As I was re-reading some of the Ruby code I have written over these past months, I noticed a pattern on how and when I used statement modifiers, and it started making a little bit more sense.  I say "a little" because I still think it's a feature that should be used sparingly.
 
-I started realizing that statement modifiers shared a lot in common with exceptions.  For me, they are a way to quickly handle error or trivial cases without impacting the readability of my code.  In a way, it's an extension to the "early abort" approach, that [I discussed in an earlier entry](http://www.beust.com/weblog/weblog/archives/000308.html).  If you're not using exceptions, early aborts or statement modifiers, you usually end up wrapping your logic in a big `if` and handling the other case in an `else`, which is not necessarily the most readable way to structure your code.
+I started realizing that statement modifiers shared a lot in common with exceptions.  For me, they are a way to quickly handle error or trivial cases without impacting the readability of my code.  In a way, it's an extension to the "early abort" approach, that [I discussed in an earlier entry](/posts/statement-modifiers-in-ruby).  If you're not using exceptions, early aborts or statement modifiers, you usually end up wrapping your logic in a big `if` and handling the other case in an `else`, which is not necessarily the most readable way to structure your code.
 
 With statement modifiers -- and more generally, early aborts and exceptions \--, the body of your methods remains focused on the business logic that is expected to happen "if all goes well", and other cases are moved out of the way.
 

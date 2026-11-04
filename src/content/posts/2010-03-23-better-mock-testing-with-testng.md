@@ -134,7 +134,7 @@ At least, this solution runs the verification in a `@Test` annotation, but becau
 
 So let's turn our attention to the correct solution, which involves the use of a method interceptor. 
 
-I already feature method interceptors in a [previous entry](http://beust.com/weblog/weblog/2008/03/29/test-method-priorities-in-testng/) that showed you how to create a new annotation `@Priority` that allows you to order your methods. The idea is similar here, except that instead of reordering the methods that we want TestNG to run, we are going to change their number as well. 
+I already feature method interceptors in a [previous entry](/posts/test-method-priorities-in-testng) that showed you how to create a new annotation `@Priority` that allows you to order your methods. The idea is similar here, except that instead of reordering the methods that we want TestNG to run, we are going to change their number as well. 
 
 For this to work, we introduce two new annotations: `@Verify` which indicates that this method needs to be verified, and `@Verifier`, which annotates the method that performs the verification. Here is an example of how you use them: 
 

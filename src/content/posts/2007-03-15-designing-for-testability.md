@@ -48,7 +48,7 @@ comments:
 
 Today, Alexandru and I made our presentation at [QCon](http://qcon.infoq.com/qcon/conference/). We split the talk in two parts: Alexandru covered a section we called "Three TestNG features that you will like" and I followed with a brand new presentation entitled "Designing for Testability", which I made purposely non-TestNG specific. 
 
-As you probably guessed, a lot of the ideas discussed in this presentation are covered in greater lengths in [our upcoming book](http://beust.com/weblog/weblog/archives/000438.html). 
+As you probably guessed, a lot of the ideas discussed in this presentation are covered in greater lengths in [our upcoming book](/posts/upcoming-testing-book). 
 
 Here are some of the topics I covered: 
 

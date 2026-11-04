@@ -219,4 +219,4 @@ Suddenly, all the problems mentioned above disappear:
 
 Basically, instead of reusing and hijacking a fundamental mechanism of Java (inheritance), just give freedom to users and implement your own mechanism.
 
-Of course, an even cleaner way to do this (which you can find in [TestNG](http://beust.com/weblog/testng) :-)) is to go one step further:  relax the naming restriction on your methods and use annotations to tag them.
+Of course, an even cleaner way to do this (which you can find in [TestNG](https://testng.org) :-)) is to go one step further:  relax the naming restriction on your methods and use annotations to tag them.

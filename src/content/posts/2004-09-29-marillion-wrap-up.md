@@ -43,7 +43,7 @@ comments:
   replies: []
 ---
 
-So I saw Marillion at the Fillmore last night, and despite [my doubts](http://beust.com/weblog/weblog/archives/000186.html), I thoroughly enjoyed the show. 
+So I saw Marillion at the Fillmore last night, and despite [my doubts](/posts/marillion-in-san-francisco), I thoroughly enjoyed the show. 
 
 The band used an unusual formula: the show was split in two parts and the first part was entirely dedicated to the new material. They played pretty much the entire Marbles album except for a couple of songs which they saved for the encores. The second part featured some of their standard live songs and unfortunately, they didn't play any Fish-era songs at all. 
 

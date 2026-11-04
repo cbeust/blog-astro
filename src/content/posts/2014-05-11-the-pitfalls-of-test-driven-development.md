@@ -133,7 +133,7 @@ comments:
 
 A few days ago, David Heinemeier Hansson posted [a very negative article on Test-Driven Development](http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html) (TDD) which generated quite a bit of noise. This prompted Kent Beck [to respond](https://www.facebook.com/notes/kent-beck/rip-tdd/750840194948847) with a Facebook post which I found fairly weak because it failed to address most of the points that David made in his blog post. 
 
-I have never been convinced by TDD myself and I have expressed my opinions on the subject repeatedly in the past ([here](http://beust.com/weblog/weblog/2008/03/03/tdd-leads-to-an-architectural-meltdown-around-iteration-three/) and [here](http://beust.com/weblog/weblog/2006/06/07/agile-people-still-dont-get-it/) for example) so I can't say I'm unhappy to see this false idol finally being questioned seriously. 
+I have never been convinced by TDD myself and I have expressed my opinions on the subject repeatedly in the past ([here](/posts/tdd-leads-to-an-architectural-meltdown-around-iteration-three) and [here](/posts/agile-people-still-dont-get-it) for example) so I can't say I'm unhappy to see this false idol finally being questioned seriously. 
 
 I actually started voicing my opinion on the subject in [my book](http://www.amazon.com/Next-Generation-Java-Testing-Advanced/dp/0321503104/ref=pd_bbs_sr_1/104-7105897-1187923?ie=UTF8&s=books&qid=1193417110&sr=8-1) in 2007, so I thought I'd reproduce the text from this book here for context (with a few changes). 
 

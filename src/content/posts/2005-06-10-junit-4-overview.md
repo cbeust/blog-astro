@@ -99,7 +99,7 @@ It appears that Kent Beck has been working in stealth mode on JUnit 4, and if it
 
 Here is what we found so far:
 
-  * Annotations.  As we observed with [ TestNG](http://beust.com/weblog/testng), annotations let you do away with inheritance of a base class and make more sense than trying to cram test information into method names.  
+  * Annotations.  As we observed with [ TestNG](https://testng.org), annotations let you do away with inheritance of a base class and make more sense than trying to cram test information into method names.  
  
   * The `@Test` annotation has an `expected` attribute (probably similar to `@ExpectedExceptions`, but it's hard to tell at this point)=.  I also note they only allow one class to be expected while TestNG lets you specify more than one).  
  

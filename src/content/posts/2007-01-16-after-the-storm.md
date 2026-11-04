@@ -198,12 +198,12 @@ comments:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/explosion.jpg)
 
-My [previous story on stolen checks and Wells Fargo](http://beust.com/weblog/weblog/archives/000433.html) made it on [ Digg](http://digg.com/business_finance/Advice_if_your_checks_ever_get_stolen_don_t_tell_your_bank) and [Reddit](http://reddit.com/search?q=checks+advice), which resulted in a thorough pounding of my Web site.
+My [previous story on stolen checks and Wells Fargo](/posts/advice-if-your-checks-ever-get-stolen-dont-tell-your-bank) made it on [ Digg](http://digg.com/business_finance/Advice_if_your_checks_ever_get_stolen_don_t_tell_your_bank) and [Reddit](http://reddit.com/search?q=checks+advice), which resulted in a thorough pounding of my Web site.
 
 The story in numbers:
 
   * Number of page views:  about 80,000
-  * Diggs:  1971 (beating my previous record on my [Why Ruby on Rails won't become mainstream](http://beust.com/weblog/weblog/archives/000382.html):  [ 846](http://digg.com/tech_news/Why_Ruby_on_Rails_won_t_become_mainstream)).
+  * Diggs:  1971 (beating my previous record on my [Why Ruby on Rails won't become mainstream](/posts/why-ruby-on-rails-wont-become-mainstream):  [ 846](http://digg.com/tech_news/Why_Ruby_on_Rails_won_t_become_mainstream)).
   * Blog comments:  190 (still trickling through).
   * Digg comments: 180.
   * Reddit points:  441.

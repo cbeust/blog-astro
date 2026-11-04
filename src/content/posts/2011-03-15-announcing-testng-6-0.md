@@ -118,7 +118,7 @@ tests:
 
 Unfortunately, YAML and JSON don't have as much tooling support as XML especially when it comes to editing and validation, but one thing that I liked in YAML is that it's much more "copy/paste friendly" than XML. In XML, it's rarely possible to just cut a line and paste it somewhere else in the file: you usually end up having to add surrounding tags or move closing tags. In YAML, you can usually just cut/paste lines right away. It's also much easier to comment out regions than XML's awkward "`<!--`" and "`-->`" delimiters. 
 
-I discussed my choice of YAML in [this blog entry](http://beust.com/weblog/weblog/2010/08/15/yaml-the-forgotten-victim-of-the-format-wars/), and [here is the official TestNG documentation](http://testng.org/doc/documentation-main.html#yaml). 
+I discussed my choice of YAML in [this blog entry](/posts/yaml-the-forgotten-victim-of-the-format-wars), and [here is the official TestNG documentation](http://testng.org/doc/documentation-main.html#yaml). 
 
 ### Guice
 
@@ -142,7 +142,7 @@ public class GuiceTest {
 
 In this example, TestNG will use the `GuiceExampleModule` module to retrieve an instance of the `GuiceTest` class and then use that instance to run the tests. 
 
-You no longer need to use the object factory, you can now directly tell TestNG which Guice module(s) should be used to create the instance of a given test. Here is the [original blog post that started the discussion](http://beust.com/weblog/weblog/2010/12/10/testng-and-guice-a-marriage-made-in-heaven/) (note that the syntax changed slightly since then) and the [direct link to the documentation](http://testng.org/doc/documentation-main.html#guice-dependency-injection). 
+You no longer need to use the object factory, you can now directly tell TestNG which Guice module(s) should be used to create the instance of a given test. Here is the [original blog post that started the discussion](/posts/testng-and-guice-a-marriage-made-in-heaven) (note that the syntax changed slightly since then) and the [direct link to the documentation](http://testng.org/doc/documentation-main.html#guice-dependency-injection). 
 
 ###  Improved Eclipse plug-in 
 
@@ -154,7 +154,7 @@ I have been adding a lot of features to the Eclipse plug-ins over the past month
   * A search functionality for whenever you need to look for the result of a specific test among hundreds. 
   * Vastly improved automatic conversions from JUnit 3 and JUnit 4 to TestNG. 
   * A revamped display view that matches the `testng.xml` format more closely. 
-Here is [a quick rundown of the latest features](http://beust.com/weblog/weblog/2010/11/02/eclipse-and-testng-the-next-next-generation/) and the [full documentation](http://testng.org/doc/eclipse.html). 
+Here is [a quick rundown of the latest features](/posts/eclipse-and-testng-the-next-next-generation) and the [full documentation](http://testng.org/doc/eclipse.html). 
 
 ###  Miscellaneous 
 

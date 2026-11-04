@@ -59,4 +59,4 @@ Assert.assertEquals(commit.author, "cbeust");
 Assert.assertEquals(commit.files, Arrays.asList("A.java", "B.java"));
 ```
 
-Support for complex commands is one of the new features available in [JCommander 1.5](http://beust.com/weblog/jcommander).
+Support for complex commands is one of the new features available in [JCommander 1.5](https://jcommander.org).

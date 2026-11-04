@@ -339,7 +339,7 @@ comments:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/crossing-chasm.jpg)
 
-A friend of mine recently contacted me about my entry called [Why Ruby on Rails won't become mainstream](http://www.beust.com/weblog/weblog/archives/000382.html) and is asking me if I'm still of this opinion. I thought that revisiting this topic would be a good way to start the year, so here goes... 
+A friend of mine recently contacted me about my entry called [Why Ruby on Rails won't become mainstream](/posts/why-ruby-on-rails-wont-become-mainstream) and is asking me if I'm still of this opinion. I thought that revisiting this topic would be a good way to start the year, so here goes... 
 
 My first reaction was to go to monster.com and dice.com and check out a few numbers. Here are some preliminary results:  | dice.com | monster.com  
 ---|---|---  

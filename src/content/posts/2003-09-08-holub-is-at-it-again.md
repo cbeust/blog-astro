@@ -269,7 +269,7 @@ comments:
   replies: []
 ---
 
-Allen Holub is [ at it again](http://www.javaworld.com/javaworld/jw-09-2003/jw-0905-toolbox.html). I [already commented](http://beust.com/weblog/weblog/2003/08/04/inheritance-considered-evil-considered-evil/) on his previous column about inheritance and I pointed out his usual habit of coming up with a provocative title to get readership and then try to turn his ideas into an article, usually very unconvincing.
+Allen Holub is [ at it again](http://www.javaworld.com/javaworld/jw-09-2003/jw-0905-toolbox.html). I [already commented](/posts/inheritance-considered-evil-considered-evil) on his previous column about inheritance and I pointed out his usual habit of coming up with a provocative title to get readership and then try to turn his ideas into an article, usually very unconvincing.
 
 This one is no exception. Worse, it is actually a rehash of an article he wrote a few years ago. 
 

@@ -43,7 +43,7 @@ Why does JUnit force you to have test() and setUp() methods that don't have any 
 
 Because there is no easy way in Java 1.4 and under to specify the values for these parameters.
 
-As a consequence to this shortcoming, various JUnit add-ons have added the possibility to look up property files in your setUp() method which are then initialized inside your test method (and incidentally, will be initialized over and over again for each invocation of the test method, as I reported in an [earlier JUnit bug report](http://beust.com/weblog/weblog/archives/000082.html)).
+As a consequence to this shortcoming, various JUnit add-ons have added the possibility to look up property files in your setUp() method which are then initialized inside your test method (and incidentally, will be initialized over and over again for each invocation of the test method, as I reported in an [earlier JUnit bug report](/posts/testng-testing-the-next-generation)).
 
 A better way to address this problem is to use annotations as a bridge between your Java code and a property file.  I just added support for this in TestNG, and here is how it works (excerpt from the new TestNG documentation).
 

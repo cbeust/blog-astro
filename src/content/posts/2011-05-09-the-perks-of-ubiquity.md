@@ -55,7 +55,7 @@ This buzz is limited in scope, though, because of its high frequency: you never 
 
 Another aspect of pervasiveness is that whenever a new Android ad is shown, Android's graphical user interface becomes more familiar to viewers. It's clear now that pretty much anyone who has watched a few of these commercials will feel some sense of comfort and familiarity with Android's user interface, even though they might never have used an Android phone directly. 
 
-And of course, the main advantage behind pervasiveness is product placement. I'm not talking about direct ads, like the one I mentioned above, but direct inclusion in popular shows such as [24](http://beust.com/weblog/weblog/2010/05/25/my-application-on-24/) or even Survivor, just last week. 
+And of course, the main advantage behind pervasiveness is product placement. I'm not talking about direct ads, like the one I mentioned above, but direct inclusion in popular shows such as [24](/posts/my-application-on-24) or even Survivor, just last week. 
 
 The amount of daily exposure that Android receives through all these means is nothing short of staggering, and the fact that it's happening in such a discreet and continuous way makes it all the more effective. 
 

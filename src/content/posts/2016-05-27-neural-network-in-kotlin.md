@@ -106,4 +106,4 @@ Notice that the network is now outputting correct results for numbers that it ha
 
 ## Wrapping up
 
-I hope that this brief overview will have whetted your appetite or at least piqued your curiosity. In the [next installment](https://www.beust.com/weblog/neural-networks-in-kotlin-part-2/), I'll dive a bit deeper into the `NeuralNetwork` class, explain the constructor parameters and we'll walk through the inner working of the neural network that we created to demonstrate how it works.
+I hope that this brief overview will have whetted your appetite or at least piqued your curiosity. In the [next installment](/posts/neural-networks-in-kotlin-part-2), I'll dive a bit deeper into the `NeuralNetwork` class, explain the constructor parameters and we'll walk through the inner working of the neural network that we created to demonstrate how it works.

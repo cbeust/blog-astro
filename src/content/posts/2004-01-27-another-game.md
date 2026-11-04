@@ -268,4 +268,4 @@ comments:
   replies: []
 ---
 
-For all of you bored with hitting penguins, here is [another little game](http://beust.com/weblog/dodge.html) (HTML + Javascript).  Quite simple and addictive.  My record is about 26 seconds.  I recommend IE to run it, Mozilla seems to experience a few glitches with this code.
+For all of you bored with hitting penguins, here is [another little game](/dodge.html) (HTML + Javascript).  Quite simple and addictive.  My record is about 26 seconds.  I recommend IE to run it, Mozilla seems to experience a few glitches with this code.

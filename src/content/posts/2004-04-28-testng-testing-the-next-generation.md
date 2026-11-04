@@ -155,9 +155,9 @@ comments:
 
 It's been a few weeks since I announced another killer app, hasn't it?
 
-I have complained about JUnit many times, both in [terms](http://www.jroller.com/page/cbeust/20030425) [of](http://www.jroller.com/page/cbeust/20030425) [design](http://beust.com/weblog/weblog/archives/000077.html) and [implementation](http://www.beust.com/weblog/weblog/archives/000082.html).  I think my complaints are justified, but if there is something I don't like, it's people who complain but don't do anything to solve the problem they are complaining about.
+I have complained about JUnit many times, both in [terms](http://www.jroller.com/page/cbeust/20030425) [of](http://www.jroller.com/page/cbeust/20030425) [design](/posts/junit-pain) and [implementation](/posts/testng-testing-the-next-generation).  I think my complaints are justified, but if there is something I don't like, it's people who complain but don't do anything to solve the problem they are complaining about.
 
-Therefore, without further ado, I give you...  [TestNG, the JUnit killer.](http://beust.com/weblog/testng)
+Therefore, without further ado, I give you...  [TestNG, the JUnit killer.](https://testng.org)
 
 For quite a while, I have seen very little reason to write a replacement to JUnit since I didn't think the added value would be enough to convince the vast number of JUnit users to switch.  After reading up about NUnit, it occurred to me that using JSR 175 annotations for testing was an interesting evolution, but still not quite the quantum leap I expected (besides, in its effort to mimick JUnit, NUnit repeats a lot of its flaws).
 
@@ -178,4 +178,4 @@ With these changes in mind, I came up with the design principles that are the fo
 
 I think the combined use of JSR 175 annotations and Test Groups make TestNG a very flexi...  (augh, sorry Hani)...  a very supple testing framework that should compare decently with JUnit.
 
-Check out [the documentation](http://beust.com/weblog/testng), take it for a run and let me know what you think.
+Check out [the documentation](https://testng.org), take it for a run and let me know what you think.

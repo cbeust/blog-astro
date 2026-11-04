@@ -77,7 +77,7 @@ comments:
 
 I started using my Kindle 2 more regularly over the past week and the device piqued the curiosity of quite a few people who saw me use it. It's been a great opportunity to start conversations on the topic of reading and e-reading, and pretty much every person I have talked to has one big problem with the Kindle: they don't think it is for them because they like holding, feeling and even smelling of books. 
 
-[I have been there](http://beust.com/weblog/weblog/archives/000505.html). As I described in my previous post, it takes a mental paradigm change to realize that this urge is not as strong as it initially seems. I know I got over it pretty quickly, especially when I realized that about 90% of the books I read are easily forgettable and that I thought I could use the bookshelves space for books or items that I feel more strongly about. Please read the linked article for a more in-depth analysis of why letting go of physical books turns out to be much easier than it looks. 
+[I have been there](/posts/an-ode-to-the-kindle). As I described in my previous post, it takes a mental paradigm change to realize that this urge is not as strong as it initially seems. I know I got over it pretty quickly, especially when I realized that about 90% of the books I read are easily forgettable and that I thought I could use the bookshelves space for books or items that I feel more strongly about. Please read the linked article for a more in-depth analysis of why letting go of physical books turns out to be much easier than it looks. 
 
 ### Nobody likes holding newspapers
 

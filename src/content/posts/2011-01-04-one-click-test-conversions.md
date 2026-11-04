@@ -37,7 +37,7 @@ If converting your tests to TestNG is one of your new year's resolution, you are
 
 Introducing the improved JUnit to TestNG converter. 
 
-A couple of months ago, I gave a preview of the [new features in the TestNG Eclipse plug-in](http://beust.com/weblog/weblog/2010/11/02/eclipse-and-testng-the-next-next-generation/) and I observed that more and more people were converting their tests from JUnit 3 **and** JUnit 4 to TestNG. This latter was a surprise to me since I never really expected anyone would want to move away from JUnit 4 once they have migrated to it. 
+A couple of months ago, I gave a preview of the [new features in the TestNG Eclipse plug-in](/posts/eclipse-and-testng-the-next-next-generation) and I observed that more and more people were converting their tests from JUnit 3 **and** JUnit 4 to TestNG. This latter was a surprise to me since I never really expected anyone would want to move away from JUnit 4 once they have migrated to it. 
 
 TestNG has long supported individual class conversions in the form of Quick Fixes: 
 

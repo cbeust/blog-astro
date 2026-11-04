@@ -20,7 +20,7 @@ This is not the point of my post here, but since I will most likely be asked wha
   * Verbose scrollbar thumbs. You know how you are sometimes scrolling through a document made of hundreds of pages, using the scroll bar, and while you are scrolling that thumb in the scroll bar, you have no idea where you are? Well, one day, Microsoft (them again!) decided to add a tooltip to that thumb which indicates where you are. Today, this seems like a pretty mainstream idea but it was pretty innovative back then. Such an obvious idea today and yet totally unobvious back then. The kind of concept that nobody thinks of until someone comes up with it, and then it's the most natural thing in the world. You can find this UX pattern everywhere today: Android, iOS, Windows, macOS, etc... 
 I got pretty excited lately because I came across not one but two user interface interactions that I had never seen before. And it turns out these two interactions are actually quite similar. And they violate a few basic UI laws too. 
 
-The first encounter came during my [Unity project](/weblog/2020/06/07/writing-my-first-game-in-unity/). 
+The first encounter came during my [Unity project](/posts/writing-my-first-game-in-unity). 
 
 Unity has a lot of user interface components and many of them display discrete or continuous values (e.g. integers, floats) in text fields. Obviously, these text fields have a label, so you can identify what they represent (and these values often map to public fields in your C# code). The novelty here is even though the labels look like very standard labels, they are actually concealing a slider if you click on them and then drag your mouse: 
 

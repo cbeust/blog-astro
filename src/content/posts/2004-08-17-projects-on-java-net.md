@@ -2173,4 +2173,4 @@ I have moved the following projects to java.net:
 
 It will make it easier for users to download the latest versions from CVS or use the mailing-lists to ask questions.
 
-_Update: if you are looking for a Java project, read[this](http://beust.com/weblog/weblog/archives/000213.html). _
+_Update: if you are looking for a Java project, read[this](/posts/projects-on-java-net). _

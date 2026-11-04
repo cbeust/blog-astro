@@ -1767,9 +1767,9 @@ comments:
   replies: []
 ---
 
-I gave up.  I finally closed the comments on [this Java Projects entry](http://beust.com/weblog/weblog/2004/08/17/projects-on-java-net/) that kept receiving comments from Indian students who don't bother reading what they are commenting on.  I think there are more than two hundred (200!) comments from students asking me for project ideas by now.  I didn't close the comments initially because I wanted to see how far the insanity could go...  Well, very far it seems, and no end in sight.
+I gave up.  I finally closed the comments on [this Java Projects entry](/posts/projects-on-java-net) that kept receiving comments from Indian students who don't bother reading what they are commenting on.  I think there are more than two hundred (200!) comments from students asking me for project ideas by now.  I didn't close the comments initially because I wanted to see how far the insanity could go...  Well, very far it seems, and no end in sight.
 
-Updating the entry to [ point visitors to a clarification](http://beust.com/weblog/weblog/2004/11/29/mysterious-comments/) didn't change anything:  the requests for project ideas kept coming at the pace of about one per day, so I decided to put an end to it.
+Updating the entry to [ point visitors to a clarification](/posts/mysterious-comments) didn't change anything:  the requests for project ideas kept coming at the pace of about one per day, so I decided to put an end to it.
 
 Except that...  my Movable Type installation is using Berkeley DB, and there is no way to close comments or trackbacks for past entries (or do any kind of batch operation for that matter).  The only way was to move it over to MySQL, which ended up being surprisingly easy.
 

@@ -331,7 +331,7 @@ comments:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/erlang.jpg)
 
-Ever since [I finished reading Joe Armstrong's "Programming Erlang"](http://beust.com/weblog/weblog/archives/000461.html), several details have been nagging me but I haven't been able to put my finger on them... until now. 
+Ever since [I finished reading Joe Armstrong's "Programming Erlang"](/posts/erlang), several details have been nagging me but I haven't been able to put my finger on them... until now. 
 
 First of all, an erratum: I misinterpreted [the wikipedia page](http://en.wikipedia.org/wiki/Erlang_\(programming_language\)) when I said that Erlang was created in 1998. Erlang was _open sourced_ in 1998, but it's actually [much more ancient than that](http://www.erlang.org/course/history.html ). In some way, this explains why the language and tools feel so old, but I also learned something else that sheds another interesting light on why the language is completely devoid of any OO feature. 
 

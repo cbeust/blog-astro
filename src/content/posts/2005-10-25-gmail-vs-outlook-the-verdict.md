@@ -154,7 +154,7 @@ comments:
   replies: []
 ---
 
-It's been about a month now since I [switched my entire environment from Outlook to GMail](http://www.beust.com/weblog/weblog/archives/000321.html), so it's time to do a quick check up.
+It's been about a month now since I [switched my entire environment from Outlook to GMail](/posts/gmail-vs-outlook), so it's time to do a quick check up.
 
 Since a lot has been said about GMail, I will try to focus on details that have never really been covered and explain in what ways they improved (or not) my email-reading habits.
 
@@ -164,7 +164,7 @@ Having said that, I wondered if the number of messages was not an important info
  
   * Conversations, conversations, conversations.  This is a direct follow-up to the point above, but no mailer has come close to successfully capturing the meaning of an email conversation.  GMail really nailed it, and compared to Outlook's abysmal conversation approach (no indentation in the threads and you can't even fold an entire thread, only the unread messages), it's a breath of fresh air.  
  
-  * GMail's spam filter is working very well.  I tried [many spam filters](http://www.beust.com/weblog/weblog/archives/000162.html) over the years and while there are some really good solutions for Outlook and Thunderbird, GMail's spam filter seems to be the best I've encountered so far,  and I know quite a few people who are using their GMail account as a pure spam filter (and eventually switched completely over).  My only complaint is that it doesn't allow whitelisting (specifying that an email with certain words in the Subject or From will never be marked as spam) but GMail has been good at learning from my actions when I moved false positives out of the Spam folder.  
+  * GMail's spam filter is working very well.  I tried [many spam filters](/posts/spam-software-review-part-1) over the years and while there are some really good solutions for Outlook and Thunderbird, GMail's spam filter seems to be the best I've encountered so far,  and I know quite a few people who are using their GMail account as a pure spam filter (and eventually switched completely over).  My only complaint is that it doesn't allow whitelisting (specifying that an email with certain words in the Subject or From will never be marked as spam) but GMail has been good at learning from my actions when I moved false positives out of the Spam folder.  
  
   * GMail's phishing detection is also very good, and is the reason why recommending GMail around me (especially to beginners such as my Mom) is a no-brainer.  
   

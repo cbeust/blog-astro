@@ -7,7 +7,7 @@ categories:
 - Kotlin
 ---
 
-[Kobalt](https://beust.com/weblog/kobalt) automatically detects how to run your tests based on the test dependencies that you declared: 
+[Kobalt](/kobalt) automatically detects how to run your tests based on the test dependencies that you declared: 
 
 ```kotlin
 dependenciesTest {
@@ -39,4 +39,4 @@ test {
 
 The first configuration has no name, so it will be launched with the task `"test"`, while the second one can be run with the task `"testAll"`. 
 
-_The full series of articles on Kobalt can be found[here](https://beust.com/weblog/weblog/category/kobalt/)_.
+_The full series of articles on Kobalt can be found[here](/tags/kobalt)_.

@@ -142,7 +142,7 @@ comments:
 
 Now that I have your attention :-)
 
-I am happy to announce the initial release of [ SGen](http://beust.com/weblog/sgen), a framework that makes it easy to create tools that parse annotations and generate files.  Some of the goals for SGen are:
+I am happy to announce the initial release of [ SGen](https://beust.com/sgen), a framework that makes it easy to create tools that parse annotations and generate files.  Some of the goals for SGen are:
 
   * Modules can be developed separately and shipped in individual jar files.  All they need to do is contain at least one SGen module (which is achieved by implementing a certain interface).  For example, you can download ejbgen.jar, drop it in your "modules" directory, point SGenRunner to it and voila, you have added a new generator to your arsenal.  
  
@@ -156,7 +156,7 @@ I am happy to announce the initial release of [ SGen](http://beust.com/weblog/sg
 
 Since the question is most likely going to come up, I don't see SGen as a direct competitor to XDoclet, although they achieve similar goals.  The idea is that if you wrote an XDoclet module, you should be able to factor out all the "business logic" of your generators and make an SGen module out of it.  Then your module can be downloaded by your users and mixed with the other SGen modules they use.
 
-For more details, examples, architecture overview and JavaDoc, please take a look at the [SGen home page](http://beust.com/weblog/sgen).
+For more details, examples, architecture overview and JavaDoc, please take a look at the [SGen home page](https://beust.com/sgen).
 
 SGen is certainly in alpha stage at this point and as you can see at the bottom of the documentation, more features are coming up, but since the current version works fine for the very demanding EJBGen (which is now an SGen module), I think it is in a good-enough shape for early adopters.
 

@@ -10,7 +10,7 @@ categories:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/prestige.jpg)
 
-This is part three of my Rx - Android - Kotlin series ([part 1](http://beust.com/weblog/weblog/2015/03/23/android-rx-and-kotlin-a-case-study/), [part 2](http://beust.com/weblog/weblog/2015/04/05/android-rx-and-kotlin-part-2/)). 
+This is part three of my Rx - Android - Kotlin series ([part 1](/posts/android-rx-and-kotlin-a-case-study), [part 2](/posts/android-rx-and-kotlin-part-2)). 
 
 This article has three parts, [much like a magic trick](http://www.imdb.com/title/tt0482571/quotes?item=qt0441491): 
 
@@ -154,8 +154,8 @@ prints:
 
 ## Wrapping up
 
-The concept of a sliding window is very common in all domains. Detecting multiple taps in a user interface is an example but you could also conceive using this to determine the bounding box of multiple taps. Stepping out from the graphical domain, your stream could contain geo locations and you could use the sliding window to determine instant or average speed. A few years ago, I actually posed [a coding challenge to implement a sliding window in order to throttle calls to a server](http://beust.com/weblog/weblog/2012/09/02/coding-challenge-a-sliding-window-map/). Needless to say, I would use Rx for this today. 
+The concept of a sliding window is very common in all domains. Detecting multiple taps in a user interface is an example but you could also conceive using this to determine the bounding box of multiple taps. Stepping out from the graphical domain, your stream could contain geo locations and you could use the sliding window to determine instant or average speed. A few years ago, I actually posed [a coding challenge to implement a sliding window in order to throttle calls to a server](/posts/coding-challenge-a-sliding-window-map). Needless to say, I would use Rx for this today. 
 
 Hopefully, this article gave you some insight on the benefits that Rx can bring to your application, regardless of the domain. Revisiting problems with the Rx philosophy is always an interesting exercise which often results in simpler, more elegant solutions. 
 
-Read [part 1](http://beust.com/weblog/weblog/2015/03/23/android-rx-and-kotlin-a-case-study/), [part 2](http://beust.com/weblog/weblog/2015/04/05/android-rx-and-kotlin-part-2/).
+Read [part 1](/posts/android-rx-and-kotlin-a-case-study), [part 2](/posts/android-rx-and-kotlin-part-2).

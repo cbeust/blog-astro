@@ -14,7 +14,7 @@ comments:
   replies: []
 ---
 
-I just released [EJBGen 2.15](http://beust.com/weblog/ejbgen).  The main addition is the use of templates (which will be improved further in the next version).  Here is the change log since 2.14:
+I just released [EJBGen 2.15](https://beust.com/ejbgen).  The main addition is the use of templates (which will be improved further in the next version).  Here is the change log since 2.14:
 
 2.15  
 \- Fixed: pk and value classes were always regenerated  

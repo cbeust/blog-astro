@@ -85,17 +85,17 @@ comments:
   replies: []
 ---
 
-Brian Doll posted a few interesting questions as a comment on my ["Continuous tax" entry](http://beust.com/weblog/weblog/archives/000462.html), which I'll try to address in turn: 
+Brian Doll posted a few interesting questions as a comment on my ["Continuous tax" entry](/posts/continuous-tax), which I'll try to address in turn: 
 
 > Oddly enough, some people see the act of writing tests as "continuous tax" in that it's something else you have to write that does not go toward the "bottom line" of the features you're implementing. 
 
 Actually, I don't see writing tests as part of this continuous tax that I was describing earlier. While I agree that you usually write less tests in a statically typed language than a dynamically typed one, I think the difference in lines of code or number of tests is not significant enough to meaningfully impact the engineering cycle. 
 
-The continuous tax is triggered by the loss in explicitness that dynamic code usually suffers from. While it looks innocuous, the loss of typing actually has dire consequences on the maintainability and readability of your code by not giving you any hint on what type an object passed to a method really is and, worse, by making it impossible to apply even the simplest automatic refactorings such as renaming public functions (see [this post](http://beust.com/weblog/weblog/archives/000414.html) for more details). 
+The continuous tax is triggered by the loss in explicitness that dynamic code usually suffers from. While it looks innocuous, the loss of typing actually has dire consequences on the maintainability and readability of your code by not giving you any hint on what type an object passed to a method really is and, worse, by making it impossible to apply even the simplest automatic refactorings such as renaming public functions (see [this post](/posts/dynamic-language-refactoring-ide-pick-one) for more details). 
 
 > I'm interested to get your thoughts, as an author of a testing tool, on how you see the overall reliability of testing in dynamic and strongly typed languages. 
 
-As shocking as it may seem from the creator of a testing framework and the [author of a book on testing](http://beust.com/weblog/weblog/archives/000459.html), I actually always try to write as few tests as possible. The secret is to find the smallest subset of tests possible for a given functionality. 
+As shocking as it may seem from the creator of a testing framework and the [author of a book on testing](/posts/next-generation-testing-book-now-available-for-preorder), I actually always try to write as few tests as possible. The secret is to find the smallest subset of tests possible for a given functionality. 
 
 The way I see it, dynamically typed languages usually make me write the following tests: 
 

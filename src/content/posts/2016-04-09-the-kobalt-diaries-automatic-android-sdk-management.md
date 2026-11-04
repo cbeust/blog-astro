@@ -17,7 +17,7 @@ The Android support libraries (and I'm using "support" loosely here to include a
 
 I suspect the reason why these libraries are not available in a straight Maven repo is that you need to accept licenses before you can use them, but regardless, this separate download management makes building Android applications more painful, especially for build servers (Travis, Jenkins) which need to be configured specifically for these builds. 
 
-The graphical tool used to download this repository, called "SDK Manager", is also a command tool called `"android"` that can be invoked without the GUI, and inspired by [Jake Wharton's sdk-manager-plugin](https://github.com/JakeWharton/sdk-manager-plugin), I set out to implement automatic SDK management for [Kobalt](https://beust.com/weblog/kobalt). 
+The graphical tool used to download this repository, called "SDK Manager", is also a command tool called `"android"` that can be invoked without the GUI, and inspired by [Jake Wharton's sdk-manager-plugin](https://github.com/JakeWharton/sdk-manager-plugin), I set out to implement automatic SDK management for [Kobalt](/kobalt). 
 
 Once I became more comfortable with the esoteric command line syntax used by the `"android"` tool, adding it to the Kobalt Android plug-in was trivial, and as a result, Kobalt is now able to completely install a full Android SDK from scratch. 
 

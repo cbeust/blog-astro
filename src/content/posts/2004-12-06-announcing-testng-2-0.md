@@ -12,7 +12,7 @@ comments:
   replies: []
 ---
 
-I am very happy to announce the availability of [TestNG 2.0](http://beust.com/weblog/testng)!
+I am very happy to announce the availability of [TestNG 2.0](https://testng.org)!
 
 TestNG is a testing framework that fixes most of JUnit's deficiencies and innovates in a number of ways:  use of annotations, configurable dynamic invocation (no need to recompile), test method groups, dependent methods, external parameters, etc...
 

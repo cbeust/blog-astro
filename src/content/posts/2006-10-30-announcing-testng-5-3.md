@@ -44,7 +44,7 @@ comments:
 
 I'm pleased to announce the immediate [availability of TestNG 5.3](http://testng.org).  
   
-The main feature in this new release is the introduction of Annotation Transformers, that I described in a [previous post](http://beust.com/weblog/weblog/mt-cedricqwerty.cgi?entry_id=418).  The full documentation for Annotation Transformers can be found [here](http://testng.org/doc/documentation-main.html#annotationtransformers).  As you can see below, the change log is quite big as well, so if we failed to fix a bug you reported or an improvement you requested, please let us know and we'll try to get it in for the next release!  
+The main feature in this new release is the introduction of Annotation Transformers, that I described in a [previous post](/posts/announcing-testng-5-3).  The full documentation for Annotation Transformers can be found [here](http://testng.org/doc/documentation-main.html#annotationtransformers).  As you can see below, the change log is quite big as well, so if we failed to fix a bug you reported or an improvement you requested, please let us know and we'll try to get it in for the next release!  
   
 Thanks to all who helped make 5.3 a reality!  
   

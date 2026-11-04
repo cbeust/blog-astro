@@ -39,15 +39,15 @@ You then pass these objects when you create your JCommander instance, which will
     Assert.assertEquals(s.slave, "slave");
 ```
 
-  * Support for `required`. For simple applications, you can just declare `@Parameter(required = true)` and JCommander will enforce that all such parameters are assigned a value ([example](http://beust.com/weblog/jcommander/#Required_and_optional)). 
-  * Internationalization. You can now use the standard Java resource bundle mechanism to write the descriptions of your options and have JCommander automatically use the translated strings ([example](http://beust.com/weblog/jcommander/#Internationalization)). 
+  * Support for `required`. For simple applications, you can just declare `@Parameter(required = true)` and JCommander will enforce that all such parameters are assigned a value ([example](https://jcommander.org#Required_and_optional)). 
+  * Internationalization. You can now use the standard Java resource bundle mechanism to write the descriptions of your options and have JCommander automatically use the translated strings ([example](https://jcommander.org#Internationalization)). 
   * Parameters that take more than one value (arities). This functionality allows you to parse command lines such as: 
 
 ```text
     java Main -pairs slave master foo.xml
 ```
 
-Here, the parameter `-pairs` needs the next two arguments ([example](http://beust.com/weblog/jcommander/#Arities)). 
+Here, the parameter `-pairs` needs the next two arguments ([example](https://jcommander.org#Arities)). 
 All these features are now available in JCommander 1.0, which Maven users can download automatically with the following dependency: 
 
 ```text

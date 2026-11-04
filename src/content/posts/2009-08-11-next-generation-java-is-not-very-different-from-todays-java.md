@@ -259,7 +259,7 @@ In a [recent post](http://codemonkeyism.com/generation-java-programming-style/),
 This is guaranteed to make your code littered with `final` keywords and therefore, impair readability significantly (same problem as Python's `self` pollution). And it really doesn't buy you that much, I can't even remember last time I was bitten by a bug involving the reassignment of a variable to a different value within a code block. For what it's worth, `final` on non fields is banned from Google's style guide (except where it's unavoidable, such as when you need to pass variables to inner classes). 
 
 **No Setters**   
-It would be nice, but it's just not realistic. Sometimes, you really don't want to put that many parameters in a constructor (and the Builder pattern doesn't solve this problem either). Besides, it's convenient to be able to mutate object if you want to use pools. As for not using accessors overall, Stephan is not the first one to argue that they should be removed from OO programming overall, but this claim is [easily debunked](http://beust.com/weblog/weblog/archives/000022.html). 
+It would be nice, but it's just not realistic. Sometimes, you really don't want to put that many parameters in a constructor (and the Builder pattern doesn't solve this problem either). Besides, it's convenient to be able to mutate object if you want to use pools. As for not using accessors overall, Stephan is not the first one to argue that they should be removed from OO programming overall, but this claim is [easily debunked](/posts/holub-is-at-it-again). 
 
 **No loops**   
 Java is not very well suited to a functional style, so I think the first example is more readable than the second one that uses Predicates. I'm guessing most Java programmers would agree, even those that are comfortable with comprehensions and closures and especially those that aren't. 
@@ -268,7 +268,7 @@ Java is not very well suited to a functional style, so I think the first example
 Depends. Sometimes, breaking down the expression and introducing variables clarifies the intent of the code and it also makes it easier to use break points. 
 
 **Use objects with interfaces**   
-A good advice overall, but don't go overboard. I have argued something similar in the past under the name [Quantum Software Design](http://beust.com/weblog/weblog/archives/000312.html) but introducing too many interfaces can result in an explosion of little classes that cloud the intent of your high level classes. 
+A good advice overall, but don't go overboard. I have argued something similar in the past under the name [Quantum Software Design](/posts/java-component-object-model) but introducing too many interfaces can result in an explosion of little classes that cloud the intent of your high level classes. 
 
 **Erlang concurrency**   
 Again, it's dangerous to use a programming style that Java was not designed for. `java.util.concurrent` is a treasure trove of very useful constructs and I'd rather see a set of well architected Java abstractions built on top of it than an emulation of Erlang's actor architecture. 

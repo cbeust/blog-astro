@@ -199,7 +199,7 @@ But it makes me sad that a feature that looks so elegant (space significant inde
 
 In 1998, Guy Steele published a seminal paper called [Growing a Language](http://homepages.inf.ed.ac.uk/wadler/steele-oopsla98.pdf) in which he spelled out a few rules to make a language as flexible to change as possible.  Of course, we can't expect Python to have been designed with these rules in mind since it was created in 1990, but after 1998, it would definitely have been wise to try and incorporate some of Guy's ideas to make sure that Python would be able to withstand the tides of changes.
 
-Interestingly, Matz (the author of Ruby) saw this coming.  Three years ago, I posted an article called [Flaws in Ruby](http://www.beust.com/weblog/weblog/archives/000042.html) in which I pointed out a few aspects where I thought Ruby could improve.  One of the improvements that I suggested was space-significant indentation.  Matz commented on this entry and said:
+Interestingly, Matz (the author of Ruby) saw this coming.  Three years ago, I posted an article called [Flaws in Ruby](/posts/flaws-in-ruby) in which I pointed out a few aspects where I thought Ruby could improve.  One of the improvements that I suggested was space-significant indentation.  Matz commented on this entry and said:
 
 > "The meaningful indenting" is plain wrong for a language like Ruby, where expressions and statements are interchangeable. See the lambda problem in Python. Guido decided to remove it in the future. But I won't give up lambda nor value giving blocks. 
 

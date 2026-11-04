@@ -107,7 +107,7 @@ If you are a Java / C# / C / C++ developer, here is what you might want to know 
  
   * There is a mysterious `dispatch` keyword that allows you to select on object types.  Not quite sure what this does exactly, I'll have to get back to it.  
  
-  * You can mark methods with `test`.  Again, I'm not quite convinced this kind of thing should be part of a language, but well, I am promoting the [use of annotations](http://beust.com/weblog/testng) to do that myself, so I guess it's a small leap of faith.  
+  * You can mark methods with `test`.  Again, I'm not quite convinced this kind of thing should be part of a language, but well, I am promoting the [use of annotations](https://testng.org) to do that myself, so I guess it's a small leap of faith.  
  
   * Fortress has support for automatic forwarding.  This is very interesting because the way this is implemented is almost identical to the way I suggested doing it a [long time ago](http://www.beust.com/weblog/java-delegation.html) (in 1998!) in Java.  
  

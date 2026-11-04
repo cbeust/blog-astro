@@ -12,7 +12,7 @@ categories:
 fun <T, R> T.let(f: (T) -> R): R = f(this)
 ```
 
-You can refer to [a previous article I wrote](http://beust.com/weblog/weblog/2015/10/30/exploring-the-kotlin-standard-library/) if you want to understand how this function works, but in this post, I'd like to take a look at the pros and cons of using `let`. 
+You can refer to [a previous article I wrote](/posts/exploring-the-kotlin-standard-library) if you want to understand how this function works, but in this post, I'd like to take a look at the pros and cons of using `let`. 
 
 `let` is basically a scoping function that lets you declare a variable for a given scope: 
 

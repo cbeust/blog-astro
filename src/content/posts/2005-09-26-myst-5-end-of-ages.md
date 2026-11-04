@@ -18,7 +18,7 @@ _You will find no spoilers about any Myst episode in this post._
 
 Myst 5 came out last week, and it sold out pretty much everywhere right away. My Amazon order showed it as shipping at the beginning of October but I found one copy at Target by luck, so I grabbed it and canceled my Amazon order. 
 
-I have been a long-time fan of the Myst series, and in my experience, every Myst that comes out is better than the previous one. I already mentioned [how much I liked Myst 4 : Revelation](http://www.beust.com/weblog/weblog/archives/000201.html), and I am quite looking forward to immerse myself into the D'ni world one more time. Cyan has been very clear that this episode would be the last of the series, but I am hoping that they will change their mind, or that at least, the parallel Uru series will keep the adventure game genre alive for many more years. 
+I have been a long-time fan of the Myst series, and in my experience, every Myst that comes out is better than the previous one. I already mentioned [how much I liked Myst 4 : Revelation](/posts/far-cry-myst-and-other-geeky-pleasures), and I am quite looking forward to immerse myself into the D'ni world one more time. Cyan has been very clear that this episode would be the last of the series, but I am hoping that they will change their mind, or that at least, the parallel Uru series will keep the adventure game genre alive for many more years. 
 
 _Quick anecdote about Myst 4: I was in Hawaii a couple of weeks ago and as I was walking in the tropical forest among the lush vegetation disturbed by the screams of various animals, my first thought was that it reminded me of the Haven world in Myst 4.... That's how good it was._. 
 

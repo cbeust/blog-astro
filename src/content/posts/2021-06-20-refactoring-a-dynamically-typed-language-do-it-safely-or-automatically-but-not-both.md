@@ -35,7 +35,7 @@ comments:
 
 I was recently having a discussion about refactoring dynamically typed languages and I was struck by the amount of misconceptions that a lot of developers still have on this topic.
 
-I expressed [my point in this article from fifteen years ago(!)](http://www.beust.com/weblog/dynamic-language-refactoring-ide-pick-one/), not much has changed, but the idea that it it impossible to safely and automatically refactor a language that doesn't have type annotations is still something that is not widely accepted, so I thought I would revisit my point and modernize the code a bit.
+I expressed [my point in this article from fifteen years ago(!)](/posts/dynamic-language-refactoring-ide-pick-one), not much has changed, but the idea that it it impossible to safely and automatically refactor a language that doesn't have type annotations is still something that is not widely accepted, so I thought I would revisit my point and modernize the code a bit.
 
 First of all, my claim:
 

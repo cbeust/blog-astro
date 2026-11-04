@@ -43,7 +43,7 @@ Note that it's important to `install` in the first step, otherwise, the second s
 
 #### Exhibit 2: The TestNG Eclipse plug-in
 
-As you probably know, the TestNG Eclipse plug-in is a [mug of awesomeness topped with creamy magnificence](http://beust.com/weblog/weblog/2010/11/02/eclipse-and-testng-the-next-next-generation/). You would think that I use it day in and day out to work on TestNG, yet I don't. 
+As you probably know, the TestNG Eclipse plug-in is a [mug of awesomeness topped with creamy magnificence](/posts/eclipse-and-testng-the-next-next-generation). You would think that I use it day in and day out to work on TestNG, yet I don't. 
 
 Actually, I can't. 
 

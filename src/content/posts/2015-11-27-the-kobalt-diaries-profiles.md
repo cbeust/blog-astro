@@ -43,4 +43,4 @@ dependencies {
 
 And that's it. 
 
-_The full series of articles on Kobalt can be found[here](http://beust.com/weblog/weblog/category/kobalt/)_.
+_The full series of articles on Kobalt can be found[here](/tags/kobalt)_.

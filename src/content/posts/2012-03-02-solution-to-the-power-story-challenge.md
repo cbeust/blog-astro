@@ -17,7 +17,7 @@ comments:
   replies: []
 ---
 
-Here is the solution to the ["Power story" non coding challenge](http://beust.com/weblog/weblog/2012/03/01/non-coding-challenge-a-power-story/): 
+Here is the solution to the ["Power story" non coding challenge](/posts/non-coding-challenge-a-power-story): 
 
 > When the power went out, Ann open the wireless settings of her laptop, scanned the area but couldn't find a single wireless access point in the neighborhood. 
 

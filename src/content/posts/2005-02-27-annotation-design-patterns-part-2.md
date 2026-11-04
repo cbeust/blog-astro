@@ -231,13 +231,13 @@ comments:
   replies: []
 ---
 
-In a [previous entry](http://beust.com/weblog/weblog/archives/000250.html), I discussed an annotation design pattern called "Annotation Inheritance".  Here is another annotation design pattern that I have found quite useful.
+In a [previous entry](/posts/annotation-design-patterns), I discussed an annotation design pattern called "Annotation Inheritance".  Here is another annotation design pattern that I have found quite useful.
 
 **Class-Scoped Annotations**
 
 This design pattern is very interesting because it doesn't have any equivalent in the Java World.
 
-Imagine that you are creating a class that contains a lot of methods with a similar annotation.  It could be `@Test` with [TestNG](http://beust.com/weblog/testng), `@Remote` if you are using some kind of RMI tool, etc...
+Imagine that you are creating a class that contains a lot of methods with a similar annotation.  It could be `@Test` with [TestNG](https://testng.org), `@Remote` if you are using some kind of RMI tool, etc...
 
 Adding these annotations to all your methods is not only tedious, it decreases the readability of your code and it's also quite error prone (it's very easy to create a new method and forget to add the annotation).
 

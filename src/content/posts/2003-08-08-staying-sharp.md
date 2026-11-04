@@ -152,7 +152,7 @@ Similarly, more abstract languages such as Dylan or CAML are quite confusing at 
   * Of course, all this would be useless if all you did is read and never practice.  At all my jobs, I have always saved some time every day to do something "on the side", something that doesn't pertain to my work directly.   Working on side projects is definitely a way to sharpen your skills, especially if you can be involved in a project for a long time, which will allow you to go through all the cycles involved in the development process.  If you can do this, it's worth it.  Don't forget to have a life and enjoy your hobbies, though, this is a lot more important than it may seem.  If you are not balanced, you will quickly plateau at work, no matter how dedicated you are.  
   
 
-  * Finally, there are a lot of books I could recommend.  I try to maintain a [list of books I read](http://beust.com/weblog/books), feel free to take a look.  
+  * Finally, there are a lot of books I could recommend.  I try to maintain a [list of books I read](https://beust.com/books), feel free to take a look.  
 
 
 

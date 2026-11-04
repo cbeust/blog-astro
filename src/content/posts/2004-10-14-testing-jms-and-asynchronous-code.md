@@ -66,7 +66,7 @@ comments:
 
 I recently added a couple of features to TestNG that make testing asynchronous code (such as JMS) very easy:  parallelism and time-outs.
 
-Parallelism instructs [TestNG](http://beust.com/weblog/testng) to run your test methods in different threads.  The trick here is that some of these test methods depend on each other, so these methods will obviously be invoked sequentially in the same thread.  But all the other test methods that do not depend on anything else will be run in a separate thread, picked from a pool (which size is configurable).  Here is an example configuration:
+Parallelism instructs [TestNG](https://testng.org) to run your test methods in different threads.  The trick here is that some of these test methods depend on each other, so these methods will obviously be invoked sequentially in the same thread.  But all the other test methods that do not depend on anything else will be run in a separate thread, picked from a pool (which size is configurable).  Here is an example configuration:
 
 ```xml
 <suite name="Main Suite" parallel="true" thread-count="10">
@@ -79,7 +79,7 @@ Parallelism instructs [TestNG](http://beust.com/weblog/testng) to run your test 
 </suite>
 ```
 
-After the run, you can use the [chronological view](http://beust.com/weblog/testng/test-output/methods.html) to see which methods were invoked and in what threads they ran.
+After the run, you can use the [chronological view](https://testng.org/test-output/methods.html) to see which methods were invoked and in what threads they ran.
 
 Another interesting feature is time-outs, where you can indicate that a specific test method is expected to return within a certain number of milliseconds.  If it fails to do so, it will be interrupted and marked as a FAIL with a TimeOutException.
 

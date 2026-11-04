@@ -172,7 +172,7 @@ The problem comes from debugging a failed test. Suddenly, it becomes really hard
 
 In short, there is not a single file that you can look at and get an overall view of your test structure. 
 
-Confronted with this problem with [TestNG](http://beust.com/weblog/testng), I am not sure what to do. I like the idea of the hierarchy but I wonder if it doesn't have more downsides than upsides. 
+Confronted with this problem with [TestNG](https://testng.org), I am not sure what to do. I like the idea of the hierarchy but I wonder if it doesn't have more downsides than upsides. 
 
 For now, I have decided to try the "one file only" approach, and that file is your build.xml. The  ant task allows you to specify a fileset, so you would have something like this: 
 

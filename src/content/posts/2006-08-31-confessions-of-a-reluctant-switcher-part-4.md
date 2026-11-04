@@ -261,7 +261,7 @@ It's been a couple of months that I've been using my Mac Book Pro now, so what's
 
 Definitely mixed.
 
-With the help from the people who posted comments on my previous posts ([here](http://beust.com/weblog/weblog/archives/000394.html) and [here](http://beust.com/weblog/weblog/archives/000398.html)), I was able to configure my Mac in ways that I feel very comfortable with, now:
+With the help from the people who posted comments on my previous posts ([here](/posts/confessions-of-a-reluctant-switcher) and [here](/posts/confessions-of-a-reluctant-switcher-part-2)), I was able to configure my Mac in ways that I feel very comfortable with, now:
 
   * Double finger tap is equivalent to a right click.  
  

@@ -83,7 +83,7 @@ This is why I believe that a test framework needs to provide support for "depend
 
 With such a feature, the test run will be marked "1 SUCCESS, 1 FAIL, 20 SKIPS", which is much more accurate.
 
-Here is how I would write this test using [TestNG](http://beust.com/weblog/testng/):
+Here is how I would write this test using [TestNG](https://testng.org):
 
 ```java
 @Test

@@ -295,7 +295,7 @@ comments:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/probability-quiz.jpg)
 
-Wow, my [little quiz](http://beust.com/weblog/weblog/2011/10/27/probability-quiz/) received a lot more attention than I thought it would. Surprisingly, of all the answers that I have read so far (over 150 between the comments on [my blog](http://beust.com/weblog/weblog/2011/10/27/probability-quiz/) and [Google+](https://plus.google.com/108840253750748459271/posts/3g9UvRt4iZi)), I only spotted three that match exactly my reasoning, which in itself, has to be a statistical anomaly. 
+Wow, my [little quiz](/posts/probability-quiz) received a lot more attention than I thought it would. Surprisingly, of all the answers that I have read so far (over 150 between the comments on [my blog](/posts/probability-quiz) and [Google+](https://plus.google.com/108840253750748459271/posts/3g9UvRt4iZi)), I only spotted three that match exactly my reasoning, which in itself, has to be a statistical anomaly. 
 
 Anyway, enough waiting, here is my interpretation of the puzzler. 
 

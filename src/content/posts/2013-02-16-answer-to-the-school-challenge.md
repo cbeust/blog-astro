@@ -52,7 +52,7 @@ comments:
   replies: []
 ---
 
-I'm happy to see mostly correct answers to the [School coding challenge](http://beust.com/weblog/weblog/2013/02/13/coding-challenge-light-edition/#comments). 
+I'm happy to see mostly correct answers to the [School coding challenge](/posts/coding-challenge-light-edition#comments). 
 
 To make things more interesting, let's start by looking at a na??ve (and wrong) solution: 
 

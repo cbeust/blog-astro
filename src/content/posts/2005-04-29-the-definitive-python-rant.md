@@ -267,7 +267,7 @@ And this was just to add `static`.  Retrofitting more complex object-oriented l
 
 The same can be said about Python's mixed support for features coming from the functional world.  Generators, lambdas, closures, continuations, etc...  are all implemented with strange restrictions that make guessing the right behavior or syntax almost impossible (to such an extent that some of these features are actually being considered for removal, which is probably the worst thing you can do to a language).
 
-If you are interested in more details about my feelings about Python, here are a [few](http://www.jroller.com/page/cbeust/20030504) [older](http://www.beust.com/weblog/weblog/archives/000217.html) [entries](http://www.beust.com/weblog/weblog/archives/000181.html) [I](http://www.beust.com/weblog/weblog/archives/000182.html) [wrote](http://www.beust.com/weblog/weblog/archives/000015.html) on [this](http://www.jroller.com/page/cbeust/20030526) topic.
+If you are interested in more details about my feelings about Python, here are a [few](http://www.jroller.com/page/cbeust/20030504) [older](/posts/tim-bray-at-javapolis) [entries](/posts/why-i-love-ruby) [I](/posts/its-not-about-one-liners) [wrote](/posts/python-replacing-visual-basic-nah) on [this](http://www.jroller.com/page/cbeust/20030526) topic.
 
 Anyway.
 

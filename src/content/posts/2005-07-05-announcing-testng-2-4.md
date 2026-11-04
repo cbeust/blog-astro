@@ -91,4 +91,4 @@ There are also a couple of items I want to mention briefly:
 
 Big thanks go to Alexandru Popescu, Andrew Glover, Thierry Janaudy and Russel Winder for their participation to this new release!
 
-You can [download TestNG 2.4 here](http://beust.com/weblog/testng/testng-2.4.zip).  The Eclipse plug-in has also been updated to this new version and can be obtained from the update site (<http://beust.com/weblog/eclipse>).
+You can [download TestNG 2.4 here](https://testng.org/testng-2.4.zip).  The Eclipse plug-in has also been updated to this new version and can be obtained from the update site (</posts/hippie-completion-in-eclipse>).

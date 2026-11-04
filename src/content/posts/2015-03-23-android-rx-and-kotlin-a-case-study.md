@@ -242,4 +242,4 @@ Stay tuned!
 
 _Update: Discussion on[reddit](http://www.reddit.com/r/androiddev/comments/305k8o/android_rx_and_kotlin_a_case_study/)._
 
-Read [part 2](http://beust.com/weblog/weblog/2015/04/05/android-rx-and-kotlin-part-2/).
+Read [part 2](/posts/android-rx-and-kotlin-part-2).

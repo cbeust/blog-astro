@@ -120,7 +120,7 @@ Well, there is.
 
 Ruby.
 
-In a [previous entry](http://beust.com/weblog/weblog/archives/000027.html), I used a mix of two features in Ruby (closures and dynamicity, and more particularly, method_missing) to solve the following three problems in one fell swoop:
+In a [previous entry](/posts/generating-xml-in-ruby), I used a mix of two features in Ruby (closures and dynamicity, and more particularly, method_missing) to solve the following three problems in one fell swoop:
 
   * Make sure each open tag gets closed automatically.
   * Automatically indent.
@@ -162,7 +162,7 @@ Here is another example:
 > ` xml = XML.**new**  
 >  xml.html {  
 >    xml.head {  
->      xml.title("Statistics for  [ http://beust.com/weblog](http://beust.com/weblog)")  
+>      xml.title("Statistics for  [ /](/)")  
 >    }  
 >    xml.body {  
 >      xml.table{  
@@ -183,8 +183,8 @@ Here is another example:
 >  }  
 >  `
 
-If you are curious, you can take a look at the [final result](http://beust.com/weblog/weblog/stats-loganalyzer2.html), and also download [xml.rb](xml.rb).
+If you are curious, you can take a look at the [final result](//weblog/stats-loganalyzer2.html), and also download [xml.rb](xml.rb).
 
 Alright, let's be a little bit more serious now.
 
-Of course, saying that Ruby is the ultimate template view technology should be taken with a grain of salt.  Obviously, this is not an option if you are a Java programmer.  You should also note that Ruby happens to have two very handy functionalities that make this trick possible, the method_missing hack is actually more due to Ruby being dynamically typed than anything else.  Also, if your language of choice doesn't support closures, you will be reduced to something like XMLStringBuffer, which I described in a [previous entry](http://beust.com/weblog/weblog/archives/000025.html).  It is not as pretty as what you just saw, but it fits the bill pretty well.
+Of course, saying that Ruby is the ultimate template view technology should be taken with a grain of salt.  Obviously, this is not an option if you are a Java programmer.  You should also note that Ruby happens to have two very handy functionalities that make this trick possible, the method_missing hack is actually more due to Ruby being dynamically typed than anything else.  Also, if your language of choice doesn't support closures, you will be reduced to something like XMLStringBuffer, which I described in a [previous entry](/posts/generating-xml-in-ruby).  It is not as pretty as what you just saw, but it fits the bill pretty well.

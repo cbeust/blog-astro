@@ -96,7 +96,7 @@ comments:
   replies: []
 ---
 
-There were quite a few interesting comments on [my previous entry](http://beust.com/weblog/weblog/archives/000522.html) about supporting unit tests directly inside a language, so I thought I'd address some of these observations. 
+There were quite a few interesting comments on [my previous entry](/posts/should-programming-languages-support-unit-testing-natively) about supporting unit tests directly inside a language, so I thought I'd address some of these observations. 
 
 Michael suggests to keep the unit tests near the method they test: 
 

@@ -6,7 +6,7 @@ categories:
 - General
 ---
 
-![](http://beust.com/weblog/strong-bad.jpg)
+![](/pics/strong-bad.jpg)
 
 I am a big fan of [Strong Bad](http://homestarrunner.com).
 

@@ -67,7 +67,7 @@ comments:
   replies: []
 ---
 
-Guido took a look at Scala recently and [he came out a bit intimidated by the language](http://neopythonic.blogspot.com/2008/11/scala.html), which matches my perception. I initially started with quite a lot of fondness for Scala but as I dug deeper in the language, [the complexity and a few specific features](http://beust.com/weblog/weblog/archives/000483.html) started to worry me. 
+Guido took a look at Scala recently and [he came out a bit intimidated by the language](http://neopythonic.blogspot.com/2008/11/scala.html), which matches my perception. I initially started with quite a lot of fondness for Scala but as I dug deeper in the language, [the complexity and a few specific features](/posts/testng-and-scala) started to worry me. 
 
 I have been following the Scala mailing-list for a few years now and the snippets of code I read on a daily basis have been increasingly complex and frightening, and it's taking me more and more time to make sense of them. Not a good sign. 
 

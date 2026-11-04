@@ -1312,7 +1312,7 @@ comments:
 ](http://stuffthathappens.com/blog/2008/07/02/script-kiddies)  
 _Click on the image to see Eric's full comic strip_
 
-I certainly didn't expect so many reactions to the [coding challenge](https://www.beust.com/weblog/coding-challenge/)... More than 130 comments so far, wow.
+I certainly didn't expect so many reactions to the [coding challenge](/posts/coding-challenge)... More than 130 comments so far, wow.
 
 First of all, I owe an apology to all commenters for my annoying comment system (which prohibits posting URL's that start with "http"). I'm very sorry about that but I receive so much spam that it's a necessity. Some people braved the odds and posted their solution anyway, others used creative ways to submit their code, such as using [Google Documents](http://docs.google.com) or [Paste Bin](http://pastebin.com) (which has the benefit of syntax highlighting).
 
