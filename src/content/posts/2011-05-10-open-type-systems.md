@@ -69,7 +69,7 @@ comments:
 - id: 8941
   author: The Open Type System vs. Code Gen &laquo; Development at Guidewire
   date: '2011-05-23T19:27:02'
-  content: '[...] &nbsp;&nbsp;http://beust.com/weblog/weblog/2011/05/10/open-type-systems/ [...]'
+  content: '[...] &nbsp;&nbsp;/posts/open-type-systems [...]'
   replies: []
 - id: 8942
   author: Rikiya

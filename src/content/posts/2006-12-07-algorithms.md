@@ -194,7 +194,7 @@ comments:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/algorithms.jpg)
 
-I just finished a fantastic book called "Algorithms", by Sanjoy Dasgupta, Christos Papadimitriou and Umesh Vazirani. Even better: this book is free and can be downloaded [in PDF form](http://beust.com/weblog/algorithms.pdf). 
+I just finished a fantastic book called "Algorithms", by Sanjoy Dasgupta, Christos Papadimitriou and Umesh Vazirani. Even better: this book is free and can be downloaded [in PDF form](https://people.eecs.berkeley.edu/~vazirani/algorithms/chap0.pdf). 
 
 At 300+ pages, it's not lightweight either, but the authors have done a fantastic job at explaining the main foundations of essential algorithms in simple terms that even developer who don't have a CS degree will find easy to read and to absorb. You will see a few mathematics formulas and proofs here and there, but you can safely skip them if you are not comfortable with them and just take away the very natural and friendly wordings that the authors never omit to make when they are trying to get you to understand the overall idea behind an algorithm. 
 

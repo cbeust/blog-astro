@@ -13,12 +13,12 @@ comments:
 - id: 4338
   author: Luke Hutteman
   date: '2005-11-01T09:15:26'
-  content: So despite knowing better (remember your own comment on http://www.beust.com/weblog/weblog/archives/000201.html ?) you too have given into the lure of MMO\\\'s? what happened man?
+  content: So despite knowing better (remember your own comment on /posts/far-cry-myst-and-other-geeky-pleasures ?) you too have given into the lure of MMO\\\'s? what happened man?
   replies: []
 - id: 4339
   author: Luke Hutteman
   date: '2005-11-01T09:15:49'
-  content: So despite knowing better (remember your own comment on http://www.beust.com/weblog/weblog/archives/000201.html ?) you too have given into the lure of MMO\\\\\\\'s? what happened man?
+  content: So despite knowing better (remember your own comment on /posts/far-cry-myst-and-other-geeky-pleasures ?) you too have given into the lure of MMO\\\\\\\'s? what happened man?
   replies: []
 ---
 

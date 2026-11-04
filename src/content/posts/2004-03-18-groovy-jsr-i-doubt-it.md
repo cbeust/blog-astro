@@ -97,7 +97,7 @@ comments:
   date: '2004-03-22T04:08:52'
   content: '<strong>Cedric''s not so sure Sun will go for the new Groovy JSR by admin</strong>
 
-    Cedric''s not so sure Sun will go for the new Groovy JSR in his [http://beust.com/weblog/weblog/archives/000100.html|weblog].
+    Cedric''s not so sure Sun will go for the new Groovy JSR in his [/posts/groovy-jsr-i-doubt-it|weblog].
 
     Interesting to see the view that Groovy is really a contender to the Java crown'
   replies: []
@@ -106,7 +106,7 @@ comments:
   date: '2004-03-22T04:14:54'
   content: '<strong>Cedric''s not so sure Sun will go for the new Groovy JSR by admin</strong>
 
-    Cedric''s not so sure Sun will go for the new Groovy JSR in his [http://beust.com/weblog/weblog/archives/000100.html|weblog].
+    Cedric''s not so sure Sun will go for the new Groovy JSR in his [/posts/groovy-jsr-i-doubt-it|weblog].
 
     Interesting to see the view that Groovy is really a contender to the Java crown'
   replies: []
@@ -115,7 +115,7 @@ comments:
   date: '2004-03-22T15:51:11'
   content: '<strong>Cedric''s not so sure Sun will go for the new Groovy JSR by admin</strong>
 
-    Cedric''s not so sure Sun will go for the new Groovy JSR in his [http://beust.com/weblog/weblog/archives/000100.html|weblog].
+    Cedric''s not so sure Sun will go for the new Groovy JSR in his [/posts/groovy-jsr-i-doubt-it|weblog].
 
     Interesting to see the view that Groovy is really a contender to the Java crown'
   replies: []

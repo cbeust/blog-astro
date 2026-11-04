@@ -24,7 +24,7 @@ comments:
 
     November 23, 2005
 
-    http://beust.com/weblog/weblog/archives/000341.html
+    /posts/world-of-warcraft-battlegrounds-guide
 
     ;)'
   replies: []

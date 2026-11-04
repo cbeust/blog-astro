@@ -64,7 +64,7 @@ comments:
 
     Completely changing the type in the way you describe sounds very rare (isn''t it basically Duck Typing? Something I flagged as dangerous in a previous post [1]), and even so, a refactoring should be able to do this automatically and safely for you.
 
-    [1] http://beust.com/weblog/weblog/2008/02/11/structural-typing-vs-duck-typing/'
+    [1] /posts/structural-typing-vs-duck-typing'
   replies: []
 - id: 8598
   author: '&nbsp; Programaci??n perezosa&nbsp;-&nbsp;Observatorio de Grails'

@@ -15,7 +15,7 @@ comments:
 - id: 5337
   author: ''
   date: '2006-05-09T17:22:30'
-  content: 'I assume that Hani likes TestNG since he co-authored the TestNG plugin for IntelliJ: http://www.beust.com/weblog/weblog/archives/000306.html'
+  content: 'I assume that Hani likes TestNG since he co-authored the TestNG plugin for IntelliJ: /posts/testng-at-javaone-guest-speaker'
   replies: []
 - id: 5338
   author: jesse

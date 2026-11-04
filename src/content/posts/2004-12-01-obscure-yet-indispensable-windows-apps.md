@@ -10,7 +10,7 @@ comments:
   date: '2004-12-01T10:22:56'
   content: '<strong>Obscure yet indispensable Windows apps</strong>
 
-    <p><a href="http://beust.com/weblog/weblog/archives/000214.html" rel="nofollow ugc">Cederic''s blog</a> lists some of the cool windows apps he uses in daily life. I''d never seen any of these ...</p>'
+    <p><a href="/posts/obscure-yet-indispensable-windows-apps" rel="nofollow ugc">Cederic''s blog</a> lists some of the cool windows apps he uses in daily life. I''d never seen any of these ...</p>'
   replies: []
 - id: 2872
   author: Scott McKinney

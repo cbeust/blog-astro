@@ -22,6 +22,6 @@ comments:
   replies: []
 ---
 
-[![](http://beust.com/weblog/weblog/wp-content/uploads/2011/02/windows7-jump-list.png)](http://beust.com/weblog/weblog/wp-content/uploads/2011/02/windows7-jump-list.png) This is what pops up when I hover (yes, hover) on the Windows Media Player icon in the task bar. I knew that applications could create [jump lists](http://windows.microsoft.com/en-US/windows7/products/features/jump-lists) with customized content, but I didn't realize how far you can go with this feature, nor that these lists can appear on a hover. It's really a great way to manipulate your player with the mouse. Let's hope Mac OS learns something from it. 
+[![](/pics/windows7-jump-list.png)](/pics/windows7-jump-list.png) This is what pops up when I hover (yes, hover) on the Windows Media Player icon in the task bar. I knew that applications could create [jump lists](http://windows.microsoft.com/en-US/windows7/products/features/jump-lists) with customized content, but I didn't realize how far you can go with this feature, nor that these lists can appear on a hover. It's really a great way to manipulate your player with the mouse. Let's hope Mac OS learns something from it. 
 
 Sadly, it's probably the only positive thing I can say about Windows Media Player, its non-standard user interface continues to bug me to no end and not a day goes by where I'm not wasting time trying to do something that should take just one click.

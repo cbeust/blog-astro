@@ -42,7 +42,7 @@ comments:
 
     Does that make sense?
 
-    More details can be found at http://beust.com/weblog/testng but let me know if you have questions.
+    More details can be found at https://testng.org but let me know if you have questions.
 
     --
 

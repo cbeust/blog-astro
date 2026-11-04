@@ -87,7 +87,7 @@ comments:
 
     1. JAVA_HOME and CLASSPATH
 
-    In order to build and run TestNG, you need to set JAVA_HOME=tiger and CLASSPATH=testng.jar. Without the settings, I couldn''t see it working. I think it will be good for http://beust.com/weblog/testng/ documentation to explain them.
+    In order to build and run TestNG, you need to set JAVA_HOME=tiger and CLASSPATH=testng.jar. Without the settings, I couldn''t see it working. I think it will be good for https://testng.org documentation to explain them.
 
     2. Configuration annotation
 

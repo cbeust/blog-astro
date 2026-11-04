@@ -22,9 +22,7 @@ comments:
   replies: []
 ---
 
-![](http://beust.com/weblog/j15/pictures/completion1.JPG)
-
-I have been converting a lot of code to the new JDK 1.5 constructs recently and I decided it was too tedious, so I wrote a quick Eclipse plug-in to assist me.  It's called J15 ("J One Five") and I am happy to announce its [first release](http://beust.com/weblog/j15).
+I have been converting a lot of code to the new JDK 1.5 constructs recently and I decided it was too tedious, so I wrote a quick Eclipse plug-in to assist me.  It's called J15 ("J One Five") and I am happy to announce its [first release](https://web.archive.org/web/20041010123518/http://beust.com/weblog/j15/).
 
 Right now, J15 can convert for loops on arrays and collections but I have quite a few other enhancements in mind which I will disclose as I implement them.
 

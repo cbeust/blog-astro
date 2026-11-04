@@ -93,7 +93,7 @@ I'm really curious to see what legal ground Oracle is going to be using consider
 
 > I just wanted to add my voice to the chorus of others from Sun in offering my heartfelt congratulations to Google on the announcement of their new Java/Linux phone platform, Android. Congratulations! 
 
-[Cached link, in case it gets removed. ](http://beust.com/weblog/schwartz-android/index.html)
+[Cached link, in case it gets removed. ](/schwartz-android/index.html)
 
 This has always struck me as a very odd thing to do for a CEO considering that Android didn't license Java (and as such, was not allowed to use the word "Java" anywhere). I'm guessing that such a blog post would count as a clear indication that Sun was not interested in aggressively defending the Java trademark, and once you go down that path, you lose a lot of credibility in court. 
 

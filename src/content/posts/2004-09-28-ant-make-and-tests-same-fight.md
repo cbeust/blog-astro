@@ -45,7 +45,7 @@ comments:
   date: '2004-12-01T12:03:19'
   content: '<strong>Junit - how to run just one of the methods</strong>
 
-    <p>The comment posted on cedric''s <a href="http://beust.com/weblog/weblog/archives/000189.html" rel="nofollow ugc">weblog</a>&nbsp;I find useful. Using the technique mentioned here one doesn''t have to change the ...</p>'
+    <p>The comment posted on cedric''s <a href="/posts/ant-make-and-tests-same-fight" rel="nofollow ugc">weblog</a>&nbsp;I find useful. Using the technique mentioned here one doesn''t have to change the ...</p>'
   replies: []
 ---
 

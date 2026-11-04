@@ -193,7 +193,7 @@ comments:
   date: '2004-09-16T10:15:44'
   content: '<strong>Not Studying AOP</strong>
 
-    <p>I''ve dug up a few AOP links and I''ve read about it repeatedly in weblogs, but I''ve just not found the motivation to really learn it.  I''ve had no need for it, and it seems that <a href="http://beust.com/weblog/weblog/archives/000180.html" rel="nofollow ugc">the rest of the...</p></a>'
+    <p>I''ve dug up a few AOP links and I''ve read about it repeatedly in weblogs, but I''ve just not found the motivation to really learn it.  I''ve had no need for it, and it seems that <a href="/posts/aop-still-not-there" rel="nofollow ugc">the rest of the...</p></a>'
   replies: []
 - id: 2332
   author: Craig

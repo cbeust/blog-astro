@@ -104,4 +104,4 @@ I'm not going to dive deep into details with this post, but I will certainly do 
   * Lisp: Chad Older 
 There are a lot more languages being worked on... 
 
-For more details, go to the [Project Toledo's home page](http://beust.com/weblog/toledo) and please send your feedback!
+For more details, go to the [Project Toledo's home page](https://www.youtube.com/watch?v=dQw4w9WgXcQ) and please send your feedback!

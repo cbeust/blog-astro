@@ -8,4 +8,4 @@ categories:
 
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/macpaint.jpg)
 
-Apple gracefully [donated the source code of MacPaint and QuickDraw to the San Jose Museum of Computer History](http://www.computerhistory.org/highlights/macpaint/). For those of you who don't want to bother with downloading and unzipping, [here are the full sources](http://beust.com/weblog/macpaint).
+Apple gracefully [donated the source code of MacPaint and QuickDraw to the San Jose Museum of Computer History](http://www.computerhistory.org/highlights/macpaint/). For those of you who don't want to bother with downloading and unzipping, [here are the full sources](https://computerhistory.org/blog/macpaint-and-quickdraw-source-code/).

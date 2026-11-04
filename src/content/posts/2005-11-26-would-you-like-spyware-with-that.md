@@ -118,7 +118,7 @@ comments:
   date: '2005-11-29T17:06:43'
   content: 'links are broken !! spyware ? :-)
 
-    http://www.beust.com/weblog/aop-thread.html'
+    /aop-thread.html'
   replies: []
 - id: 4492
   author: manatlan

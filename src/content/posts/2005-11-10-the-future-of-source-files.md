@@ -258,7 +258,7 @@ comments:
 
     If you are referring to the "getters and setters are evil" idea, please take a look here:
 
-    http://www.beust.com/weblog/weblog/archives/000022.html'
+    /posts/holub-is-at-it-again'
   replies: []
 - id: 4402
   author: murphee

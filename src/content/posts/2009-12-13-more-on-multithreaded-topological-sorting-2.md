@@ -56,7 +56,7 @@ comments:
   replies: []
 ---
 
-![](http://beust.com/weblog/topo/03.png)  
+![](/pics/Topo3.png)  
 I received [a few interesting comments](/posts/hard-core-multicore-with-testng) on my previous entry regarding the new multithreaded topological sort I implemented in TestNG and there is one in particular from Rafael Naufal that I wanted to address:
 
 > The @Priority annotation couldn't be adapted to say which free methods get scheduled first? BTW, the responsibility of knowing which nodes are free couldn't be moved to the graph of test methods?
@@ -104,7 +104,7 @@ public String toDot() {
 }
 ```
 
-Then I modified the executor to dump the graph every time a worker terminates, and finally, I wrote a shell script to convert these dot files into images and to create an HTML file. I ran a simple test case, processed the files with the shell script and [here is the final result](http://beust.com/weblog/topo/graphs.html).  
+Then I modified the executor to dump the graph every time a worker terminates, and finally, I wrote a shell script to convert these dot files into images and to create an HTML file. I ran a simple test case, processed the files with the shell script and [here is the final result](/pics/Topo3.png).  
 A yellow node is "free", green means that the node is "ready" (to be run in the thread pool), grey is "finished" and white nodes haven't been processed yet. Dotted arrows represent dependencies that have been satisfied.
 
 As you can see, the execution matches very closely what you would expect based on my description of the algorithm and I confirmed that changing the size of the thread pool creates different executions.

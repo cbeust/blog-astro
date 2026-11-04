@@ -1147,7 +1147,7 @@ comments:
 
     * Finds base 10 numbers whose digits don''t repeat. Solution to Cedric''s coding
 
-    * challenge: http:/ /beust.com/weblog/archives/000491.html
+    * challenge: /posts/coding-challenge
 
     *
 

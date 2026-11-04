@@ -128,7 +128,7 @@ comments:
 
       true is a reserved keyword, you can''t call a method that name.
 
-      The problem with static is not verbosity (I actually prefer to type Assert.assertTrue() over assertTrue()) but the fact that they make testability much harder, expose global variables to the entire JVM and make multithreading more difficult. I have discussed the problems with static many times over the years, the latest post is http://beust.com/weblog/weblog/2011/03/10/rehabilitating-the-singleton-pattern/'
+      The problem with static is not verbosity (I actually prefer to type Assert.assertTrue() over assertTrue()) but the fact that they make testability much harder, expose global variables to the entire JVM and make multithreading more difficult. I have discussed the problems with static many times over the years, the latest post is /posts/rehabilitating-the-singleton-pattern'
     replies: []
 - id: 9529
   author: MarekDec

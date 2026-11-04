@@ -38,7 +38,7 @@ comments:
 
     Cedric
 
-    http://beust.com/weblog/weblog'
+    /'
   replies: []
 - id: 478
   author: Ross Judson

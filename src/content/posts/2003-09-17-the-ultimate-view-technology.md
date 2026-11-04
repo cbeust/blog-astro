@@ -55,7 +55,7 @@ comments:
   date: '2003-09-21T18:12:09'
   content: 'I just tried, the file is there and the link works.  Here it is again:
 
-    http://beust.com/weblog/weblog/xml.rb
+    /xml.rb
 
     Otherwise, just leave your email address and I''ll send it to you directly.'
   replies: []
@@ -71,7 +71,7 @@ comments:
 - id: 536
   author: Michael S.
   date: '2004-08-04T02:36:51'
-  content: xml.rb doesn't work from http://beust.com/weblog/weblog/archives/000028.html, because it's linked via href="xml.rb", not href="/weblog/xml.rb".
+  content: xml.rb doesn't work from /posts/the-ultimate-view-technology, because it's linked via href="xml.rb", not href="/xml.rb".
   replies: []
 - id: 537
   author: Google
@@ -183,7 +183,7 @@ Here is another example:
 >  }  
 >  `
 
-If you are curious, you can take a look at the [final result](//weblog/stats-loganalyzer2.html), and also download [xml.rb](xml.rb).
+If you are curious, you can take a look at the [final result](/stats-loganalyzer2.html), and also download [xml.rb](/xml.rb).
 
 Alright, let's be a little bit more serious now.
 

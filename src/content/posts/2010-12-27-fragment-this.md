@@ -571,7 +571,7 @@ comments:
 - id: 8704
   author: Lies, Damned Lies, and Statistics &laquo; marcussbarber
   date: '2011-01-05T03:10:28'
-  content: '[...] Source: http://beust.com/weblog/weblog/2010/12/27/fragment-this/ [...]'
+  content: '[...] Source: /posts/fragment-this [...]'
   replies: []
 ---
 

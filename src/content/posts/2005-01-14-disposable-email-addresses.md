@@ -110,7 +110,7 @@ comments:
   date: '2005-01-17T15:33:53'
   content: '<strong>Otaku, Cedric''s weblog: "Disposable</strong>
 
-    <a href="http://beust.com/weblog/weblog/archives/000228.html" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
+    <a href="/posts/disposable-email-addresses" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
 
     <br />
 
@@ -121,7 +121,7 @@ comments:
   date: '2005-01-17T15:42:29'
   content: '<strong>Otaku, Cedric''s weblog: "Disposable</strong>
 
-    <a href="http://beust.com/weblog/weblog/archives/000228.html" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
+    <a href="/posts/disposable-email-addresses" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
 
     <br />
 
@@ -132,7 +132,7 @@ comments:
   date: '2005-01-17T15:43:50'
   content: '<strong>Otaku, Cedric''s weblog: "Disposable</strong>
 
-    <a href="http://beust.com/weblog/weblog/archives/000228.html" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
+    <a href="/posts/disposable-email-addresses" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
 
     <br />
 
@@ -143,7 +143,7 @@ comments:
   date: '2005-01-17T16:13:41'
   content: '<strong>Otaku, Cedric''s weblog: "Disposable</strong>
 
-    <a href="http://beust.com/weblog/weblog/archives/000228.html" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
+    <a href="/posts/disposable-email-addresses" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
 
     <br />
 
@@ -154,7 +154,7 @@ comments:
   date: '2005-01-17T16:22:46'
   content: '<strong>Otaku, Cedric''s weblog: "Disposable</strong>
 
-    <a href="http://beust.com/weblog/weblog/archives/000228.html" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
+    <a href="/posts/disposable-email-addresses" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
 
     <br />
 
@@ -165,7 +165,7 @@ comments:
   date: '2005-01-17T16:28:22'
   content: '<strong>Otaku, Cedric''s weblog: "Disposable</strong>
 
-    <a href="http://beust.com/weblog/weblog/archives/000228.html" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
+    <a href="/posts/disposable-email-addresses" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
 
     <br />
 
@@ -222,7 +222,7 @@ comments:
   date: '2005-03-15T07:45:32'
   content: '<strong>Otaku, Cedric''s weblog: "Disposable</strong>
 
-    <a href="http://beust.com/weblog/weblog/archives/000228.html" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
+    <a href="/posts/disposable-email-addresses" rel="nofollow ugc">Otaku, Cedric''s weblog</a>: "Disposable email addresses
 
     <br />
 

@@ -8,7 +8,7 @@ comments:
 - id: 8027
   author: Lua and World of Warcraft ?? Otaku, Cedric&#039;s weblog | World of Warcraft Private Servers (WoWps)
   date: '2010-03-03T18:08:22'
-  content: '[...] Lua and World of Warcraft . Ultimate Craft Queue add-on. A few people asked me what I was doing with Lua, so here it is: http://beust.com/weblog/ucq   Read more: Lua and World of Warcraft ?? Otaku, Cedric&#39;s weblog [...]'
+  content: '[...] Lua and World of Warcraft . Ultimate Craft Queue add-on. A few people asked me what I was doing with Lua, so here it is: /ucq   Read more: Lua and World of Warcraft ?? Otaku, Cedric&#39;s weblog [...]'
   replies: []
 - id: 8028
   author: Katherine

@@ -102,7 +102,7 @@ True, so it's quite surprising that Srini's own solution still falls in this tra
 
 I disagree with the "pre-defined" (sic) part.  Eviction policies should absolutely be configurable at runtime, even more so than caching activation itself.  Adjusting the eviction policy is a big part of fine-tuning and optimizing an application, and you need as much flexibility in terms of strategies (round-robin, last used first, timeouts, evict biggest first, etc...) as possible.
 
-Except for these points, Srini does a good job at framing the overall problem and he makes a convincing case to use AOP for caching.  However, caching with AOP is a very complicated thing to achieve, and a couple of years ago, I offered an [AOP caching challenge](http://www.beust.com/weblog/aop-thread.html) that turned out to to be much harder to solve than everybody thought initially (including myself).
+Except for these points, Srini does a good job at framing the overall problem and he makes a convincing case to use AOP for caching.  However, caching with AOP is a very complicated thing to achieve, and a couple of years ago, I offered an [AOP caching challenge](/aop-thread.html) that turned out to to be much harder to solve than everybody thought initially (including myself).
 
 Srini's pointcut is the following:
 

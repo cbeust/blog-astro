@@ -12,7 +12,7 @@ comments:
   replies: []
 ---
 
-I have just added support for concrete collections to [J15](http://beust.com/weblog/j15):  use Ctrl-1 on the creation of a concrete collection and J15 will add the correct Generic parameters.
+I have just added support for concrete collections to [J15](https://web.archive.org/web/20041010123518/http://beust.com/weblog/j15/):  use Ctrl-1 on the creation of a concrete collection and J15 will add the correct Generic parameters.
 
 Before: 
 

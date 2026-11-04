@@ -168,6 +168,6 @@ With these constraints in place, I wondered how many combinations were actually 
 Total:  389112
 ```
 
-If you're not convinced, here is [a full list of all the four dot patterns](http://beust.com/weblog/keyguard.html) (the page only works on Firefox and it uses a big canvas object, it might take a few seconds to load). 
+If you're not convinced, here is [a full list of all the four dot patterns](/keyguard.html) (the page only works on Firefox and it uses a big canvas object, it might take a few seconds to load). 
 
 Still, I'm not sure my calculations are right, so I'd like you, dear reader, to confirm my numbers, and optionally explain how you coded your solution...

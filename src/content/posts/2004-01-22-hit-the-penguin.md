@@ -940,4 +940,4 @@ comments:
 
 Note:  the title has nothing to do with my previous entry ;-)
 
-Stressed?  Try this [ little game](http://beust.com/weblog/penguin/index.html).  Quite fun (my record is 321).  Hint:  you can control both speed and angle of the swing.
+Stressed?  Try this [ little game](/penguin/index.html).  Quite fun (my record is 321).  Hint:  you can control both speed and angle of the swing.

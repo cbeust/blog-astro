@@ -43,8 +43,6 @@ comments:
   replies: []
 ---
 
-![](http://beust.com/weblog/weblog/mt-scode.cgi?code=1)
-
 As some of you may have noticed, I have now installed [CAPTCHA](http://www.captcha.net/) protection for comments on my weblog.  It was made necessary by the most recent of onslaught link spam that I just received.  MT-BlackList has worked really well for me ever since I installed it and until yesterday, the [previous massive spam attack](/posts/disposable-email-addresses) I received happened a month ago.
 
 For some reason, MT-BlackList didn't stop yesterday's attack, which resulted in one hundred (yes, exactly one hundred) link spam comments to be posted across thirty blog entries.

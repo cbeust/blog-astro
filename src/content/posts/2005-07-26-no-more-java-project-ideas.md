@@ -237,7 +237,7 @@ comments:
   date: '2005-07-28T22:17:16'
   content: 'Oh, by the vedic calculus, I was referring to a comment made by this guy on this page:
 
-    http://beust.com/weblog/weblog/archives/000213.html
+    /posts/projects-on-java-net
 
     (search for vedic math). I''m not referring to the "Indians invented the internet" comment above on this page, which is obviously a joke (I hope).'
   replies: []

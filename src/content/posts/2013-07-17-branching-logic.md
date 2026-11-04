@@ -225,7 +225,7 @@ comments:
 - id: 9735
   author: Arguments bool??ens et lisibilit?? du code | Vlord
   date: '2013-10-03T08:49:20'
-  content: '[&#8230;] Cet article est une synth??se de celui de C??dric Beust (d??veloppeur de TestNG et JCommander entre autres) :??http://beust.com/weblog/weblog/2013/07/17/branching-logic/ [&#8230;]'
+  content: '[&#8230;] Cet article est une synth??se de celui de C??dric Beust (d??veloppeur de TestNG et JCommander entre autres) :??/posts/branching-logic [&#8230;]'
   replies: []
 - id: 9736
   author: Bill K

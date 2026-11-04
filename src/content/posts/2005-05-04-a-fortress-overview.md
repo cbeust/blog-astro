@@ -109,7 +109,7 @@ If you are a Java / C# / C / C++ developer, here is what you might want to know 
  
   * You can mark methods with `test`.  Again, I'm not quite convinced this kind of thing should be part of a language, but well, I am promoting the [use of annotations](https://testng.org) to do that myself, so I guess it's a small leap of faith.  
  
-  * Fortress has support for automatic forwarding.  This is very interesting because the way this is implemented is almost identical to the way I suggested doing it a [long time ago](http://www.beust.com/weblog/java-delegation.html) (in 1998!) in Java.  
+  * Fortress has support for automatic forwarding.  This is very interesting because the way this is implemented is almost identical to the way I suggested doing it a [long time ago](/java-delegation.html) (in 1998!) in Java.  
  
   * Fortress has extensive support for futures and asynchronism.  It goes much further than Java and its thread support, even with the ` java.util.concurrent` package.  Fortress is clearly geared toward making heavy computations, so this makes perfect sense, but the documentation gets a little bit abstract in this area, using sentences such as "asymptotic behavior of parallel code space".  Don't let yourself impressed, there are some truly interesting ideas.  
  

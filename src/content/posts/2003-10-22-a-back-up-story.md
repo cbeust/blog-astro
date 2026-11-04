@@ -40,7 +40,7 @@ It's scary to see how deleting a single registry key can wipe out an entire prof
 
 It took about one full day for my machine to become functional again, and the selective back-up trick worked very decently. Except for one tiny detail. 
 
-One of my hobbies is to read German books and [write summaries](http://beust.com/weblog/cedric/perry/cosmic-fortresses/) for them. These books are often scanned and I once needed a more automatic way to clean up the output of the OCR. So I wrote a Word VBScript macro to make my life easier. This is probably the only time in my life I have ever written VBScript, and while it turned out relatively painless, my absolute lack of knowledge of the syntax and libraries made the task take longer than I expected. Yesterday, I tried to apply my macro and realized that it wasn't there any more. 
+One of my hobbies is to read German books and [write summaries](https://web.archive.org/web/20031203180410/http://beust.com/cedric/perry/) for them. These books are often scanned and I once needed a more automatic way to clean up the output of the OCR. So I wrote a Word VBScript macro to make my life easier. This is probably the only time in my life I have ever written VBScript, and while it turned out relatively painless, my absolute lack of knowledge of the syntax and libraries made the task take longer than I expected. Yesterday, I tried to apply my macro and realized that it wasn't there any more. 
 
 Selective back-ups work fine as long as you know what to back up. But Word VBScript macros? I wouldn't even know where to start to look for them. 
 

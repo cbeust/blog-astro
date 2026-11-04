@@ -32,7 +32,7 @@ comments:
   date: '2004-11-11T14:53:03'
   content: 'Since you asked...
 
-    http://beust.com/weblog/cedric.kml'
+    /cedric.kml'
   replies: []
 - id: 2751
   author: james
@@ -74,7 +74,7 @@ Here are a few to get you started.  These are XML files that will automatically
 
   * [Earth in true colors](http://bbs.keyhole.com/ubb/download.php?Number=12535)
   * [Mickey Mouse shaped landscape in LA](http://bbs.keyhole.com/ubb/download.php?Number=12539)
-  * [A surprise](http://beust.com/weblog/googlers.kml)
+  * [A surprise](/googlers.kml)
 
 
 
