@@ -7,7 +7,13 @@ import OtherContent from "@/components/global/OtherContent.astro";
 import Archives from "@/components/global/Archives.astro";
 import DateBadge from "@/components/DateBadge.astro";
 
-const { frontmatter } = Astro.props;
+interface Props {
+  frontmatter: any;
+  prevPost?: { id: string; title: string } | null;
+  nextPost?: { id: string; title: string } | null;
+}
+
+const { frontmatter, prevPost, nextPost } = Astro.props;
 
 const formattedDate = new Date(frontmatter.pubDate || frontmatter.date).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -21,9 +27,37 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 <BaseLayout pageTitle={`${frontmatter.title} | Otaku`} description={frontmatter.description}>
   <div class="py-6">
-    <a href={`${basePath}/`} class="inline-flex items-center text-xs font-medium text-base-600 hover:text-[#0071BB] mb-4 transition">
-      ← Back to home
-    </a>
+    <div class="flex items-center justify-between gap-4 mb-4">
+      <a href={`${basePath}/`} class="inline-flex items-center text-xs font-medium text-base-600 hover:text-[#0071BB] transition">
+        ← Back to home
+      </a>
+
+      {(prevPost || nextPost) && (
+        <nav aria-label="Post quick navigation" class="flex items-center gap-3 text-xs font-medium">
+          {prevPost && (
+            <a
+              href={`${basePath}/posts/${prevPost.id}`}
+              rel="prev"
+              title={`Previous post: ${prevPost.title}`}
+              class="text-base-600 hover:text-[#0071BB] transition flex items-center gap-1"
+            >
+              ← <span class="hidden sm:inline">Previous post</span><span class="sm:hidden">Prev</span>
+            </a>
+          )}
+          {prevPost && nextPost && <span class="text-base-300">|</span>}
+          {nextPost && (
+            <a
+              href={`${basePath}/posts/${nextPost.id}`}
+              rel="next"
+              title={`Next post: ${nextPost.title}`}
+              class="text-base-600 hover:text-[#0071BB] transition flex items-center gap-1"
+            >
+              <span class="hidden sm:inline">Next post</span><span class="sm:hidden">Next</span> →
+            </a>
+          )}
+        </nav>
+      )}
+    </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       <article class="lg:col-span-9 min-w-0 p-6 sm:p-10 rounded-2xl border border-base-200 bg-base-50 shadow-xs">
@@ -87,6 +121,44 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
         <slot />
       </div>
 
+      {(prevPost || nextPost) && (
+        <nav aria-label="Post navigation" class="mt-12 pt-8 border-t border-base-200 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {prevPost ? (
+            <a
+              href={`${basePath}/posts/${prevPost.id}`}
+              rel="prev"
+              class="group p-4 rounded-xl border border-base-200 hover:border-base-400 bg-base-100 hover:bg-base-200/50 transition flex flex-col justify-between"
+            >
+              <span class="text-xs font-semibold text-base-500 uppercase tracking-wider group-hover:text-[#0071BB] transition flex items-center gap-1">
+                ← Previous Post
+              </span>
+              <span class="mt-2 text-sm font-medium text-base-900 group-hover:text-[#0071BB] transition line-clamp-2">
+                {prevPost.title}
+              </span>
+            </a>
+          ) : (
+            <div class="hidden sm:block" />
+          )}
+
+          {nextPost ? (
+            <a
+              href={`${basePath}/posts/${nextPost.id}`}
+              rel="next"
+              class="group p-4 rounded-xl border border-base-200 hover:border-base-400 bg-base-100 hover:bg-base-200/50 transition flex flex-col justify-between sm:text-right"
+            >
+              <span class="text-xs font-semibold text-base-500 uppercase tracking-wider group-hover:text-[#0071BB] transition flex items-center justify-start sm:justify-end gap-1">
+                Next Post →
+              </span>
+              <span class="mt-2 text-sm font-medium text-base-900 group-hover:text-[#0071BB] transition line-clamp-2">
+                {nextPost.title}
+              </span>
+            </a>
+          ) : (
+            <div class="hidden sm:block" />
+          )}
+        </nav>
+      )}
+
       {comments.length > 0 && (
         <section id="comments" class="mt-16 pt-10 border-t border-base-200">
           <h2 class="text-2xl font-medium font-display text-base-900 mb-8">
@@ -134,6 +206,33 @@ const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
               </div>
             ))}
           </div>
+
+          {(prevPost || nextPost) && (
+            <div class="mt-10 pt-6 border-t border-base-200 flex items-center justify-between text-xs font-medium text-base-600">
+              {prevPost ? (
+                <a
+                  href={`${basePath}/posts/${prevPost.id}`}
+                  rel="prev"
+                  class="hover:text-[#0071BB] transition flex items-center gap-1 max-w-[45%]"
+                >
+                  ← Previous: <span class="truncate">{prevPost.title}</span>
+                </a>
+              ) : (
+                <span />
+              )}
+              {nextPost ? (
+                <a
+                  href={`${basePath}/posts/${nextPost.id}`}
+                  rel="next"
+                  class="hover:text-[#0071BB] transition flex items-center gap-1 text-right max-w-[45%] ml-auto justify-end"
+                >
+                  Next: <span class="truncate">{nextPost.title}</span> →
+                </a>
+              ) : (
+                <span />
+              )}
+            </div>
+          )}
         </section>
       )}
     </article>

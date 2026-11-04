@@ -4,16 +4,50 @@ import MarkdownPostLayout from "@/layouts/BlogLayout.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("posts");
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry },
-  }));
+
+  // Sort chronologically ascending (oldest first, newest last)
+  blogEntries.sort((a, b) => {
+    const timeA = new Date(a.data.pubDate).getTime();
+    const timeB = new Date(b.data.pubDate).getTime();
+    if (timeA !== timeB) {
+      return timeA - timeB;
+    }
+    return a.id.localeCompare(b.id);
+  });
+
+  return blogEntries.map((entry, index) => {
+    const prevEntry = index > 0 ? blogEntries[index - 1] : null;
+    const nextEntry = index < blogEntries.length - 1 ? blogEntries[index + 1] : null;
+
+    return {
+      params: { slug: entry.id },
+      props: {
+        entry,
+        prevPost: prevEntry
+          ? {
+              id: prevEntry.id,
+              title: prevEntry.data.title || "Previous post",
+            }
+          : null,
+        nextPost: nextEntry
+          ? {
+              id: nextEntry.id,
+              title: nextEntry.data.title || "Next post",
+            }
+          : null,
+      },
+    };
+  });
 }
 
-const { entry } = Astro.props;
+const { entry, prevPost, nextPost } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<MarkdownPostLayout frontmatter={entry.data}>
+<MarkdownPostLayout
+  frontmatter={entry.data}
+  prevPost={prevPost}
+  nextPost={nextPost}
+>
   <Content />
 </MarkdownPostLayout>
