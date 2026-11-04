@@ -246,17 +246,17 @@ pre, code {
   font-weight: normal;
 }
 
-/* Post calendar date square matching beust.com */
+/* Post calendar date square matching beust.com (80% scale) */
 .post-date {
   background: #ffffff;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: inline-flex;
   flex-direction: column;
   position: relative;
   text-align: center;
   border: 1px solid #d6cfb8;
-  border-radius: 3px;
+  border-radius: 2.5px;
   overflow: hidden;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
   flex-shrink: 0;
@@ -267,12 +267,12 @@ pre, code {
   background: #f44365;
   border-bottom: 1px solid #ffffff;
   color: #ffffff;
-  font-size: 9.5px;
+  font-size: 7.5px;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   padding: 0;
-  line-height: 15px;
+  line-height: 12px;
   display: block;
 }
 
@@ -280,7 +280,7 @@ pre, code {
   background: #ffffff;
   color: #000000;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 13px;
   flex: 1;
   display: flex;
   align-items: center;
@@ -290,23 +290,23 @@ pre, code {
 
 .post-date.has-year {
   height: auto;
-  min-height: 48px;
+  min-height: 38px;
 }
 
 .post-date.has-year .day {
   flex: none;
-  font-size: 14px;
-  padding-top: 2px;
-  padding-bottom: 1px;
+  font-size: 11px;
+  padding-top: 1.5px;
+  padding-bottom: 0.5px;
 }
 
 .post-date .year {
   background: #ffffff;
   color: #6e6255;
-  font-size: 8.5px;
+  font-size: 7px;
   font-weight: 600;
   line-height: 1;
-  padding-bottom: 3px;
+  padding-bottom: 2px;
   letter-spacing: -0.02em;
   display: block;
 }

@@ -255,7 +255,7 @@ comments:
   replies: []
 ---
 
-[It's been a while since I proposed a coding challenge](http://beust.com/weblog/weblog/2008/08/28/coding-challenge-wrap-up/), so I've been thinking about another one. Coming up with original problems that are not solved with a simple Google search is not easy, but I think this new one, while not especially hard, should produce some interesting and creative results. 
+[It's been a while since I proposed a coding challenge](/posts/coding-challenge-wrap-up), so I've been thinking about another one. Coming up with original problems that are not solved with a simple Google search is not easy, but I think this new one, while not especially hard, should produce some interesting and creative results. 
 
 This problem comes in two parts. The first part is more of a warm up since it's very easy to look up, but the follow up question will, hopefully, be the source of innovative answers. 
 

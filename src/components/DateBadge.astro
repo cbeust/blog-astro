@@ -51,28 +51,28 @@ const fullDate = isValid
 const isoDate = isValid ? d.toISOString() : "";
 
 const sizeClasses = {
-  sm: showYear ? "w-[36px] min-h-[42px]" : "w-[36px] h-[36px]",
-  md: showYear ? "w-[40px] min-h-[48px]" : "w-[40px] h-[40px]",
-  lg: showYear ? "w-[48px] min-h-[58px]" : "w-[48px] h-[48px]",
-}[size] || (showYear ? "w-[40px] min-h-[48px]" : "w-[40px] h-[40px]");
+  sm: showYear ? "w-[29px] min-h-[34px]" : "w-[29px] h-[29px]",
+  md: showYear ? "w-[32px] min-h-[38px]" : "w-[32px] h-[32px]",
+  lg: showYear ? "w-[38px] min-h-[46px]" : "w-[38px] h-[38px]",
+}[size] || (showYear ? "w-[32px] min-h-[38px]" : "w-[32px] h-[32px]");
 
 const monthTextClasses = {
-  sm: "text-[8.5px] leading-[13px] tracking-wider",
-  md: "text-[9.5px] leading-[15px] tracking-wider",
-  lg: "text-[11px] leading-[18px] tracking-wider",
-}[size] || "text-[9.5px] leading-[15px] tracking-wider";
+  sm: "text-[7px] leading-[10px] tracking-wider",
+  md: "text-[7.5px] leading-[12px] tracking-wider",
+  lg: "text-[9px] leading-[14px] tracking-wider",
+}[size] || "text-[7.5px] leading-[12px] tracking-wider";
 
 const dayTextClasses = {
-  sm: showYear ? "text-[12px]" : "text-[14px]",
-  md: showYear ? "text-[14px]" : "text-[16px]",
-  lg: showYear ? "text-[17px]" : "text-[20px]",
-}[size] || (showYear ? "text-[14px]" : "text-[16px]");
+  sm: showYear ? "text-[10px]" : "text-[11px]",
+  md: showYear ? "text-[11px]" : "text-[13px]",
+  lg: showYear ? "text-[14px]" : "text-[16px]",
+}[size] || (showYear ? "text-[11px]" : "text-[13px]");
 
 const yearTextClasses = {
-  sm: "text-[7.5px] leading-tight pb-0.5",
-  md: "text-[8.5px] leading-tight pb-1",
-  lg: "text-[10px] leading-tight pb-1.5",
-}[size] || "text-[8.5px] leading-tight pb-1";
+  sm: "text-[6.5px] leading-tight pb-0.5",
+  md: "text-[7px] leading-tight pb-0.5",
+  lg: "text-[8px] leading-tight pb-1",
+}[size] || "text-[7px] leading-tight pb-0.5";
 ---
 
 <time

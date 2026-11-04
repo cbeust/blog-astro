@@ -92,7 +92,7 @@ comments:
 ![](https://raw.githubusercontent.com/cbeust/beust-com/master/pics/xkcd-221.png)  
 _[xkcd's random generator](http://xkcd.com/221/)_
 
-Here is the wrap up of [the coding challenge I proposed a few days ago](http://beust.com/weblog/weblog/2012/02/16/a-new-coding-challenge-2/), and which gathered some interesting feedback, both in the comments and also on [reddit](http://www.reddit.com/r/programming/comments/pt60b/coding_challenge_testing_randomness/).
+Here is the wrap up of [the coding challenge I proposed a few days ago](/posts/a-new-coding-challenge-2), and which gathered some interesting feedback, both in the comments and also on [reddit](http://www.reddit.com/r/programming/comments/pt60b/coding_challenge_testing_randomness/).
 
 ## Randomness
 
