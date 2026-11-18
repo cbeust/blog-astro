@@ -8,7 +8,7 @@ interface Props {
 
 const { class: className = "", limit = 5 } = Astro.props;
 
-const allPosts = await getCollection("posts");
+const allPosts = await getCollection("posts", ({ data }) => !data.draft);
 allPosts.sort(
   (a, b) =>
     new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()

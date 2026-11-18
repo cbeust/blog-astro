@@ -7,7 +7,7 @@ import OtherContent from '@/components/global/OtherContent.astro';
 import Archives from '@/components/global/Archives.astro';
 import DateBadge from '@/components/DateBadge.astro';
 
-const allPosts = await getCollection('posts');
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 
 // Sort chronologically descending (newest first)
 allPosts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());

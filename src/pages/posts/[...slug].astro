@@ -3,7 +3,7 @@ import { getCollection, render } from "astro:content";
 import MarkdownPostLayout from "@/layouts/BlogLayout.astro";
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("posts");
+  const blogEntries = await getCollection("posts", ({ data }) => !data.draft);
 
   // Sort chronologically ascending (oldest first, newest last)
   blogEntries.sort((a, b) => {
