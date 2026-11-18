@@ -2,7 +2,7 @@
 title: 'A PC XT Emulator Journey'
 date: '2026-11-18T19:00:00'
 slug: pc-xt-emulator-journey
-draft: true
+draft: false
 categories:
 - Uncategorized
 ---
