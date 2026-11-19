@@ -7,7 +7,7 @@ categories:
 - Uncategorized
 ---
 
-After the Apple 2 and NES, I decided to embark on my next emulator project: a PC XT, which I named “Dos Ex Machina” (“dos ex” for short).
+After the [Apple](http://github.com/cbeust/maple-2) 2 and [NES](https://github.com/cbeust/ced-nes), I decided to embark on my next emulator project: a PC XT, which I named “Dos Ex Machina” (“dos ex” for short).
 
 I’ve wanted to become more familiar with the 808x family for a long time and so far, this has been a great learning experience, not just for this processor but also learning more about MS-DOS, which is basically the operating system that ended up defining several decades of computer use.
 
